@@ -36,5 +36,5 @@ git commit -m "作業内容"
 
 git push origin ブランチ名
 
-※一度だけ[ git push -u origin ]ブランチ名を実行すると
+※一度だけ[ git push -u origin ブランチ名 ]を実行すると
 いつも通りgit pushのみで大丈夫です
