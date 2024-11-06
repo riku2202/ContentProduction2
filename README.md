@@ -45,4 +45,4 @@ git commit -m "作業内容"
 git push origin ブランチ名
 
 ※一度だけ[ git push -u origin ブランチ名 ]を実行すると
-いつも通り[ git push ]のみで実行することができます
+いつも通りの形[ git push ]で実行することができます
