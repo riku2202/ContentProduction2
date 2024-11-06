@@ -10,13 +10,13 @@ git clone https://**github.com/riku2202/ContentProduction2.git**
 
 ◇ブランチの操作
 
-・ブランチの作成
+・ブランチの作成　　　　
 git branch ブランチ名
 
-・ブランチの切り替え
+・ブランチの切り替え　　　　
 git checkout ブランチ名
 
-・ブランチの削除
+・ブランチの削除　　　　
 git branch -d ブランチ名
 
 ◇プロジェクトを最新の状態にする
