@@ -35,3 +35,6 @@ git add .
 git commit -m "作業内容"
 
 git push origin ブランチ名
+
+※一度だけgit push -u origin ブランチ名を実行すると
+いつも通りgit pushのみで大丈夫です
