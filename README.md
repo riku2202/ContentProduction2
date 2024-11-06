@@ -9,10 +9,13 @@ https://docs.google.com/spreadsheets/d/1bBX-Ei3bcRQHsn_kJCe9un3w8dvhmYTq4viBJb9K
 git clone https://**github.com/riku2202/ContentProduction2.git**
 
 ◇ブランチの操作
+
 ・ブランチの作成
 git branch ブランチ名
+
 ・ブランチの切り替え
 git checkout ブランチ名
+
 ・ブランチの削除
 git branch -d ブランチ名
 
