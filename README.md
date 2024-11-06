@@ -31,4 +31,4 @@ git add .
 
 git commit -m "作業内容"
 
-git push origin main
+git push origin ブランチ名
