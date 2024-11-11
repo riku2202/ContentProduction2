@@ -14,6 +14,6 @@ namespace System
         private const int STAGE_MAX_NUM = 8;
 
         // ステージのクリアフラグ
-        public bool[] IsClearStage = new bool[STAGE_MAX_NUM];
+        private bool[] IsClearStage = new bool[STAGE_MAX_NUM];
     }
 }

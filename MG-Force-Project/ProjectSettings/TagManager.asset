@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Nmagnet
-  - Smagnet
+  - Fixed
+  - Moving
   layers:
   - Default
   - TransparentFX
@@ -13,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Fixed
-  - Moving
+  - NMagnet
+  - SMagnet
   - 
   - 
   - 

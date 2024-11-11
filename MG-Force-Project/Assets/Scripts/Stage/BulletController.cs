@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+/// <summary>
+/// 弾の実行処理
+/// </summary>
 public class BulletController : MonoBehaviour
 {
+    // 弾の速度
     [SerializeField]
     private float BulletSpeed = 1.0f;
 
@@ -27,17 +31,25 @@ public class BulletController : MonoBehaviour
     {
         Bullet = GetComponent<Rigidbody>();
 
+        // 弾の座標取得
         BulletPos = Bullet.position;
 
+        // ターゲット確認用
         GameObject target = GameObject.Find("target");
 
+        // ターゲットが存在する場合
         if (target != null)
         {
+            // ターゲットの座標取得
             TargetPos = target.GetComponent<Rigidbody>().position;
+
+            // 弾の発射
+            FiringBullet();
         }
+        // ターゲットが存在しない場合
         else
         {
-
+            Debug.Log("【System】エラー　ターゲットが存在しません");
         }
     }
 
