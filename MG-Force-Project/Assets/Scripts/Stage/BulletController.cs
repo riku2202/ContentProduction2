@@ -35,22 +35,37 @@ public class BulletController : MonoBehaviour
         // 弾の座標取得
         BulletPos = Bullet.position;
 
-        // ターゲット確認用
-        GameObject target = GameObject.Find("target");
+    }
 
-        // ターゲットが存在する場合
-        if (target != null)
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            // ターゲットの座標取得
-            TargetPos = target.GetComponent<Rigidbody>().position;
+            // ターゲット確認用
+            GameObject target = GameObject.Find("Target");
 
-            // 弾の発射
-            FiringBullet();
+            // ターゲットが存在する場合
+            if (target != null)
+            {
+                // ターゲットの座標取得
+                TargetPos = target.GetComponent<Rigidbody>().position;
+
+                //// 弾の発射
+                FiringBullet();
+            }
+            // ターゲットが存在しない場合
+            else
+            {
+                Debug.Log("【System】エラー　ターゲットが存在しません");
+            }
         }
-        // ターゲットが存在しない場合
-        else
+
+        if (transform.position.x < -10 || transform.position.x > 10 ||
+            transform.position.y < -10 || transform.position.y > 10)
         {
-            Debug.Log("【System】エラー　ターゲットが存在しません");
+            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+            Bullet.velocity = Vector3.zero;
+            Bullet.angularVelocity = Vector3.zero;
         }
     }
 
