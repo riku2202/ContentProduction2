@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -56,7 +57,7 @@ public class BulletController : MonoBehaviour
     /// <summary>
     /// 弾の発射処理
     /// </summary>
-    public void FiringBullet()
+    private void FiringBullet()
     {
         // 向きベクトルを求める
         Direction = TargetPos - BulletPos;
@@ -69,5 +70,17 @@ public class BulletController : MonoBehaviour
 
         // 向きベクトルに応じて移動させる
         Bullet.AddForce(Direction, ForceMode.Impulse);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Moving"))
+        {
+
+        }
+        else if (other.CompareTag("Fixed"))
+        {
+
+        }
     }
 }
