@@ -19,30 +19,22 @@ https://docs.google.com/document/d/19OMZlwD5mvRpVuqxirXNbc73CJMLWo3zXY5VuYEYWkU/
 
 git clone https://**github.com/riku2202/ContentProduction2.git**
 
-◇ブランチの操作
+◇ブランチを含めたGitの操作
 
-・ブランチの作成　　　　
-git branch ブランチ名
+・最新の状態にする
+git fetch origin main
+git merge origin/main
 
-・ブランチの切り替え　　
-git checkout ブランチ名
+または
 
-・ブランチの削除　　　　
-git branch -d ブランチ名
+git pull origin main (origin mainは省略可能)
 
-◇プロジェクトを最新の状態にする
-
-git fetch origin
-
-git merge origin/ブランチ名
-
-◇プロジェクトの更新をリモートにアップする
-
+・プッシュ操作
 git add .
-
 git commit -m "作業内容"
+git push origin <現在のブランチ名>
 
-git push origin ブランチ名
+Githubでpullリクエストを作成し、他の誰かに承認してもらう。
+(承認は、コーディング規約がきちんと守れているかで判断する)
 
-※一度だけ[ git push -u origin ブランチ名 ]を実行すると
-いつも通りの形[ git push ]で実行することができます
+承認されたら、完了
