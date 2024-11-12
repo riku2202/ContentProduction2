@@ -22,7 +22,9 @@ git clone https://**github.com/riku2202/ContentProduction2.git**
 ◇ブランチを含めたGitの操作
 
 ・最新の状態にする
+
 git fetch origin main
+
 git merge origin/main
 
 または
@@ -30,11 +32,15 @@ git merge origin/main
 git pull origin main (origin mainは省略可能)
 
 ・プッシュ操作
+
 git add .
+
 git commit -m "作業内容"
+
 git push origin <現在のブランチ名>
 
 Githubでpullリクエストを作成し、他の誰かに承認してもらう。
+
 (承認は、コーディング規約がきちんと守れているかで判断する)
 
 承認されたら、完了
