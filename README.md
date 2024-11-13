@@ -23,7 +23,7 @@ git clone https://**github.com/riku2202/ContentProduction2.git**
 
 <ローカルを最新の状態にする>
 
-1. git fetch origin main
+1. git fetch
 
 2. git merge origin/main
 
