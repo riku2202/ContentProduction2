@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,10 +25,10 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ToggleDoor();
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    ToggleDoor();
+        //}
 
         if (isAnimating)
         {
@@ -44,9 +45,8 @@ public class DoorController : MonoBehaviour
         }
         
     }
-    [SerializeField] void ToggleDoor()
+   public void ToggleDoor()
     {
-        //ドアの開閉を切り替え、アニメーション開始
         isOpen = !isOpen;
         isAnimating = true;
     }
