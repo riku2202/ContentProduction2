@@ -1,4 +1,4 @@
-# コンテンツ制作デジタル2回目
+# コンテンツ制作デジタル2回目 
 ◇ドライブURL
 
 https://drive.google.com/drive/folders/1OkbKSvit6L9NQAdWteW1DFBfG64sd-mM?lfhs=2
@@ -19,30 +19,28 @@ https://docs.google.com/document/d/19OMZlwD5mvRpVuqxirXNbc73CJMLWo3zXY5VuYEYWkU/
 
 git clone https://**github.com/riku2202/ContentProduction2.git**
 
-◇ブランチの操作
+◇ブランチを含めたGitの操作
 
-・ブランチの作成　　　　
-git branch ブランチ名
+<ローカルを最新の状態にする>
 
-・ブランチの切り替え　　
-git checkout ブランチ名
+1. git fetch
 
-・ブランチの削除　　　　
-git branch -d ブランチ名
+2. git merge origin/main
 
-◇プロジェクトを最新の状態にする
+または
 
-git fetch origin
+1. git pull origin main (origin mainは省略可能)
 
-git merge origin/ブランチ名
+<プッシュ操作>
 
-◇プロジェクトの更新をリモートにアップする
+1. git add .
 
-git add .
+2. git commit -m "作業内容"
 
-git commit -m "作業内容"
+3. git push origin <現在のブランチ名>
 
-git push origin ブランチ名
+4. Githubでpullリクエストを作成し、他の誰かに承認してもらう。
 
-※一度だけ[ git push -u origin ブランチ名 ]を実行すると
-いつも通りの形[ git push ]で実行することができます
+(承認は、コーディング規約がきちんと守れているかで判断する)
+
+承認されたら、完了
