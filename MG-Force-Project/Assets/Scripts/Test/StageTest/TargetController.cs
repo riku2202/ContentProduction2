@@ -13,7 +13,7 @@ public class TargetController : MonoBehaviour
         screenPosition.z = Mathf.Abs(Camera.main.transform.position.z); // または指定したい深度
 
         // ワールド座標に変換
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition); transform.position = Camera.main.ScreenToWorldPoint(transform.position);
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
         transform.position = worldPosition;
     }

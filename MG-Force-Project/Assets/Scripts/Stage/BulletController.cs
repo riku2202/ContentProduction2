@@ -25,6 +25,9 @@ public class BulletController : MonoBehaviour
     // 向きベクトル
     private Vector3 Direction  = Vector3.zero;
 
+    [SerializeField]
+    private Material Nmaterial;
+
     /// <summary>
     /// 初期化処理
     /// </summary>
@@ -35,10 +38,6 @@ public class BulletController : MonoBehaviour
         // 弾の座標取得
         BulletPos = Bullet.position;
 
-    }
-
-    private void Update()
-    {
         if (Input.GetMouseButtonDown(0))
         {
             // ターゲット確認用
@@ -59,13 +58,16 @@ public class BulletController : MonoBehaviour
                 Debug.Log("【System】エラー　ターゲットが存在しません");
             }
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log(Direction);
 
         if (transform.position.x < -10 || transform.position.x > 10 ||
             transform.position.y < -10 || transform.position.y > 10)
         {
-            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-            Bullet.velocity = Vector3.zero;
-            Bullet.angularVelocity = Vector3.zero;
+            Destroy(gameObject);
         }
     }
 
@@ -95,7 +97,13 @@ public class BulletController : MonoBehaviour
         }
         else if (other.CompareTag("Fixed"))
         {
+            Debug.Log("test");
+            
+            Renderer rend = other.GetComponent<Renderer>();
 
+            rend.material = Nmaterial;
+
+            Destroy(gameObject);
         }
     }
 }
