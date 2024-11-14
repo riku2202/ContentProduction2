@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 磁力管理クラス
+/// </summary>
 public class MagnetController : MonoBehaviour
 {
     // 可動できるオブジェクト判定タグ

@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 /// <summary>
-/// ’e‚ÌÀsˆ—
+/// ’e‚Ì“®ìŠÇ—ƒNƒ‰ƒX
 /// </summary>
 public class BulletController : MonoBehaviour
 {
