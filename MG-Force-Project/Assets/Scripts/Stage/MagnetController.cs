@@ -20,7 +20,7 @@ public class MagnetController : MonoBehaviour
         SMove,
         NFixed,
         SFixed,
-        NULL,
+        NotType,
     }
 
     private ObjType MyType;
@@ -48,10 +48,11 @@ public class MagnetController : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        //if ()
-        //{
-
-        //}
+        switch (SetType(other.gameObject)) 
+        {
+            case ObjType.NMove:
+                break;
+        }
     }
 
     private ObjType SetType(GameObject obj)
@@ -79,6 +80,6 @@ public class MagnetController : MonoBehaviour
             }
         }
 
-        return ObjType.NULL;
+        return ObjType.NotType;
     }
 }
