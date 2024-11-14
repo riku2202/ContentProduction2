@@ -25,5 +25,7 @@ public class NowLowring : MonoBehaviour
         {
             SceneManager.LoadScene("StageSelect");
         }
+
+        // 加算して判断してもいいけど、コルーチンを使用してもいいよ
     }
 }
