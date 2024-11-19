@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.IO;
 
-namespace System
+namespace Game.GameSystem
 {
     /// <summary>
     /// データのセーブとロード管理
