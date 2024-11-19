@@ -6,48 +6,35 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] bool isOpen = false;   //ドアの開閉状態
-    [SerializeField] float openAngle = 90f; //ドアの開く角度
-    [SerializeField] float closeAngle = 0f; //ドアが閉まる角度
-    [SerializeField] float speed = 2f;  //ドアの開閉速度
+    [SerializeField]
+    GameObject door;    //ドアオブジェクト
+    [SerializeField]
+    Vector3 openPosition;//開いた時の位置
+    [SerializeField]
+    float openSpeed = 2f;//開くスピード
 
-    private Quaternion openRotation;
-    private Quaternion closeRotation;
-    private bool isAnimating = false;
+    private Vector3 originalPosition;
+    private bool isOpen = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        openRotation = Quaternion.Euler(0,openAngle,0);
-        closeRotation = Quaternion.Euler(0,closeAngle,0);
+        originalPosition = door.transform.position;   //初期位置を記録
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    ToggleDoor();
-        //}
-
-        if (isAnimating)
+        //ドアが開く
+        if (isOpen)
         {
-            Quaternion targetRotation = isOpen ? openRotation : closeRotation;
-            transform.localRotation = Quaternion.Slerp(transform.localRotation,targetRotation,
-                Time.deltaTime * speed);
-
-            //目的の角度に近づいたらアニメーションを停止
-            if(Quaternion.Angle(transform.localRotation,targetRotation) < 0.1f)
-            {
-                transform.localRotation = targetRotation;
-                isAnimating = false;
-            }
+            door.transform.position = Vector3.Lerp(door.transform.position, openPosition, Time.deltaTime * openSpeed);
         }
-        
     }
-   public void ToggleDoor()
+    private void OnCollisionEnter(Collision collision)
     {
-        isOpen = !isOpen;
-        isAnimating = true;
+        //他のCubeと衝突した場合
+        if(collision.gameObject.CompareTag("KeyCube"))
+        {
+            Debug.Log("Cubeが衝突しました。ドアを開けます!");
+            isOpen = true;
+        }
     }
 }

@@ -4,14 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - CinemachineTarget
   - Ground
-  - Switch
-=======
-  - Fixed
-  - Moving
->>>>>>> origin/main
+  - KeyCube
   layers:
   - Default
   - TransparentFX
@@ -19,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - NMagnet
-  - SMagnet
+  - 
+  - 
   - 
   - 
   - 

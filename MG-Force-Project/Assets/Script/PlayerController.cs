@@ -1,54 +1,66 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float jumpForce = 5f;
-    private bool isGrounded = true;
-    private Rigidbody rb;
-    // Start is called before the first frame update
+    [SerializeField]
+    float moveSpeed = 5f;//移動速度
+    [SerializeField]
+    float jumpForce = 5f;//ジャンプの強さ
+    [SerializeField]
+    int maxJumpCount = 2;//ジャンプの最大回数
+
+    private int jumpCount = 0;//現在のジャンプ回数
+    private bool isGrounded = false;//地面についているかどうか
+    private Rigidbody rb;//Rigidbody2Dを使用
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //まっすぐに進む
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
+        if (Input.GetKey(KeyCode.A))
+        {//まっすぐに進む
             transform.Translate(0.0f, 0.0f, Time.deltaTime);
         }
         //後ろに進む
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(0.0f, 0.0f, -Time.deltaTime);
         }
-        //ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
-        float rotate_speed = 10f;
 
-        if (Input.GetKey(KeyCode.DownArrow))//右回転
+        //動く方向に応じて反転
+        if (key != 0)
         {
-            transform.Rotate(0.0f, rotate_speed * Time.deltaTime, 0.0f);
+            transform.localScale = new Vector3(key, 1, 1);
         }
-
-        if (Input.GetKey(KeyCode.UpArrow))//左回転
+        //ジャンプ処理
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumpCount)
         {
-            transform.Rotate(0.0f, -rotate_speed * Time.deltaTime, 0.0f);
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
     }
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+       if (collision.gameObject.CompareTag("Ground"))
+       {
+           isGrounded = true;
+           jumpCount = 0;
+       }
+        
+    }
+    void OnCollisionExit(Collision collision)
+    {
+       if (collision.gameObject.CompareTag("Ground"))
+       {
+           isGrounded = false;
+       }
+            
     }
 }
