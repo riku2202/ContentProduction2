@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -7,5 +8,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerMoveController : MonoBehaviour
 {
+    private void Start()
+    {
 
+    }
 }

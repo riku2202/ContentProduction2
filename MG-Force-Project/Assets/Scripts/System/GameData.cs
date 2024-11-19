@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace System 
+namespace Game.GameSystem 
 {
     /// <summary>
     /// ゲームデータ
