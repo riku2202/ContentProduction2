@@ -5,7 +5,7 @@ using UnityEngine;
 namespace System 
 {
     /// <summary>
-    /// ゲームデータ管理
+    /// ゲームデータの管理クラス
     /// </summary>
     public class GameDataManager
     {
