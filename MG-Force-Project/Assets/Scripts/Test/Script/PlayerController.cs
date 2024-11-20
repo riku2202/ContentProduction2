@@ -11,10 +11,15 @@ public class PlayerController : MonoBehaviour
     float moveSpeed = 5f;//移動速度
     [SerializeField]
     float jumpForce = 5f;//ジャンプの強さ
+    
     [SerializeField]
-    int maxJumpCount = 2;//ジャンプの最大回数
+    LayerMask groundLayer;
+    [SerializeField]
+    Transform groundCheck;
+    [SerializeField]
+    float groundCheckRadius = 0.2f;
 
-    private int jumpCount = 0;//現在のジャンプ回数
+   
     private bool isGrounded = false;//地面についているかどうか
     private Rigidbody rb;//Rigidbody2Dを使用
 
@@ -25,33 +30,24 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //右
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Time.deltaTime, 0.0f, 0.0f);
-        }
-        //左
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(-Time.deltaTime, 0.0f, 0.0f);
-        }
+        float moveX = Input.GetAxis("Horizontal");
+        Vector3 movement = new Vector3(moveX, 0, 0);
+        rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y, rb.velocity.z);
 
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        //ジャンプ処理
+        if(Input.GetKeyDown(KeyCode.Space)) 
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
-    void OnCollisionEnter(Collision collision)
+    private void OnDrawGizmosSelected()
     {
-       if (collision.gameObject.CompareTag("Ground"))
-       {
-           isGrounded = true;
-           jumpCount = 0;
-       }
-        
+        if(groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
-    void OnCollisionExit(Collision collision)
-    {
-       if (collision.gameObject.CompareTag("Ground"))
-       {
-           isGrounded = false;
-       }
-            
-    }
+
 }

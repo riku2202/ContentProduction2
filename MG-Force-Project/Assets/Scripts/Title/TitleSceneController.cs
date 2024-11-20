@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// タイトルシーンの管理クラス
-/// </summary>
-public class TitleSceneController : MonoBehaviour
+namespace Game.Title
 {
-    void Start()
+    /// <summary>
+    /// タイトルシーンの管理クラス
+    /// </summary>
+    public class TitleSceneController : MonoBehaviour
     {
-        
-    }
+        void Start()
+        {
 
-    void Update()
-    {
-        
+        }
+
+        void Update()
+        {
+            DebugManager.LogMessage("テスト");
+        }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace System 
+namespace Game.GameSystem 
 {
     /// <summary>
     /// ゲームデータの管理クラス
@@ -57,6 +57,18 @@ namespace System
         public GameData GetGameData()
         {
             return data;
+        }
+
+        public void ReSetGameData()
+        {
+            if (data.ReSetData() == GameConstants.NORMAL)
+            {
+                DebugManager.LogMessage("データを削除しました");
+            }
+            else
+            {
+                DebugManager.LogMessage("正常にデータが削除できませんでした", DebugManager.MessageType.Error);
+            }
         }
     }
 }

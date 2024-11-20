@@ -6,35 +6,26 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField]
-    GameObject door;    //ドアオブジェクト
-    [SerializeField]
-    Vector3 openPosition;//開いた時の位置
-    [SerializeField]
-    float openSpeed = 2f;//開くスピード
+    float defaultY;     // 扉の初期のY座標
+    float openY = 50f;   // 扉のオープン時のY座標
+    float speed = 10f;   // 扉の開閉のスピード
 
-    private Vector3 originalPosition;
-    private bool isOpen = false;
+    public bool isOpen; // 扉を開けるか閉めるかのフラグ
 
     void Start()
     {
-        originalPosition = door.transform.position;   //初期位置を記録
+        defaultY = transform.position.y;
     }
-    private void Update()
+
+    void Update()
     {
-        //ドアが開く
-        if (isOpen)
+        if (isOpen && transform.position.y < openY)
         {
-            door.transform.position = Vector3.Lerp(door.transform.position, openPosition, Time.deltaTime * openSpeed);
+            transform.position += Vector3.up * speed * Time.deltaTime;
         }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        //他のCubeと衝突した場合
-        if(collision.gameObject.CompareTag("KeyCube"))
+        else if (!isOpen && transform.position.y > defaultY)
         {
-            Debug.Log("Cubeが衝突しました。ドアを開けます!");
-            isOpen = true;
+            transform.position -= Vector3.up * speed * Time.deltaTime;
         }
     }
 }
