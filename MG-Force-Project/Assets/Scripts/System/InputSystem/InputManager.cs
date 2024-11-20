@@ -48,8 +48,10 @@ public class InputManager : MonoBehaviour
 
     private void InitializeUnityInputBindings()
     {
-        unityInputBindings["Jump"] = new[] { KeyCode.Space, KeyCode.JoystickButton0 }; // Xボタン or スペースキー
-        unityInputBindings["Attack"] = new[] { KeyCode.E, KeyCode.JoystickButton1 };   // Eキー or ゲームパッドBボタン
+        unityInputBindings["Action"] = new[] { KeyCode.F, KeyCode.JoystickButton0 };       // □ボタン or Fキー
+        unityInputBindings["Jump"] = new[]   { KeyCode.Space, KeyCode.JoystickButton1 };   // ×ボタン or スペースキー
+        unityInputBindings["Select"] = new[] { KeyCode.JoystickButton2 };                  // 〇ボタン
+        unityInputBindings["Shoot"] = new[]  { KeyCode.Mouse0, KeyCode.JoystickButton7 };  // ゲームパッドR2ボタン or 左クリック
     }
 
     /// <summary>
