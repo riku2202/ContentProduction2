@@ -129,21 +129,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 209531782}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &143286808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143286807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429f5dc345561c8428f61d5419e58ebc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotationSpeed: 700
-  jumpForce: 5
 --- !u!136 &143286812
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -194,6 +179,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &143286817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143286807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7acc96bae851a439c97c45c3244e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &209531782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,15 +261,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 143286808}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 143286812}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 143286813}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 143286817}
   m_SourcePrefab: {fileID: 100100000, guid: 697447828b80a894c9860d0a52d90fc5, type: 3}
 --- !u!1 &330585543
 GameObject:
@@ -361,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4265847, y: 0.050218105, z: -3.227065}
+  m_LocalPosition: {x: -3.4265847, y: 1.16, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
