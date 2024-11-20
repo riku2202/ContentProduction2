@@ -18,5 +18,9 @@ public class DoorSwitch : MonoBehaviour
         {
             doorController.ToggleDoor();
         }
+
+        // Œxíœ—p‚Å‚·
+        targetObjectName = other.name;
+        playerObjectName = other.name;
     }
 }

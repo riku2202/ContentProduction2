@@ -1,18 +1,21 @@
+using Game.GameSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearSceneController : MonoBehaviour
+namespace Game.Clear 
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ClearSceneController : MonoBehaviour
     {
-        
-    }
+        // 各ステージクリア時に呼び出される処理
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // 全ステージクリア時に呼び出される処理
+
+        // フラグ管理はGameDataManagerからGameDataを呼び出してする(呼び出し引数はステージのインデックス)]
+
+        public void Start()
+        {
+
+        }
     }
 }

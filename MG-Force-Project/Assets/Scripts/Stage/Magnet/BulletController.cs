@@ -54,7 +54,7 @@ namespace Game.Stage.Magnet
                 // ターゲットが存在しない場合
                 else
                 {
-                    Debug.Log("【BulletContrller.cs】エラー　ターゲットが存在しません");
+                    DebugManager.LogMessage("ターゲットが存在しません", DebugManager.MessageType.Error);
                 }
             }
         }
@@ -88,13 +88,13 @@ namespace Game.Stage.Magnet
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == MagnetData.FIXED_OBJTAGE)
+            if (other.tag == GameConstants.FIXED_OBJTAG)
             {
                 Debug.Log("Hit");
 
                 Destroy(gameObject);
             }
-            else if (other.tag == MagnetData.MOVE_OBJTAG)
+            else if (other.tag == GameConstants.MOVE_OBJTAG)
             {
                 Debug.Log("Hit");
 

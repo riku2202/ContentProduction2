@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Game.Stage.Magnet
 {
+    /// <summary>
+    /// 磁力の更新処理
+    /// </summary>
     public class MagnetUpdate : MonoBehaviour
     {
         // 磁力起動フラグ

@@ -22,7 +22,7 @@ namespace Game.GameSystem
             // ゲームデータが無効の場合
             if (data == null)
             {
-                Debug.Log("【System】セーブするデータがありません : ");
+                DebugManager.LogMessage("セーブするデータがありません：" + FilePath, DebugManager.MessageType.Warning);
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace Game.GameSystem
             // ゲームデータが無効の場合
             if (loaddata == null)
             {
-                Debug.Log("【System】ロードするデータがありません : ");
+                DebugManager.LogMessage("ロードするデータがありません：" + FilePath, DebugManager.MessageType.Warning);
             }
 
             // ゲームデータを設定
@@ -59,7 +59,7 @@ namespace Game.GameSystem
 
             // Jsonデータをファイルに書き込み
             File.WriteAllText(FilePath, json);
-            Debug.Log("【System】ゲームデータが保存されました : " + FilePath);
+            DebugManager.LogMessage("ゲームデータが保存されました：" + FilePath);
         }
 
         /// <summary>
@@ -74,13 +74,15 @@ namespace Game.GameSystem
 
                 GameData data = JsonUtility.FromJson<GameData>(Json);
 
-                Debug.Log("【System】ゲームデータが読み込まれました : " + FilePath);
+                DebugManager.LogMessage("ゲームデータが読み込まれました：" + FilePath);
+
                 return data;
             }
             // ファイルが存在しない場合
             else
             {
-                Debug.Log("【System】ゲームデータが見つかりません : " + FilePath);
+                DebugManager.LogMessage("ゲームデータが見つかりません：" + FilePath, DebugManager.MessageType.Warning);
+
                 return null;
             }
         }

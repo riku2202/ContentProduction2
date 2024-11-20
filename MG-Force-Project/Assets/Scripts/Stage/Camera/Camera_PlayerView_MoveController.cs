@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Stage
+namespace Game.Stage.Camera
 {
 
     public class Camera_PlayerView_MoveController : MonoBehaviour

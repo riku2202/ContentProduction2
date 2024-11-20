@@ -1,7 +1,7 @@
 using UnityEditor.Rendering;
 using UnityEngine;
 
-namespace Stage 
+namespace Game.Stage.Camera
 {
 
     public class Camera_FreeView_MoveController : MonoBehaviour
