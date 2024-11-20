@@ -16,7 +16,7 @@ namespace Game.Stage.Magnet
         private int MagnetPower = 0;
 
         private void Start()
-        {
+        {            
             MyData.SetMagnetData(gameObject.tag, gameObject.layer, MagnetPower);
         }
 
@@ -29,7 +29,7 @@ namespace Game.Stage.Magnet
         {
             if (other.gameObject.layer == 8)
             {
-                gameObject.tag = 
+                gameObject.layer = GameConstants.N_MAGNET_LAYER;
 
                 MyData.SetMagnetData(gameObject.tag, gameObject.layer, MagnetPower);
             }

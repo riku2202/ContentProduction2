@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Game.Stage.Magnet
 {
+    /// <summary>
+    /// 磁力のデータ
+    /// </summary>
     public class MagnetData
     {
         // オブジェクトのタイプ
@@ -45,17 +48,17 @@ namespace Game.Stage.Magnet
         {
             if (SetObjType(tag) == -1)
             {
-                Debug.Log("【MagnetData.cs】エラー　オブジェクトのタイプ設定に失敗しました");
+                DebugManager.LogMessage("オブジェクトのタイプ設定に失敗しました", DebugManager.MessageType.Error);
             }
 
             if (SetMagnetType(layer) == -1)
             {
-                Debug.Log("【MagnetData.cs】エラー　磁力のタイプ設定に失敗しました");
+                DebugManager.LogMessage("磁石のタイプ設定に失敗しました", DebugManager.MessageType.Error);
             }
 
             if (SetMagnetPower(power) == -1)
             {
-                Debug.Log("【MagnetData.cs】エラー　磁力の強さ設定に失敗しました");
+                DebugManager.LogMessage("磁力の強さ設定に失敗しました", DebugManager.MessageType.Error);
             }
         }
 

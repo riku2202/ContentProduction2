@@ -1,7 +1,7 @@
 namespace Game
 {
     /// <summary>
-    /// ゲーム全体での定数
+    /// ゲーム全体での定数管理用
     /// </summary>
     public static class GameConstants
     {

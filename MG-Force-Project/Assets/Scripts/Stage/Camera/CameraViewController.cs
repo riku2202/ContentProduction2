@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Stage 
+namespace Game.Stage.Camera
 {
     /// <summary>
     /// カメラモードの変更処理クラス
