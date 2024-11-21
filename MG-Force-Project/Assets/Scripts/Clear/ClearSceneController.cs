@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Game.Clear 
 {
+    /// <summary>
+    /// クリアシーン管理クラス
+    /// </summary>
     public class ClearSceneController : MonoBehaviour
     {
         // 各ステージクリア時に呼び出される処理

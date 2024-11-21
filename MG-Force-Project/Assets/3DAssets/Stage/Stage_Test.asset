@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6685ee8bafaf181449d146769175fb9c, type: 3}
   m_Name: Stage_Test
   m_EditorClassIdentifier: 
-  StageIndex: 0
+  StageIndex: -1
   StagePrefab: {fileID: 2228403926247076003, guid: 58fe793b2fd3b104eaebd919270e5be9,
     type: 3}
