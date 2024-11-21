@@ -19,16 +19,19 @@ namespace Game.Stage.Magnet
         MagnetData.MagnetPower SelectPower;
 
         [SerializeField]
-        private GameObject N;
+        private GameObject N_Object;
+
+        [SerializeField]
+        private GameObject S_Object;
 
         private void Start()
         {
-            
+            SelectType = MagnetData.MagnetType.NForce;
         }
 
         private void Update()
         {
-            
+           
         }
     }
 }
