@@ -22,7 +22,7 @@ namespace Game.Stage.Magnet
 
         private void FixedUpdate()
         {
-            if (!MagnetManager.IsMagnetBoot) { return; };
+            //if (!MagnetManager.IsMagnetBoot) { return; };
         }
 
         private void OnTriggerEnter(Collider other)

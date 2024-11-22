@@ -10,7 +10,11 @@ namespace Game.Stage.Magnet
     public class MagnetManager : MonoBehaviour
     {
         // 磁力起動フラグ
-        public static bool IsMagnetBoot;
+        internal bool IsMagnetBoot { get; private set; }
+
+        private const MagnetData.MagnetType NForce = MagnetData.MagnetType.NForce;
+
+        private const MagnetData.MagnetType SForce = MagnetData.MagnetType.SForce;
 
         // 選択中のタイプ
         MagnetData.MagnetType SelectType;
@@ -26,12 +30,20 @@ namespace Game.Stage.Magnet
 
         private void Start()
         {
-            SelectType = MagnetData.MagnetType.NForce;
+            SelectType = NForce;
         }
-
+        
         private void Update()
         {
-           
+            var input = InputManager.Instance;
+
+            if (input.IsActionPressed(GameConstants.INPUT_MAG_CHANGE))
+            {
+                if (SelectType != NForce)
+                {
+                    SelectType = NForce;
+                }
+            }
         }
     }
 }

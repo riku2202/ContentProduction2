@@ -13,12 +13,11 @@ namespace Game
 
         /* -------- 入力 -------- */
 
-        public const string LEFT_MOVE = "Left";
-        public const string RIGHT_MOVE = "Right";
-        public const string JUMP_MOVE = "Jump";
-        public const string RETURN = "Return";
-        public const string BACK = "Back";
+        public const string INPUT_ACTION = "Action";
+        public const string INPUT_JUMP = "Jump";
 
+        public const string INPUT_MAG_CHANGE = "Change";
+        
         /* -------- タグ -------- */
 
         // 固定オブジェクト
@@ -65,7 +64,5 @@ namespace Game
 
         // エラー値
         public const int ERROR = -1;
-
-        /* -------- その他 -------- */
     }
 }
