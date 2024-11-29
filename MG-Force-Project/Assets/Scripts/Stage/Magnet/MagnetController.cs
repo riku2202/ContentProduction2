@@ -5,34 +5,34 @@ using UnityEngine;
 namespace Game.Stage.Magnet
 {
     /// <summary>
-    /// 磁力管理クラス
+    /// 磁力動作管理クラス
     /// </summary>
     public class MagnetController : MonoBehaviour
     {
-        private MagnetData MyData;
+        //private MagnetData MyData;
 
-        private MagnetData OtherData;
+        //private MagnetData OtherData;
 
-        private int MagnetPower = 0;
+        //private int MagnetPower = 0;
 
-        private void Start()
-        {            
-            MyData.SetMagnetData(gameObject.tag, gameObject.layer, MagnetPower);
-        }
+        //private void Start()
+        //{            
+        //    MyData.SetMagnetData(gameObject.tag, gameObject.layer, MagnetPower);
+        //}
 
-        private void FixedUpdate()
-        {
-            //if (!MagnetManager.IsMagnetBoot) { return; };
-        }
+        //private void FixedUpdate()
+        //{
+        //    //if (!MagnetManager.IsMagnetBoot) { return; };
+        //}
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.layer == 8)
-            {
-                gameObject.layer = GameConstants.N_MAGNET_LAYER;
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.gameObject.layer == 8)
+        //    {
+        //        gameObject.layer = (int)GameConstants.Layer.N_MAGNET;
 
-                MyData.SetMagnetData(gameObject.tag, gameObject.layer, MagnetPower);
-            }
-        }
+        //        MyData.SetMagnetData(gameObject.tag, gameObject.layer, MagnetPower);
+        //    }
+        //}
     }
 }

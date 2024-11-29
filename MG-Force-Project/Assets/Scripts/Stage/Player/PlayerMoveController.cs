@@ -10,9 +10,27 @@ namespace Game.Stage.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
+        [SerializeField]
+        private float Speed;
+
+        [SerializeField]
+        private bool IsActive;
+
+        private InputManager Input;
+
         private void Start()
         {
+            Input = GameObject.Find("InputManager").GetComponent<InputManager>();
+        }
 
+        private void Update()
+        {
+            if (!IsActive) { return; }
+
+            if (Input.IsActionPressed("Action"))
+            {
+
+            }
         }
     }
 }
