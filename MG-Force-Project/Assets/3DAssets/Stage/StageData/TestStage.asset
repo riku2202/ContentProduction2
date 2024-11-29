@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6685ee8bafaf181449d146769175fb9c, type: 3}
   m_Name: TestStage
   m_EditorClassIdentifier: 
-  StageIndex: 0
-  StagePrefab: {fileID: 0}
-  StageBG: {fileID: 1851490629777006519, guid: b08fe646b7ebcab4d8345e82e62a1845, type: 3}
+  stageIndex: 0
+  stagePrefab: {fileID: 4506118102256104543, guid: 1bc84ca7f9456a640b6f13d29e926700,
+    type: 3}
+  stageBG: {fileID: 1851490629777006519, guid: b08fe646b7ebcab4d8345e82e62a1845, type: 3}
+  topRight: {x: 34, y: 21}
