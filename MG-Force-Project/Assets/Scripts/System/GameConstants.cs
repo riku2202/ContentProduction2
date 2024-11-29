@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Game
 {
     /// <summary>
@@ -5,64 +7,157 @@ namespace Game
     /// </summary>
     public static class GameConstants
     {
-        /* -------- 時間 -------- */
+        /* ================ 時間 ================ */
 
+        // 標準値
         public const int DEFAULT_FPS = 60;
 
         public const int HIGH_FPS = 120;
 
-        /* -------- 入力 -------- */
 
-        public const string INPUT_ACTION = "Action";
+        /* ================ 入力 ================ */
+
+        // GamePlay
         public const string INPUT_JUMP = "Jump";
+        public const string INPUT_MOVE = "Move";
+        public const string INPUT_SHOOT = "Shoot";
+        public const string INPUT_SHOOT_ANGLE = "ShootAngle";
+        public const string INPUT_MAGNET_POWER = "MagnetPower";
+        public const string INPUT_POLE_SWITCHING = "PoleSwitching";
+        public const string INPUT_MANGET_BOOT = "MagnetBoot";
+        public const string INPUT_ACTION = "Action";
 
-        public const string INPUT_MAG_CHANGE = "Change";
+        // Menu
+        public const string INPUT_MENU_CHANGE = "MenuChange";
+        public const string INPUT_SELECT = "Select";
+        public const string INPUT_BACK = "InputBack";
+        public const string INPUT_VIEWMODE = "ViewMode";
+
+
+        /* ================ タグ ================ */
+
+        /// <summary>
+        /// ゲーム内のタグを定義する列挙型
+        /// 【Tag.タグ名.ToString()でタグ(string型)を取得】
+        /// </summary>
+        public enum Tag 
+        {
+            Untagged, // タグ未設定
+
+            Fixed,   // 固定オブジェクト
+            Moving,  // 可動オブジェクト
+            Stage,   // ステージオブジェクト
+            Player,  // プレイヤーオブジェクト
+        }
+
+        #region -------- タグの変換処理 --------
+
+        // String型に対応したTag型
+        public static readonly Dictionary<string, Tag> StringToTag = new Dictionary<string, Tag>
+        {
+            { Tag.Untagged.ToString(), Tag.Untagged },
+            { Tag.Fixed.ToString(), Tag.Fixed },
+            { Tag.Moving.ToString(), Tag.Moving },
+            { Tag.Stage.ToString(), Tag.Stage },
+            { Tag.Player.ToString(), Tag.Player },
+        };
+
+        // Tag型に対応したString型
+        public static readonly Dictionary<Tag, string> TagToString = new Dictionary<Tag, string>
+        {
+            { Tag.Untagged, Tag.Untagged.ToString() },
+            { Tag.Fixed, Tag.Fixed.ToString() },
+            { Tag.Moving, Tag.Moving.ToString() },
+            { Tag.Stage, Tag.Stage.ToString() },
+            { Tag.Player, Tag.Player.ToString() },
+        };
+
+        /// <summary>
+        /// String型をTag型に変換する
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static Tag ConvertTag(string tag)
+        {
+            if (StringToTag.TryGetValue(tag, out Tag get_tag))
+            {
+                return get_tag;
+            }
+            else
+            {
+                DebugManager.LogMessage("String型をTag型に変換できませんでした", DebugManager.MessageType.Error);
+                return Tag.Untagged;
+            }
+        }
+
+        /// <summary>
+        /// Tag型をString型に変換する
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static string ConvertTag(Tag tag)
+        {
+            if (TagToString.TryGetValue(tag, out string get_tag))
+            {
+                return get_tag;
+            }
+            else
+            {
+                DebugManager.LogMessage("Tag型をString型に変換できませんでした", DebugManager.MessageType.Error);
+                return Tag.Untagged.ToString();
+            }
+        }
+
+        #endregion
         
-        /* -------- タグ -------- */
 
-        // 固定オブジェクト
-        public const string FIXED_OBJTAG = "Fixed";
+        /* ================ レイヤー ================ */
 
-        // 可動オブジェクト
-        public const string MOVE_OBJTAG = "Moving";
+        /// <summary>
+        /// ゲーム内のタグを定義する列挙型
+        /// 【int型にキャストして使用する】
+        /// </summary>
+        public enum Layer 
+        {
+            DEFAULT = 0,         // すべてのオブジェクトのデフォルト
+            TRANSPARENT_FX = 1,  // 透明エフェクト用
+            IGNORE_RAYCAST = 2,  // レイキャストを無視する
 
-        /* -------- レイヤー -------- */
+            WATER = 4,           // 水の表現用
+            UI = 5,              // ユーザーインターフェース
+            N_MAGNET = 6,        // 磁力 N極
+            S_MAGNET = 7,        // 磁力 S極
+            BULLET = 8           // 磁力の弾
+        }
 
-        // N極
-        public const int N_MAGNET_LAYER = 7;
 
-        // S極
-        public const int S_MAGNET_LAYER = 8;
+        /* ================ オブジェクト ================ */
 
-        // 弾
-        public const int BULLET_LAYER = 9;
+        // 入力管理用オブジェクト
+        public const string INPUT_MANAGER_OBJ = "InputManager";
 
-        /* -------- 変数 -------- */
+        // サウンド管理用オブジェクト
+        public const string SOUND_MANAGER_OBJ = "SoundManager";
 
-        // 数値のリセット
-        public const int RESET = 0;
 
-        // 数値のリセット(float)
-        public const float RESET_F = 0.0f;
+        /* ================ 数値計算 ================ */
 
-        // 半分
-        public const int HAFE = 2;
+        // 半分計算
+        public const float HAFE = 2.0f;
 
-        // 半分(float)
-        public const float HAFE_F = 2.0f;
+        // 反転値
+        public const float INVERSION = -1.0f;
 
-        // 反転
-        public const int INVERSION = -1;
 
-        // 反転(float)
-        public const float INVERSION_F = -1.0f;
+        /* ================ 状態管理 ================ */
 
-        /* -------- 関数 -------- */
+        // 値のリセット
+        public const float RESET = 0.0f;
 
-        // 正常値
+        // 正常動作の判定用
         public const int NORMAL = 0;
 
-        // エラー値
+        // エラー動作の判定用
         public const int ERROR = -1;
     }
 }

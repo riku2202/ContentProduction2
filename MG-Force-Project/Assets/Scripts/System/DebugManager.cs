@@ -7,7 +7,7 @@ namespace Game
     /// </summary>
     public static class DebugManager
     {
-
+        // メッセージタイプ
         public enum MessageType 
         {
             Normal,
@@ -15,7 +15,8 @@ namespace Game
             Error,
         }
 
-        /* -------- メッセージタイプ -------- */
+
+        /* -------- カテゴリー表示 -------- */
 
         private const string NORMAL = "実行：";
 
@@ -23,9 +24,11 @@ namespace Game
 
         private const string ERROR = "エラー：";
 
-        /* -------- メッセージ名 -------- */
+
+        /* -------- 出力場所 -------- */
 
         private const string DEFAULT_SYSTEM = "System";
+
 
         /* -------- 色分け -------- */
 
@@ -35,38 +38,41 @@ namespace Game
 
         private const string FINISH_COLOR = "</color>";
 
+
         /// <summary>
         /// ログメッセージ表示処理
         /// </summary>
         /// <param name="message"></param>
         /// <param name="type"></param>
         /// <param name="class_name"></param>
-        public static void LogMessage(string message, MessageType type = MessageType.Normal, string class_name = DEFAULT_SYSTEM)
+        public static void LogMessage(string message, MessageType type = MessageType.Normal, string log_sorce = DEFAULT_SYSTEM)
         {
 #if UNITY_EDITOR
 
-            string color = GREEN_COLOR;
-            string message_type = null;
+            string message_color = GREEN_COLOR;  // 色(デフォルトは緑)
+            string message_type = NORMAL;  // カテゴリー表示(デフォルトは実行)
 
+            // タイプによって表示形式を変える
             switch (type) 
             { 
                 case MessageType.Normal:
-                    color = GREEN_COLOR;
+                    message_color = GREEN_COLOR;
                     message_type = NORMAL;
                     break;
 
                 case MessageType.Warning:
-                    color = YELLOW_COLOR;
+                    message_color = YELLOW_COLOR;
                     message_type = WARNING;
                     break;
 
                 case MessageType.Error:
-                    color = RED_COLOR;
+                    message_color = RED_COLOR;
                     message_type = ERROR;
                     break;
             }
 
-            Debug.Log(color + "【" + class_name + " 】" + message_type + message + FINISH_COLOR);
+            // 表示
+            Debug.Log(message_color + "【" + log_sorce + " 】" + message_type + message + FINISH_COLOR);
 
 #endif
         }

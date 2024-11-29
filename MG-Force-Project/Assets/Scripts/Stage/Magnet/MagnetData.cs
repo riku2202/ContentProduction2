@@ -1,36 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Game.Stage.Magnet
 {
     /// <summary>
-    /// 磁力のデータ
+    /// オブジェクトの磁力データクラス
     /// </summary>
     public class MagnetData
     {
-        // オブジェクトのタイプ
-        public enum ObjectType
-        {
-            Fixed,   // 固定
-            Moving,  // 可動
-        }
-
-        private ObjectType currentObjectType;
-
-        // 磁石のレイヤー
-        public const int N_MAGNET_LAYER = 6;  // N極
-        public const int S_MAGNET_LAYER = 7;  // S極
-
         // 磁力のタイプ
         public enum MagnetType
         {
-            NForce,  // N極
-            SForce,  // S極
-            NotForce,
-        }
+            NotType = GameConstants.Layer.DEFAULT,  // 磁力を持っていない
 
-        private MagnetType currentMagnetType;
+            NForce = GameConstants.Layer.N_MAGNET,  // N極
+            SForce = GameConstants.Layer.S_MAGNET,  // S極
+        }
 
         // 磁力の強さ
         public enum MagnetPower
@@ -40,101 +27,113 @@ namespace Game.Stage.Magnet
             Weak = 1,    // 弱
             Medium = 2,  // 中
             Strong = 3,  // 強
+            MaxPower,
         }
 
-        private MagnetPower currentMagnetPower;
-
-        public void SetMagnetData(string tag, int layer, int power)
+        // オブジェクトのタイプ
+        public enum ObjectType
         {
-            if (SetObjType(tag) == -1)
-            {
-                DebugManager.LogMessage("オブジェクトのタイプ設定に失敗しました", DebugManager.MessageType.Error);
-            }
+            NotType = GameConstants.Tag.Untagged, // タグなしオブジェクト
 
-            if (SetMagnetType(layer) == -1)
-            {
-                DebugManager.LogMessage("磁石のタイプ設定に失敗しました", DebugManager.MessageType.Error);
-            }
-
-            if (SetMagnetPower(power) == -1)
-            {
-                DebugManager.LogMessage("磁力の強さ設定に失敗しました", DebugManager.MessageType.Error);
-            }
+            Fixed = GameConstants.Tag.Fixed,      // 固定オブジェクト
+            Moving = GameConstants.Tag.Moving,    // 可動オブジェクト
         }
 
-        private int SetObjType(string tag)
+
+        /* -------- 値を保持する変数 -------- */
+
+        // 磁力のタイプ
+        public MagnetType MyMangetType { get; private set; }
+
+        // 磁力の強さ
+        public MagnetPower MyMagnetPower { get; private set; }
+
+        // オブジェクトのタイプ
+        public ObjectType MyObjectType { get; private set; }
+
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="object_type"></param>
+        /// <param name="magnet_type"></param>
+        /// <param name="magnet_power"></param>
+        public MagnetData(ObjectType object_type, MagnetType magnet_type = MagnetType.NotType, MagnetPower magnet_power = MagnetPower.None)
         {
-            switch (tag)
-            {
-                case GameConstants.FIXED_OBJTAG:
-                    currentObjectType = ObjectType.Fixed;
-                    return 0;
-
-                case GameConstants.MOVE_OBJTAG:
-                    currentObjectType = ObjectType.Moving;
-                    return 0;
-
-                default:
-                    return -1;
-            }
+            SetMagnetData(magnet_type, magnet_power, object_type);
         }
 
-        private int SetMagnetType(int layer)
+
+        /// <summary>
+        /// データの設定
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="layer"></param>
+        /// <param name="magnet_power"></param>
+        public void SetMagnetData(MagnetType magnet_type, MagnetPower magnet_power, ObjectType object_type = ObjectType.NotType)
         {
-            switch (layer)
+            if (SetMagnetType(magnet_type) == GameConstants.ERROR)
             {
-                case N_MAGNET_LAYER:
-                    currentMagnetType = MagnetType.NForce;
-                    return 0;
-
-                case S_MAGNET_LAYER:
-                    currentMagnetType = MagnetType.SForce;
-                    return 0;
-
-                default:
-                    currentMagnetType = MagnetType.NotForce;
-                    return 0;
+                DebugManager.LogMessage("磁力のタイプ設定に失敗しました", DebugManager.MessageType.Error, GetType().ToString());
             }
-        }
 
-        private int SetMagnetPower(int power)
-        {
-            switch (power)
+            if (SetMagnetPower(magnet_power) == GameConstants.ERROR)
             {
-                case (int)MagnetPower.None:
-                    currentMagnetPower = MagnetPower.None;
-                    return 0;
+                DebugManager.LogMessage("磁力の強さ設定に失敗しました", DebugManager.MessageType.Error, GetType().ToString());
+            }
 
-                case (int)MagnetPower.Weak:
-                    currentMagnetPower = MagnetPower.Weak;
-                    return 0;
-
-                case (int)MagnetPower.Medium:
-                    currentMagnetPower = MagnetPower.Medium;
-                    return 0;
-
-                case (int)MagnetPower.Strong:
-                    currentMagnetPower = MagnetPower.Strong;
-                    return 0;
-
-                default:
-                    return -1;  // 無効な値の場合はエラーを返す
+            if (SetObjectType(object_type) == GameConstants.ERROR)
+            {
+                DebugManager.LogMessage("オブジェクトのタイプ設定に失敗しました", DebugManager.MessageType.Error, GetType().ToString());
             }
         }
 
-        public ObjectType GetObjType()
+        /// <summary>
+        /// 磁力のタイプ設定
+        /// </summary>
+        /// <param name="magnet_type"></param>
+        /// <returns></returns>
+        private int SetMagnetType(MagnetType magnet_type)
         {
-            return currentObjectType;
+            if (MyMangetType != MagnetType.NotType && magnet_type != MagnetType.NotType) 
+            {
+                return GameConstants.ERROR; 
+            }
+
+            MyMangetType = magnet_type;
+            return GameConstants.NORMAL;
         }
 
-        public MagnetType GetMagnetType()
+        /// <summary>
+        /// 磁力の強さ設定
+        /// </summary>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        private int SetMagnetPower(MagnetPower magnet_power)
         {
-            return currentMagnetType;
+            if (magnet_power < MagnetPower.None && magnet_power >= MagnetPower.MaxPower) 
+            {
+                return GameConstants.ERROR; 
+            }
+
+            MyMagnetPower = magnet_power;
+            return GameConstants.NORMAL;
         }
 
-        public MagnetPower GetMagnetPower()
+        /// <summary>
+        /// オブジェクトのタイプ設定
+        /// </summary>
+        /// <param name="object_type"></param>
+        /// <returns></returns>
+        private int SetObjectType(ObjectType object_type)
         {
-            return currentMagnetPower;
+            if (object_type == ObjectType.NotType) 
+            {  
+                return GameConstants.ERROR; 
+            }
+
+            MyObjectType = object_type;
+            return GameConstants.NORMAL;
         }
     }
 }

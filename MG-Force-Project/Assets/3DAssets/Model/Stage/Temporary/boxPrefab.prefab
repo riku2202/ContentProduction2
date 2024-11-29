@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 356c1b52ff556114794253399d334f09,
         type: 3}
       propertyPath: m_Name
-      value: box
+      value: boxPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 356c1b52ff556114794253399d334f09,
+        type: 3}
+      propertyPath: m_TagString
+      value: Moving
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

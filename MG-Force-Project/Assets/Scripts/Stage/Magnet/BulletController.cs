@@ -27,6 +27,10 @@ namespace Game.Stage.Magnet
         // 向きベクトル
         private Vector3 Direction = Vector3.zero;
 
+        // タグ
+        private string FixedTag = GameConstants.Tag.Fixed.ToString();
+        private string MovingTag = GameConstants.Tag.Moving.ToString();
+
         /// <summary>
         /// 初期化処理
         /// </summary>
@@ -88,13 +92,13 @@ namespace Game.Stage.Magnet
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == GameConstants.FIXED_OBJTAG)
+            if (other.CompareTag(FixedTag))
             {
                 Debug.Log("Hit");
 
                 Destroy(gameObject);
             }
-            else if (other.tag == GameConstants.MOVE_OBJTAG)
+            else if (other.CompareTag(MovingTag))
             {
                 Debug.Log("Hit");
 

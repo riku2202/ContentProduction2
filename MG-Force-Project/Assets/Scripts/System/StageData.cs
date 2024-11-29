@@ -17,5 +17,9 @@ namespace Game.GameSystem
         // ステージのプレハブ
         [SerializeField]
         private GameObject StagePrefab;
+
+        // ステージの背景
+        [SerializeField]
+        private GameObject StageBG;
     }
 }
