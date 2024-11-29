@@ -9,6 +9,8 @@ namespace Game.GameSystem
     /// </summary>
     public class GameDataManager
     {
+        #region -------- シングルトンの設定 --------
+
         // ゲームデータ管理クラスのシングルトンインスタンス
         private static GameDataManager instance;
 
@@ -38,8 +40,13 @@ namespace Game.GameSystem
             }
         }
 
+        #endregion
+
+
         // ゲームデータ
         private GameData data;
+
+        #region -------- ゲームデータの設定 --------
 
         /// <summary>
         /// ゲームデータを設定する
@@ -59,6 +66,9 @@ namespace Game.GameSystem
             return data;
         }
 
+        /// <summary>
+        /// ゲームデータのリセット
+        /// </summary>
         public void ReSetGameData()
         {
             if (data.ReSetData() == GameConstants.NORMAL)
@@ -69,6 +79,24 @@ namespace Game.GameSystem
             {
                 DebugManager.LogMessage("正常にデータが削除できませんでした", DebugManager.MessageType.Error);
             }
+        }
+
+        #endregion
+
+
+        // 現在のステージインデックス
+        private int CurrentStageIndex;
+
+        public void SetCurrentStageIndex(int stage_index)
+        {
+            if (stage_index >= GameConstants.STAGE_MAX_NUM) { return; }
+
+            CurrentStageIndex = stage_index;
+        }
+
+        public int GetCurrentStageIndex()
+        {
+            return CurrentStageIndex;
         }
     }
 }

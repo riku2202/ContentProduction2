@@ -111,7 +111,7 @@ namespace Game.Stage.Magnet
         /// <returns></returns>
         private int SetMagnetPower(MagnetPower magnet_power)
         {
-            if (magnet_power < MagnetPower.None && magnet_power >= MagnetPower.MaxPower) 
+            if (MyMagnetPower != MagnetPower.None && magnet_power != MagnetPower.None)
             {
                 return GameConstants.ERROR; 
             }

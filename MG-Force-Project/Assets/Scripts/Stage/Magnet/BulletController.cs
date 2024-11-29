@@ -28,23 +28,27 @@ namespace Game.Stage.Magnet
         private Vector3 Direction = Vector3.zero;
 
         // タグ
-        private string FixedTag = GameConstants.Tag.Fixed.ToString();
-        private string MovingTag = GameConstants.Tag.Moving.ToString();
+        private string FixedTag = GameConstants.ConvertTag(GameConstants.Tag.Fixed);
+        private string MovingTag = GameConstants.ConvertTag(GameConstants.Tag.Moving);
+
+        private float Timer;
 
         /// <summary>
         /// 初期化処理
         /// </summary>
         private void Start()
         {
+            Timer = 0.0f;
+
             Bullet = GetComponent<Rigidbody>();
 
             // 弾の座標取得
-            BulletPos = Bullet.position;
+            BulletPos = gameObject.transform.position;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                // ターゲット確認用
-                GameObject target = GameObject.Find("Target");
+                // ターゲット指定用
+                GameObject target = GameObject.Find("target");
 
                 // ターゲットが存在する場合
                 if (target != null)
@@ -59,14 +63,17 @@ namespace Game.Stage.Magnet
                 else
                 {
                     DebugManager.LogMessage("ターゲットが存在しません", DebugManager.MessageType.Error);
+
+                    Destroy(gameObject);
                 }
             }
         }
 
         private void Update()
         {
-            if (transform.position.x < -10 || transform.position.x > 10 ||
-                transform.position.y < -10 || transform.position.y > 10)
+            Timer += Time.deltaTime;
+
+            if (Timer > 2)
             {
                 Destroy(gameObject);
             }
@@ -92,15 +99,22 @@ namespace Game.Stage.Magnet
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(FixedTag))
+            MagnetObjectManager magnet_object = other.GetComponent<MagnetObjectManager>();
+
+            if (other.CompareTag("Player"))
             {
-                Debug.Log("Hit");
+                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning, other.GetType().ToString());
+            }
+
+            if (other.CompareTag(FixedTag) && magnet_object != null)
+            {
+                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning, other.GetType().ToString());
 
                 Destroy(gameObject);
             }
-            else if (other.CompareTag(MovingTag))
+            else if (other.CompareTag(MovingTag) && magnet_object != null)
             {
-                Debug.Log("Hit");
+                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning, other.GetType().ToString());
 
                 Destroy(gameObject);
             }

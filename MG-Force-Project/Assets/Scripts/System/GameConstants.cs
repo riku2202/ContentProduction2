@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game
 {
@@ -7,12 +8,25 @@ namespace Game
     /// </summary>
     public static class GameConstants
     {
-        /* ================ 時間 ================ */
+        /* ================ ステージ ================ */
 
-        // 標準値
-        public const int DEFAULT_FPS = 60;
+        // ステージの最大数
+        public const int STAGE_MAX_NUM = 9;
 
-        public const int HIGH_FPS = 120;
+        // ステージ名
+        public enum Stage 
+        {
+            STAGE_SELECT = 0,
+        }
+
+
+        /* ================ オブジェクト ================ */
+
+        // 入力管理用オブジェクト
+        public const string INPUT_MANAGER_OBJ = "InputManager";
+
+        // サウンド管理用オブジェクト
+        public const string SOUND_MANAGER_OBJ = "SoundManager";
 
 
         /* ================ 入力 ================ */
@@ -44,10 +58,10 @@ namespace Game
         {
             Untagged, // タグ未設定
 
-            Fixed,   // 固定オブジェクト
-            Moving,  // 可動オブジェクト
-            Stage,   // ステージオブジェクト
-            Player,  // プレイヤーオブジェクト
+            Fixed,    // 固定オブジェクト
+            Moving,   // 可動オブジェクト
+            Stage,    // ステージオブジェクト
+            Player,   // プレイヤーオブジェクト
         }
 
         #region -------- タグの変換処理 --------
@@ -127,17 +141,26 @@ namespace Game
             UI = 5,              // ユーザーインターフェース
             N_MAGNET = 6,        // 磁力 N極
             S_MAGNET = 7,        // 磁力 S極
-            BULLET = 8           // 磁力の弾
+            BULLET = 8,          // 磁力の弾
+            MAGNET_RANGE = 9,    // 磁力の範囲
         }
 
 
-        /* ================ オブジェクト ================ */
+        /* ================ 時間 ================ */
 
-        // 入力管理用オブジェクト
-        public const string INPUT_MANAGER_OBJ = "InputManager";
+        // 標準値
+        public const int DEFAULT_FPS = 60;
 
-        // サウンド管理用オブジェクト
-        public const string SOUND_MANAGER_OBJ = "SoundManager";
+        public const int HIGH_FPS = 120;
+
+
+        /* ================ 座標 ================ */
+
+        public static readonly Vector3 LowerLeftCamera = new Vector3(0, 0, -10);
+
+        public static readonly Vector3 LowerLeft = new Vector3(-7.5f, -5.0f, 0);
+
+        public static readonly Vector3 TopRigid_Puls = new Vector3(7.5f, 1.5f, 0);
 
 
         /* ================ 数値計算 ================ */

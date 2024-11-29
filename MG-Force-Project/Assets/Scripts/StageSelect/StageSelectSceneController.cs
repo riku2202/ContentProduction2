@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+using Game.GameSystem;
 
 namespace Game.StageSelect
 {
@@ -9,6 +12,9 @@ namespace Game.StageSelect
     /// </summary>
     public class StageSelectSceneController : MonoBehaviour
     {
+        [SerializeField]
+        private StageData SelectStage;
+
         void Start()
         {
 
@@ -16,7 +22,10 @@ namespace Game.StageSelect
 
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("StageSelect");
+            }
         }
     }
 }

@@ -11,27 +11,48 @@ namespace Game.Stage.Magnet
     {
         private MagnetManager Magnet;
 
+        [SerializeField]
+        private GameObject NBeam;
+
+        [SerializeField]
+        private GameObject SBeam;
+
         private void Start()
         {
             Magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
         }
 
-        public void OnButtonChangeMagnetType()
+        public void OnButton_ChangeMagnetType()
         {
             Magnet.ChangeMagnetType();
 
             DebugManager.LogMessage(Magnet.CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
         }
 
+        public void OnButton_ChangeMagnetBoot()
+        {
+            Magnet.ChangeMagnetBoot();
+
+            DebugManager.LogMessage(Magnet.IsMagnetBoot.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
+        }
+
         public void OnButtonClick()
         {
-
-            DebugManager.LogMessage("ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½", DebugManager.MessageType.Normal, GetType().ToString());
+            DebugManager.LogMessage("pushButton!", DebugManager.MessageType.Normal, GetType().ToString());
         }
 
         public void Update()
         {
-
+            if (Magnet.CurrentType == GameConstants.Layer.N_MAGNET)
+            {
+                NBeam.SetActive(true);
+                SBeam.SetActive(false);
+            }
+            else if (Magnet.CurrentType == GameConstants.Layer.S_MAGNET)
+            {
+                SBeam.SetActive(true);
+                NBeam.SetActive(false);
+            }
         }
     }
 }

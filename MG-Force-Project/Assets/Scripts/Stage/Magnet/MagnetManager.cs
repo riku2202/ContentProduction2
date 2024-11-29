@@ -30,6 +30,11 @@ namespace Game.Stage.Magnet
         private void Start()
         {
             Input = GameObject.Find("InputManager").GetComponent<InputManager>();
+
+            IsMagnetBoot = false;
+
+            CurrentType = GameConstants.Layer.N_MAGNET;
+            CurrentPower = 1;
         }
         
         /// <summary>
@@ -42,6 +47,12 @@ namespace Game.Stage.Magnet
                 ChangeMagnetType();
 
                 DebugManager.LogMessage(CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
+            }
+            else if (Input.IsActionPressed(GameConstants.INPUT_BACK))
+            {
+                ChangeMagnetBoot();
+
+                DebugManager.LogMessage(IsMagnetBoot.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
             }
         }
 
@@ -58,6 +69,11 @@ namespace Game.Stage.Magnet
             {
                 CurrentType = GameConstants.Layer.S_MAGNET;
             }
+        }
+
+        public void ChangeMagnetBoot()
+        {
+            IsMagnetBoot = !IsMagnetBoot;
         }
     }
 }

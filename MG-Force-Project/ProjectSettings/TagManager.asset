@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Moving
-  - Fiexd
+  - Fixed
   - Box
   - Ground
   layers:
@@ -18,7 +18,7 @@ TagManager:
   - NForce
   - SForce
   - Bullet
-  - 
+  - MagnetRange
   - 
   - 
   - 

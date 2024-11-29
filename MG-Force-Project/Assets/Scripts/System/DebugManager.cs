@@ -32,6 +32,7 @@ namespace Game
 
         /* -------- 色分け -------- */
 
+        private const string DEFAULT_COLOR = "<color=white>";
         private const string GREEN_COLOR = "<color=lime>";
         private const string YELLOW_COLOR = "<color=yellow>";
         private const string RED_COLOR = "<color=red>";
@@ -49,14 +50,14 @@ namespace Game
         {
 #if UNITY_EDITOR
 
-            string message_color = GREEN_COLOR;  // 色(デフォルトは緑)
+            string message_color = DEFAULT_COLOR;  // 色(デフォルトは緑)
             string message_type = NORMAL;  // カテゴリー表示(デフォルトは実行)
 
             // タイプによって表示形式を変える
             switch (type) 
             { 
                 case MessageType.Normal:
-                    message_color = GREEN_COLOR;
+                    message_color = DEFAULT_COLOR;
                     message_type = NORMAL;
                     break;
 
