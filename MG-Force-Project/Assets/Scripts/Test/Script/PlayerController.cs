@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] float speed = 5f;
+    [SerializeField] float muoseSensitvity = 2f;
     [SerializeField] float jumpForce = 5f;
+
+    private float veticalRotation = 0f;
     private bool isGrounded = true;
     private Rigidbody rb;
     // Start is called before the first frame update
@@ -17,38 +22,28 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //まっすぐに進む
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(0.0f, 0.0f, Time.deltaTime);
         }
         //後ろに進む
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(0.0f, 0.0f, -Time.deltaTime);
         }
         //ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
-        float rotate_speed = 10f;
+            rb.velocity = Vector3.up * jumpForce;
 
-        if (Input.GetKey(KeyCode.DownArrow))//右回転
-        {
-            transform.Rotate(0.0f, rotate_speed * Time.deltaTime, 0.0f);
-        }
 
-        if (Input.GetKey(KeyCode.UpArrow))//左回転
-        {
-            transform.Rotate(0.0f, -rotate_speed * Time.deltaTime, 0.0f);
-        }
-    }
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
+            float mouseX = Input.GetAxis("Mouse X") * muoseSensitvity;
+            transform.Rotate(0, mouseX, 0);
+
+            float mouseY = Input.GetAxis("Mouse Y") * muoseSensitvity;
+            veticalRotation -= mouseY;
+            veticalRotation = Mathf.Clamp(veticalRotation, -90f, 90f);
+            Camera.main.transform.localRotation = Quaternion.Euler(veticalRotation, 0, 0);
         }
     }
 }

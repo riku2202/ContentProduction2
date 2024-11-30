@@ -6,48 +6,26 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] bool isOpen = false;   //ドアの開閉状態
-    [SerializeField] float openAngle = 90f; //ドアの開く角度
-    [SerializeField] float closeAngle = 0f; //ドアが閉まる角度
-    [SerializeField] float speed = 2f;  //ドアの開閉速度
+   [SerializeField] float defaultY;     // 扉の初期のY座標
+   [SerializeField] float openY = 5f;   // 扉のオープン時のY座標
+   [SerializeField] float speed = 10f;   // 扉の開閉のスピード
 
-    private Quaternion openRotation;
-    private Quaternion closeRotation;
-    private bool isAnimating = false;
+    public bool isOpen; // 扉を開けるか閉めるかのフラグ
 
-    // Start is called before the first frame update
     void Start()
     {
-        openRotation = Quaternion.Euler(0,openAngle,0);
-        closeRotation = Quaternion.Euler(0,closeAngle,0);
+        defaultY = transform.position.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    ToggleDoor();
-        //}
-
-        if (isAnimating)
+        if (isOpen && transform.position.y < openY)
         {
-            Quaternion targetRotation = isOpen ? openRotation : closeRotation;
-            transform.localRotation = Quaternion.Slerp(transform.localRotation,targetRotation,
-                Time.deltaTime * speed);
-
-            //目的の角度に近づいたらアニメーションを停止
-            if(Quaternion.Angle(transform.localRotation,targetRotation) < 0.1f)
-            {
-                transform.localRotation = targetRotation;
-                isAnimating = false;
-            }
+            transform.position += Vector3.up * speed * Time.deltaTime;
         }
-        
-    }
-   public void ToggleDoor()
-    {
-        isOpen = !isOpen;
-        isAnimating = true;
+        else if (!isOpen && transform.position.y > defaultY)
+        {
+            transform.position -= Vector3.up * speed * Time.deltaTime;
+        }
     }
 }

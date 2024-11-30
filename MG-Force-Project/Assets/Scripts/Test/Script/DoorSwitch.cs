@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class DoorSwitch : MonoBehaviour
 {
-    [SerializeField] DoorController doorController; //ドアのコントローラを参照
-    [SerializeField] string targetObjectName = "Switch";
-    [SerializeField] string playerObjectName = "Player";
+    float bottomY = -0.1f;
+    float speed = 0.5f;
+
+    bool active;
+
+    public DoorController door;
+    void Update()
+    {
+        if (active && transform.position.y > bottomY)
+        {
+            transform.position -= Vector3.up * speed * Time.deltaTime;
+            if (transform.position.y <= bottomY)
+            {
+                door.isOpen = true;
+                enabled = false;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        //プレイヤーがスイッチに触れたらドアを開閉
-        if(other.name == playerObjectName && doorController != null)
+        if (!active && other.CompareTag("Player"))
         {
-            doorController.ToggleDoor();
+            active = true;
         }
-        if (other.name == playerObjectName && doorController != null)
-        {
-            doorController.ToggleDoor();
-        }
-
-        // 警告削除用です
-        targetObjectName = other.name;
-        playerObjectName = other.name;
     }
 }

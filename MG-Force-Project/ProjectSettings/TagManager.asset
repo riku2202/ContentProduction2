@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Moving
   - Fiexd
+  - Ground
   layers:
   - Default
   - TransparentFX
