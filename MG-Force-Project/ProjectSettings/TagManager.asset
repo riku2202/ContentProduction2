@@ -4,9 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Moving
-  - Fiexd
+  - Fixed
   - Ground
+  - Fiexd
+<<<<<<< HEAD
+  - Ground
+=======
+  - Moving
+>>>>>>> 270ba7cecbb94de8f29a654e985b22da7bcefcc4
   layers:
   - Default
   - TransparentFX
@@ -16,7 +21,7 @@ TagManager:
   - UI
   - NForce
   - SForce
-  - 
+  - Ground
   - 
   - 
   - 
