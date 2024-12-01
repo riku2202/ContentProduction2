@@ -6,15 +6,9 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class DoorController : MonoBehaviour
 {
-<<<<<<< HEAD
    [SerializeField] float defaultY;     // 扉の初期のY座標
    [SerializeField] float openY = 5f;   // 扉のオープン時のY座標
    [SerializeField] float speed = 10f;   // 扉の開閉のスピード
-=======
-    float defaultY;     // 扉の初期のY座標
-    float openY = 50f;   // 扉のオープン時のY座標
-    float speed = 10f;   // 扉の開閉のスピード
->>>>>>> 270ba7cecbb94de8f29a654e985b22da7bcefcc4
 
     public bool isOpen; // 扉を開けるか閉めるかのフラグ
 

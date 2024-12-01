@@ -11,12 +11,12 @@ namespace Game.Title
     {
         void Start()
         {
-
+            DebugManager.LogMessage("テスト");
         }
 
         void Update()
         {
-            DebugManager.LogMessage("テスト");
+
         }
     }
 }
