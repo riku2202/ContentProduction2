@@ -16,17 +16,17 @@
 //    // Update is called once per frame
 //    void Update()
 //    {
-//        //‚Ü‚Á‚·‚®‚Éi‚Ş
+//        //ã¾ã£ã™ãã«é€²ã‚€
 //        if (Input.GetKey(KeyCode.RightArrow))
 //        {
 //            transform.Translate(0.0f, 0.0f, Time.deltaTime);
 //        }
-//        //Œã‚ë‚Éi‚Ş
+//        //å¾Œã‚ã«é€²ã‚€
 //        if (Input.GetKey(KeyCode.LeftArrow))
 //        {
 //            transform.Translate(0.0f, 0.0f, -Time.deltaTime);
 //        }
-//        //ƒWƒƒƒ“ƒv
+//        //ã‚¸ãƒ£ãƒ³ãƒ—
 //        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
 //        {
 //            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -34,12 +34,12 @@
 //        }
 //        float rotate_speed = 10f;
 
-//        if (Input.GetKey(KeyCode.DownArrow))//‰E‰ñ“]
+//        if (Input.GetKey(KeyCode.DownArrow))//å³å›è»¢
 //        {
 //            transform.Rotate(0.0f, rotate_speed * Time.deltaTime, 0.0f);
 //        }
 
-//        if (Input.GetKey(KeyCode.UpArrow))//¶‰ñ“]
+//        if (Input.GetKey(KeyCode.UpArrow))//å·¦å›è»¢
 //        {
 //            transform.Rotate(0.0f, -rotate_speed * Time.deltaTime, 0.0f);
 //        }
