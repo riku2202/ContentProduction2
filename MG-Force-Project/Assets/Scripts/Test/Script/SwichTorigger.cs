@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorSwitch : MonoBehaviour
+public class SwichTorigger : MonoBehaviour
 {
-    float bottomY = -0.1f;
+    float bottomY = 7.0f;
     float speed = 0.5f;
 
     bool active;
 
-    public DoorController door;
+   public DoorController door;
     void Update()
     {
         if (active && transform.position.y > bottomY)
         {
             transform.position -= Vector3.up * speed * Time.deltaTime;
-            if (transform.position.y <= bottomY)
-            {
-                door.isOpen = true;
-                enabled = false;
-            }
+        }
+
+        if(transform.position.y <= bottomY)
+        {
+            door.isOpen = true;
+            enabled = false;
         }
     }
 
