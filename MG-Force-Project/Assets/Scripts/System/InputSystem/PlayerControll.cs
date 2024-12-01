@@ -34,9 +34,9 @@ public class PlayerControll : MonoBehaviour
         }
 
         // çUåÇèàóù
-        if (InputManager.Instance.IsActionPressed("Attack"))
+        if (InputManager.Instance.IsActionPressed("Shoot"))
         {
-            Attack();
+            Shoot();
         }
     }
 
@@ -48,9 +48,9 @@ public class PlayerControll : MonoBehaviour
         _rigidbody.velocity = velocity;
     }
 
-    private void Attack()
+    private void Shoot()
     {
-        Debug.Log("Attack executed!");
+        Debug.Log("Shoot executed!");
     }
 
     private bool IsGrounded()
