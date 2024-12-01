@@ -10,11 +10,8 @@ namespace Game.GameSystem
     [System.Serializable]
     public class GameData
     {
-        // ステージの最大数
-        private const int STAGE_MAX_NUM = 8;
-
         // ステージのクリアフラグ
-        private bool[] IsClearStage = new bool[STAGE_MAX_NUM];
+        private bool[] IsClearStage = new bool[GameConstants.STAGE_MAX_NUM];
 
         public void SetIsClearStage(int stage_number)
         {
@@ -29,7 +26,7 @@ namespace Game.GameSystem
 
         public int ReSetData()
         {
-            for (int i = 0; i < STAGE_MAX_NUM; i++)
+            for (int i = 0; i < GameConstants.STAGE_MAX_NUM; i++)
             {
                 IsClearStage[i] = false;
             }

@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Magnet kyouzyaku",
+                    "name": "MagnetPower",
                     "type": "Button",
                     "id": "bad19f2e-b46e-4fb0-ad49-8fc259edf861",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pole Switching",
+                    "name": "PoleSwitching",
                     "type": "Button",
                     "id": "48ee17bb-a75c-4b10-af6c-77a2e72d303c",
                     "expectedControlType": "Button",
@@ -163,7 +163,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Magnet kyouzyaku",
+                    "action": "MagnetPower",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -174,7 +174,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Magnet kyouzyaku",
+                    "action": "MagnetPower",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -185,7 +185,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pole Switching",
+                    "action": "PoleSwitching",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -196,7 +196,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pole Switching",
+                    "action": "PoleSwitching",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -251,7 +251,7 @@
             "id": "b2547cae-98fb-4a81-a752-8fe0258c5d78",
             "actions": [
                 {
-                    "name": "menu",
+                    "name": "MenuChange",
                     "type": "Button",
                     "id": "050ff628-8ad3-404b-aa37-471ff068135c",
                     "expectedControlType": "Button",
@@ -278,7 +278,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "View Mode",
+                    "name": "ViewMode",
                     "type": "Button",
                     "id": "233c9c5b-6a7b-4d0e-8924-d60452c7c80f",
                     "expectedControlType": "Button",
@@ -295,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "menu",
+                    "action": "MenuChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -306,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "menu",
+                    "action": "MenuChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -339,7 +339,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "View Mode",
+                    "action": "ViewMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -350,7 +350,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "View Mode",
+                    "action": "ViewMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
