@@ -48,10 +48,18 @@ public class InputManager : MonoBehaviour
 
     private void InitializeUnityInputBindings()
     {
-        unityInputBindings["Action"] = new[] { KeyCode.F, KeyCode.JoystickButton0 };       // □ボタン or Fキー
-        unityInputBindings["Jump"] = new[]   { KeyCode.Space, KeyCode.JoystickButton1 };   // ×ボタン or スペースキー
-        unityInputBindings["Select"] = new[] { KeyCode.JoystickButton2 };                  // 〇ボタン
-        unityInputBindings["Shoot"] = new[]  { KeyCode.Mouse0, KeyCode.JoystickButton7 };  // ゲームパッドR2ボタン or 左クリック
+        unityInputBindings["Action"] = new[] { KeyCode.F, KeyCode.JoystickButton0 };        // □ボタン or Fキー
+        unityInputBindings["Jump"] = new[]   { KeyCode.Space, KeyCode.JoystickButton1 };    // ×ボタン or スペースキー
+        unityInputBindings["Select"] = new[] { KeyCode.JoystickButton2 };                   // 〇ボタン
+        unityInputBindings["Magnet Reset"] = new[] { KeyCode.R, KeyCode.JoystickButton3 };  // △ボタン or Rキー
+        unityInputBindings["PoleSwitching"] = new[] { KeyCode.C, KeyCode.JoystickButton4 }; // L1ボタン or Cキー
+        unityInputBindings["None"] = new[] { KeyCode.JoystickButton5 };                     // R1ボタン or
+        unityInputBindings["Magnet Boot"] = new[] { KeyCode.B, KeyCode.JoystickButton6 };   // L2ボタン or Bキー
+        unityInputBindings["Shoot"] = new[]  { KeyCode.Mouse0, KeyCode.JoystickButton7 };   // R2ボタン or 左クリック
+        unityInputBindings["None"] = new[] { KeyCode.JoystickButton8 };                     // Shareボタン
+        unityInputBindings["MenuChange"] = new[] { KeyCode.M, KeyCode.JoystickButton9 };    // optionボタン or Mキー
+        unityInputBindings["None"] = new[] { KeyCode.JoystickButton10 };                    // Lスティック押し込み or
+        unityInputBindings["ViewMode"] = new[] { KeyCode.V, KeyCode.JoystickButton11 };     // Rスティック押し込み or Vキー
     }
 
     /// <summary>
