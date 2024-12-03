@@ -2,6 +2,7 @@ using Game.Stage.Magnet;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Stage
 {
@@ -19,6 +20,16 @@ namespace Game.Stage
 
         // 現在のフェーズ
         private Phase currentPhase;
+
+        private void Awake()
+        {
+            GameObject Input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
+
+            if (Input == null)
+            {
+                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
+            }
+        }
 
         private void Update()
         {

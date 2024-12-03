@@ -13,6 +13,11 @@ namespace Game.GameSystem
         // ステージのクリアフラグ
         private bool[] IsClearStage = new bool[GameConstants.STAGE_MAX_NUM];
 
+        public GameData()
+        {
+            ReSetData();
+        }
+
         public void SetIsClearStage(int stage_number)
         {
             IsClearStage[stage_number] = true;

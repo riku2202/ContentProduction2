@@ -19,6 +19,8 @@ namespace Game.Stage
 
         private void Awake()
         {
+            gameDataManager = GameDataManager.Instance;
+
             Scene scene = SceneManager.GetActiveScene();
 
             if (scene.buildIndex == (int)GameConstants.Scene.StageSelect)
@@ -28,16 +30,24 @@ namespace Game.Stage
             }
         }
 
+        /// <summary>
+        /// ステージの生成
+        /// </summary>
         public void SetStage()
         {
             int stage_index = gameDataManager.GetCurrentStageIndex();
 
             Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA_OBJ).transform;
 
-            GameObject stage = Instantiate(Data[stage_index].StagePrefab);
+            GameObject stage = Instantiate(Data[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
             GameObject bg = Instantiate(Data[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
         }
 
+        /// <summary>
+        /// ステージデータの取得
+        /// </summary>
+        /// <param name="stage_index"></param>
+        /// <returns></returns>
         public StageData GetStageData(int stage_index)
         {
             return Data[stage_index];
