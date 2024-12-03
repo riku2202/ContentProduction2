@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
-public class NowLowring : MonoBehaviour
+public class scenemovecontroller : MonoBehaviour
 {
-    private float counttime = 0.0f;
-    public float timeLimit = 2.0f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +15,9 @@ public class NowLowring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        counttime += Time.deltaTime;
-
-        if(counttime > timeLimit)
+        if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("Stage");
+            SceneManager.LoadScene("StageSelect");
         }
-
-        
     }
 }
