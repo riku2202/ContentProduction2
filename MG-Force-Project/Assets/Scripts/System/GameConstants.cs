@@ -8,44 +8,19 @@ namespace Game
     /// </summary>
     public static class GameConstants
     {
-        /* ================ ステージ ================ */
+        /* ================ シーン ================ */
 
-        // ステージの最大数
-        public const int STAGE_MAX_NUM = 9;
-
-        // ステージ名
-        public enum Stage 
+        public enum Scene
         {
-            STAGE_SELECT = 0,
+            Title,
+            Setting,
+            Options,
+            Loading,
+            StageSelect,
+            Stage,
+            Clear,
+            Credits,
         }
-
-
-        /* ================ オブジェクト ================ */
-
-        // 入力管理用オブジェクト
-        public const string INPUT_MANAGER_OBJ = "InputManager";
-
-        // サウンド管理用オブジェクト
-        public const string SOUND_MANAGER_OBJ = "SoundManager";
-
-
-        /* ================ 入力 ================ */
-
-        // GamePlay
-        public const string INPUT_JUMP = "Jump";
-        public const string INPUT_MOVE = "Move";
-        public const string INPUT_SHOOT = "Shoot";
-        public const string INPUT_SHOOT_ANGLE = "ShootAngle";
-        public const string INPUT_MAGNET_POWER = "MagnetPower";
-        public const string INPUT_POLE_SWITCHING = "PoleSwitching";
-        public const string INPUT_MANGET_BOOT = "MagnetBoot";
-        public const string INPUT_ACTION = "Action";
-
-        // Menu
-        public const string INPUT_MENU_CHANGE = "MenuChange";
-        public const string INPUT_SELECT = "Select";
-        public const string INPUT_BACK = "InputBack";
-        public const string INPUT_VIEWMODE = "ViewMode";
 
 
         /* ================ タグ ================ */
@@ -54,7 +29,7 @@ namespace Game
         /// ゲーム内のタグを定義する列挙型
         /// 【Tag.タグ名.ToString()でタグ(string型)を取得】
         /// </summary>
-        public enum Tag 
+        public enum Tag
         {
             Untagged, // タグ未設定
 
@@ -123,7 +98,7 @@ namespace Game
         }
 
         #endregion
-        
+
 
         /* ================ レイヤー ================ */
 
@@ -131,7 +106,7 @@ namespace Game
         /// ゲーム内のタグを定義する列挙型
         /// 【int型にキャストして使用する】
         /// </summary>
-        public enum Layer 
+        public enum Layer
         {
             DEFAULT = 0,         // すべてのオブジェクトのデフォルト
             TRANSPARENT_FX = 1,  // 透明エフェクト用
@@ -144,6 +119,64 @@ namespace Game
             BULLET = 8,          // 磁力の弾
             MAGNET_RANGE = 9,    // 磁力の範囲
         }
+
+
+        /* ================ オブジェクト ================ */
+
+        // メインカメラオブジェクト
+        public const string MAIN_CAMERA_OBJ = "Main Camera";
+
+        // 入力管理用オブジェクト
+        public const string INPUT_MANAGER_OBJ = "InputManager";
+
+        // サウンド管理用オブジェクト
+        public const string SOUND_MANAGER_OBJ = "SoundManager";
+
+        // 磁力管理用オブジェクト
+        public const string MAGNET_MANAGER_OBJ = "MagnetManager";
+
+        // ステージロード用オブジェクト
+        public const string STAGE_LOADER_OBJ = "StageLoader";
+
+
+        /* ================ ステージ ================ */
+
+        // ステージの最大数
+        public const int STAGE_MAX_NUM = 9;
+
+        // ステージ名
+        public enum Stage
+        {
+            SELECT = 0,
+        }
+
+
+        /* ================ 入力 ================ */
+
+        // GamePlay
+        public const string INPUT_JUMP = "Jump";
+        public const string INPUT_ACTION = "Action";
+        public const string INPUT_SELECT = "Select";
+
+        public const string INPUT_MENU_CHANGE = "MenuChange";
+        public const string INPUT_MAGNET_RESET = "Magnet Reset";
+        public const string INPUT_POLE_SWITCHING = "PoleSwitching";
+
+        public const string INPUT_SHOOT = "Shoot";
+
+        public const string INPUT_VIEWMODE = "ViewMode";
+
+        public const string INPUT_MANGET_BOOT = "Magnet Boot";
+
+        public const string INPUT_NONE = "None";
+
+
+
+        public const string INPUT_MOVE = "Move";
+        public const string INPUT_SHOOT_ANGLE = "ShootAngle";
+        public const string INPUT_MAGNET_POWER = "MagnetPower";
+        public const string INPUT_BACK = "InputBack";
+
 
 
         /* ================ 時間 ================ */

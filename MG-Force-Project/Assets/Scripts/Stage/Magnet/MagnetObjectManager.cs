@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Windows;
 
 namespace Game.Stage.Magnet
 {
@@ -8,6 +9,8 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MagnetObjectManager : MonoBehaviour
     {
+        InputManager input;
+
         // é•óÕÉfÅ[É^
         public MagnetData MyData {  get; private set; }
 
@@ -28,6 +31,8 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Start()
         {
+            input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
+
             magnetManager = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
 
             // Tagå^Ç…ïœä∑
@@ -63,7 +68,7 @@ namespace Game.Stage.Magnet
                 Magnet.SetActive(false);
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (input.IsActionPressed(GameConstants.INPUT_MAGNET_RESET))
             {
                 if (MagnetFixed) { return; }
 
