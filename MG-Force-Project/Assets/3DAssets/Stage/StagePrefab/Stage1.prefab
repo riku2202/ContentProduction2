@@ -7746,6 +7746,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3691035654449047162}
     m_Modifications:
+    - target: {fileID: -8780404835181929884, guid: 97e5857bb6ac24148a67766e01f5648f,
+        type: 3}
+      propertyPath: MagnetFixed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8780404835181929884, guid: 97e5857bb6ac24148a67766e01f5648f,
+        type: 3}
+      propertyPath: MagnetFixedPower
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2641438778295121052, guid: 97e5857bb6ac24148a67766e01f5648f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7805,6 +7815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: blockPrefab_Magnet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450766934516739622, guid: 97e5857bb6ac24148a67766e01f5648f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

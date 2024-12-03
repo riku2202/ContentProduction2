@@ -32,6 +32,8 @@ namespace Game.Stage.Camera
         /// </summary>
         private void Start()
         {
+            Physics.gravity = new Vector3(0, -1.0f, 0);
+
             Player = GameObject.Find("playerPrefab").GetComponent<Transform>();
             
             StageLoader stage_loader = GameObject.Find("StageLoader").GetComponent<StageLoader>();
