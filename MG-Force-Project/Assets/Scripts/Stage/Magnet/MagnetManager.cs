@@ -42,13 +42,13 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Update()
         {
-            if (Input.IsActionPressed(GameConstants.INPUT_JUMP))
+            if (Input.IsActionPressed(GameConstants.INPUT_MENU_CHANGE))
             {
                 ChangeMagnetType();
 
                 DebugManager.LogMessage(CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
             }
-            else if (Input.IsActionPressed(GameConstants.INPUT_BACK))
+            else if (Input.IsActionPressed(GameConstants.INPUT_MANGET_BOOT))
             {
                 ChangeMagnetBoot();
 

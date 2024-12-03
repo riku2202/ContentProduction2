@@ -17,11 +17,23 @@ namespace Game.Stage.Magnet
         [SerializeField]
         private GameObject SBeam;
 
+        [SerializeField]
+        private GameObject Boot;
+
+        [SerializeField]
+        private GameObject NoBoot;
+
+        /// <summary>
+        /// 初期化処理
+        /// </summary>
         private void Start()
         {
             Magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
         }
 
+        /// <summary>
+        /// 磁力のタイプ変更(Button)
+        /// </summary>
         public void OnButton_ChangeMagnetType()
         {
             Magnet.ChangeMagnetType();
@@ -29,6 +41,9 @@ namespace Game.Stage.Magnet
             DebugManager.LogMessage(Magnet.CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
         }
 
+        /// <summary>
+        /// 磁力の実行変更(Button)
+        /// </summary>
         public void OnButton_ChangeMagnetBoot()
         {
             Magnet.ChangeMagnetBoot();
@@ -36,11 +51,17 @@ namespace Game.Stage.Magnet
             DebugManager.LogMessage(Magnet.IsMagnetBoot.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
         }
 
+        /// <summary>
+        /// ボタンの判定(デバック用)
+        /// </summary>
         public void OnButtonClick()
         {
             DebugManager.LogMessage("pushButton!", DebugManager.MessageType.Normal, GetType().ToString());
         }
 
+        /// <summary>
+        /// 更新処理
+        /// </summary>
         public void Update()
         {
             if (Magnet.CurrentType == GameConstants.Layer.N_MAGNET)
@@ -52,6 +73,17 @@ namespace Game.Stage.Magnet
             {
                 SBeam.SetActive(true);
                 NBeam.SetActive(false);
+            }
+
+            if (Magnet.IsMagnetBoot)
+            {
+                Boot.SetActive(true);
+                NoBoot.SetActive(false);
+            }
+            else
+            {
+                NoBoot.SetActive(true);
+                Boot.SetActive(false);
             }
         }
     }
