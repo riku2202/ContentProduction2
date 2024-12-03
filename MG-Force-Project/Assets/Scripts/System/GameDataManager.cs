@@ -46,6 +46,14 @@ namespace Game.GameSystem
         // ゲームデータ
         private GameData data;
 
+        /// <summary>
+        /// ゲームデータの生成
+        /// </summary>
+        public void NewGameData()
+        {
+            data = new GameData();
+        }
+
         #region -------- ゲームデータの設定 --------
 
         /// <summary>

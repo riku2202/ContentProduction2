@@ -12,8 +12,15 @@ namespace Game.StageSelect
     /// </summary>
     public class StageSelectSceneController : MonoBehaviour
     {
-        [SerializeField]
-        private StageData SelectStage;
+        private void Awake()
+        {
+            GameObject Input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
+
+            if (Input == null)
+            {
+                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
+            }
+        }
 
         void Start()
         {
@@ -24,7 +31,7 @@ namespace Game.StageSelect
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene(GameConstants.Scene.StageSelect.ToString());
             }
         }
     }

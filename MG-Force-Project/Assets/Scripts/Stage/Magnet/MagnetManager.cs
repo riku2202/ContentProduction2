@@ -42,7 +42,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Update()
         {
-            if (Input.IsActionPressed(GameConstants.INPUT_MENU_CHANGE))
+            if (Input.IsActionPressed(GameConstants.INPUT_POLE_SWITCHING))
             {
                 ChangeMagnetType();
 

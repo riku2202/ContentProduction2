@@ -147,7 +147,7 @@ namespace Game
         // ステージ名
         public enum Stage
         {
-            SELECT = 0,
+            SELECT,
         }
 
 

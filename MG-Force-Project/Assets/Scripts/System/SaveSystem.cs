@@ -11,13 +11,27 @@ namespace Game.GameSystem
         // ファイルパスの指定
         private static readonly string FilePath = Application.persistentDataPath + "/gamedata.json";
 
+        // ゲームデータ管理クラスの呼び出し
+        private static GameDataManager dataManager = GameDataManager.Instance;
+
+        // 初期データ
+        private static GameData InitData;
+
+        /// <summary>
+        /// ゲームデータの生成
+        /// </summary>
+        public static void NewGameData()
+        {
+            InitData = new GameData();
+        }
+
         /// <summary>
         /// ゲームデータのセーブ
         /// </summary>
         public static void SaveManager()
         {
             // ゲームデータの取得
-            GameData data = GameDataManager.Instance.GetGameData();
+            GameData data = dataManager.GetGameData();
 
             // ゲームデータが無効の場合
             if (data == null)
@@ -44,8 +58,12 @@ namespace Game.GameSystem
                 DebugManager.LogMessage("ロードするデータがありません：" + FilePath, DebugManager.MessageType.Warning);
             }
 
-            // ゲームデータを設定
-            GameDataManager.Instance.SetGameData(loaddata);
+            // 既存のデータがない場合にロードする
+            if (dataManager.GetGameData() == InitData)
+            {
+                // ゲームデータを設定
+                dataManager.SetGameData(loaddata);
+            }
         }
 
         /// <summary>
@@ -84,6 +102,20 @@ namespace Game.GameSystem
                 DebugManager.LogMessage("ゲームデータが見つかりません：" + FilePath, DebugManager.MessageType.Warning);
 
                 return null;
+            }
+        }
+
+        public static void DeleteGameData()
+        {
+            if (File.Exists(FilePath))
+            {
+                File.Delete(FilePath);
+
+                DebugManager.LogMessage("ゲームデータが削除されました：" + FilePath);
+            }
+            else
+            {
+                DebugManager.LogMessage("ゲームデータが見つかりません：" + FilePath);
             }
         }
     }
