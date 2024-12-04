@@ -60,6 +60,7 @@ public class InputManager : MonoBehaviour
         unityInputBindings["MenuChange"] = new[] { KeyCode.M, KeyCode.JoystickButton9 };    // optionボタン or Mキー
         unityInputBindings["None"] = new[] { KeyCode.JoystickButton10 };                    // Lスティック押し込み or
         unityInputBindings["ViewMode"] = new[] { KeyCode.V, KeyCode.JoystickButton11 };     // Rスティック押し込み or Vキー
+        unityInputBindings["Move"] = new[] { KeyCode.A, KeyCode.D, KeyCode.JoystickButton0 };   //左スティックで移動させたいがInput.GetAxis("Horizontal");を使うらしくどうやって入れるか悩み中 
     }
 
     /// <summary>

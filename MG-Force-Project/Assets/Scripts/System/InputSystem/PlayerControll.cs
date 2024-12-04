@@ -33,6 +33,7 @@ public class PlayerControll : MonoBehaviour
             Jump();
         }
 
+        // 
         // UŒ‚ˆ—
         if (InputManager.Instance.IsActionPressed("Shoot"))
         {
