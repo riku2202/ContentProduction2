@@ -42,8 +42,6 @@ namespace Game.Stage.Camera
             TopRight.z = -10;
 
             transform.position = LowerLeft;
-
-            //LastPlayerPos = Player.position;
         }
 
         /// <summary>
@@ -51,12 +49,10 @@ namespace Game.Stage.Camera
         /// </summary>
         private void Update()
         {
-            GameObject p = GameObject.Find("PlayerPrefab");
+            GameObject p = GameObject.Find("Player(clone)");
             if (p == null) return;
 
             Player = GameObject.Find("playerPrefab").GetComponent<Transform>();
-
-            if (Player == null) return;
 
             if (Player.position != LastPlayerPos)
             {

@@ -138,6 +138,8 @@ namespace Game
         // ステージロード用オブジェクト
         public const string STAGE_LOADER_OBJ = "StageLoader";
 
+        // 生成するプレイヤーオブジェクト
+        public const string PLAYER_OBJ = "Player(Clone)";
 
         /* ================ 入力 ================ */
 
@@ -177,7 +179,6 @@ namespace Game
             Stage_2,
             Stage_3,
             Stage_4,
-                
             Stage_5,
             Stage_6,
             Stage_7,

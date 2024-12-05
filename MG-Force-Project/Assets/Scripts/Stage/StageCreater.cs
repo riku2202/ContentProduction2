@@ -277,7 +277,7 @@ namespace Game.Stage
                 default:
 
                     // ì‹Æ“r’†‚Ì‚½‚ß
-                    if (color >= 8) return null;
+                    if (color >= 9) return null;
                     
                     GameObject obj = Instantiate(Objects[color + ONE_BEROW]);
                     return obj;
