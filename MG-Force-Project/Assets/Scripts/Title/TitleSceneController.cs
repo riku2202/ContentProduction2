@@ -18,17 +18,28 @@ namespace Game.Title
         // 入力管理クラスの呼び出し
         InputManager input;
 
+        // ロード管理フラグ
+        private static bool IsLoadGameData = false;
+
         /// <summary>
         /// 初期化処理
         /// </summary>
         private void Awake()
         {
+            // 外部データの読み込み
+            StageDataLoader.LoadStageData();
+
             // ゲームデータの生成
             manager.NewGameData();
-            SaveSystem.NewGameData();
 
-            // ゲームデータのロード
-            SaveSystem.LoadManager();
+            // 実行して一度のみロードする
+            if (!IsLoadGameData)
+            {
+                // ゲームデータのロード
+                SaveSystem.LoadManager();
+
+                IsLoadGameData = true;
+            }
 
             input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
         }

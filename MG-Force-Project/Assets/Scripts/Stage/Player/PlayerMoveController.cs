@@ -11,10 +11,12 @@ namespace Game.Stage.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
-        private float Speed = 3.0f;
+        private float Speed = 10.0f;
 
         [SerializeField]
         private bool IsActive;
+
+        //private InputManager Input;
 
         private void Start()
         {
@@ -26,11 +28,13 @@ namespace Game.Stage.Player
         {
             if (!IsActive) { return; }
 
-            StageLoader stage_loader = GameObject.Find("StageLoader").GetComponent<StageLoader>();
+            //StageLoader stage_loader = GameObject.Find("StageLoader").GetComponent<StageLoader>();
 
             GameDataManager gamedata_manager = GameDataManager.Instance;
 
-            Vector3 top_right = stage_loader.GetStageData(gamedata_manager.GetCurrentStageIndex()).TopRight;
+            //Vector3 top_right = stage_loader.GetStageData(gamedata_manager.GetCurrentStageIndex()).TopRight;
+
+            Vector3 top_right = new Vector3(100.0f, 100.0f, 100.0f);
 
             if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && transform.position.x <= top_right.x + GameConstants.TopRigid_Puls.x)
             {
@@ -49,7 +53,7 @@ namespace Game.Stage.Player
                 transform.Translate(0, Speed * Time.deltaTime, 0);
             }
 
-            if (Input.GetKey(KeyCode.DownArrow) ||  Input.GetKey(KeyCode.S) && transform.position.y >= GameConstants.LowerLeft.y)
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.y >= GameConstants.LowerLeft.y)
             {
                 transform.Translate(0, -Speed * Time.deltaTime, 0);
             }

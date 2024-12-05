@@ -1,3 +1,4 @@
+using Game.Stage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,6 @@ namespace Game.GameSystem
         {
             return IsClearStage[stage_number];
         }
-
 
         public int ReSetData()
         {

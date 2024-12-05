@@ -34,8 +34,6 @@ namespace Game.Stage.Camera
         {
             Physics.gravity = new Vector3(0, -1.0f, 0);
 
-            Player = GameObject.Find("playerPrefab").GetComponent<Transform>();
-            
             StageLoader stage_loader = GameObject.Find("StageLoader").GetComponent<StageLoader>();
 
             GameDataManager gamedata_manager = GameDataManager.Instance;
@@ -45,7 +43,7 @@ namespace Game.Stage.Camera
 
             transform.position = LowerLeft;
 
-            LastPlayerPos = Player.position;
+            //LastPlayerPos = Player.position;
         }
 
         /// <summary>
@@ -53,6 +51,13 @@ namespace Game.Stage.Camera
         /// </summary>
         private void Update()
         {
+            GameObject p = GameObject.Find("PlayerPrefab");
+            if (p == null) return;
+
+            Player = GameObject.Find("playerPrefab").GetComponent<Transform>();
+
+            if (Player == null) return;
+
             if (Player.position != LastPlayerPos)
             {
                 FollowPlayer();

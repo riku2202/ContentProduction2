@@ -25,10 +25,10 @@ namespace Game.Stage
         {
             GameObject Input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
 
-            if (Input == null)
-            {
-                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
-            }
+            //if (Input == null)
+            //{
+            //    SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
+            //}
         }
 
         private void Update()

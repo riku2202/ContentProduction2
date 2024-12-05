@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using Game.GameSystem;
-
-namespace Game.StageSelect
+namespace Game.Stage
 {
     /// <summary>
     /// ステージ選択シーンの管理クラス
