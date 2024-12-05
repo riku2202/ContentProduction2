@@ -9,7 +9,7 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MagnetManager : MonoBehaviour
     {
-        private InputManager Input;
+        //private InputManager Input;
 
         // è»ó™óp
         private readonly string FixedTag = GameConstants.Tag.Fixed.ToString();
@@ -29,7 +29,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Start()
         {
-            Input = GameObject.Find("InputManager").GetComponent<InputManager>();
+            //Input = GameObject.Find("InputManager").GetComponent<InputManager>();
 
             IsMagnetBoot = false;
 
@@ -42,13 +42,13 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Update()
         {
-            if (Input.IsActionPressed(GameConstants.INPUT_POLE_SWITCHING))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 ChangeMagnetType();
 
                 DebugManager.LogMessage(CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
             }
-            else if (Input.IsActionPressed(GameConstants.INPUT_MANGET_BOOT))
+            else if (Input.GetKeyDown(KeyCode.B))
             {
                 ChangeMagnetBoot();
 

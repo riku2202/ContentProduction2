@@ -139,18 +139,6 @@ namespace Game
         public const string STAGE_LOADER_OBJ = "StageLoader";
 
 
-        /* ================ ステージ ================ */
-
-        // ステージの最大数
-        public const int STAGE_MAX_NUM = 9;
-
-        // ステージ名
-        public enum Stage
-        {
-            SELECT,
-        }
-
-
         /* ================ 入力 ================ */
 
         // GamePlay
@@ -170,13 +158,31 @@ namespace Game
 
         public const string INPUT_NONE = "None";
 
-
-
         public const string INPUT_MOVE = "Move";
         public const string INPUT_SHOOT_ANGLE = "ShootAngle";
         public const string INPUT_MAGNET_POWER = "MagnetPower";
         public const string INPUT_BACK = "InputBack";
 
+
+        /* ================ ステージ ================ */
+
+        // ステージの最大数
+        public const int STAGE_MAX_NUM = 9;
+
+        // ステージ名
+        public enum Stage
+        {
+            Stage_Select,
+            Stage_1,
+            Stage_2,
+            Stage_3,
+            Stage_4,
+                
+            Stage_5,
+            Stage_6,
+            Stage_7,
+            Stage_8,
+        }
 
 
         /* ================ 時間 ================ */

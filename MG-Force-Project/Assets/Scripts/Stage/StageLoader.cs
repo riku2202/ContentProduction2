@@ -17,6 +17,9 @@ namespace Game.Stage
         [SerializeField]
         private StageData[] Data;
 
+        [SerializeField]
+        private GameConstants.Stage currentStage;
+
         private void Awake()
         {
             gameDataManager = GameDataManager.Instance;
@@ -25,22 +28,32 @@ namespace Game.Stage
 
             if (scene.buildIndex == (int)GameConstants.Scene.StageSelect)
             {
-                gameDataManager.SetCurrentStageIndex((int)GameConstants.Stage.SELECT);
+                gameDataManager.SetCurrentStageIndex((int)currentStage);
+
+                // ステージの生成
                 SetStage();
             }
         }
+
+        Transform childTransform;
+
+        StageCreater stageCreater;
 
         /// <summary>
         /// ステージの生成
         /// </summary>
         public void SetStage()
         {
-            int stage_index = gameDataManager.GetCurrentStageIndex();
+            childTransform = gameObject.transform.Find("StageCreater");
+            stageCreater = childTransform.GetComponent<StageCreater>();
+            stageCreater.StageCreate();
 
-            Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA_OBJ).transform;
+            //int stage_index = gameDataManager.GetCurrentStageIndex();
 
-            GameObject stage = Instantiate(Data[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
-            GameObject bg = Instantiate(Data[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
+            //Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA_OBJ).transform;
+
+            //GameObject stage = Instantiate(Data[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
+            //GameObject bg = Instantiate(Data[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
         }
 
         /// <summary>

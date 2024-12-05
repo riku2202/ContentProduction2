@@ -1,6 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Windows;
 
 namespace Game.Stage.Magnet
 {
@@ -31,7 +29,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Start()
         {
-            input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
+            //input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
 
             magnetManager = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
 
@@ -68,7 +66,7 @@ namespace Game.Stage.Magnet
                 Magnet.SetActive(false);
             }
 
-            if (input.IsActionPressed(GameConstants.INPUT_MAGNET_RESET))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 if (MagnetFixed) { return; }
 
@@ -134,6 +132,24 @@ namespace Game.Stage.Magnet
                 //      Mathf.Abs(gameObject.transform.position.y - parentTransform.position.y) > 0.01f)
                 //{
                 //}
+            }
+        }
+
+        public void SetObjectPower(int power)
+        {
+            switch (power)
+            {
+                case (int)MagnetData.MagnetPower.Weak:
+                    MagnetFixedPower = MagnetData.MagnetPower.Weak;
+                    return;
+
+                case (int)MagnetData.MagnetPower.Medium:
+                    MagnetFixedPower = MagnetData.MagnetPower.Medium;
+                    return;
+
+                case (int)MagnetData.MagnetPower.Strong:
+                    MagnetFixedPower = MagnetData.MagnetPower.Strong;
+                    return;
             }
         }
     }
