@@ -4035,7 +4035,7 @@
     {
       "key": "156",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4049,14 +4049,14 @@
     {
       "key": "158",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "159",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
@@ -4070,7 +4070,7 @@
     {
       "key": "1511",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4168,7 +4168,7 @@
     {
       "key": "1525",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4182,14 +4182,14 @@
     {
       "key": "1527",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "1528",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
@@ -4203,7 +4203,7 @@
     {
       "key": "1530",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4350,14 +4350,14 @@
     {
       "key": "1613",
       "value": {
-        "color": 0,
+        "color": -5,
         "power": 0
       }
     },
     {
       "key": "1614",
       "value": {
-        "color": 0,
+        "color": -5,
         "power": 0
       }
     },
@@ -5897,7 +5897,7 @@
     {
       "key": "226",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -5932,7 +5932,7 @@
     {
       "key": "2211",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -6030,7 +6030,7 @@
     {
       "key": "2225",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -6065,7 +6065,7 @@
     {
       "key": "2230",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -6177,14 +6177,14 @@
     {
       "key": "238",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "239",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
@@ -6310,14 +6310,14 @@
     {
       "key": "2327",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "2328",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },

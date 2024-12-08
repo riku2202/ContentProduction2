@@ -33,6 +33,11 @@ namespace Game.Stage
 
         private void Update()
         {
+            if (GoalEvent())
+            {
+                SceneManager.LoadScene("Title");
+            }
+
             if (currentPhase == Phase.Reserve)
             {
 
@@ -45,6 +50,16 @@ namespace Game.Stage
 
         // 共通の処理
 
+        private bool GoalEvent()
+        {
+            GameObject goal = GameObject.Find("GoalItem");
+
+            if (goal == null) return false;
+
+            GoalManager goal_manager = goal.GetComponent<GoalManager>();
+
+            return goal_manager.IsGoalEvent;
+        }
 
         // 磁力を撃つフェーズの処理
 

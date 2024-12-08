@@ -42,18 +42,23 @@ namespace Game.Stage
         /// <summary>
         /// ステージの生成
         /// </summary>
-        public void SetStage()
+        public void SetStage(bool external_data = true)
         {
-            childTransform = gameObject.transform.Find("StageCreater");
-            stageCreater = childTransform.GetComponent<StageCreater>();
-            stageCreater.StageCreate();
+            if (external_data)
+            {
+                childTransform = gameObject.transform.Find("StageCreater");
+                stageCreater = childTransform.GetComponent<StageCreater>();
+                stageCreater.StageCreate();
 
-            //int stage_index = gameDataManager.GetCurrentStageIndex();
+                return;
+            }
 
-            //Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA_OBJ).transform;
+            int stage_index = gameDataManager.GetCurrentStageIndex();
 
-            //GameObject stage = Instantiate(Data[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
-            //GameObject bg = Instantiate(Data[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
+            Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA_OBJ).transform;
+
+            GameObject stage = Instantiate(Data[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
+            GameObject bg = Instantiate(Data[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
         }
 
         /// <summary>

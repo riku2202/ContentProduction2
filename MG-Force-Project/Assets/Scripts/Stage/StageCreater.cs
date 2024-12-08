@@ -25,6 +25,8 @@ namespace Game.Stage
             NotMoving_2,
             NotMoving_3,
             CanMoving,
+            NMoving,
+            SMoving,
         }
 
         // ステージオブジェクト(特殊)のタイプ
@@ -34,6 +36,8 @@ namespace Game.Stage
             Player = -1,
             Goal = -2,
             Gimmick = -3,
+            Moving_Floor = -4,
+            CanUp = -5,
         }
 
         #endregion
@@ -230,7 +234,7 @@ namespace Game.Stage
         {
             if (color == (int)ObjectType.NotObject) return null;
 
-            if (color < (int)S_OBjectType.Gimmick || color > (int)ObjectType.CanMoving) return null;
+            if (color < (int)S_OBjectType.CanUp || color > (int)ObjectType.SMoving) return null;
 
             switch (color)
             {
@@ -270,14 +274,23 @@ namespace Game.Stage
                     GameObject gimmick = Instantiate(SpecialObjects[gimmick_value]);
                     return gimmick;
 
+                case (int)S_OBjectType.Moving_Floor:
+
+                    int moving_floor_value = (int)S_OBjectType.Moving_Floor * (int)GameConstants.INVERSION;
+                    GameObject moving_floor = Instantiate(SpecialObjects[moving_floor_value]);
+                    return moving_floor;
+
+                case (int)S_OBjectType.CanUp:
+
+                    int canup_value = (int)S_OBjectType.CanUp * (int)GameConstants.INVERSION;
+                    GameObject canup = Instantiate(SpecialObjects[canup_value]);
+                    return canup;
+
                 case (int)ObjectType.NotObject:
 
                     return null;
 
                 default:
-
-                    // 作業途中のため
-                    if (color >= 9) return null;
                     
                     GameObject obj = Instantiate(Objects[color + ONE_BEROW]);
                     return obj;

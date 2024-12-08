@@ -16,7 +16,7 @@ namespace Game.Stage.Camera
         // ・プレイヤーの動作を直接渡さず、画面があまり揺れないようにする
         // ・Z座標は固定で-10、Cameraコンポーネントの設定は変えないようにする
 
-        private Transform Player;
+        private Transform PlayerTransform;
 
         private Vector3 LowerLeft = GameConstants.LowerLeftCamera;
 
@@ -42,6 +42,8 @@ namespace Game.Stage.Camera
             TopRight.z = -10;
 
             transform.position = LowerLeft;
+
+            LastPlayerPos = LowerLeft;
         }
 
         /// <summary>
@@ -49,22 +51,24 @@ namespace Game.Stage.Camera
         /// </summary>
         private void Update()
         {
-            GameObject p = GameObject.Find("Player(clone)");
-            if (p == null) return;
+            GameObject player = GameObject.Find(GameConstants.PLAYER_OBJ);
 
-            Player = GameObject.Find("playerPrefab").GetComponent<Transform>();
+            if (player == null) return;
 
-            if (Player.position != LastPlayerPos)
+            PlayerTransform = player.GetComponent<Transform>();
+
+            if (PlayerTransform.position != LastPlayerPos)
             {
+                DebugManager.LogMessage("test");
                 FollowPlayer();
-                LastPlayerPos = Player.position;
+                LastPlayerPos = PlayerTransform.position;
             }
         }
 
         private void FollowPlayer()
         {
-            float targetX = Mathf.Clamp(Player.position.x, LowerLeft.x, TopRight.x);
-            float targetY = Mathf.Clamp(Player.position.y, LowerLeft.y, TopRight.y);
+            float targetX = Mathf.Clamp(PlayerTransform.position.x, LowerLeft.x, TopRight.x);
+            float targetY = Mathf.Clamp(PlayerTransform.position.y, LowerLeft.y, TopRight.y);
 
             Vector3 targetPosition = new Vector3(targetX, targetY, transform.position.z);
 
