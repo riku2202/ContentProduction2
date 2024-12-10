@@ -13,13 +13,13 @@ namespace Game.Title
     public class TitleSceneController : MonoBehaviour
     {
         // ゲームデータ管理クラスの呼び出し
-        GameDataManager manager = GameDataManager.Instance;
+        private GameDataManager manager = GameDataManager.Instance;
 
         // 入力管理クラスの呼び出し
-        InputManager input;
+        private InputManager input;
 
         // ロード管理フラグ
-        private static bool IsLoadGameData = false;
+        private static bool isLoadGameData = false;
 
         /// <summary>
         /// 初期化処理
@@ -33,12 +33,12 @@ namespace Game.Title
             manager.NewGameData();
 
             // 実行して一度のみロードする
-            if (!IsLoadGameData)
+            if (!isLoadGameData)
             {
                 // ゲームデータのロード
                 SaveSystem.LoadManager();
 
-                IsLoadGameData = true;
+                isLoadGameData = true;
             }
 
             input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();

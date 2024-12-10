@@ -15,10 +15,14 @@ namespace Game.Stage
 
         // ステージデータ
         [SerializeField]
-        private StageData[] Data;
+        private StageData[] datas;
 
         [SerializeField]
         private GameConstants.Stage currentStage;
+
+        private Transform childTransform;
+
+        private StageCreater stageCreater;
 
         private void Awake()
         {
@@ -32,12 +36,14 @@ namespace Game.Stage
 
                 // ステージの生成
                 SetStage();
+
+                return;
             }
+
+            gameDataManager.SetCurrentStageIndex((int)currentStage);
+
+            SetStage();
         }
-
-        Transform childTransform;
-
-        StageCreater stageCreater;
 
         /// <summary>
         /// ステージの生成
@@ -55,10 +61,10 @@ namespace Game.Stage
 
             int stage_index = gameDataManager.GetCurrentStageIndex();
 
-            Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA_OBJ).transform;
+            Transform transform = GameObject.Find(GameConstants.PLAYER_VIEW_CAMERA).transform;
 
-            GameObject stage = Instantiate(Data[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
-            GameObject bg = Instantiate(Data[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
+            GameObject stage = Instantiate(datas[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
+            GameObject bg = Instantiate(datas[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
         }
 
         /// <summary>
@@ -68,7 +74,9 @@ namespace Game.Stage
         /// <returns></returns>
         public StageData GetStageData(int stage_index)
         {
-            return Data[stage_index];
+            DebugManager.LogMessage($"{stage_index}");
+
+            return datas[stage_index];
         }
     }
 }

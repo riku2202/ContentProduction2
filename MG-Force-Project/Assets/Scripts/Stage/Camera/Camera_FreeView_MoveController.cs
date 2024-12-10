@@ -4,14 +4,25 @@ using UnityEngine;
 namespace Game.Stage.Camera
 {
 
-    public class Camera_FreeView_MoveController : MonoBehaviour
+    public class CameraFreeViewMoveController : MonoBehaviour
     {
+        /*
+         *　カメラを複数用意するとaudioだったりで処理がよくないので 
+         *  一つのカメラに二つのモードを管理させるようにする
+         *  ・両方管理クラスと個別管理クラス*2の合計3つ
+         *  ・ステージ選択画面でも使用できるような仕様にする
+        */
+
         [SerializeField]
-        private int Speed;
+        private int speed;
+
+        private Vector3 initPos;
 
         private void OnEnable()
         {
-            transform.position = GameObject.Find("playerPrefab").GetComponent<Transform>().position;
+            initPos = GameObject.Find(GameConstants.PLAYER_VIEW_CAMERA).GetComponent<Transform>().position;
+
+            transform.position = initPos;
         }
 
         private void Update()
@@ -20,22 +31,22 @@ namespace Game.Stage.Camera
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                position.x -= Speed * Time.deltaTime;
+                position.x -= speed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                position.x += Speed * Time.deltaTime;
+                position.x += speed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                position.y += Speed * Time.deltaTime;
+                position.y += speed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                position.y -= Speed * Time.deltaTime;
+                position.y -= speed * Time.deltaTime;
             }
 
             position.z = -10;

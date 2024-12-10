@@ -10,7 +10,7 @@ namespace Game.GameSystem
     public class SaveSystem
     {
         // 保存するファイルパスの指定
-        private static readonly string GameDataFilePath = Application.persistentDataPath + "/gamedata.json";
+        private static readonly string gameDataFilePath = Application.persistentDataPath + "/gamedata.json";
 
         // ゲームデータ管理クラスの呼び出し
         private static GameDataManager dataManager = GameDataManager.Instance;
@@ -26,7 +26,7 @@ namespace Game.GameSystem
             // ゲームデータが無効の場合
             if (data == null)
             {
-                DebugManager.LogMessage("セーブするデータがありません：" + GameDataFilePath, DebugManager.MessageType.Warning);
+                DebugManager.LogMessage("セーブするデータがありません：" + gameDataFilePath, DebugManager.MessageType.Warning);
                 return;
             }
 
@@ -45,7 +45,7 @@ namespace Game.GameSystem
             // ゲームデータが無効の場合
             if (loaddata == null)
             {
-                DebugManager.LogMessage("ロードするデータがありません：" + GameDataFilePath, DebugManager.MessageType.Warning);
+                DebugManager.LogMessage("ロードするデータがありません：" + gameDataFilePath, DebugManager.MessageType.Warning);
             }
 
             // ゲームデータを設定
@@ -62,8 +62,8 @@ namespace Game.GameSystem
             string json = JsonUtility.ToJson(data);
 
             // Jsonデータをファイルに書き込み
-            File.WriteAllText(GameDataFilePath, json);
-            DebugManager.LogMessage("ゲームデータが保存されました：" + GameDataFilePath);
+            File.WriteAllText(gameDataFilePath, json);
+            DebugManager.LogMessage("ゲームデータが保存されました：" + gameDataFilePath);
         }
 
         /// <summary>
@@ -72,20 +72,20 @@ namespace Game.GameSystem
         private static GameData LoadGameData()
         {
             // ファイルが存在する場合
-            if (File.Exists(GameDataFilePath))
+            if (File.Exists(gameDataFilePath))
             {
-                string Json = File.ReadAllText(GameDataFilePath);
+                string Json = File.ReadAllText(gameDataFilePath);
 
                 GameData data = JsonUtility.FromJson<GameData>(Json);
 
-                DebugManager.LogMessage("ゲームデータが読み込まれました：" + GameDataFilePath);
+                DebugManager.LogMessage("ゲームデータが読み込まれました：" + gameDataFilePath);
 
                 return data;
             }
             // ファイルが存在しない場合
             else
             {
-                DebugManager.LogMessage("ゲームデータが見つかりません：" + GameDataFilePath, DebugManager.MessageType.Warning);
+                DebugManager.LogMessage("ゲームデータが見つかりません：" + gameDataFilePath, DebugManager.MessageType.Warning);
 
                 return null;
             }
@@ -93,15 +93,15 @@ namespace Game.GameSystem
 
         public static void DeleteGameData()
         {
-            if (File.Exists(GameDataFilePath))
+            if (File.Exists(gameDataFilePath))
             {
-                File.Delete(GameDataFilePath);
+                File.Delete(gameDataFilePath);
 
-                DebugManager.LogMessage("ゲームデータが削除されました：" + GameDataFilePath);
+                DebugManager.LogMessage("ゲームデータが削除されました：" + gameDataFilePath);
             }
             else
             {
-                DebugManager.LogMessage("ゲームデータが見つかりません：" + GameDataFilePath);
+                DebugManager.LogMessage("ゲームデータが見つかりません：" + gameDataFilePath);
             }
         }
     }

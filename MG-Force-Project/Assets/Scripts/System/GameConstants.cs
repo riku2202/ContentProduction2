@@ -123,8 +123,8 @@ namespace Game
 
         /* ================ オブジェクト ================ */
 
-        // メインカメラオブジェクト
-        public const string MAIN_CAMERA_OBJ = "Main Camera";
+        // プレイヤー追尾カメラ
+        public const string PLAYER_VIEW_CAMERA = "PlayerViewCamera";
 
         // 入力管理用オブジェクト
         public const string INPUT_MANAGER_OBJ = "InputManager";
@@ -196,12 +196,13 @@ namespace Game
 
         /* ================ 座標 ================ */
 
-        public static readonly Vector3 LowerLeftCamera = new Vector3(0, 0, -10);
-
         public static readonly Vector3 LowerLeft = new Vector3(-7.5f, -5.0f, 0);
 
-        public static readonly Vector3 TopRigid_Puls = new Vector3(7.5f, 1.5f, 0);
+        public static readonly Vector3 LowerLeftCamera = new Vector3(0, 0, -10);
 
+        public static readonly Vector3 TopRight = new Vector3(28.5f, 18.5f, 0);
+
+        public static readonly Vector3 TopRightCamera = new Vector3(21.0f, 16.0f, -10.0f);
 
         /* ================ 数値計算 ================ */
 

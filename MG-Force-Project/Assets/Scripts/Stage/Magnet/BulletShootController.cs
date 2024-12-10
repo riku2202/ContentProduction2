@@ -5,29 +5,23 @@ namespace Game.Stage.Magnet
 {
     public class BulletShootController : MonoBehaviour 
     {
-        //private InputManager Input;
-
-        private MagnetManager Magnet;
+        private MagnetManager magnet;
 
         [SerializeField]
-        private GameObject Bullet;
+        private GameObject bulletPrefab;
 
         private void Start()
         {
-            //Input = GameObject.Find("InputManager").GetComponent<InputManager>();
-
-            Magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
+            magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
         }
 
         private void Update()
         {
-            if (Magnet.IsMagnetBoot) { return; }
+            if (magnet.IsMagnetBoot) return;
 
-            GameObject bullet = GameObject.Find("BulletPrefab(Clone)");
-
-            if (Input.GetKeyDown(KeyCode.Return) && bullet == null)
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                GameObject gb = Instantiate(Bullet);
+                GameObject gb = Instantiate(bulletPrefab);
                 Vector3 init_position = gameObject.transform.position;
                 init_position.y += 1;
 

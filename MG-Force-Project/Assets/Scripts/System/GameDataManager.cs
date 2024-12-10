@@ -93,18 +93,18 @@ namespace Game.GameSystem
 
 
         // 現在のステージインデックス
-        private int CurrentStageIndex;
+        private int currentStageIndex;
 
         public void SetCurrentStageIndex(int stage_index)
         {
             if (stage_index >= GameConstants.STAGE_MAX_NUM) { return; }
 
-            CurrentStageIndex = stage_index;
+            currentStageIndex = stage_index;
         }
 
         public int GetCurrentStageIndex()
         {
-            return CurrentStageIndex;
+            return currentStageIndex;
         }
     }
 }

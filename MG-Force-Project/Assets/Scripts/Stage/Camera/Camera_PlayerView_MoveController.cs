@@ -5,25 +5,31 @@ using UnityEngine;
 namespace Game.Stage.Camera
 {
 
-    public class Camera_PlayerView_MoveController : MonoBehaviour
+    public class CameraPlayerViewMoveController : MonoBehaviour
     {
-        // カメラがプレイヤーを追尾するようにする
-        // ただし以下の条件を満たした処理にすること
+        /*
+        カメラがプレイヤーを追尾するようにする
+        ただし以下の条件を満たした処理にすること
+         ・プレイヤーを必ずしも、画面の同じ場所に移す必要はない(プレイヤーは絶対に映す)
+         ・プレイヤーが画面の中心ではなく少し下にいるようにする
+         ・カメラがステージ外を映さないようにする
+         ・プレイヤーの動作を直接渡さず、画面があまり揺れないようにする
+         ・Z座標は固定で-10、Cameraコンポーネントの設定は変えないようにする
+        */
 
-        // ・プレイヤーを必ずしも、画面の同じ場所に移す必要はない(プレイヤーは絶対に映す)
-        // ・プレイヤーが画面の中心ではなく少し下にいるようにする
-        // ・カメラがステージ外を映さないようにする
-        // ・プレイヤーの動作を直接渡さず、画面があまり揺れないようにする
-        // ・Z座標は固定で-10、Cameraコンポーネントの設定は変えないようにする
+        // 左下の頂点座標
+        private Vector3 lowerLeft = GameConstants.LowerLeftCamera;
 
-        private Transform PlayerTransform;
+        // 右上の頂点座標
+        private Vector3 topRight = GameConstants.TopRightCamera;
 
-        private Vector3 LowerLeft = GameConstants.LowerLeftCamera;
+        // 現在のプレイヤーの位置情報
+        private Transform currentPlayerPos;
 
-        private Vector3 TopRight;
+        // プレイヤーの一つ前の位置情報
+        private Vector3 lastPlayerPos = Vector3.zero;
 
-        private Vector3 LastPlayerPos;
-
+        // プレイヤーへの追尾スピード
         [SerializeField]
         private float followSpeed = 5.0f;
 
@@ -32,43 +38,36 @@ namespace Game.Stage.Camera
         /// </summary>
         private void Start()
         {
-            Physics.gravity = new Vector3(0, -1.0f, 0);
-
-            StageLoader stage_loader = GameObject.Find("StageLoader").GetComponent<StageLoader>();
-
-            GameDataManager gamedata_manager = GameDataManager.Instance;
-
-            TopRight = stage_loader.GetStageData(gamedata_manager.GetCurrentStageIndex()).TopRight;
-            TopRight.z = -10;
-
-            transform.position = LowerLeft;
-
-            LastPlayerPos = LowerLeft;
+            currentPlayerPos = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<Transform>();
         }
 
+        
         /// <summary>
         /// 更新処理
         /// </summary>
         private void Update()
         {
-            GameObject player = GameObject.Find(GameConstants.PLAYER_OBJ);
+            // nullチェック
+            if (currentPlayerPos == null) return;
 
-            if (player == null) return;
-
-            PlayerTransform = player.GetComponent<Transform>();
-
-            if (PlayerTransform.position != LastPlayerPos)
+            // プレイヤーが移動した時、カメラを動かす
+            if (currentPlayerPos.position != lastPlayerPos)
             {
-                DebugManager.LogMessage("test");
-                FollowPlayer();
-                LastPlayerPos = PlayerTransform.position;
+                // プレイヤーを追尾
+                TrackThePlayer();
+
+                // プレイヤーの位置情報を更新
+                lastPlayerPos = currentPlayerPos.position;
             }
         }
 
-        private void FollowPlayer()
+        /// <summary>
+        /// プレイヤーを追尾
+        /// </summary>
+        private void TrackThePlayer()
         {
-            float targetX = Mathf.Clamp(PlayerTransform.position.x, LowerLeft.x, TopRight.x);
-            float targetY = Mathf.Clamp(PlayerTransform.position.y, LowerLeft.y, TopRight.y);
+            float targetX = Mathf.Clamp(currentPlayerPos.position.x, lowerLeft.x, topRight.x);
+            float targetY = Mathf.Clamp(currentPlayerPos.position.y, lowerLeft.y, topRight.y);
 
             Vector3 targetPosition = new Vector3(targetX, targetY, transform.position.z);
 

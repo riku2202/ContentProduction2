@@ -9,12 +9,6 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MagnetManager : MonoBehaviour
     {
-        //private InputManager Input;
-
-        // 省略用
-        private readonly string FixedTag = GameConstants.Tag.Fixed.ToString();
-        private readonly string MovingTag = GameConstants.Tag.Moving.ToString();
-
         // 磁力起動フラグ
         internal bool IsMagnetBoot { get; private set; }
 

@@ -10,10 +10,10 @@ namespace Game.Stage.Camera
     public class CameraViewController : MonoBehaviour
     {
         [SerializeField]
-        private GameObject Camera_PlayerView;
+        private GameObject cameraPlayerView;
 
         [SerializeField]
-        private GameObject Camera_FreeView;
+        private GameObject cameraFreeView;
 
         // カメラタイプ
         private enum CameraType
@@ -28,9 +28,11 @@ namespace Game.Stage.Camera
         /// <summary>
         /// 初期化処理
         /// </summary>
-        private void Start()
+        private void Awake()
         {
             CurrentCameraType = CameraType.PlayerView;
+
+            ChangeActive();
         }
 
         /// <summary>
@@ -38,22 +40,32 @@ namespace Game.Stage.Camera
         /// </summary>
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                if (CurrentCameraType == CameraType.PlayerView)
+                if (CurrentCameraType != CameraType.PlayerView)
                 {
-                    Camera_PlayerView.SetActive(false);
-                    Camera_FreeView.SetActive(true);
-
-                    CurrentCameraType = CameraType.FreeView;
+                    CurrentCameraType = CameraType.PlayerView;
                 }
                 else
                 {
-                    Camera_PlayerView.SetActive(true);
-                    Camera_FreeView.SetActive(false);
-
-                    CurrentCameraType = CameraType.PlayerView;
+                    CurrentCameraType = CameraType.FreeView;
                 }
+
+                ChangeActive();
+            }
+        }
+
+        private void ChangeActive()
+        {
+            if (CurrentCameraType == CameraType.PlayerView)
+            {
+                cameraPlayerView.SetActive(true);
+                cameraFreeView.SetActive(false);
+            }
+            else
+            {
+                cameraPlayerView.SetActive(false);
+                cameraFreeView.SetActive(true);
             }
         }
     }
