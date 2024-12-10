@@ -23,7 +23,7 @@ namespace Game.Stage
 
         private void Awake()
         {
-            GameObject Input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
+            GameObject input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
 
             //if (Input == null)
             //{
@@ -33,6 +33,11 @@ namespace Game.Stage
 
         private void Update()
         {
+            if (GoalEvent())
+            {
+                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
+            }
+
             if (currentPhase == Phase.Reserve)
             {
 
@@ -44,7 +49,18 @@ namespace Game.Stage
         }
 
         // 共通の処理
+        private bool GoalEvent()
+        {
+            GameObject goal = GameObject.Find("GoalItem");
 
+            if (goal == null) return false;
+
+            GoalManager goal_manager = goal.GetComponent<GoalManager>();
+
+            if (goal_manager == null) return false;
+
+            return goal_manager.IsGoalEvent;
+        }
 
         // 磁力を撃つフェーズの処理
 

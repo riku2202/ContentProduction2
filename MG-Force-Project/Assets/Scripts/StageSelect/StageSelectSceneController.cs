@@ -12,24 +12,19 @@ namespace Game.Stage
     {
         private void Awake()
         {
-            GameObject Input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
+            GameObject input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
 
-            if (Input == null)
+            if (input == null)
             {
                 SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
             }
-        }
-
-        void Start()
-        {
-
         }
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene(GameConstants.Scene.StageSelect.ToString());
+                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
             }
         }
     }

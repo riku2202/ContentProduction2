@@ -18,6 +18,9 @@ using UnityEngine.InputSystem.Utilities;
 public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
+
+    #region PlayerInputActions
+
     public @PlayerInputActions()
     {
         asset = InputActionAsset.FromJson(@"{
@@ -453,6 +456,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Menu_Back = m_Menu.FindAction("Back", throwIfNotFound: true);
         m_Menu_ViewMode = m_Menu.FindAction("ViewMode", throwIfNotFound: true);
     }
+    #endregion
 
     public void Dispose()
     {

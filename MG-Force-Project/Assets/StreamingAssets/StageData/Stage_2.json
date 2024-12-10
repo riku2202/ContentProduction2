@@ -3902,14 +3902,14 @@
     {
       "key": "1425",
       "value": {
-        "color": 0,
+        "color": -5,
         "power": 0
       }
     },
     {
       "key": "1426",
       "value": {
-        "color": 0,
+        "color": -5,
         "power": 0
       }
     },
@@ -4077,14 +4077,14 @@
     {
       "key": "1512",
       "value": {
-        "color": 0,
+        "color": -5,
         "power": 0
       }
     },
     {
       "key": "1513",
       "value": {
-        "color": 0,
+        "color": -5,
         "power": 0
       }
     },
@@ -4364,7 +4364,7 @@
     {
       "key": "1615",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4490,7 +4490,7 @@
     {
       "key": "1633",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4630,7 +4630,7 @@
     {
       "key": "1715",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -4707,21 +4707,21 @@
     {
       "key": "1726",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "1727",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "1728",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
@@ -4749,21 +4749,21 @@
     {
       "key": "1732",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "1733",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
     {
       "key": "1734",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0
       }
     },
@@ -4896,7 +4896,7 @@
     {
       "key": "1815",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -5106,7 +5106,7 @@
     {
       "key": "197",
       "value": {
-        "color": 0,
+        "color": 9,
         "power": 0
       }
     },
@@ -5162,7 +5162,7 @@
     {
       "key": "1915",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -5428,7 +5428,7 @@
     {
       "key": "2015",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -5953,7 +5953,7 @@
     {
       "key": "2214",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -6009,7 +6009,7 @@
     {
       "key": "2222",
       "value": {
-        "color": 0,
+        "color": 10,
         "power": 0
       }
     },
@@ -6044,7 +6044,7 @@
     {
       "key": "2227",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
@@ -6317,35 +6317,35 @@
     {
       "key": "2328",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2329",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2330",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2331",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2332",
       "value": {
-        "color": 9,
+        "color": -3,
         "power": 0
       }
     },

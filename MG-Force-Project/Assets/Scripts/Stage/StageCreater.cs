@@ -25,6 +25,8 @@ namespace Game.Stage
             NotMoving_2,
             NotMoving_3,
             CanMoving,
+            NMoving,
+            SMoving,
         }
 
         // ステージオブジェクト(特殊)のタイプ
@@ -34,6 +36,8 @@ namespace Game.Stage
             Player = -1,
             Goal = -2,
             Gimmick = -3,
+            Moving_Floor = -4,
+            CanUp = -5,
         }
 
         #endregion
@@ -50,23 +54,23 @@ namespace Game.Stage
         private GameObject[] SpecialObjects;
 
         // 行列の最大数
-        const int maxRows = 25;
-        const int maxCols = 38;
+        private const int maxRows = 25;
+        private const int maxCols = 38;
 
         // 行列数
-        int Row = -1;
-        int Col = -1;
+        private int row = -1;
+        private int col = -1;
 
         // 行列のカウンター
-        int RowConter = maxRows - 1;
-        int ColConter = 0;
+        private int rowConter = maxRows - 1;
+        private int colConter = 0;
 
         // データ用配列
-        int[,] colorArray = new int[maxRows, maxCols];
-        int[,] powerArray = new int[maxRows, maxCols];
+        private int[,] colorArray = new int[maxRows, maxCols];
+        private int[,] powerArray = new int[maxRows, maxCols];
 
         // プレイヤーの生成フラグ
-        private bool IsPlayerCreate = false;
+        private bool isPlayerCreate = false;
 
         #region -------- StageData管理用クラス --------
 
@@ -144,20 +148,20 @@ namespace Game.Stage
                 try
                 {
                     // 現在のインデックスを基に行と列を計算
-                    Row = RowConter;
-                    Col = ColConter;
+                    row = rowConter;
+                    col = colConter;
 
                     // 配列にデータを格納
-                    colorArray[Row, Col] = itemWrapper.value.color;
-                    powerArray[Row, Col] = itemWrapper.value.power;
+                    colorArray[row, col] = itemWrapper.value.color;
+                    powerArray[row, col] = itemWrapper.value.power;
 
                     // 次のインデックスへの移動
-                    ColConter++;
+                    colConter++;
 
-                    if (ColConter >= maxCols)
+                    if (colConter >= maxCols)
                     {
-                        ColConter = 0;
-                        RowConter--;
+                        colConter = 0;
+                        rowConter--;
                     }
                 }
                 catch (Exception ex)
@@ -168,10 +172,10 @@ namespace Game.Stage
         }
 
         // 生成する際の位置とサイズ
-        const float INIT_X = 1.0f;
-        const float INIT_Y = 1.0f;
-        const float INIT_Z = 0.0f;
-        const float INIT_REDUCE = 1.0f;
+        private const float INIT_X = 1.0f;
+        private const float INIT_Y = 1.0f;
+        private const float INIT_Z = 0.0f;
+        private const float INIT_REDUCE = 1.0f;
 
         /// <summary>
         /// ステージ生成
@@ -196,7 +200,7 @@ namespace Game.Stage
                 );
 
             // プレイヤーの生成フラグをリセット
-            IsPlayerCreate = true;
+            isPlayerCreate = true;
 
             for (int i = 0; i <= maxRows - 1; i++)
             {
@@ -218,8 +222,6 @@ namespace Game.Stage
             }
         }
 
-        const int ONE_BEROW = -1;
-
         /// <summary>
         /// オブジェクト生成
         /// </summary>
@@ -230,19 +232,19 @@ namespace Game.Stage
         {
             if (color == (int)ObjectType.NotObject) return null;
 
-            if (color < (int)S_OBjectType.Gimmick || color > (int)ObjectType.CanMoving) return null;
+            if (color < (int)S_OBjectType.CanUp || color > (int)ObjectType.SMoving) return null;
 
             switch (color)
             {
                 case (int)ObjectType.NFixed:
 
-                    GameObject n_fixed = Instantiate(Objects[color + ONE_BEROW]);
+                    GameObject n_fixed = Instantiate(Objects[color - 1]);
                     PowerSet(n_fixed, power);
                     return n_fixed;
 
                 case (int)ObjectType.SFixed:
 
-                    GameObject s_fixed = Instantiate(Objects[color + ONE_BEROW]);
+                    GameObject s_fixed = Instantiate(Objects[color - 1]);
                     PowerSet(s_fixed, power);
                     return s_fixed;
 
@@ -270,16 +272,25 @@ namespace Game.Stage
                     GameObject gimmick = Instantiate(SpecialObjects[gimmick_value]);
                     return gimmick;
 
+                case (int)S_OBjectType.Moving_Floor:
+
+                    int moving_floor_value = (int)S_OBjectType.Moving_Floor * (int)GameConstants.INVERSION;
+                    GameObject moving_floor = Instantiate(SpecialObjects[moving_floor_value]);
+                    return moving_floor;
+
+                case (int)S_OBjectType.CanUp:
+
+                    int canup_value = (int)S_OBjectType.CanUp * (int)GameConstants.INVERSION;
+                    GameObject canup = Instantiate(SpecialObjects[canup_value]);
+                    return canup;
+
                 case (int)ObjectType.NotObject:
 
                     return null;
 
                 default:
-
-                    // 作業途中のため
-                    if (color >= 8) return null;
                     
-                    GameObject obj = Instantiate(Objects[color + ONE_BEROW]);
+                    GameObject obj = Instantiate(Objects[color - 1]);
                     return obj;
             }
         }
@@ -304,9 +315,9 @@ namespace Game.Stage
         /// <returns></returns>
         private bool CanPlayerCreate()
         {
-            if (IsPlayerCreate)
+            if (isPlayerCreate)
             {
-                IsPlayerCreate = false;
+                isPlayerCreate = false;
                 return true;
             }
 

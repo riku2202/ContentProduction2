@@ -11,32 +11,22 @@ namespace Game.Stage.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
-        private float Speed = 10.0f;
+        [SerializeField]
+        private float Speed = 5.0f;
 
         [SerializeField]
-        private bool IsActive;
-
-        //private InputManager Input;
+        private bool isActive;
 
         private void Start()
         {
-            IsActive = true;
-            //Input = GameObject.Find("InputManager").GetComponent<InputManager>();
+            isActive = true;
         }
 
         private void FixedUpdate()
         {
-            if (!IsActive) { return; }
+            if (!isActive) return;
 
-            //StageLoader stage_loader = GameObject.Find("StageLoader").GetComponent<StageLoader>();
-
-            GameDataManager gamedata_manager = GameDataManager.Instance;
-
-            //Vector3 top_right = stage_loader.GetStageData(gamedata_manager.GetCurrentStageIndex()).TopRight;
-
-            Vector3 top_right = new Vector3(100.0f, 100.0f, 100.0f);
-
-            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && transform.position.x <= top_right.x + GameConstants.TopRigid_Puls.x)
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && transform.position.x <= GameConstants.TopRight.x)
             {
                 transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
                 transform.Translate(0, 0, Speed * Time.deltaTime);
@@ -48,7 +38,7 @@ namespace Game.Stage.Player
                 transform.Translate(0, 0, Speed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.y <= top_right.y + GameConstants.TopRigid_Puls.y)
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.y <= GameConstants.TopRight.y)
             {
                 transform.Translate(0, Speed * Time.deltaTime, 0);
             }

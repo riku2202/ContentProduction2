@@ -137,11 +137,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3670de9b8c516124a9a11b8f4d0dea7e, type: 2}
+      objectReference: {fileID: 8748892135801146194, guid: f7ad0af202451fe4e8f04b9f475080a3,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 356c1b52ff556114794253399d334f09,
         type: 3}
       propertyPath: m_Name
-      value: Object_7
+      value: Object_8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 356c1b52ff556114794253399d334f09,
         type: 3}
@@ -210,7 +211,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2964940912354648603}
   serializedVersion: 4
-  m_Mass: 10000
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -242,5 +243,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Magnet: {fileID: 992005402832496809}
-  MagnetFixed: 0
-  MagnetFixedPower: 0
+  MagnetFixed: 1
+  MagnetFixedPower: 1
