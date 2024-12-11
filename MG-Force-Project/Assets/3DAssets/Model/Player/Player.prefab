@@ -75,7 +75,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9145717017640266730}
+      addedObject: {fileID: 5547775004807713174}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
         type: 3}
       insertIndex: -1
@@ -95,8 +95,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6036828483580288254}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &9145717017640266730
-BoxCollider:
+--- !u!136 &5547775004807713174
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,8 +113,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 2, z: 0.3}
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 2.05
+  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &2842160273603011434
 Rigidbody:
@@ -155,8 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b1a500e9fc2e54d999a992796a5c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  isActive: 0
 --- !u!114 &8303163633242544655
 MonoBehaviour:
   m_ObjectHideFlags: 0

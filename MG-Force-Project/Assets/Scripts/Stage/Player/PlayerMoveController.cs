@@ -11,42 +11,104 @@ namespace Game.Stage.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
-        [SerializeField]
-        private float Speed = 5.0f;
+        // 最大速度
+        private const float MAX_SPEED = 8.5f;
+        // 最小速度
+        private const float MIN_SPEED = 0.0f;
+        // 加速度
+        private const float ADD_SPEED = 1.25f;
+        // 減速度
+        private const float SUB_SPEED = 4.0f;
 
-        [SerializeField]
-        private bool isActive;
+        // 現在の速度
+        private float currentSpeed = 0.0f;
 
+        // プレイヤーの動作フラグ
+        private bool isActive = true;
+
+        // プレイヤーのRigidbody
+        private Rigidbody rb;
+
+        // 向きベクトル
+        private Vector3 moveDir = Vector3.zero;
+
+        /// <summary>
+        /// 初期化処理
+        /// </summary>
         private void Start()
         {
-            isActive = true;
+            rb = GetComponent<Rigidbody>();
         }
 
+        /// <summary>
+        /// 更新処理
+        /// </summary>
         private void FixedUpdate()
         {
             if (!isActive) return;
 
-            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && transform.position.x <= GameConstants.TopRight.x)
+            if (Input.GetKey(KeyCode.D))
             {
-                transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
-                transform.Translate(0, 0, Speed * Time.deltaTime);
+                moveDir = new Vector3(Acceleration(), moveDir.y, moveDir.z);
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                moveDir = new Vector3(-Acceleration(), moveDir.y, moveDir.z);
+            }
+            else
+            {
+                moveDir = new Vector3(Deceleration(), rb.velocity.y, rb.velocity.z);
             }
 
-            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && transform.position.x >= GameConstants.LowerLeft.x)
+            rb.AddForce(moveDir, ForceMode.Force);
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                transform.eulerAngles = new Vector3(0.0f, 270.0f, 0.0f);
-                transform.Translate(0, 0, Speed * Time.deltaTime);
+                transform.position = Vector3.zero;
+                rb.velocity = Vector3.zero;
+            }
+        }
+
+        /// <summary>
+        /// 加速処理
+        /// </summary>
+        /// <returns></returns>
+        private float Acceleration()
+        {
+            if (currentSpeed < MAX_SPEED)
+            {
+                currentSpeed += ADD_SPEED;
+
+                if (currentSpeed > MAX_SPEED)
+                {
+                    currentSpeed = MAX_SPEED;
+                }
+
+                return currentSpeed;
             }
 
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.y <= GameConstants.TopRight.y)
+            return currentSpeed;
+        }
+
+        /// <summary>
+        /// 減速処理
+        /// </summary>
+        /// <returns></returns>
+        private float Deceleration()
+        {
+            if (currentSpeed > MIN_SPEED)
             {
-                transform.Translate(0, Speed * Time.deltaTime, 0);
+                currentSpeed -= SUB_SPEED;
+
+                if (currentSpeed < MIN_SPEED)
+                {
+                    currentSpeed = MIN_SPEED;
+                }
+
+                return currentSpeed;
             }
 
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.y >= GameConstants.LowerLeft.y)
-            {
-                transform.Translate(0, -Speed * Time.deltaTime, 0);
-            }
+            return currentSpeed;
         }
     }
 }

@@ -12,14 +12,10 @@ namespace Game.Stage.Magnet
     public class BulletController : MonoBehaviour
     {
         // 弾の速度
-        [SerializeField]
-        private float bulletSpeed = 1.0f;
+        private float bulletSpeed = 10.0f;
 
         // 弾のRigidbody
         private Rigidbody bullet = null;
-
-        // 弾の座標
-        private Vector3 bulletPos = Vector3.zero;
 
         // ターゲットの座標
         private Vector3 targetPos = Vector3.zero;
@@ -42,9 +38,6 @@ namespace Game.Stage.Magnet
 
             bullet = GetComponent<Rigidbody>();
 
-            // 弾の座標取得
-            bulletPos = gameObject.transform.position;
-
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 // ターゲット指定用
@@ -54,7 +47,7 @@ namespace Game.Stage.Magnet
                 if (target != null)
                 {
                     // ターゲットの座標取得
-                    targetPos = target.GetComponent<Rigidbody>().position;
+                    targetPos = target.transform.position;
 
                     //// 弾の発射
                     FiringBullet();
@@ -73,7 +66,7 @@ namespace Game.Stage.Magnet
         {
             timer += Time.deltaTime;
 
-            if (timer > 2)
+            if (timer > 12)
             {
                 Destroy(gameObject);
             }
@@ -85,7 +78,7 @@ namespace Game.Stage.Magnet
         private void FiringBullet()
         {
             // 向きベクトルを求める
-            direction = targetPos - bulletPos;
+            direction = targetPos - gameObject.transform.position;
 
             // 正規化
             direction.Normalize();
