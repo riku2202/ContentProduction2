@@ -26,9 +26,6 @@ namespace Game.Stage.Camera
         // 現在のプレイヤーの位置情報
         private Transform currentPlayerPos;
 
-        // プレイヤーの一つ前の位置情報
-        private Vector3 lastPlayerPos = Vector3.zero;
-
         // プレイヤーへの追尾スピード
         [SerializeField]
         private float followSpeed = 5.0f;
@@ -41,7 +38,6 @@ namespace Game.Stage.Camera
             currentPlayerPos = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<Transform>();
         }
 
-        
         /// <summary>
         /// 更新処理
         /// </summary>
@@ -50,15 +46,8 @@ namespace Game.Stage.Camera
             // nullチェック
             if (currentPlayerPos == null) return;
 
-            // プレイヤーが移動した時、カメラを動かす
-            if (currentPlayerPos.position != lastPlayerPos)
-            {
-                // プレイヤーを追尾
-                TrackThePlayer();
-
-                // プレイヤーの位置情報を更新
-                lastPlayerPos = currentPlayerPos.position;
-            }
+            // プレイヤーを追尾
+            TrackThePlayer();
         }
 
         /// <summary>

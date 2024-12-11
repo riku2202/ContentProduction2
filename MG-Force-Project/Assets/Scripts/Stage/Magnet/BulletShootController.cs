@@ -12,12 +12,12 @@ namespace Game.Stage.Magnet
 
         private void Start()
         {
-            magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
+            //magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
         }
 
         private void Update()
         {
-            if (magnet.IsMagnetBoot) return;
+            //if (magnet.IsMagnetBoot) return;
 
             if (Input.GetKeyDown(KeyCode.Return))
             {

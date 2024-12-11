@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 using Game.GameSystem;
 using System.Drawing;
+using Unity.VisualScripting;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace Game.Stage
 {
@@ -57,20 +59,32 @@ namespace Game.Stage
         private const int maxRows = 25;
         private const int maxCols = 38;
 
-        // 行列数
-        private int row = -1;
-        private int col = -1;
-
         // 行列のカウンター
-        private int rowConter = maxRows - 1;
-        private int colConter = 0;
+        private int row = maxRows - 1;
+        private int col = 0;
 
         // データ用配列
         private int[,] colorArray = new int[maxRows, maxCols];
         private int[,] powerArray = new int[maxRows, maxCols];
 
+        public struct Scale
+        {
+            public int row;
+            public int col;
+
+            public Scale(int _row, int _col)
+            {
+                row = _row;
+                col = _col;
+            }
+        }
+
+        private Scale[,] scaleArray = new Scale[maxRows, maxCols];
+
         // プレイヤーの生成フラグ
         private bool isPlayerCreate = false;
+
+        private Scale zero = new Scale(0, 0);
 
         #region -------- StageData管理用クラス --------
 
@@ -82,7 +96,6 @@ namespace Game.Stage
             public int power;  // 磁力の強さ
         }
 
-        // アイテムラッパー
         [System.Serializable]
         public class ItemWrapper
         {
@@ -147,21 +160,18 @@ namespace Game.Stage
 
                 try
                 {
-                    // 現在のインデックスを基に行と列を計算
-                    row = rowConter;
-                    col = colConter;
-
                     // 配列にデータを格納
                     colorArray[row, col] = itemWrapper.value.color;
                     powerArray[row, col] = itemWrapper.value.power;
+                    scaleArray[row, col] = new Scale(1, 1);
 
                     // 次のインデックスへの移動
-                    colConter++;
+                    col++;
 
-                    if (colConter >= maxCols)
+                    if (col >= maxCols)
                     {
-                        colConter = 0;
-                        rowConter--;
+                        col = 0;
+                        row--;
                     }
                 }
                 catch (Exception ex)
@@ -175,7 +185,6 @@ namespace Game.Stage
         private const float INIT_X = 1.0f;
         private const float INIT_Y = 1.0f;
         private const float INIT_Z = 0.0f;
-        private const float INIT_REDUCE = 1.0f;
 
         /// <summary>
         /// ステージ生成
@@ -202,25 +211,172 @@ namespace Game.Stage
             // プレイヤーの生成フラグをリセット
             isPlayerCreate = true;
 
-            for (int i = 0; i <= maxRows - 1; i++)
+            CheckObjectScale();
+
+            for (int i = 0; i < maxRows; i++)
             {
-                for (int j = 0; j <= maxCols - 1; j++)
+                for (int j = 0; j < maxCols; j++)
                 {
+                    if (scaleArray[i, j].col == zero.col && scaleArray[i, j].row == zero.row) continue;
+
                     GameObject obj = ObjectCreater(colorArray[i, j], powerArray[i, j]);
 
                     if (obj != null)
                     {
+                        obj.transform.localScale = new Vector3(scaleArray[i, j].col, scaleArray[i, j].row, 1.0f);
                         obj.transform.position = new Vector3(
-                            INIT_X * j - INIT_REDUCE,
-                            INIT_Y * i - INIT_REDUCE,
+                            INIT_X * j + ((obj.transform.localScale.x - 1) * 0.5f),
+                            INIT_Y * i + ((obj.transform.localScale.y - 1) * 0.5f),
                             INIT_Z
-                            ); ;
+                            );
 
                         obj.transform.SetParent(main_object.transform, false);
                     }
                 }
             }
         }
+
+        #region -------- 大きさの設定 --------
+
+        private int currentColor = 0;
+        private int rowConter = 0;
+        private int colConter = 0;
+
+        /// <summary>
+        /// 大きさのチェック
+        /// </summary>
+        private void CheckObjectScale()
+        {
+            for (int i = 0; i < maxRows; i++)
+            {
+                for (int j = 0; j < maxCols; j++)
+                {
+                    currentColor = colorArray[i, j];
+
+                    rowConter = 0;
+                    colConter = 0;
+
+                    // 空白と特殊はスキップ
+                    if (currentColor <= 0 && currentColor != -4 && currentColor != -5)
+                    {
+                        DebugManager.LogMessage($"空白・特殊ブロック = {i},{j}, color = {colorArray[i, j]}, scale = {scaleArray[i, j].row},{scaleArray[i, j].col}");
+                        continue;
+                    }
+
+                    // 大きさが0ならスキップ
+                    if (scaleArray[i, j].row == zero.row && scaleArray[i, j].col == zero.col)
+                    {
+                        DebugManager.LogMessage($"0ブロック = {i},{j}, color = {colorArray[i,j]}, scale = {scaleArray[i,j].row},{scaleArray[i,j].col}");
+                        continue;
+                    }
+
+                    // 一番右上のブロックはスキップ
+                    if (j == maxCols - 1 && i == maxRows - 1)
+                    {
+                        DebugManager.LogMessage($"最後のブロック = {i},{j}, color = {colorArray[i, j]}, scale = {scaleArray[i, j].row},{scaleArray[i, j].col}");
+                        continue;
+                    }
+
+                    bool row_flag = CheckRowPiece(i, j);
+                    bool col_flag = CheckColPiece(i, j);
+
+                    // 右と上のブロックが同じブロックではなければスキップ
+                    if (!row_flag && !col_flag)
+                    {
+                        DebugManager.LogMessage($"1ブロック = {i},{j}, color = {colorArray[i, j]}, scale = {scaleArray[i, j].row},{scaleArray[i, j].col}");
+                        continue;
+                    }
+
+                    while (true)
+                    {
+                        if (CheckScale(i, j))
+                        {
+                            SetObjectScale(i, j);
+                            break;
+                        }
+                        else
+                        {
+                            rowConter--;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 縦の範囲チェック
+        /// </summary>
+        /// <param name="_row"></param>
+        /// <param name="_col"></param>
+        /// <returns></returns>
+        private bool CheckRowPiece(int _row, int _col)
+        {
+            for (int i = _row; i < maxRows; i++)
+            {
+                if (currentColor != colorArray[i, _col]) break;
+
+                rowConter++;
+            }
+
+            return rowConter != 1;
+        }
+
+        /// <summary>
+        /// 横の範囲チェック
+        /// </summary>
+        /// <param name="_row"></param>
+        /// <param name="_col"></param>
+        /// <returns></returns>
+        private bool CheckColPiece(int _row, int _col)
+        {
+            for (int i = _col; i < maxCols; i++)
+            {
+                if (currentColor != colorArray[_row, i]) break;
+
+                colConter++;
+            }
+
+            return colConter != 1;
+        }
+
+        /// <summary>
+        /// 範囲のチェック
+        /// </summary>
+        /// <param name="_row"></param>
+        /// <param name="_col"></param>
+        /// <returns></returns>
+        private bool CheckScale(int _row, int _col)
+        {
+            for (int i = _row; i < _row + rowConter; i++)
+            {
+                for (int j = _col; j < _col + colConter; j++)
+                {
+                    if (currentColor != colorArray[i, j]) return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 大きさの設定
+        /// </summary>
+        /// <param name="_row"></param>
+        /// <param name="_col"></param>
+        private void SetObjectScale(int _row, int _col)
+        {
+            for (int i = _row; i < _row + rowConter; i++)
+            {
+                for (int j = _col; j < _col + colConter; j++)
+                {
+                    scaleArray[i, j] = new Scale(0, 0);
+                }
+            }
+
+            scaleArray[_row, _col] = new Scale(rowConter, colConter);
+        }
+
+        #endregion
 
         /// <summary>
         /// オブジェクト生成
