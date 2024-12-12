@@ -70,11 +70,11 @@ namespace Game.Stage.Magnet
 
             if (isHorizontal)
             {
-                magnet_move.x = (int)selfData.MyMagnetPower * reverse * Time.deltaTime;
+                magnet_move.x = (int)selfData.MyMagnetPower * reverse;
             }
             else
             {
-                magnet_move.y = (int)selfData.MyMagnetPower * reverse * Time.deltaTime;
+                magnet_move.y = (int)selfData.MyMagnetPower * reverse;
             }
 
             return magnet_move;

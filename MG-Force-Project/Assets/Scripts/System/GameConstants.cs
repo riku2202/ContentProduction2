@@ -196,13 +196,13 @@ namespace Game
 
         /* ================ ç¿ïW ================ */
 
-        public static readonly Vector3 LowerLeft = new Vector3(-7.5f, -5.0f, 0);
+        public static readonly Vector3 LowerLeft = new Vector3(-7.0f, -5.0f, 0.0f);
 
-        public static readonly Vector3 LowerLeftCamera = new Vector3(0, 0, -10);
+        public static readonly Vector3 LowerLeftCamera = new Vector3(0.0f, 1.0f, -10.0f);
 
-        public static readonly Vector3 TopRight = new Vector3(28.5f, 18.5f, 0);
+        public static readonly Vector3 TopRight = new Vector3(29.0f, 18.5f, 0.0f);
 
-        public static readonly Vector3 TopRightCamera = new Vector3(21.0f, 16.0f, -10.0f);
+        public static readonly Vector3 TopRightCamera = new Vector3(22.0f, 16.0f, -10.0f);
 
         /* ================ êîílåvéZ ================ */
 

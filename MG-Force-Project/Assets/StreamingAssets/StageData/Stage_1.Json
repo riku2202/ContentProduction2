@@ -5281,7 +5281,7 @@
     {
       "key": "1932",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
@@ -5519,7 +5519,7 @@
     {
       "key": "2028",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },

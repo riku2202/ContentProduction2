@@ -12,13 +12,13 @@ namespace Game.Stage.Player
     public class PlayerMoveController : MonoBehaviour
     {
         // 最大速度
-        private const float MAX_SPEED = 8.5f;
+        private const float MAX_SPEED = 120.0f;
         // 最小速度
         private const float MIN_SPEED = 0.0f;
         // 加速度
-        private const float ADD_SPEED = 1.25f;
+        private const float ADD_SPEED = 30.0f;
         // 減速度
-        private const float SUB_SPEED = 4.0f;
+        private const float SUB_SPEED = 60.0f;
 
         // 現在の速度
         private float currentSpeed = 0.0f;
@@ -47,11 +47,16 @@ namespace Game.Stage.Player
         {
             if (!isActive) return;
 
-            if (Input.GetKey(KeyCode.D))
+            if (currentSpeed == MAX_SPEED)
+            {
+                rb.velocity = Vector3.zero;
+            }
+
+            if (Input.GetKey(KeyCode.D) && transform.position.x < GameConstants.TopRight.x)
             {
                 moveDir = new Vector3(Acceleration(), moveDir.y, moveDir.z);
             }
-            else if (Input.GetKey(KeyCode.A))
+            else if (Input.GetKey(KeyCode.A) && transform.position.x > GameConstants.LowerLeft.x)
             {
                 moveDir = new Vector3(-Acceleration(), moveDir.y, moveDir.z);
             }
