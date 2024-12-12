@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace System
+namespace Game.Stage
 {
     /// <summary>
     /// ステージデータ
@@ -12,10 +10,33 @@ namespace System
     {
         // ステージの管理番号
         [SerializeField]
-        private int StageIndex;
+        private int stageIndex;
 
         // ステージのプレハブ
         [SerializeField]
-        private GameObject StagePrefab;
+        private GameObject stagePrefab;
+
+        // ステージの背景
+        [SerializeField]
+        private GameObject stageBG;
+
+        // ステージの右上座標
+        [SerializeField]
+        private Vector2 topRight;
+
+
+        /* -------- 読み取り用の変数 -------- */
+
+        // ステージの管理番号
+        public int StageIndex => stageIndex;
+
+        // ステージのプレハブ
+        public GameObject StagePrefab => stagePrefab;
+
+        // ステージの背景
+        public GameObject StageBG => stageBG;
+
+        // ステージの右上座標
+        public Vector2 TopRight => topRight;
     }
 }

@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &190336416
+--- !u!1 &1264818341
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,17 +131,16 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 190336419}
-  - component: {fileID: 190336418}
-  - component: {fileID: 190336417}
+  - component: {fileID: 1264818343}
+  - component: {fileID: 1264818342}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: LoadingSceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &190336417
+--- !u!114 &1264818342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,10 +181,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190336416}
+  m_GameObject: {fileID: 1264818341}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.6925516, y: 1.9657274, z: 0.6662522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -553,5 +552,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1736832606}
   - {fileID: 1320532291}
-  - {fileID: 1313281020}
-  - {fileID: 190336419}
+  - {fileID: 1264818343}

@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fixed
   - Moving
+  - Fixed
+  - Box
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - NMagnet
-  - SMagnet
-  - 
-  - 
+  - NForce
+  - SForce
+  - Bullet
+  - MagnetRange
   - 
   - 
   - 
