@@ -3993,7 +3993,7 @@
     {
       "key": "150",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -4525,7 +4525,7 @@
     {
       "key": "170",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },

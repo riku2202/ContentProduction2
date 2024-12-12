@@ -197,7 +197,7 @@ namespace Game.Stage
             /* -------- 親オブジェクトの生成 -------- */
 
             // 初期値
-            float init_main_x = -6.5f;
+            float init_main_x = -7.5f;
             float init_main_y = -3.0f;
             float init_main_z = 0.0f;
 
