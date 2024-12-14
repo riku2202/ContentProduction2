@@ -1,71 +1,76 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    private PlayerInputActions inputActions;
-    private InputAction moveAction;
-    private InputAction actionAction;
-    private InputAction jumpAction;
+    private InputAction moveAction;  // 移動アクション
+    private InputAction jumpAction;  // ジャンプアクション
+    private InputAction actionAction; // アクションアクション
 
     private float moveSpeed = 5f;
+    private Animator animator; // Animator コンポーネント用
 
-    // Awakeで初期化
     private void Awake()
     {
-        // PlayerInputActions をインスタンス化
-        inputActions = new PlayerInputActions();
+        // Animator コンポーネントを取得
+        animator = GetComponent<Animator>();
 
-        // アクションを設定
-        moveAction = inputActions.Player.Move;
-        actionAction = inputActions.Player.Action;
-        jumpAction = inputActions.Player.Jump;
+        // 移動アクションの設定（WASDキーと左スティック）
+        moveAction = new InputAction("Move", InputActionType.Value);
+        moveAction.AddCompositeBinding("2DVector")
+            .With("Up", "<Keyboard>/w")
+            .With("Down", "<Keyboard>/s")
+            .With("Left", "<Keyboard>/a")
+            .With("Right", "<Keyboard>/d");
+        moveAction.AddBinding("<Gamepad>/leftStick");
+
+        // ジャンプアクションの設定（スペースキーとSouthボタン）
+        jumpAction = new InputAction("Jump", InputActionType.Button);
+        jumpAction.AddBinding("<Keyboard>/space");
+        jumpAction.AddBinding("<Gamepad>/buttonSouth");
+
+        // アクションアクションの設定（FキーとWestボタン）
+        actionAction = new InputAction("Action", InputActionType.Button);
+        actionAction.AddBinding("<Keyboard>/f");
+        actionAction.AddBinding("<Gamepad>/buttonWest");
+
+        // アクションを有効化
+        moveAction.Enable();
+        jumpAction.Enable();
+        actionAction.Enable();
     }
 
-    // OnEnableでアクションを有効にし、OnDisableで無効化
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
-
-    // Updateで移動などの処理を実行
     private void Update()
     {
-        // 移動入力を取得
-        Vector2 moveInput = moveAction.ReadValue<Vector2>();  // 左スティックの入力とキーボードの入力をまとめて取得
+        // 移動入力を取得して移動処理
+        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+        float horizontal = moveInput.x;
+
+        transform.Translate(Vector3.right * horizontal * moveSpeed * Time.deltaTime);
+
+        // 移動アニメーションの制御
+        animator.SetFloat("MoveSpeed", Mathf.Abs(horizontal));
 
         // ジャンプ入力の処理
         if (jumpAction.triggered)
         {
             Debug.Log("ジャンプボタンが押されました！");
+            animator.SetTrigger("Jump");
         }
 
         // アクション入力の処理
         if (actionAction.triggered)
         {
             Debug.Log("アクションボタンが押されました！");
+            animator.SetTrigger("Action");
         }
+    }
 
-        // 横移動処理（左スティックのX軸とA/Dキーで移動）
-        float horizontal = moveInput.x;
-
-        // AキーとDキーでの移動（キーボード入力）
-        if (Keyboard.current.aKey.isPressed)
-        {
-            horizontal = -1f; // Aキーで左移動
-        }
-        else if (Keyboard.current.dKey.isPressed)
-        {
-            horizontal = 1f;  // Dキーで右移動
-        }
-
-        // 横移動処理
-        transform.Translate(Vector3.right * horizontal * moveSpeed * Time.deltaTime);
+    private void OnDestroy()
+    {
+        // アクションを無効化
+        moveAction.Disable();
+        jumpAction.Disable();
+        actionAction.Disable();
     }
 }
