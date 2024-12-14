@@ -92,46 +92,41 @@ namespace Game.Stage.Magnet
         {
             if (other == null || MagnetFixed) { return; }
 
-            // 弾に当たった時
-            if (other.gameObject.layer == (int)GameConstants.Layer.BULLET)
+            if (magnetManager.IsMagnetBoot)
             {
-                // レイヤーの更新
-                gameObject.layer = (int)magnetManager.CurrentType;
+                // 例外チェック
+                if (other.gameObject.layer != (int)GameConstants.Layer.N_MAGNET &&
+                    other.gameObject.layer != (int)GameConstants.Layer.S_MAGNET) { return; }
 
-                // 磁力データの取得
-                MagnetData.MagnetType new_magnet_type = (MagnetData.MagnetType)gameObject.layer;
-                MagnetData.MagnetPower new_magnet_power = (MagnetData.MagnetPower)magnetManager.CurrentPower;
+                // このオブジェクトが可動オブジェクトの場合
+                if (MyData.MyObjectType == MagnetData.ObjectType.Moving)
+                {
+                    // 磁力の動作処理
+                    magnetController.MagnetUpdate(gameObject, other.gameObject);
 
-                // 磁力データの設定
-                MyData.SetMagnetData(new_magnet_type, new_magnet_power);
-
-                DebugManager.LogMessage(MyData.MyMangetType.ToString() + " | " + MyData.MyMagnetPower.ToString());
+                    //if (Mathf.Abs(gameObject.transform.position.x - parentTransform.position.x) > 0.01f ||
+                    //      Mathf.Abs(gameObject.transform.position.y - parentTransform.position.y) > 0.01f)
+                    //{
+                    //}
+                }
             }
-        }
-
-        /// <summary>
-        /// 当たっている時の処理
-        /// </summary>
-        /// <param name="other"></param>
-        private void OnTriggerStay(Collider other)
-        {
-            // nullチェック
-            if (other == null) { return; }
-
-            // 例外チェック
-            if (other.gameObject.layer != (int)GameConstants.Layer.N_MAGNET && 
-                other.gameObject.layer != (int)GameConstants.Layer.S_MAGNET) { return; }
-
-            // このオブジェクトが可動オブジェクトの場合
-            if (MyData.MyObjectType == MagnetData.ObjectType.Moving)
+            else
             {
-                // 磁力の動作処理
-                magnetController.MagnetUpdate(gameObject, other.gameObject);
+                // 弾に当たった時
+                if (other.gameObject.layer == (int)GameConstants.Layer.BULLET)
+                {
+                    // レイヤーの更新
+                    gameObject.layer = (int)magnetManager.CurrentType;
 
-                //if (Mathf.Abs(gameObject.transform.position.x - parentTransform.position.x) > 0.01f ||
-                //      Mathf.Abs(gameObject.transform.position.y - parentTransform.position.y) > 0.01f)
-                //{
-                //}
+                    // 磁力データの取得
+                    MagnetData.MagnetType new_magnet_type = (MagnetData.MagnetType)gameObject.layer;
+                    MagnetData.MagnetPower new_magnet_power = (MagnetData.MagnetPower)magnetManager.CurrentPower;
+
+                    // 磁力データの設定
+                    MyData.SetMagnetData(new_magnet_type, new_magnet_power);
+
+                    DebugManager.LogMessage(MyData.MyMangetType.ToString() + " | " + MyData.MyMagnetPower.ToString());
+                }
             }
         }
 
