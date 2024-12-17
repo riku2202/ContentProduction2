@@ -24,6 +24,10 @@ namespace Game.Stage.Magnet
         [SerializeField]
         private MagnetData.MagnetPower MagnetFixedPower;
 
+        private Rigidbody rigitbody;
+
+        private bool canMove;
+
         /// <summary>
         /// 初期化処理
         /// </summary>
@@ -48,6 +52,11 @@ namespace Game.Stage.Magnet
             else
             {
                 MyData = new MagnetData(new_object_type);
+
+                if (MyData.MyObjectType == MagnetData.ObjectType.Moving)
+                {
+                    rigitbody = GetComponent<Rigidbody>();
+                }
             }
 
             magnetController = new MagnetController();
@@ -55,20 +64,42 @@ namespace Game.Stage.Magnet
             DebugManager.LogMessage(MyData.MyObjectType.ToString());
         }
 
+        /// <summary>
+        /// 更新処理
+        /// </summary>
         private void Update()
         {
+            // 磁力の起動処理
             if (magnetManager.IsMagnetBoot && Magnet.activeSelf != true)
             {
+                // 磁力の有効化
                 Magnet.SetActive(true);
             }
             else if (!magnetManager.IsMagnetBoot && Magnet.activeSelf != false)
             {
+                // 磁力の無効化
                 Magnet.SetActive(false);
             }
 
+            // 可動オブジェクト以外は除外
+            if (MyData.MyObjectType != MagnetData.ObjectType.Moving) return;
+
+            // 意図しない動作を防ぐ処理
+            if (canMove)
+            {
+                SetDefultConstraints();
+            }
+            else
+            {
+                SetHitPlayerConstraints();
+            }
+
+            // 磁力固定オブジェクトは除外
+            if (MagnetFixed) return;
+
+            // 付与した磁力のリセット
             if (Input.GetKeyDown(KeyCode.R))
             {
-                if (MagnetFixed) { return; }
 
                 // 磁力データの宣言
                 MagnetData.MagnetType reset_type = MagnetData.MagnetType.NotType;
@@ -90,24 +121,19 @@ namespace Game.Stage.Magnet
         /// <param name="other"></param>
         private void OnTriggerEnter(Collider other)
         {
-            if (other == null || MagnetFixed) { return; }
+            if (other == null || MagnetFixed) return;
 
             if (magnetManager.IsMagnetBoot)
             {
                 // 例外チェック
                 if (other.gameObject.layer != (int)GameConstants.Layer.N_MAGNET &&
-                    other.gameObject.layer != (int)GameConstants.Layer.S_MAGNET) { return; }
+                    other.gameObject.layer != (int)GameConstants.Layer.S_MAGNET) return;
 
                 // このオブジェクトが可動オブジェクトの場合
                 if (MyData.MyObjectType == MagnetData.ObjectType.Moving)
                 {
                     // 磁力の動作処理
                     magnetController.MagnetUpdate(gameObject, other.gameObject);
-
-                    //if (Mathf.Abs(gameObject.transform.position.x - parentTransform.position.x) > 0.01f ||
-                    //      Mathf.Abs(gameObject.transform.position.y - parentTransform.position.y) > 0.01f)
-                    //{
-                    //}
                 }
             }
             else
@@ -130,6 +156,32 @@ namespace Game.Stage.Magnet
             }
         }
 
+        /// <summary>
+        /// オブジェクトに当たった時
+        /// </summary>
+        /// <param name="collision"></param>
+        private void OnCollisionEnter(Collision collision)
+        {
+            // 例外処理
+            if (!collision.gameObject.CompareTag(GameConstants.Tag.Player.ToString()) || MagnetFixed) { return; }
+
+            // プレイヤーと当たっている場合動かないようにする
+            canMove = false;
+        }
+
+        /// <summary>
+        /// オブジェクトから離れたとき
+        /// </summary>
+        /// <param name="collision"></param>
+        private void OnCollisionExit(Collision collision)
+        {
+            // 例外処理
+            if (!collision.gameObject.CompareTag(GameConstants.Tag.Player.ToString()) || MagnetFixed) { return; }
+
+            // プレイヤーが離れたときに動けるようにする
+            canMove = true;
+        }
+
         public void SetObjectPower(int power)
         {
             switch (power)
@@ -146,6 +198,22 @@ namespace Game.Stage.Magnet
                     MagnetFixedPower = MagnetData.MagnetPower.Strong;
                     return;
             }
+        }
+
+        /// <summary>
+        /// デフォルトの制約
+        /// </summary>
+        private void SetDefultConstraints()
+        {
+            rigitbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        }
+
+        /// <summary>
+        /// プレイヤーと当たった時の制約
+        /// </summary>
+        private void SetHitPlayerConstraints()
+        {
+            rigitbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
     }
 }
