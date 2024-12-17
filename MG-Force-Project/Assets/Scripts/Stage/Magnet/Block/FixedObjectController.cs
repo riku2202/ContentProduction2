@@ -3,7 +3,7 @@ namespace Game.Stage.Magnet
     /// <summary>
     /// 固定オブジェクトクラス
     /// </summary>
-    public class FixedObject : MagnetObjectManager
+    public class FixedObjectController : MagnetObjectManager
     {
         /// <summary>
         /// 初期化処理

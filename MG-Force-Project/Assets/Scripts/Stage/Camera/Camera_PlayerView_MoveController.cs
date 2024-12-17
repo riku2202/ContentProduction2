@@ -53,11 +53,10 @@ namespace Game.Stage.Camera
 
             Vector3 target_pos = new Vector3(target_x, target_y, transform.position.z);
 
-            //if (currentPlayerPositioin.y - transform.position.y > Y_DIFF_TO_PLAYER)
-            //{
-            //    target_pos.y = Mathf.Clamp(currentPlayerPositioin.y + (currentPlayerPositioin.y - transform.position.y), lowerLeft.y, topRight.y);
-            //}
-
+            if (currentPlayerTransform.position.y - transform.position.y > Y_DIFF_TO_PLAYER)
+            {
+                target_pos.y = Mathf.Clamp(currentPlayerTransform.position.y + (currentPlayerTransform.position.y - transform.position.y), lowerLeft.y, topRight.y);
+            }
 
             DebugManager.LogMessage(target_pos.x + " " + target_pos.y + " " + target_pos.z);
 

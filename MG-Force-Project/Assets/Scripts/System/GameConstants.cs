@@ -22,7 +22,6 @@ namespace Game
             Credits,
         }
 
-
         /* ================ タグ ================ */
 
         /// <summary>
@@ -99,7 +98,6 @@ namespace Game
 
         #endregion
 
-
         /* ================ レイヤー ================ */
 
         /// <summary>
@@ -119,7 +117,6 @@ namespace Game
             BULLET = 8,          // 磁力の弾
             MAGNET_RANGE = 9,    // 磁力の範囲
         }
-
 
         /* ================ オブジェクト ================ */
 
@@ -165,7 +162,6 @@ namespace Game
         public const string INPUT_MAGNET_POWER = "MagnetPower";
         public const string INPUT_BACK = "InputBack";
 
-
         /* ================ ステージ ================ */
 
         // ステージの最大数
@@ -186,7 +182,6 @@ namespace Game
             DebugStage,
         }
 
-
         /* ================ 時間 ================ */
 
         // 標準値
@@ -194,16 +189,13 @@ namespace Game
 
         public const int HIGH_FPS = 120;
 
-
         /* ================ 座標 ================ */
 
-        public static readonly Vector3 LowerLeft = new Vector3(-6.5f, -4.0f, 0.0f);
+        public static readonly Vector3 LowerLeft = new Vector3(-6.5f, -3.0f, 0.0f);        // 左下最小座標
+        public static readonly Vector3 TopRight = new Vector3(29.5f, 19.0f, 0.0f);         // 右上最大座標
 
-        public static readonly Vector3 LowerLeftCamera = new Vector3(0.5f, 0.0f, -10.0f);
-
-        public static readonly Vector3 TopRight = new Vector3(29.0f, 18.5f, 0.0f);
-
-        public static readonly Vector3 TopRightCamera = new Vector3(22.0f, 16.0f, -10.0f);
+        public static readonly Vector3 LowerLeftCamera = new Vector3(1.0f, 1.0f, -10.0f);  // カメラの左下最小座標
+        public static readonly Vector3 TopRightCamera = new Vector3(22.5f, 16.5f, -10.0f); // カメラの右上最大座標
 
         /* ================ 数値計算 ================ */
 
@@ -212,7 +204,6 @@ namespace Game
 
         // 反転値
         public const float INVERSION = -1.0f;
-
 
         /* ================ 状態管理 ================ */
 
