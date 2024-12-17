@@ -56,7 +56,7 @@ namespace Game.Title
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene("Title");
+                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
             }
         }
 

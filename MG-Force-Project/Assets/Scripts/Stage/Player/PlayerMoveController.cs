@@ -20,17 +20,28 @@ namespace Game.Stage.Player
         // 減速度
         private const float SUB_SPEED = 60.0f;
 
+        // ジャンプ力
+        private const float JUMP_POWER = 1.0f;
+
         // 現在の速度
         private float currentSpeed = 0.0f;
-
-        // プレイヤーの動作フラグ
-        private bool isActive = true;
 
         // プレイヤーのRigidbody
         private Rigidbody rb;
 
+        // プレイヤーの動作フラグ
+        private bool isActive = true;
+
+        [SerializeField]
+        // 地面に設置しているかどうか
+        private bool isGranded = true;
+
         // 向きベクトル
         private Vector3 moveDir = Vector3.zero;
+
+        private Vector3 raycastDir = new Vector3(0.0f, -1.0f, 0.0f);
+
+        private const float RAYCAST_LENGTH = 0.1f;
 
         /// <summary>
         /// 初期化処理
@@ -45,33 +56,56 @@ namespace Game.Stage.Player
         /// </summary>
         private void FixedUpdate()
         {
+            // 生存チェック
             if (!isActive) return;
 
-            if (currentSpeed == MAX_SPEED)
+            if (!isGranded)
             {
-                rb.velocity = Vector3.zero;
+                CheckGranded();
             }
 
+            // 最大速度中は既存の移動をリセットする
+            if (currentSpeed == MAX_SPEED)
+            {
+                rb.velocity = new Vector3(MIN_SPEED, rb.velocity.y, MIN_SPEED);
+            }
+
+            // 右移動
             if (Input.GetKey(KeyCode.D) && transform.position.x < GameConstants.TopRight.x)
             {
                 moveDir = new Vector3(Acceleration(), moveDir.y, moveDir.z);
             }
+            // 左移動
             else if (Input.GetKey(KeyCode.A) && transform.position.x > GameConstants.LowerLeft.x)
             {
                 moveDir = new Vector3(-Acceleration(), moveDir.y, moveDir.z);
             }
+            // 停止
             else
             {
                 moveDir = new Vector3(Deceleration(), rb.velocity.y, rb.velocity.z);
             }
 
+            if (Input.GetKeyDown(KeyCode.Space) && isGranded)
+            {
+                moveDir = new Vector3(moveDir.x, JUMP_POWER, moveDir.z);
+                isGranded = false;
+            }
+
+            // 力を加える
             rb.AddForce(moveDir, ForceMode.Force);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            // 初期地移動(デバック用)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 transform.position = Vector3.zero;
                 rb.velocity = Vector3.zero;
             }
+        }
+
+        private void CheckGranded()
+        {
+            isGranded =  Physics.Raycast(gameObject.transform.position, raycastDir, RAYCAST_LENGTH);
         }
 
         /// <summary>
