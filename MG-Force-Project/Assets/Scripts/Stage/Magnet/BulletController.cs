@@ -90,6 +90,33 @@ namespace Game.Stage.Magnet
             bullet.AddForce(direction, ForceMode.Impulse);
         }
 
+        /// <summary>
+        /// 外部から呼び出し可能な弾の発射処理
+        /// </summary>
+        /// <param name="fireDirection">発射する方向ベクトル</param>
+        /// <param name="speed">弾の速度</param>
+        public void Fire(Vector3 fireDirection, float speed)
+        {
+            if (bullet == null)
+            {
+                bullet = GetComponent<Rigidbody>();
+            }
+
+            if (bullet != null)
+            {
+                // 方向を正規化して速度を設定
+                direction = fireDirection.normalized;
+                bulletSpeed = speed;
+
+                // 向きベクトルに応じて力を加える
+                bullet.AddForce(direction * bulletSpeed, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.LogError("Rigidbody が存在しないため、弾を発射できません。");
+            }
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             MagnetObjectManager magnet_object = other.GetComponent<MagnetObjectManager>();
