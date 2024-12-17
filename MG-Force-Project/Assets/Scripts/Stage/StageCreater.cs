@@ -1,13 +1,10 @@
 using Newtonsoft.Json;
 using UnityEngine;
-using Game.Stage.Magnet;
 using System;
 using System.Collections.Generic;
 
+using Game.Stage.Magnet;
 using Game.GameSystem;
-using System.Drawing;
-using Unity.VisualScripting;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace Game.Stage
 {
@@ -32,7 +29,7 @@ namespace Game.Stage
         }
 
         // ステージオブジェクト(特殊)のタイプ
-        private enum S_OBjectType
+        private enum S_ObjectType
         {
             Main,
             Player = -1,
@@ -203,7 +200,7 @@ namespace Game.Stage
 
             // 生成
             GameObject main_object = Instantiate(
-                SpecialObjects[(int)S_OBjectType.Main],
+                SpecialObjects[(int)S_ObjectType.Main],
                 new Vector3(init_main_x, init_main_y, init_main_z),
                 Quaternion.identity
                 );
@@ -236,7 +233,7 @@ namespace Game.Stage
             }
         }
 
-        #region -------- 大きさの設定 --------
+        #region -------- ブロックの大きさの設定 --------
 
         private int currentColor = 0;
         private int rowConter = 0;
@@ -256,36 +253,21 @@ namespace Game.Stage
                     rowConter = 0;
                     colConter = 0;
 
-                    // 空白と特殊はスキップ
-                    if (currentColor <= 0 && currentColor != -4 && currentColor != -5)
-                    {
-                        DebugManager.LogMessage($"空白・特殊ブロック = {i},{j}, color = {colorArray[i, j]}, scale = {scaleArray[i, j].row},{scaleArray[i, j].col}");
-                        continue;
-                    }
+                    // 空白と特殊オブジェクトはスキップ
+                    if (currentColor == (int)ObjectType.NotObject || currentColor <= (int)S_ObjectType.Main) continue;
 
-                    // 大きさが0ならスキップ
-                    if (scaleArray[i, j].row == zero.row && scaleArray[i, j].col == zero.col)
-                    {
-                        DebugManager.LogMessage($"0ブロック = {i},{j}, color = {colorArray[i,j]}, scale = {scaleArray[i,j].row},{scaleArray[i,j].col}");
-                        continue;
-                    }
+                    // オブジェクトの大きさが0ならスキップ
+                    if (scaleArray[i, j].row == zero.row && scaleArray[i, j].col == zero.col) continue;
 
                     // 一番右上のブロックはスキップ
-                    if (j == maxCols - 1 && i == maxRows - 1)
-                    {
-                        DebugManager.LogMessage($"最後のブロック = {i},{j}, color = {colorArray[i, j]}, scale = {scaleArray[i, j].row},{scaleArray[i, j].col}");
-                        continue;
-                    }
+                    if (j == maxCols - 1 && i == maxRows - 1) continue;
 
+                    // 縦横の一致数のチェック
                     bool row_flag = CheckRowPiece(i, j);
                     bool col_flag = CheckColPiece(i, j);
 
                     // 右と上のブロックが同じブロックではなければスキップ
-                    if (!row_flag && !col_flag)
-                    {
-                        DebugManager.LogMessage($"1ブロック = {i},{j}, color = {colorArray[i, j]}, scale = {scaleArray[i, j].row},{scaleArray[i, j].col}");
-                        continue;
-                    }
+                    if (!row_flag && !col_flag) continue;
 
                     while (true)
                     {
@@ -388,7 +370,7 @@ namespace Game.Stage
         {
             if (color == (int)ObjectType.NotObject) return null;
 
-            if (color < (int)S_OBjectType.CanUp || color > (int)ObjectType.SMoving) return null;
+            if (color < (int)S_ObjectType.CanUp || color > (int)ObjectType.SMoving) return null;
 
             switch (color)
             {
@@ -404,11 +386,11 @@ namespace Game.Stage
                     PowerSet(s_fixed, power);
                     return s_fixed;
 
-                case (int)S_OBjectType.Player:
+                case (int)S_ObjectType.Player:
 
                     if (CanPlayerCreate())
                     {
-                        int player_value = (int)S_OBjectType.Player * (int)GameConstants.INVERSION;
+                        int player_value = (int)S_ObjectType.Player * (int)GameConstants.INVERSION;
                         GameObject player = Instantiate(SpecialObjects[player_value]);
                         PowerSet(player, power);
                         return player;
@@ -416,27 +398,27 @@ namespace Game.Stage
 
                     return null;
 
-                case (int)S_OBjectType.Goal:
+                case (int)S_ObjectType.Goal:
 
-                    int goal_value = (int)S_OBjectType.Goal * (int)GameConstants.INVERSION;
+                    int goal_value = (int)S_ObjectType.Goal * (int)GameConstants.INVERSION;
                     GameObject goal = Instantiate(SpecialObjects[goal_value]);
                     return goal;
 
-                case (int)S_OBjectType.Gimmick:
+                case (int)S_ObjectType.Gimmick:
 
-                    int gimmick_value = (int)S_OBjectType.Goal * (int)GameConstants.INVERSION;
+                    int gimmick_value = (int)S_ObjectType.Goal * (int)GameConstants.INVERSION;
                     GameObject gimmick = Instantiate(SpecialObjects[gimmick_value]);
                     return gimmick;
 
-                case (int)S_OBjectType.Moving_Floor:
+                case (int)S_ObjectType.Moving_Floor:
 
-                    int moving_floor_value = (int)S_OBjectType.Moving_Floor * (int)GameConstants.INVERSION;
+                    int moving_floor_value = (int)S_ObjectType.Moving_Floor * (int)GameConstants.INVERSION;
                     GameObject moving_floor = Instantiate(SpecialObjects[moving_floor_value]);
                     return moving_floor;
 
-                case (int)S_OBjectType.CanUp:
+                case (int)S_ObjectType.CanUp:
 
-                    int canup_value = (int)S_OBjectType.CanUp * (int)GameConstants.INVERSION;
+                    int canup_value = (int)S_ObjectType.CanUp * (int)GameConstants.INVERSION;
                     GameObject canup = Instantiate(SpecialObjects[canup_value]);
                     return canup;
 
