@@ -139,7 +139,7 @@ namespace Game
         public const string STAGE_LOADER_OBJ = "StageLoader";
 
         // 生成するプレイヤーオブジェクト
-        public const string PLAYER_OBJ = "Player(Clone)";
+        public const string PLAYER_OBJ = "MagForce(Clone)";
 
         /* ================ 入力 ================ */
 
@@ -169,7 +169,7 @@ namespace Game
         /* ================ ステージ ================ */
 
         // ステージの最大数
-        public const int STAGE_MAX_NUM = 9;
+        public const int STAGE_MAX_NUM = 10;
 
         // ステージ名
         public enum Stage
@@ -183,6 +183,7 @@ namespace Game
             Stage_6,
             Stage_7,
             Stage_8,
+            DebugStage,
         }
 
 
@@ -196,9 +197,9 @@ namespace Game
 
         /* ================ 座標 ================ */
 
-        public static readonly Vector3 LowerLeft = new Vector3(-7.0f, -5.0f, 0.0f);
+        public static readonly Vector3 LowerLeft = new Vector3(-6.5f, -4.0f, 0.0f);
 
-        public static readonly Vector3 LowerLeftCamera = new Vector3(0.0f, 1.0f, -10.0f);
+        public static readonly Vector3 LowerLeftCamera = new Vector3(0.5f, 0.0f, -10.0f);
 
         public static readonly Vector3 TopRight = new Vector3(29.0f, 18.5f, 0.0f);
 

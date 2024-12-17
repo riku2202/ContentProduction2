@@ -193,15 +193,12 @@ namespace Game.Stage
 
             /* -------- 親オブジェクトの生成 -------- */
 
-            // 初期値
-            float init_main_x = -7.5f;
-            float init_main_y = -3.0f;
-            float init_main_z = 0.0f;
+            Vector3 init_pos = GameConstants.LowerLeft;
 
             // 生成
             GameObject main_object = Instantiate(
                 SpecialObjects[(int)S_ObjectType.Main],
-                new Vector3(init_main_x, init_main_y, init_main_z),
+                init_pos,
                 Quaternion.identity
                 );
 
