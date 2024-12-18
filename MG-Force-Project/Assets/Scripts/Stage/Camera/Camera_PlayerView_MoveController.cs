@@ -51,14 +51,14 @@ namespace Game.Stage.Camera
             float target_x = Mathf.Clamp(currentPlayerTransform.position.x, lowerLeft.x, topRight.x);
             float target_y = Mathf.Clamp(currentPlayerTransform.position.y, lowerLeft.y, topRight.y);
 
-            Vector3 target_pos = new Vector3(target_x, target_y, transform.position.z);
-
-            if (currentPlayerTransform.position.y - transform.position.y > Y_DIFF_TO_PLAYER)
+            if (Mathf.Abs(currentPlayerTransform.position.y - transform.position.y) > Y_DIFF_TO_PLAYER)
             {
-                target_pos.y = Mathf.Clamp(currentPlayerTransform.position.y + (currentPlayerTransform.position.y - transform.position.y), lowerLeft.y, topRight.y);
+                target_y = Mathf.Clamp(currentPlayerTransform.position.y + (currentPlayerTransform.position.y - transform.position.y), lowerLeft.y, topRight.y);
+
+                DebugManager.LogMessage("abcTrue");
             }
 
-            DebugManager.LogMessage(target_pos.x + " " + target_pos.y + " " + target_pos.z);
+            Vector3 target_pos = new Vector3(target_x, target_y, transform.position.z);
 
             transform.position = Vector3.Lerp(transform.position, target_pos, followSpeed * Time.deltaTime);
         }
