@@ -6,7 +6,7 @@ namespace Game.Stage.Magnet
     /// <summary>
     /// 可動オブジェクトクラス
     /// </summary>
-    public class MovingObject : MagnetObjectManager
+    public class MovingObjectController : MagnetObjectManager
     {
         private bool canMove;
 
