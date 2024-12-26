@@ -74,17 +74,17 @@ namespace Game.Stage.Magnet
         {
             if (SetMagnetType(magnet_type) == GameConstants.ERROR)
             {
-                DebugManager.LogMessage("磁力のタイプ設定に失敗しました", DebugManager.MessageType.Error, GetType().ToString());
+                DebugManager.LogMessage("磁力のタイプ設定に失敗しました", DebugManager.MessageType.Error);
             }
 
             if (SetMagnetPower(magnet_power) == GameConstants.ERROR)
             {
-                DebugManager.LogMessage("磁力の強さ設定に失敗しました", DebugManager.MessageType.Error, GetType().ToString());
+                DebugManager.LogMessage("磁力の強さ設定に失敗しました", DebugManager.MessageType.Error);
             }
 
             if (SetObjectType(object_type) == GameConstants.ERROR)
             {
-                DebugManager.LogMessage("オブジェクトのタイプ設定に失敗しました", DebugManager.MessageType.Error, GetType().ToString());
+                DebugManager.LogMessage("オブジェクトのタイプ設定に失敗しました", DebugManager.MessageType.Error);
             }
         }
 

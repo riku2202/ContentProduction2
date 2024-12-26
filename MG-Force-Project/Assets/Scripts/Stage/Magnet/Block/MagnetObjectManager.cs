@@ -8,7 +8,7 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MagnetObjectManager : MonoBehaviour
     {
-        InputManager input;
+        GameSystem.InputManager input;
 
         // ¥—Íƒf[ƒ^
         public MagnetData MyData {  get; protected set; }

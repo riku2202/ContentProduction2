@@ -123,18 +123,18 @@ namespace Game.Stage.Magnet
 
             if (other.CompareTag("Player"))
             {
-                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning, other.GetType().ToString());
+                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
             }
 
             if (other.CompareTag(fixedTag) && magnet_object != null)
             {
-                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning, other.GetType().ToString());
+                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
 
                 Destroy(gameObject);
             }
             else if (other.CompareTag(movingTag) && magnet_object != null)
             {
-                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning, other.GetType().ToString());
+                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
 
                 Destroy(gameObject);
             }
