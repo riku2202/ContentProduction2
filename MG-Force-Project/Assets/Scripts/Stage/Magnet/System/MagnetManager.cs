@@ -40,13 +40,13 @@ namespace Game.Stage.Magnet
             {
                 ChangeMagnetType();
 
-                DebugManager.LogMessage(CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
+                DebugManager.LogMessage(CurrentType.ToString(), DebugManager.MessageType.Normal);
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
                 ChangeMagnetBoot();
 
-                DebugManager.LogMessage(IsMagnetBoot.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
+                DebugManager.LogMessage(IsMagnetBoot.ToString(), DebugManager.MessageType.Normal);
             }
         }
 

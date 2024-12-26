@@ -15,30 +15,22 @@ namespace Game
             Error,
         }
 
-
         /* -------- カテゴリー表示 -------- */
 
-        private const string NORMAL = "実行：";
+        private const string NORMAL = "実行";
 
-        private const string WARNING = "警告：";
+        private const string WARNING = "警告";
 
-        private const string ERROR = "エラー：";
-
-
-        /* -------- 出力場所 -------- */
-
-        private const string DEFAULT_SYSTEM = "System";
-
+        private const string ERROR = "エラー";
 
         /* -------- 色分け -------- */
 
         private const string DEFAULT_COLOR = "<color=white>";
-        private const string GREEN_COLOR = "<color=lime>";
+        //private const string GREEN_COLOR = "<color=lime>";
         private const string YELLOW_COLOR = "<color=yellow>";
         private const string RED_COLOR = "<color=red>";
 
         private const string FINISH_COLOR = "</color>";
-
 
         /// <summary>
         /// ログメッセージ表示処理
@@ -46,36 +38,30 @@ namespace Game
         /// <param name="message"></param>
         /// <param name="type"></param>
         /// <param name="class_name"></param>
-        public static void LogMessage(string message, MessageType type = MessageType.Normal, string log_sorce = DEFAULT_SYSTEM)
+        [System.Diagnostics.Conditional("UNITY_EDITOR")]
+        public static void LogMessage(string message, MessageType type = MessageType.Normal)
         {
-#if UNITY_EDITOR
-
-            string message_color = DEFAULT_COLOR;  // 色(デフォルトは緑)
-            string message_type = NORMAL;  // カテゴリー表示(デフォルトは実行)
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(1, true);
+            System.Diagnostics.StackFrame frame = stackTrace.GetFrame(0);
+            string fileName = System.IO.Path.GetFileName(frame.GetFileName() ?? "Unknown File");
+            int lineNumber = frame.GetFileLineNumber();
+            string callerInfo = $"[{fileName}:{lineNumber}]";
 
             // タイプによって表示形式を変える
             switch (type) 
             { 
                 case MessageType.Normal:
-                    message_color = DEFAULT_COLOR;
-                    message_type = NORMAL;
+                    Debug.Log($"{DEFAULT_COLOR}【{NORMAL}】{message} {callerInfo}{FINISH_COLOR}");
                     break;
 
                 case MessageType.Warning:
-                    message_color = YELLOW_COLOR;
-                    message_type = WARNING;
+                    Debug.LogWarning($"{YELLOW_COLOR}【{WARNING}】{message} {callerInfo}{FINISH_COLOR}");
                     break;
 
                 case MessageType.Error:
-                    message_color = RED_COLOR;
-                    message_type = ERROR;
+                    Debug.LogError($"{RED_COLOR}【{ERROR}】{message} {callerInfo}{FINISH_COLOR}");
                     break;
             }
-
-            // 表示
-            Debug.Log(message_color + "【" + log_sorce + " 】" + message_type + message + FINISH_COLOR);
-
-#endif
         }
     }
 }

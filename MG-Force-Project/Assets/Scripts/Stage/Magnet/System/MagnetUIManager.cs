@@ -38,7 +38,7 @@ namespace Game.Stage.Magnet
         {
             Magnet.ChangeMagnetType();
 
-            DebugManager.LogMessage(Magnet.CurrentType.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
+            DebugManager.LogMessage(Magnet.CurrentType.ToString(), DebugManager.MessageType.Normal);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Game.Stage.Magnet
         {
             Magnet.ChangeMagnetBoot();
 
-            DebugManager.LogMessage(Magnet.IsMagnetBoot.ToString(), DebugManager.MessageType.Normal, GetType().ToString());
+            DebugManager.LogMessage(Magnet.IsMagnetBoot.ToString(), DebugManager.MessageType.Normal);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         public void OnButtonClick()
         {
-            DebugManager.LogMessage("pushButton!", DebugManager.MessageType.Normal, GetType().ToString());
+            DebugManager.LogMessage("pushButton!", DebugManager.MessageType.Normal);
         }
 
         /// <summary>

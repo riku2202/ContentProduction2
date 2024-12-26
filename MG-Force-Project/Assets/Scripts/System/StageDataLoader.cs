@@ -1,8 +1,6 @@
 using System.IO;
 using UnityEngine;
 
-using Game.Stage;
-
 namespace Game.GameSystem
 {
     /// <summary>
@@ -84,7 +82,7 @@ namespace Game.GameSystem
                 }
                 else
                 {
-                    DebugManager.LogMessage($"ステージデータの読み込みに失敗しました：{stagedata_filepath}", DebugManager.MessageType.Warning);
+                    DebugManager.LogMessage($"ステージデータの読み込みに失敗しました：{current_stage.ToString()}：{stagedata_filepath}", DebugManager.MessageType.Warning);
 
                 }
             }
