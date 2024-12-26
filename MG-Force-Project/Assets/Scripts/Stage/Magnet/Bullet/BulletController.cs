@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Game.Stage.Magnet
@@ -12,31 +8,31 @@ namespace Game.Stage.Magnet
     public class BulletController : MonoBehaviour
     {
         // 弾の速度
-        private float bulletSpeed = 10.0f;
+        private float _bulletSpeed = 10.0f;
 
         // 弾のRigidbody
-        private Rigidbody bullet = null;
+        private Rigidbody _rigidbody = null;
 
         // ターゲットの座標
-        private Vector3 targetPos = Vector3.zero;
+        private Vector3 _targetPos = Vector3.zero;
 
         // 向きベクトル
-        private Vector3 direction = Vector3.zero;
+        private Vector3 _direction = Vector3.zero;
 
         // タグ
-        private string fixedTag = GameConstants.ConvertTag(GameConstants.Tag.Fixed);
-        private string movingTag = GameConstants.ConvertTag(GameConstants.Tag.Moving);
+        private string _fixedTag = GameConstants.ConvertTag(GameConstants.Tag.Fixed);
+        private string _movingTag = GameConstants.ConvertTag(GameConstants.Tag.Moving);
 
-        private float timer;
+        private float _timer;
 
         /// <summary>
         /// 初期化処理
         /// </summary>
         private void Start()
         {
-            timer = 0.0f;
+            _timer = 0.0f;
 
-            bullet = GetComponent<Rigidbody>();
+            _rigidbody = GetComponent<Rigidbody>();
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -47,7 +43,7 @@ namespace Game.Stage.Magnet
                 if (target != null)
                 {
                     // ターゲットの座標取得
-                    targetPos = target.transform.position;
+                    _targetPos = target.transform.position;
 
                     //// 弾の発射
                     FiringBullet();
@@ -64,9 +60,9 @@ namespace Game.Stage.Magnet
 
         private void Update()
         {
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
 
-            if (timer > 12)
+            if (_timer > 12)
             {
                 Destroy(gameObject);
             }
@@ -78,16 +74,16 @@ namespace Game.Stage.Magnet
         private void FiringBullet()
         {
             // 向きベクトルを求める
-            direction = targetPos - gameObject.transform.position;
+            _direction = _targetPos - gameObject.transform.position;
 
             // 正規化
-            direction.Normalize();
+            _direction.Normalize();
 
             // 速度を乗算
-            direction *= bulletSpeed;
+            _direction *= _bulletSpeed;
 
             // 向きベクトルに応じて移動させる
-            bullet.AddForce(direction, ForceMode.Impulse);
+            _rigidbody.AddForce(_direction, ForceMode.Impulse);
         }
 
         /// <summary>
@@ -97,19 +93,19 @@ namespace Game.Stage.Magnet
         /// <param name="speed">弾の速度</param>
         public void Fire(Vector3 fireDirection, float speed)
         {
-            if (bullet == null)
+            if (_rigidbody == null)
             {
-                bullet = GetComponent<Rigidbody>();
+                _rigidbody = GetComponent<Rigidbody>();
             }
 
-            if (bullet != null)
+            if (_rigidbody != null)
             {
                 // 方向を正規化して速度を設定
-                direction = fireDirection.normalized;
-                bulletSpeed = speed;
+                _direction = fireDirection.normalized;
+                _bulletSpeed = speed;
 
                 // 向きベクトルに応じて力を加える
-                bullet.AddForce(direction * bulletSpeed, ForceMode.Impulse);
+                _rigidbody.AddForce(_direction * _bulletSpeed, ForceMode.Impulse);
             }
             else
             {
@@ -126,13 +122,13 @@ namespace Game.Stage.Magnet
                 DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
             }
 
-            if (other.CompareTag(fixedTag) && magnet_object != null)
+            if (other.CompareTag(_fixedTag) && magnet_object != null)
             {
                 DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
 
                 Destroy(gameObject);
             }
-            else if (other.CompareTag(movingTag) && magnet_object != null)
+            else if (other.CompareTag(_movingTag) && magnet_object != null)
             {
                 DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
 

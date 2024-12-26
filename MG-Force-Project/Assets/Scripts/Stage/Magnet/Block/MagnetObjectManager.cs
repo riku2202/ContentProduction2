@@ -65,8 +65,6 @@ namespace Game.Stage.Magnet
         /// </summary>
         protected virtual void Update()
         {
-            DebugManager.LogMessage(_magnetCollider.activeSelf.ToString());
-
             _magnetCollider.SetActive(true);
 
             // ¥—Í‚Ì‹N“®ˆ—

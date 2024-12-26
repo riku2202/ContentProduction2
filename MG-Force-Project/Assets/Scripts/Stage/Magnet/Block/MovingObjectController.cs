@@ -8,11 +8,11 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MovingObjectController : MagnetObjectManager
     {
-        private bool canMove;
+        private bool _canMove;
 
-        private Rigidbody rigitbody;
+        private Rigidbody _rigitbody;
 
-        private List<Collider> isHitMagnet = new List<Collider>();
+        private List<Collider> _isHitMagnet = new List<Collider>();
 
         /// <summary>
         /// 初期化処理
@@ -21,9 +21,9 @@ namespace Game.Stage.Magnet
         {
             base.Start();
 
-            rigitbody = GetComponent<Rigidbody>();
+            _rigitbody = GetComponent<Rigidbody>();
 
-            canMove = true;
+            _canMove = true;
         }
 
         protected override void Update()
@@ -31,13 +31,13 @@ namespace Game.Stage.Magnet
             base.Update();
 
             // 意図しない動作を防ぐ処理
-            if (canMove)
+            if (_canMove)
             {
                 SetDefultConstraints();
 
                 if (!magnetManager.IsMagnetBoot)
                 {
-                    rigitbody.velocity = Vector3.zero;
+                    _rigitbody.velocity = Vector3.zero;
                 }
             }
             else
@@ -45,6 +45,8 @@ namespace Game.Stage.Magnet
                 SetHitPlayerConstraints();
             }
         }
+
+        #region -------- 判定処理 --------
 
         /// <summary>
         /// オブジェクトに当たった時
@@ -56,7 +58,7 @@ namespace Game.Stage.Magnet
             if (magnetManager.IsMagnetBoot || !collision.gameObject.CompareTag(GameConstants.Tag.Player.ToString())) { return; }
 
             // プレイヤーと当たっている場合動かないようにする
-            canMove = false;
+            _canMove = false;
         }
 
         /// <summary>
@@ -69,7 +71,7 @@ namespace Game.Stage.Magnet
             if (magnetManager.IsMagnetBoot || !collision.gameObject.CompareTag(GameConstants.Tag.Player.ToString()) || magnetFixed) { return; }
 
             // プレイヤーが離れたときに動けるようにする
-            canMove = true;
+            _canMove = true;
         }
 
         /// <summary>
@@ -84,7 +86,7 @@ namespace Game.Stage.Magnet
             if (other.gameObject.layer != (int)GameConstants.Layer.MAGNET_RANGE) return;
 
             // リストに追加
-            isHitMagnet.Add(other);
+            _isHitMagnet.Add(other);
         }
 
         /// <summary>
@@ -118,24 +120,26 @@ namespace Game.Stage.Magnet
             if (other.gameObject.layer != (int)GameConstants.Layer.MAGNET_RANGE) return;
 
             // リストから削除
-            if (isHitMagnet.IndexOf(other) != -1)
+            if (_isHitMagnet.IndexOf(other) != -1)
             {
-                isHitMagnet.Remove(other);
+                _isHitMagnet.Remove(other);
             }
 
             // 磁力の範囲に入っていない場合は動作をリセットする
-            if (isHitMagnet.Count == 0)
+            if (_isHitMagnet.Count == 0)
             {
-                rigitbody.velocity = Vector3.zero;
+                _rigitbody.velocity = Vector3.zero;
             }
         }
+
+        #endregion
 
         /// <summary>
         /// デフォルトの制約
         /// </summary>
         private void SetDefultConstraints()
         {
-            rigitbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            _rigitbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         }
 
         /// <summary>
@@ -143,7 +147,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void SetHitPlayerConstraints()
         {
-            rigitbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+            _rigitbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
     }
 }
