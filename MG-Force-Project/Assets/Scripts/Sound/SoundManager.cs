@@ -6,6 +6,7 @@ namespace Game
 {
     public class SoundManager : MonoBehaviour
     {
+
         /*
             ‚±‚±‚ÅBGM‚ÆSE‚Ì—¼•û‚ğŠÇ—‚µ‚Ä‚­‚¾‚³‚¢
             ˆÈ‰º‚ÍÀ‘•‚µ‚Ä‚Ù‚µ‚¢“à—e‚Æƒqƒ“ƒg‚Å‚·

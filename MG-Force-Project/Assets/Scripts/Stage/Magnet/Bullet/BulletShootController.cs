@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace Game.Stage.Magnet
@@ -12,7 +11,7 @@ namespace Game.Stage.Magnet
 
         private void Start()
         {
-            magnet = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
+            magnet = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
         }
 
         private void Update()
