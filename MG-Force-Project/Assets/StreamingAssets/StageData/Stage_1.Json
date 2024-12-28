@@ -3734,7 +3734,7 @@
     {
       "key": "141",
       "value": {
-        "color": 0,
+        "color": 8,
         "power": 0
       }
     },
@@ -3973,7 +3973,7 @@
       "key": "1435",
       "value": {
         "color": 2,
-        "power": 1
+        "power": 3
       }
     },
     {
@@ -4532,7 +4532,7 @@
     {
       "key": "171",
       "value": {
-        "color": 8,
+        "color": 0,
         "power": 0
       }
     },

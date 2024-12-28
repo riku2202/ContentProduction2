@@ -8,7 +8,7 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MagnetObjectManager : MonoBehaviour
     {
-        GameSystem.InputManager input;
+        GameSystem.InputHandler input;
 
         // é•óÕÉfÅ[É^
         public MagnetData MyData {  get; protected set; }
@@ -36,7 +36,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         protected virtual void Start()
         {
-            //input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
+            //input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputHandler>();
 
             magnetManager = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
             magnetController = new MagnetController();

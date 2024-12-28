@@ -2936,259 +2936,259 @@
     {
       "key": "111",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "112",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "113",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "114",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "115",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "116",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "117",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "118",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "119",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1110",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1111",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1112",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1113",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1114",
       "value": {
-        "color": 2,
-        "power": 1
+        "color": 0,
+        "power": 0
       }
     },
     {
       "key": "1115",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1116",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1117",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1118",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1119",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1120",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1121",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1122",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1123",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1124",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1125",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1126",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1127",
       "value": {
-        "color": 3,
-        "power": 1
+        "color": 0,
+        "power": 0
       }
     },
     {
       "key": "1128",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1129",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1130",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1131",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1132",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1133",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1134",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1135",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1136",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1137",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
@@ -3300,7 +3300,7 @@
     {
       "key": "1215",
       "value": {
-        "color": 4,
+        "color": 0,
         "power": 0
       }
     },
@@ -3391,7 +3391,7 @@
     {
       "key": "1228",
       "value": {
-        "color": 4,
+        "color": 0,
         "power": 0
       }
     },
@@ -3566,7 +3566,7 @@
     {
       "key": "1315",
       "value": {
-        "color": 4,
+        "color": 0,
         "power": 0
       }
     },
@@ -3643,7 +3643,7 @@
     {
       "key": "1326",
       "value": {
-        "color": 8,
+        "color": 0,
         "power": 0
       }
     },
@@ -3657,7 +3657,7 @@
     {
       "key": "1328",
       "value": {
-        "color": 4,
+        "color": 0,
         "power": 0
       }
     },
@@ -3734,259 +3734,259 @@
     {
       "key": "141",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "142",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "143",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "144",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "145",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "146",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "147",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "148",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "149",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1410",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1411",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1412",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1413",
       "value": {
-        "color": 8,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1414",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 2,
+        "power": 1
       }
     },
     {
       "key": "1415",
       "value": {
-        "color": 4,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1416",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1417",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1418",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1419",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1420",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1421",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1422",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1423",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1424",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1425",
       "value": {
-        "color": -5,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1426",
       "value": {
-        "color": -5,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1427",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1428",
       "value": {
-        "color": 4,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1429",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1430",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1431",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1432",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1433",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1434",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1435",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1436",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1437",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -4077,14 +4077,14 @@
     {
       "key": "1512",
       "value": {
-        "color": -5,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1513",
       "value": {
-        "color": -5,
+        "color": 0,
         "power": 0
       }
     },
@@ -4168,8 +4168,8 @@
     {
       "key": "1525",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 3,
+        "power": 1
       }
     },
     {
@@ -4196,7 +4196,7 @@
     {
       "key": "1529",
       "value": {
-        "color": 0,
+        "color": 5,
         "power": 0
       }
     },
@@ -4231,8 +4231,8 @@
     {
       "key": "1534",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 2,
+        "power": 1
       }
     },
     {
@@ -4252,7 +4252,7 @@
     {
       "key": "1537",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -4343,7 +4343,7 @@
     {
       "key": "1612",
       "value": {
-        "color": 0,
+        "color": 8,
         "power": 0
       }
     },
@@ -4364,7 +4364,7 @@
     {
       "key": "1615",
       "value": {
-        "color": -3,
+        "color": 4,
         "power": 0
       }
     },
@@ -4434,56 +4434,56 @@
     {
       "key": "1625",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 3,
+        "power": 1
       }
     },
     {
       "key": "1626",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "1627",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "1628",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "1629",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "1630",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "1631",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "1632",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
@@ -4497,8 +4497,8 @@
     {
       "key": "1634",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 2,
+        "power": 1
       }
     },
     {
@@ -4518,7 +4518,7 @@
     {
       "key": "1637",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -4609,14 +4609,14 @@
     {
       "key": "1712",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "1713",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -4630,7 +4630,7 @@
     {
       "key": "1715",
       "value": {
-        "color": -3,
+        "color": 4,
         "power": 0
       }
     },
@@ -4700,28 +4700,28 @@
     {
       "key": "1725",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 3,
+        "power": 1
       }
     },
     {
       "key": "1726",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1727",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1728",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
@@ -4749,22 +4749,22 @@
     {
       "key": "1732",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1733",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1734",
       "value": {
-        "color": -4,
-        "power": 0
+        "color": 2,
+        "power": 1
       }
     },
     {
@@ -4784,7 +4784,7 @@
     {
       "key": "1737",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -4966,8 +4966,8 @@
     {
       "key": "1825",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 3,
+        "power": 1
       }
     },
     {
@@ -4980,7 +4980,7 @@
     {
       "key": "1827",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
@@ -5029,8 +5029,8 @@
     {
       "key": "1834",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 2,
+        "power": 1
       }
     },
     {
@@ -5050,7 +5050,7 @@
     {
       "key": "1837",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -5232,8 +5232,8 @@
     {
       "key": "1925",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 3,
+        "power": 1
       }
     },
     {
@@ -5246,7 +5246,7 @@
     {
       "key": "1927",
       "value": {
-        "color": 0,
+        "color": 8,
         "power": 0
       }
     },
@@ -5295,8 +5295,8 @@
     {
       "key": "1934",
       "value": {
-        "color": 0,
-        "power": 0
+        "color": 2,
+        "power": 1
       }
     },
     {
@@ -5316,7 +5316,7 @@
     {
       "key": "1937",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -5582,7 +5582,7 @@
     {
       "key": "2037",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -5652,7 +5652,7 @@
     {
       "key": "219",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -5834,21 +5834,21 @@
     {
       "key": "2135",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2136",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2137",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -5918,14 +5918,14 @@
     {
       "key": "229",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2210",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -6044,7 +6044,7 @@
     {
       "key": "2227",
       "value": {
-        "color": -3,
+        "color": 0,
         "power": 0
       }
     },
@@ -6072,7 +6072,7 @@
     {
       "key": "2231",
       "value": {
-        "color": 0,
+        "color": -3,
         "power": 0
       }
     },
@@ -6100,21 +6100,21 @@
     {
       "key": "2235",
       "value": {
-        "color": -2,
+        "color": -3,
         "power": 0
       }
     },
     {
       "key": "2236",
       "value": {
-        "color": 0,
+        "color": -2,
         "power": 0
       }
     },
     {
       "key": "2237",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -6317,35 +6317,35 @@
     {
       "key": "2328",
       "value": {
-        "color": -3,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2329",
       "value": {
-        "color": -3,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2330",
       "value": {
-        "color": -3,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2331",
       "value": {
-        "color": -3,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2332",
       "value": {
-        "color": -3,
+        "color": 1,
         "power": 0
       }
     },
@@ -6583,35 +6583,35 @@
     {
       "key": "2428",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2429",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2430",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2431",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2432",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },

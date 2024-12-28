@@ -269,7 +269,7 @@
     {
       "key": "10",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -535,7 +535,7 @@
     {
       "key": "20",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -801,7 +801,7 @@
     {
       "key": "30",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -1067,7 +1067,7 @@
     {
       "key": "40",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -1333,7 +1333,7 @@
     {
       "key": "50",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -1599,7 +1599,7 @@
     {
       "key": "60",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -1865,7 +1865,7 @@
     {
       "key": "70",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -2131,7 +2131,7 @@
     {
       "key": "80",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -2397,7 +2397,7 @@
     {
       "key": "90",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -2663,7 +2663,7 @@
     {
       "key": "100",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -2929,7 +2929,7 @@
     {
       "key": "110",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -3202,259 +3202,259 @@
     {
       "key": "121",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "122",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "123",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "124",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "125",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "126",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "127",
       "value": {
-        "color": 2,
-        "power": 1
+        "color": 0,
+        "power": 0
       }
     },
     {
       "key": "128",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "129",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1210",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1211",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1212",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1213",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1214",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1215",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1216",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1217",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1218",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1219",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1220",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1221",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1222",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1223",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1224",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1225",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1226",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1227",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1228",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1229",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1230",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1231",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1232",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1233",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1234",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1235",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1236",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1237",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
@@ -3734,7 +3734,7 @@
     {
       "key": "141",
       "value": {
-        "color": -3,
+        "color": 0,
         "power": 0
       }
     },
@@ -4000,35 +4000,35 @@
     {
       "key": "151",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "152",
       "value": {
-        "color": 1,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "153",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "154",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "155",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
@@ -4063,21 +4063,21 @@
     {
       "key": "1510",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1511",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
     {
       "key": "1512",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0
       }
     },
@@ -5064,7 +5064,7 @@
     {
       "key": "191",
       "value": {
-        "color": 0,
+        "color": 4,
         "power": 0
       }
     },
@@ -5099,14 +5099,14 @@
     {
       "key": "196",
       "value": {
-        "color": 0,
+        "color": 6,
         "power": 0
       }
     },
     {
       "key": "197",
       "value": {
-        "color": 0,
+        "color": 9,
         "power": 0
       }
     },
@@ -5365,14 +5365,14 @@
     {
       "key": "206",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "207",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -5883,14 +5883,14 @@
     {
       "key": "224",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "225",
       "value": {
-        "color": 0,
+        "color": 1,
         "power": 0
       }
     },
@@ -6142,21 +6142,21 @@
     {
       "key": "233",
       "value": {
-        "color": -4,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "234",
       "value": {
-        "color": -4,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "235",
       "value": {
-        "color": -4,
+        "color": 1,
         "power": 0
       }
     },
@@ -6170,7 +6170,7 @@
     {
       "key": "237",
       "value": {
-        "color": 8,
+        "color": 0,
         "power": 0
       }
     },
@@ -6436,7 +6436,7 @@
     {
       "key": "247",
       "value": {
-        "color": -3,
+        "color": 1,
         "power": 0
       }
     },
@@ -6457,21 +6457,21 @@
     {
       "key": "2410",
       "value": {
-        "color": -4,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2411",
       "value": {
-        "color": -4,
+        "color": 1,
         "power": 0
       }
     },
     {
       "key": "2412",
       "value": {
-        "color": -4,
+        "color": 1,
         "power": 0
       }
     },

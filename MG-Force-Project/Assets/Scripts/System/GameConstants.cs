@@ -120,11 +120,18 @@ namespace Game
 
         /* ================ オブジェクト ================ */
 
+        public static class Object 
+        {
+            public const string STAGE_SELECT_OBJ = "StageSelectSceneManager";
+            public const string STAGE_OBJ = "StageSceneManager";
+
+            public const string INPUT_OBJ = "InputManager";
+            public const string SYSTEM_MESSAGE_OBJ = "SystemMessagePrefab";
+            public const string SYSTEM_MESSAGE_TEXT = "Message";
+        }
+
         // プレイヤー追尾カメラ
         public const string PLAYER_VIEW_CAMERA = "PlayerViewCamera";
-
-        // 入力管理用オブジェクト
-        public const string INPUT_MANAGER_OBJ = "InputManager";
 
         // サウンド管理用オブジェクト
         public const string SOUND_MANAGER_OBJ = "SoundManager";
@@ -138,29 +145,69 @@ namespace Game
         // 生成するプレイヤーオブジェクト
         public const string PLAYER_OBJ = "MagForce(Clone)";
 
-        /* ================ 入力 ================ */
+        /// <summary>
+        /// 入力定数
+        /// </summary>
+        public static class Input
+        {
+            public static class ActionDevice
+            {
+                public const string KEY_MOUSE = "KeyMouse";
+                public const string GAMEPAD = "Gamepad";
+            }
 
-        // GamePlay
-        public const string INPUT_JUMP = "Jump";
-        public const string INPUT_ACTION = "Action";
-        public const string INPUT_SELECT = "Select";
+            public static class ActionMaps 
+            {
+                public const string PLAYER_MAPS = "Player";
+                public const string MAGNET_MAPS = "Magnet";
+                public const string CAMERA_MAPS = "Camera";
+                public const string MENU_MAPS = "Menu";
 
-        public const string INPUT_MENU_CHANGE = "MenuChange";
-        public const string INPUT_MAGNET_RESET = "Magnet Reset";
-        public const string INPUT_POLE_SWITCHING = "PoleSwitching";
+                public const string SHORTCUT_MAPS = "Shortcut";
+                public const string DEBUG_MAPS = "Debug";
+            }
 
-        public const string INPUT_SHOOT = "Shoot";
+            public static class Action 
+            {
+                // Player Action Maps
+                public const string ACTION = "Action";
+                public const string LEFTMOVE = "LeftMove";
+                public const string RIGHTMOVE = "RightMove";
+                public const string JUMP = "Jump";
+                public const string MENU_OPEN = "MenuOpen";
+                public const string VIEW_MODE_START = "ViewModeStart";
+                public const string MAGNET_BOOT = "MagnetBoot";
 
-        public const string INPUT_VIEWMODE = "ViewMode";
+                // Magnet Action Maps
+                public const string POLE_SWITCHING = "PoleSwitching";
+                public const string MAGNET_POWER = "PowerCharge";
+                public const string SHOOT = "Shoot";
+                public const string SHOOT_ANGLE = "ShootAngle";
+                public const string RESET = "Reset";
 
-        public const string INPUT_MANGET_BOOT = "Magnet Boot";
+                // Camera Action Maps
+                public const string VIEW_MODE_END = "ViewModeEnd";
+                public const string VIEW_MOVE = "ViewMove";
 
-        public const string INPUT_NONE = "None";
+                // Menu Action Maps
+                public const string MENU_CLOSE = "Close";
+                public const string MENU_DECISION = "Decision";
+                public const string MENU_BACK = "Back";
+                public const string MENU_LEFT_SELECT = "LeftSelect";
+                public const string MENU_RIGHT_SELECT = "RightSelect";
+                public const string MENU_UP_SELECT = "UpSelect";
+                public const string MENU_DOWN_SELECT = "DownSelect";
 
-        public const string INPUT_MOVE = "Move";
-        public const string INPUT_SHOOT_ANGLE = "ShootAngle";
-        public const string INPUT_MAGNET_POWER = "MagnetPower";
-        public const string INPUT_BACK = "InputBack";
+                // Shortcut Action Maps
+
+#if UNITY_EDITOR
+
+                // Debug Action Maps
+                public const string DEBUG_RESET = "ReSet";
+
+#endif
+            }
+        }
 
         /* ================ ステージ ================ */
 

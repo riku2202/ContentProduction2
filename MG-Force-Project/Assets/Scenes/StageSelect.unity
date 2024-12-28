@@ -484,7 +484,6 @@ GameObject:
   - component: {fileID: 880050591}
   - component: {fileID: 880050590}
   - component: {fileID: 880050594}
-  - component: {fileID: 880050595}
   m_Layer: 0
   m_Name: target
   m_TagString: Untagged
@@ -604,18 +603,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &880050595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880050589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c0074a698969249a8f3e09f28a15c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &939293788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -682,7 +669,7 @@ PrefabInstance:
     - target: {fileID: 6218545112232283629, guid: 8bb3bf3161ae9b146adf96413cf7d643,
         type: 3}
       propertyPath: currentStage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

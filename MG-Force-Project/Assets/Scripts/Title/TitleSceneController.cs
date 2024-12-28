@@ -16,7 +16,7 @@ namespace Game.Title
         private GameDataManager manager = GameDataManager.Instance;
 
         // 入力管理クラスの呼び出し
-        private InputManager input;
+        private InputHandler input;
 
         // ロード管理フラグ
         private static bool isLoadGameData = false;
@@ -41,7 +41,7 @@ namespace Game.Title
                 isLoadGameData = true;
             }
 
-            input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
+            input = GameObject.Find(GameConstants.Object.INPUT_OBJ).GetComponent<InputHandler>();
         }
 
         /// <summary>
@@ -49,14 +49,9 @@ namespace Game.Title
         /// </summary>
         private void Update()
         {
-            if (input.IsActionPressed(GameConstants.INPUT_SELECT) || Input.GetKeyDown(KeyCode.Return))
+            if (input.IsActionPressed(GameConstants.Input.Action.MENU_DECISION))
             {
                 SceneManager.LoadScene(GameConstants.Scene.StageSelect.ToString());
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
             }
         }
 
@@ -72,7 +67,6 @@ namespace Game.Title
 
             // ゲームデータのセーブ(デバック時はデータを上書きする)
             SaveSystem.SaveManager();
-
 
 #else // 実際のビルド版実行時
 

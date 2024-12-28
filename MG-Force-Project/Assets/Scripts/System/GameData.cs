@@ -7,7 +7,7 @@ namespace Game.GameSystem
     public class GameData
     {
         // ステージのクリアフラグ
-        private bool[] isClearStages = new bool[GameConstants.STAGE_MAX_NUM];
+        private bool[] _isClearStages = new bool[GameConstants.STAGE_MAX_NUM];
 
         public GameData()
         {
@@ -16,19 +16,19 @@ namespace Game.GameSystem
 
         public void SetIsClearStage(int stage_number)
         {
-            isClearStages[stage_number] = true;
+            _isClearStages[stage_number] = true;
         }
 
         public bool GetIsClearStage(int stage_number)
         {
-            return isClearStages[stage_number];
+            return _isClearStages[stage_number];
         }
 
         public int ReSetData()
         {
             for (int i = 0; i < GameConstants.STAGE_MAX_NUM; i++)
             {
-                isClearStages[i] = false;
+                _isClearStages[i] = false;
             }
 
             return GameConstants.NORMAL;
