@@ -8,7 +8,7 @@ namespace Game.Stage.Magnet
     /// </summary>
     public class MagnetObjectManager : MonoBehaviour
     {
-        GameSystem.InputManager input;
+        GameSystem.InputHandler input;
 
         // 磁力データ
         public MagnetData MyData {  get; protected set; }
@@ -36,25 +36,22 @@ namespace Game.Stage.Magnet
         /// </summary>
         protected virtual void Start()
         {
-            //input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputManager>();
+            //input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputHandler>();
 
             magnetManager = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
             magnetController = new MagnetController();
 
-            // Tag型に変換
-            GameConstants.Tag tag = GameConstants.ConvertTag(gameObject.tag);
-
             // コンストラクタの呼び出し
             if (magnetFixed)
             {
-                MagnetData.ObjectType new_object_type = (MagnetData.ObjectType)tag;
+                string new_object_type = gameObject.tag;
                 MagnetData.MagnetType new_magnet_type = (MagnetData.MagnetType)gameObject.layer;
 
                 MyData = new MagnetData(new_object_type, new_magnet_type, magnetFixedPower);
             }
             else
             {
-                MagnetData.ObjectType new_object_type = (MagnetData.ObjectType)tag;
+                string new_object_type = gameObject.tag;
 
                 MyData = new MagnetData(new_object_type);
             }

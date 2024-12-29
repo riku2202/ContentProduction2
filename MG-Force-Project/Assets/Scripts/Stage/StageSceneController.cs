@@ -18,12 +18,14 @@ namespace Game.Stage
             Execution,
         }
 
+        private bool isMenuScreen = false;
+
         // 現在のフェーズ
         private Phase currentPhase;
 
         private void Awake()
         {
-            GameObject input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
+            GameObject input = GameObject.Find(GameConstants.Object.INPUT_OBJ);
 
             //if (Input == null)
             //{
@@ -67,5 +69,9 @@ namespace Game.Stage
 
         // 磁力を起動したフェーズの処理
 
+        public bool GetIsMenu()
+        {
+            return isMenuScreen;
+        }
     }
 }

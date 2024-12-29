@@ -15,7 +15,7 @@ namespace Game.Stage
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(GameConstants.Tag.Player.ToString()))
+            if (other.CompareTag(GameConstants.Tag.PLAYER))
             {
                 IsGoalEvent = true;
             }

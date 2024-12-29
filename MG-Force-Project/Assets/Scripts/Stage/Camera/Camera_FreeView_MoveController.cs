@@ -20,7 +20,7 @@ namespace Game.Stage.Camera
 
         private void OnEnable()
         {
-            initPos = GameObject.Find(GameConstants.PLAYER_VIEW_CAMERA).GetComponent<Transform>().position;
+            initPos = GameObject.Find(GameConstants.MAIN_CAMERA).GetComponent<Transform>().position;
 
             transform.position = initPos;
         }

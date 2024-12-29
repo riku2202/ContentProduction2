@@ -209,7 +209,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 808356011}
   bulletSpeed: 10
---- !u!95 &143286822
+--- !u!95 &143286824
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -288,6 +288,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 697447828b80a894c9860d0a52d90fc5,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 697447828b80a894c9860d0a52d90fc5,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 697447828b80a894c9860d0a52d90fc5,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 697447828b80a894c9860d0a52d90fc5,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
         type: 3}
       propertyPath: m_Name
@@ -316,7 +336,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 697447828b80a894c9860d0a52d90fc5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 143286822}
+      addedObject: {fileID: 143286824}
   m_SourcePrefab: {fileID: 100100000, guid: 697447828b80a894c9860d0a52d90fc5, type: 3}
 --- !u!1 &330585543
 GameObject:
@@ -355,7 +375,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -602,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9c0bc268fca0a4ca3dac2c4641fdee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActions: {fileID: -944628639613478452, guid: eeb5bb98e55540b409e221d03caa8d79,
+  _inputActions: {fileID: -944628639613478452, guid: d235b6bd64092ec4e84b6b79d8754ef3,
     type: 3}
 --- !u!4 &780090557
 Transform:
@@ -850,7 +870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b6d7049f418714fb5c51a130a48111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Box
 --- !u!54 &1172233160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1102,7 +1121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b6d7049f418714fb5c51a130a48111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Box
 --- !u!114 &1789718217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,9 +1358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429f5dc345561c8428f61d5419e58ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rotationSpeed: 700
-  jumpForce: 5
 --- !u!54 &2005781544
 Rigidbody:
   m_ObjectHideFlags: 0

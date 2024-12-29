@@ -55,7 +55,7 @@ namespace Game.Stage.Magnet
         private void OnCollisionEnter(Collision collision)
         {
             // 例外処理：プレイヤー以外の場合は終了する
-            if (magnetManager.IsMagnetBoot || !collision.gameObject.CompareTag(GameConstants.Tag.Player.ToString())) { return; }
+            if (magnetManager.IsMagnetBoot || !collision.gameObject.CompareTag(GameConstants.Tag.PLAYER.ToString())) { return; }
 
             // プレイヤーと当たっている場合動かないようにする
             _canMove = false;
@@ -68,7 +68,7 @@ namespace Game.Stage.Magnet
         private void OnCollisionExit(Collision collision)
         {
             // 例外処理
-            if (magnetManager.IsMagnetBoot || !collision.gameObject.CompareTag(GameConstants.Tag.Player.ToString()) || magnetFixed) { return; }
+            if (magnetManager.IsMagnetBoot || !collision.gameObject.CompareTag(GameConstants.Tag.PLAYER.ToString()) || magnetFixed) { return; }
 
             // プレイヤーが離れたときに動けるようにする
             _canMove = true;
@@ -103,7 +103,7 @@ namespace Game.Stage.Magnet
                 other.gameObject.layer != (int)GameConstants.Layer.S_MAGNET) return;
 
             // このオブジェクトが可動オブジェクトの場合
-            if (MyData.MyObjectType == MagnetData.ObjectType.Moving)
+            if (MyData.MyObjectType == GameConstants.Tag.MOVING)
             {
                 // 磁力の動作処理
                 magnetController.MagnetUpdate(gameObject, other.gameObject);

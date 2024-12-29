@@ -8,7 +8,7 @@ namespace Game
     public static class DebugManager
     {
         // メッセージタイプ
-        public enum MessageType 
+        public enum MessageType
         {
             Normal,
             Warning,

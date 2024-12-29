@@ -54,8 +54,6 @@ namespace Game.Stage.Camera
             if (Mathf.Abs(currentPlayerTransform.position.y - transform.position.y) > Y_DIFF_TO_PLAYER)
             {
                 target_y = Mathf.Clamp(currentPlayerTransform.position.y + (currentPlayerTransform.position.y - transform.position.y), lowerLeft.y, topRight.y);
-
-                DebugManager.LogMessage("abcTrue");
             }
 
             Vector3 target_pos = new Vector3(target_x, target_y, transform.position.z);

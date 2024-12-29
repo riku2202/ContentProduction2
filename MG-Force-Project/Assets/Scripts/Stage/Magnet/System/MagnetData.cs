@@ -33,12 +33,11 @@ namespace Game.Stage.Magnet
         // オブジェクトのタイプ
         public enum ObjectType
         {
-            NotType = GameConstants.Tag.Untagged, // タグなしオブジェクト
+            NotType,
 
-            Fixed = GameConstants.Tag.Fixed,      // 固定オブジェクト
-            Moving = GameConstants.Tag.Moving,    // 可動オブジェクト
+            Fixed = 1,
+            Moving = 2,
         }
-
 
         /* -------- 値を保持する変数 -------- */
 
@@ -49,7 +48,7 @@ namespace Game.Stage.Magnet
         public MagnetPower MyMagnetPower { get; private set; }
 
         // オブジェクトのタイプ
-        public ObjectType MyObjectType { get; private set; }
+        public string MyObjectType { get; private set; }
 
 
         /// <summary>
@@ -58,7 +57,7 @@ namespace Game.Stage.Magnet
         /// <param name="object_type"></param>
         /// <param name="magnet_type"></param>
         /// <param name="magnet_power"></param>
-        public MagnetData(ObjectType object_type, MagnetType magnet_type = MagnetType.NotType, MagnetPower magnet_power = MagnetPower.None)
+        public MagnetData(string object_type, MagnetType magnet_type = MagnetType.NotType, MagnetPower magnet_power = MagnetPower.None)
         {
             SetMagnetData(magnet_type, magnet_power, object_type);
         }
@@ -70,7 +69,7 @@ namespace Game.Stage.Magnet
         /// <param name="tag"></param>
         /// <param name="layer"></param>
         /// <param name="magnet_power"></param>
-        public void SetMagnetData(MagnetType magnet_type, MagnetPower magnet_power, ObjectType object_type = ObjectType.NotType)
+        public void SetMagnetData(MagnetType magnet_type, MagnetPower magnet_power, string object_type = GameConstants.Tag.UNTAGGED)
         {
             if (SetMagnetType(magnet_type) == GameConstants.ERROR)
             {
@@ -125,9 +124,9 @@ namespace Game.Stage.Magnet
         /// </summary>
         /// <param name="object_type"></param>
         /// <returns></returns>
-        private int SetObjectType(ObjectType object_type)
+        private int SetObjectType(string object_type)
         {
-            if (object_type == ObjectType.NotType) 
+            if (object_type == GameConstants.Tag.UNTAGGED) 
             {  
                 return GameConstants.ERROR; 
             }

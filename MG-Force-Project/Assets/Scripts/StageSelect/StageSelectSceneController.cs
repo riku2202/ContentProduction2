@@ -8,9 +8,11 @@ namespace Game.Stage
     /// </summary>
     public class StageSelectSceneController : MonoBehaviour
     {
+        private bool isMenuScreen = false;
+
         private void Awake()
         {
-            GameObject input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ);
+            GameObject input = GameObject.Find(GameConstants.Object.INPUT_OBJ);
 
             if (input == null)
             {
@@ -18,12 +20,17 @@ namespace Game.Stage
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
             }
+        }
+
+        public bool GetIsMenu()
+        {
+            return isMenuScreen;
         }
     }
 }

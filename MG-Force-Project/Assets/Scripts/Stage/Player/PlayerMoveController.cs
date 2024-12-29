@@ -1,7 +1,3 @@
-using Game.GameSystem;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Stage.Player 
@@ -11,6 +7,8 @@ namespace Game.Stage.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
+        private GameSystem.InputHandler _input;
+        
         // ç≈ëÂë¨ìx
         private const float MAX_SPEED = 120.0f;
         // ç≈è¨ë¨ìx
@@ -48,6 +46,8 @@ namespace Game.Stage.Player
         /// </summary>
         private void Start()
         {
+            _input = GameObject.Find("InputManager").GetComponent<GameSystem.InputHandler>();
+
             rb = GetComponent<Rigidbody>();
         }
 
@@ -71,12 +71,12 @@ namespace Game.Stage.Player
             }
 
             // âEà⁄ìÆ
-            if (Input.GetKey(KeyCode.D) && transform.position.x < GameConstants.TopRight.x)
+            if (_input.IsActionPressing(GameConstants.Input.Action.RIGHTMOVE) && transform.position.x < GameConstants.TopRight.x)
             {
                 moveDir = new Vector3(Acceleration(), moveDir.y, moveDir.z);
             }
             // ç∂à⁄ìÆ
-            else if (Input.GetKey(KeyCode.A) && transform.position.x > GameConstants.LowerLeft.x)
+            else if (_input.IsActionPressing(GameConstants.Input.Action.LEFTMOVE) && transform.position.x > GameConstants.LowerLeft.x)
             {
                 moveDir = new Vector3(-Acceleration(), moveDir.y, moveDir.z);
             }

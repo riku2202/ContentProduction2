@@ -24,79 +24,14 @@ namespace Game
 
         /* ================ タグ ================ */
 
-        /// <summary>
-        /// ゲーム内のタグを定義する列挙型
-        /// 【Tag.タグ名.ToString()でタグ(string型)を取得】
-        /// </summary>
-        public enum Tag
+        public static class Tag 
         {
-            Untagged, // タグ未設定
-
-            Fixed,    // 固定オブジェクト
-            Moving,   // 可動オブジェクト
-            Stage,    // ステージオブジェクト
-            Player,   // プレイヤーオブジェクト
+            public const string UNTAGGED = "Untagged";
+            public const string FIXED = "Fixed";
+            public const string MOVING = "Moving";
+            public const string STAGE = "Stage";
+            public const string PLAYER = "Player";
         }
-
-        #region -------- タグの変換処理 --------
-
-        // String型に対応したTag型
-        public static readonly Dictionary<string, Tag> StringToTag = new Dictionary<string, Tag>
-        {
-            { Tag.Untagged.ToString(), Tag.Untagged },
-            { Tag.Fixed.ToString(), Tag.Fixed },
-            { Tag.Moving.ToString(), Tag.Moving },
-            { Tag.Stage.ToString(), Tag.Stage },
-            { Tag.Player.ToString(), Tag.Player },
-        };
-
-        // Tag型に対応したString型
-        public static readonly Dictionary<Tag, string> TagToString = new Dictionary<Tag, string>
-        {
-            { Tag.Untagged, Tag.Untagged.ToString() },
-            { Tag.Fixed, Tag.Fixed.ToString() },
-            { Tag.Moving, Tag.Moving.ToString() },
-            { Tag.Stage, Tag.Stage.ToString() },
-            { Tag.Player, Tag.Player.ToString() },
-        };
-
-        /// <summary>
-        /// String型をTag型に変換する
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static Tag ConvertTag(string tag)
-        {
-            if (StringToTag.TryGetValue(tag, out Tag get_tag))
-            {
-                return get_tag;
-            }
-            else
-            {
-                DebugManager.LogMessage("String型をTag型に変換できませんでした", DebugManager.MessageType.Error);
-                return Tag.Untagged;
-            }
-        }
-
-        /// <summary>
-        /// Tag型をString型に変換する
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static string ConvertTag(Tag tag)
-        {
-            if (TagToString.TryGetValue(tag, out string get_tag))
-            {
-                return get_tag;
-            }
-            else
-            {
-                DebugManager.LogMessage("Tag型をString型に変換できませんでした", DebugManager.MessageType.Error);
-                return Tag.Untagged.ToString();
-            }
-        }
-
-        #endregion
 
         /* ================ レイヤー ================ */
 
@@ -120,11 +55,17 @@ namespace Game
 
         /* ================ オブジェクト ================ */
 
-        // プレイヤー追尾カメラ
-        public const string PLAYER_VIEW_CAMERA = "PlayerViewCamera";
+        public static class Object 
+        {
+            public const string STAGE_SELECT_OBJ = "StageSelectSceneManager";
+            public const string STAGE_OBJ = "StageSceneManager";
 
-        // 入力管理用オブジェクト
-        public const string INPUT_MANAGER_OBJ = "InputManager";
+            public const string INPUT_OBJ = "InputManager";
+            public const string SYSTEM_MESSAGE_OBJ = "SystemMessagePrefab";
+            public const string SYSTEM_MESSAGE_TEXT = "Message";
+        }
+
+        public const string MAIN_CAMERA = "Main Camera";
 
         // サウンド管理用オブジェクト
         public const string SOUND_MANAGER_OBJ = "SoundManager";
@@ -138,29 +79,69 @@ namespace Game
         // 生成するプレイヤーオブジェクト
         public const string PLAYER_OBJ = "MagForce(Clone)";
 
-        /* ================ 入力 ================ */
+        /// <summary>
+        /// 入力定数
+        /// </summary>
+        public static class Input
+        {
+            public static class ActionDevice
+            {
+                public const string KEY_MOUSE = "KeyMouse";
+                public const string GAMEPAD = "Gamepad";
+            }
 
-        // GamePlay
-        public const string INPUT_JUMP = "Jump";
-        public const string INPUT_ACTION = "Action";
-        public const string INPUT_SELECT = "Select";
+            public static class ActionMaps 
+            {
+                public const string PLAYER_MAPS = "Player";
+                public const string MAGNET_MAPS = "Magnet";
+                public const string CAMERA_MAPS = "Camera";
+                public const string MENU_MAPS = "Menu";
 
-        public const string INPUT_MENU_CHANGE = "MenuChange";
-        public const string INPUT_MAGNET_RESET = "Magnet Reset";
-        public const string INPUT_POLE_SWITCHING = "PoleSwitching";
+                public const string SHORTCUT_MAPS = "Shortcut";
+                public const string DEBUG_MAPS = "Debug";
+            }
 
-        public const string INPUT_SHOOT = "Shoot";
+            public static class Action 
+            {
+                // Player Action Maps
+                public const string ACTION = "Action";
+                public const string LEFTMOVE = "LeftMove";
+                public const string RIGHTMOVE = "RightMove";
+                public const string JUMP = "Jump";
+                public const string MENU_OPEN = "MenuOpen";
+                public const string VIEW_MODE_START = "ViewModeStart";
+                public const string MAGNET_BOOT = "MagnetBoot";
 
-        public const string INPUT_VIEWMODE = "ViewMode";
+                // Magnet Action Maps
+                public const string POLE_SWITCHING = "PoleSwitching";
+                public const string MAGNET_POWER = "PowerCharge";
+                public const string SHOOT = "Shoot";
+                public const string SHOOT_ANGLE = "ShootAngle";
+                public const string RESET = "Reset";
 
-        public const string INPUT_MANGET_BOOT = "Magnet Boot";
+                // Camera Action Maps
+                public const string VIEW_MODE_END = "ViewModeEnd";
+                public const string VIEW_MOVE = "ViewMove";
 
-        public const string INPUT_NONE = "None";
+                // Menu Action Maps
+                public const string MENU_CLOSE = "Close";
+                public const string MENU_DECISION = "Decision";
+                public const string MENU_BACK = "Back";
+                public const string MENU_LEFT_SELECT = "LeftSelect";
+                public const string MENU_RIGHT_SELECT = "RightSelect";
+                public const string MENU_UP_SELECT = "UpSelect";
+                public const string MENU_DOWN_SELECT = "DownSelect";
 
-        public const string INPUT_MOVE = "Move";
-        public const string INPUT_SHOOT_ANGLE = "ShootAngle";
-        public const string INPUT_MAGNET_POWER = "MagnetPower";
-        public const string INPUT_BACK = "InputBack";
+                // Shortcut Action Maps
+
+#if UNITY_EDITOR
+
+                // Debug Action Maps
+                public const string DEBUG_RESET = "ReSet";
+
+#endif
+            }
+        }
 
         /* ================ ステージ ================ */
 
