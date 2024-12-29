@@ -117,11 +117,6 @@ namespace Game.Stage.Magnet
         {
             MagnetObjectManager magnet_object = other.GetComponent<MagnetObjectManager>();
 
-            if (other.CompareTag("Player"))
-            {
-                DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);
-            }
-
             if (other.CompareTag(_fixedTag) && magnet_object != null)
             {
                 DebugManager.LogMessage(other.tag + "：Tagのオブジェクトが弾に当たりました", DebugManager.MessageType.Warning);

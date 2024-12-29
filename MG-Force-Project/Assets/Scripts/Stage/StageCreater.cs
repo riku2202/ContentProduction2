@@ -368,7 +368,7 @@ namespace Game.Stage
         {
             if (color == (int)ObjectType.NotObject) return null;
 
-            if (color < (int)S_ObjectType.CanUp || color > (int)ObjectType.SMoving) return null;
+            if (color < -2 || color > (int)ObjectType.SMoving) return null;
 
             switch (color)
             {

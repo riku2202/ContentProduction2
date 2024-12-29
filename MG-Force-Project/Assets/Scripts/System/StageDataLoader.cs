@@ -14,12 +14,11 @@ namespace Game.GameSystem
         // Json型のファイル形式
         private const string JSON_FORMAT = ".json";
 
-#if UNITY_EDITOR // ステージデータの更新はデバック時のみ
-
         /// <summary>
-        /// ステージデータの取得
+        /// ステージデータの取得(UnityEditorでのデバック時のみ)
         /// </summary>
         /// <returns></returns>
+        [System.Diagnostics.Conditional("UNITY_EDITOR")]
         public static void LoadStageData()
         {
             // 設定ファイルパスキー
@@ -87,8 +86,6 @@ namespace Game.GameSystem
                 }
             }
         }
-
-#endif
 
         /// <summary>
         /// ステージデータの呼び出し

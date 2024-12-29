@@ -47,7 +47,6 @@ namespace Game.Stage
             topRight = data.TopRight;
         }
 
-
         /* -------- 読み取り用の変数 -------- */
 
         // ステージの管理番号

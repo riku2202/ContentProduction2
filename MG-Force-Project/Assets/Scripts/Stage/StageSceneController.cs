@@ -25,7 +25,7 @@ namespace Game.Stage
 
         private void Awake()
         {
-            GameObject input = GameObject.Find(GameConstants.Object.INPUT_OBJ);
+            GameObject input = GameObject.Find(GameConstants.Object.INPUT);
 
             //if (Input == null)
             //{
