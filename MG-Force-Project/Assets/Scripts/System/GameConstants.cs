@@ -63,6 +63,9 @@ namespace Game
             public const string INPUT = "InputManager";
             public const string SYSTEM_MESSAGE = "SystemMessagePrefab";
             public const string DEVICE_MANAGER = "DeviceManager";
+
+            public const string BGM_MANAGER = "BGMManager";
+            public const string SE_MANAGER = "SEManager";
         }
 
         public const string MAIN_CAMERA = "Main Camera";
@@ -88,6 +91,7 @@ namespace Game
             {
                 public const string KEY_MOUSE = "KeyMouse";
                 public const string GAMEPAD = "Gamepad";
+                public const string GAMEPAD_2 = "Gamepad_2";
             }
 
             public static class ActionMaps 

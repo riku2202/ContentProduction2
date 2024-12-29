@@ -120,7 +120,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""LeftMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -153,7 +153,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""RightMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -172,10 +172,21 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cceee815-7287-4466-b134-ac881276cd46"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""869e9713-dcd8-4a2a-82ba-856f7756df20"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad_2"",
                     ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -204,6 +215,17 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ef6d5b3c-4396-4ece-b494-dfb31a1c664b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad_2"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ec013321-fb03-44ad-87cb-a9cedd83cfa2"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
@@ -219,7 +241,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""MenuOpen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -241,7 +263,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStickPress "",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""ViewModeStart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -263,7 +285,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""MagnetBoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -338,7 +360,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""PoleSwitching"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -360,7 +382,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""PowerCharge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -382,7 +404,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -404,7 +426,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""ShootAngle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -427,6 +449,17 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c687d31-b19f-4508-b935-7fc72e08b0d5"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad_2"",
                     ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -492,11 +525,22 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""562e8934-6b15-4249-b57e-56b302581d5c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad_2"",
+                    ""action"": ""ViewModeEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0f61da18-3ccf-474c-8d61-1492f7bfae8a"",
                     ""path"": ""<Gamepad>/rightStickPress "",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""ViewModeEnd"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -562,7 +606,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""ViewMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -666,7 +710,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -684,22 +728,22 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""33b0a191-28ba-4298-9c28-6e49ed2ce51a"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""90f07683-cef1-481a-8715-212296c91f36"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyMouse"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Decision"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""90f07683-cef1-481a-8715-212296c91f36"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""a92dd763-d437-4d2c-bf61-0c8d36e6bd3b"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad_2"",
                     ""action"": ""Decision"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -728,8 +772,19 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0ee06eca-5b78-44fc-bd3f-38a74efbccd1"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad_2"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""bf4f9b40-ebe6-45db-8015-329dccf0862f"",
-                    ""path"": ""<Keyborad>/a"",
+                    ""path"": ""<Keyboard>/A"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyMouse"",
@@ -740,10 +795,10 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3996bf1a-cdd6-438f-85fb-2631ed57d5d8"",
-                    ""path"": ""<Keyborad>/leftarrow"",
+                    ""path"": ""<Keyboard>/leftarrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyMouse"",
                     ""action"": ""LeftSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -754,7 +809,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""LeftSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -765,7 +820,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad_2;Gamepad"",
                     ""action"": ""LeftSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -798,7 +853,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""RightSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -809,7 +864,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""RightSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -842,7 +897,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""UpSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -853,7 +908,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""UpSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -886,7 +941,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""DownSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -897,7 +952,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad;Gamepad_2"",
                     ""action"": ""DownSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -988,6 +1043,11 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Gamepad_2"",
+            ""bindingGroup"": ""Gamepad_2"",
+            ""devices"": []
         }
     ]
 }");
@@ -1511,6 +1571,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         {
             if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
             return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_Gamepad_2SchemeIndex = -1;
+    public InputControlScheme Gamepad_2Scheme
+    {
+        get
+        {
+            if (m_Gamepad_2SchemeIndex == -1) m_Gamepad_2SchemeIndex = asset.FindControlSchemeIndex("Gamepad_2");
+            return asset.controlSchemes[m_Gamepad_2SchemeIndex];
         }
     }
     public interface IPlayerActions

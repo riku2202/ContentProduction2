@@ -36,7 +36,7 @@ namespace Game.GameSystem
         /// <summary>
         /// ゲームデータのロード
         /// </summary>
-        public static void LoadManager()
+        public static bool LoadManager()
         {
             // ゲームデータのロード
             GameData loaddata = LoadGameData();
@@ -45,10 +45,14 @@ namespace Game.GameSystem
             if (loaddata == null)
             {
                 DebugManager.LogMessage("ロードするデータがありません：" + gameDataFilePath, DebugManager.MessageType.Warning);
+
+                return false;
             }
 
             // ゲームデータを設定
             dataManager.SetGameData(loaddata);
+
+            return true;
         }
 
         /// <summary>

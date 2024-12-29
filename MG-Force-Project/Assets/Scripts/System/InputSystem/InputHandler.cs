@@ -45,6 +45,12 @@ namespace Game.GameSystem
         // ÉAÉNÉVÉáÉìèÛë‘ÇÃé´èë
         private Dictionary<string, bool> _actionStates = new Dictionary<string, bool>();
 
+        private bool _isKeyChange;
+        public void KeyChange()
+        {
+            _isKeyChange = !_isKeyChange;
+        }
+
         private void InitializeInputSystem()
         {
             _inputActions = _playerInput.actions;
@@ -74,7 +80,14 @@ namespace Game.GameSystem
         {
             if (_deviceManager.isGamepad && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.GAMEPAD)
             {
-                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD);
+                if (!_isKeyChange)
+                {
+                    _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD);
+                }
+                else
+                {
+                    _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD_2);
+                }
             }
             else if (!_deviceManager.isGamepad && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.KEY_MOUSE)
             {
