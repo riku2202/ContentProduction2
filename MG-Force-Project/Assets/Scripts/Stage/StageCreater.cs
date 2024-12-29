@@ -35,14 +35,15 @@ namespace Game.Stage
             Player = -1,
             Goal = -2,
             Gimmick = -3,
-            Moving_Floor = -4,
-            CanUp = -5,
+            P_Gimmick = -4,
+            Moving_Floor = -11,
+            CanUp = -12,
         }
 
         #endregion
 
         // ゲームデータ管理クラスの変数
-        private GameDataManager gameDataManager;
+        private GameDataManager gameDataManager = GameDataManager.Instance;
 
         // ステージオブジェクト
         [SerializeField]
@@ -51,6 +52,9 @@ namespace Game.Stage
         // ステージオブジェクト(特殊)
         [SerializeField]
         private GameObject[] SpecialObjects;
+
+        [SerializeField]
+        private GameObject[] _bg;
 
         // 行列の最大数
         private const int maxRows = 25;
@@ -116,9 +120,6 @@ namespace Game.Stage
         /// <returns></returns>
         private string GetJSONData()
         {
-            // ゲームデータ管理クラスの呼び出し
-            gameDataManager = GameDataManager.Instance;
-
             // 現在のインデックス番号
             int current_index = gameDataManager.GetCurrentStageIndex();
 
@@ -457,6 +458,15 @@ namespace Game.Stage
             }
 
             return false;
+        }
+
+        public void BGCreate()
+        {
+            int current_index = gameDataManager.GetCurrentStageIndex();
+
+            Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA).transform;
+
+            Instantiate(_bg[current_index], Vector3.zero, Quaternion.identity, transform);
         }
     }
 }

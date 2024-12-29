@@ -54,16 +54,16 @@ namespace Game.Stage
                 childTransform = gameObject.transform.Find("StageCreater");
                 stageCreater = childTransform.GetComponent<StageCreater>();
                 stageCreater.StageCreate();
-
+                stageCreater.BGCreate();
                 return;
             }
 
             int stage_index = gameDataManager.GetCurrentStageIndex();
 
-            Transform transform = GameObject.Find(GameConstants.PLAYER_VIEW_CAMERA).transform;
+            Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA).transform;
 
-            GameObject stage = Instantiate(datas[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
-            GameObject bg = Instantiate(datas[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
+            Instantiate(datas[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
+            Instantiate(datas[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
         }
 
         /// <summary>

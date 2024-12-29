@@ -24,79 +24,14 @@ namespace Game
 
         /* ================ タグ ================ */
 
-        /// <summary>
-        /// ゲーム内のタグを定義する列挙型
-        /// 【Tag.タグ名.ToString()でタグ(string型)を取得】
-        /// </summary>
-        public enum Tag
+        public static class Tag 
         {
-            Untagged, // タグ未設定
-
-            Fixed,    // 固定オブジェクト
-            Moving,   // 可動オブジェクト
-            Stage,    // ステージオブジェクト
-            Player,   // プレイヤーオブジェクト
+            public const string UNTAGGED = "Untagged";
+            public const string FIXED = "Fixed";
+            public const string MOVING = "Moving";
+            public const string STAGE = "Stage";
+            public const string PLAYER = "Player";
         }
-
-        #region -------- タグの変換処理 --------
-
-        // String型に対応したTag型
-        public static readonly Dictionary<string, Tag> StringToTag = new Dictionary<string, Tag>
-        {
-            { Tag.Untagged.ToString(), Tag.Untagged },
-            { Tag.Fixed.ToString(), Tag.Fixed },
-            { Tag.Moving.ToString(), Tag.Moving },
-            { Tag.Stage.ToString(), Tag.Stage },
-            { Tag.Player.ToString(), Tag.Player },
-        };
-
-        // Tag型に対応したString型
-        public static readonly Dictionary<Tag, string> TagToString = new Dictionary<Tag, string>
-        {
-            { Tag.Untagged, Tag.Untagged.ToString() },
-            { Tag.Fixed, Tag.Fixed.ToString() },
-            { Tag.Moving, Tag.Moving.ToString() },
-            { Tag.Stage, Tag.Stage.ToString() },
-            { Tag.Player, Tag.Player.ToString() },
-        };
-
-        /// <summary>
-        /// String型をTag型に変換する
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static Tag ConvertTag(string tag)
-        {
-            if (StringToTag.TryGetValue(tag, out Tag get_tag))
-            {
-                return get_tag;
-            }
-            else
-            {
-                DebugManager.LogMessage("String型をTag型に変換できませんでした", DebugManager.MessageType.Error);
-                return Tag.Untagged;
-            }
-        }
-
-        /// <summary>
-        /// Tag型をString型に変換する
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static string ConvertTag(Tag tag)
-        {
-            if (TagToString.TryGetValue(tag, out string get_tag))
-            {
-                return get_tag;
-            }
-            else
-            {
-                DebugManager.LogMessage("Tag型をString型に変換できませんでした", DebugManager.MessageType.Error);
-                return Tag.Untagged.ToString();
-            }
-        }
-
-        #endregion
 
         /* ================ レイヤー ================ */
 
@@ -130,8 +65,7 @@ namespace Game
             public const string SYSTEM_MESSAGE_TEXT = "Message";
         }
 
-        // プレイヤー追尾カメラ
-        public const string PLAYER_VIEW_CAMERA = "PlayerViewCamera";
+        public const string MAIN_CAMERA = "Main Camera";
 
         // サウンド管理用オブジェクト
         public const string SOUND_MANAGER_OBJ = "SoundManager";

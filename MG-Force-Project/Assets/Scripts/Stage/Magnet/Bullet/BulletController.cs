@@ -20,8 +20,8 @@ namespace Game.Stage.Magnet
         private Vector3 _direction = Vector3.zero;
 
         // É^ÉO
-        private string _fixedTag = GameConstants.ConvertTag(GameConstants.Tag.Fixed);
-        private string _movingTag = GameConstants.ConvertTag(GameConstants.Tag.Moving);
+        private string _fixedTag = GameConstants.Tag.FIXED;
+        private string _movingTag = GameConstants.Tag.MOVING;
 
         private float _timer;
 
