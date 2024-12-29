@@ -57,12 +57,12 @@ namespace Game
 
         public static class Object 
         {
-            public const string STAGE_SELECT_OBJ = "StageSelectSceneManager";
-            public const string STAGE_OBJ = "StageSceneManager";
+            public const string STAGE_SELECT = "StageSelectSceneManager";
+            public const string STAGE = "StageSceneManager";
 
-            public const string INPUT_OBJ = "InputManager";
-            public const string SYSTEM_MESSAGE_OBJ = "SystemMessagePrefab";
-            public const string SYSTEM_MESSAGE_TEXT = "Message";
+            public const string INPUT = "InputManager";
+            public const string SYSTEM_MESSAGE = "SystemMessagePrefab";
+            public const string DEVICE_MANAGER = "DeviceManager";
         }
 
         public const string MAIN_CAMERA = "Main Camera";

@@ -1,33 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Game.Loading 
 {
     public class LoadingSceneController : MonoBehaviour
     {
-        private float counttime = 0.0f;
-        public float timeLimit = 2.0f;
+        private SceneLoader _sceneLoader;
 
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField]
+        private Image _progressGage;
+
+        private void Awake()
         {
+            _sceneLoader = SceneLoader.Instance;
 
+            if (_sceneLoader == null) SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            counttime += Time.deltaTime;
-
-            if (counttime > timeLimit)
-            {
-                SceneManager.LoadScene("StageSelect");
-            }
-
-            // 加算して判断してもいいけど、コルーチンを使用してもいいよ
+            _progressGage.fillAmount = _sceneLoader.progress;
         }
     }
 }

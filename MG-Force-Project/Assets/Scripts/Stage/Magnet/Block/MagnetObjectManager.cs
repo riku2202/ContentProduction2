@@ -36,7 +36,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         protected virtual void Start()
         {
-            //input = GameObject.Find(GameConstants.INPUT_MANAGER_OBJ).GetComponent<InputHandler>();
+            input = GameObject.Find(GameConstants.Object.INPUT).GetComponent<GameSystem.InputHandler>();
 
             magnetManager = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
             magnetController = new MagnetController();
@@ -87,7 +87,7 @@ namespace Game.Stage.Magnet
             if (magnetFixed) return;
 
             // 付与した磁力のリセット
-            if (Input.GetKeyDown(KeyCode.R))
+            if (input.IsActionPressed(GameConstants.Input.Action.RESET))
             {
                 ResetMagnet();
             }

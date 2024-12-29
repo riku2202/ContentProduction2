@@ -38,7 +38,6 @@ namespace Game.GameSystem
 
         #endregion
 
-
         // ゲームデータ
         private GameData data;
 
@@ -86,7 +85,6 @@ namespace Game.GameSystem
         }
 
         #endregion
-
 
         // 現在のステージインデックス
         private int currentStageIndex;

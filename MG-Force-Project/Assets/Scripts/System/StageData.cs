@@ -24,7 +24,6 @@ namespace Game.Stage
         [SerializeField]
         private Vector2 topRight;
 
-
         /* -------- 読み取り用の変数 -------- */
 
         // ステージの管理番号

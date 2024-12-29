@@ -9,71 +9,15 @@ namespace Game
 {
     public class SystemMessageManager : MonoBehaviour
     {
-        #region -------- シングルトンの設定 --------
+        [SerializeField]
+        private GameObject _systemMessagePrefab;
 
-        // シングルトンインスタンス
-        public static SystemMessageManager instance { get; private set; }
+        [SerializeField]
+        private TextMeshProUGUI _messageText;
 
         private void Awake()
         {
-            // シングルトンの設定
-            if (instance != null && instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            InitReference();
-        }
-
-        #endregion
-
-        private GameObject _systemMessagePrefab;
-
-        private GameObject _systemMessageText;
-
-        private TextMeshProUGUI _messageText;
-
-        #region -------- 参照設定用イベント処理 --------
-
-        private void OnEnable()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            InitReference();
-        }
-
-        #endregion
-
-        private void InitReference()
-        {
-            _systemMessagePrefab = GameObject.Find(GameConstants.Object.SYSTEM_MESSAGE_OBJ);
-
-            if (_systemMessagePrefab == null)
-            {
-                DebugManager.LogMessage("システムメッセージを表示できません。デバック時はTitleSceneから始めてください",DebugManager.MessageType.Error);
-                return;
-            }
-
-            _systemMessageText = _systemMessagePrefab.transform.Find(GameConstants.Object.SYSTEM_MESSAGE_TEXT).gameObject;
-
-            _messageText = _systemMessageText.GetComponent<TextMeshProUGUI>();
-
-            if (_systemMessagePrefab != null)
-            {
-                _systemMessagePrefab.SetActive(false);
-            }
+            _systemMessagePrefab.SetActive(false);
         }
 
         public void DrawMessage(string message)
@@ -89,7 +33,7 @@ namespace Game
 
         IEnumerator MessageStart()
         {
-            float delty_time = 5.0f;
+            float delty_time = 4.0f;
 
             yield return new WaitForSeconds(delty_time);
 

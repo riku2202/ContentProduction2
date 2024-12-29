@@ -7,12 +7,9 @@ namespace Game.GameSystem
 {
     public class InputHandler : MonoBehaviour
     {
-        private const string GAMEPAD_IN_MESSAGE = "コントローラーが接続されました";
-        private const string GAMEPAD_OUT_MESSAGE = "コントローラーが切断されました";
-
         private PlayerInput _playerInput;
 
-        private SystemMessageManager _systemMessage = SystemMessageManager.instance;
+        private DeviceManager _deviceManager;
 
         #region -------- シングルトンの設定 --------
 
@@ -33,9 +30,9 @@ namespace Game.GameSystem
 
             _playerInput = GetComponent<PlayerInput>();
 
-            InitializeInputSystem();
+            _deviceManager = GameObject.Find(GameConstants.Object.DEVICE_MANAGER).GetComponent<DeviceManager>();
 
-            InputConnectionUpdate();
+            InitializeInputSystem();
 
             _playerInput.SwitchCurrentActionMap(GameConstants.Input.ActionMaps.MENU_MAPS);
         }
@@ -68,10 +65,21 @@ namespace Game.GameSystem
         /// </summary>
         private void Update()
         {
-            // 入力デバイスの更新
-            InputConnectionUpdate();
+            InputDeviceUpdate();
 
             InputEnableUpdate();
+        }
+
+        private void InputDeviceUpdate()
+        {
+            if (_deviceManager.isGamepad && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.GAMEPAD)
+            {
+                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD);
+            }
+            else if (!_deviceManager.isGamepad && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.KEY_MOUSE)
+            {
+                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.KEY_MOUSE);
+            }
         }
 
         /// <summary>
@@ -85,25 +93,6 @@ namespace Game.GameSystem
         public bool IsActionPressing(string action_name)
         {
             return _actionStates[action_name];
-        }
-
-        /// <summary>
-        /// 入力デバイスの更新
-        /// </summary>
-        private void InputConnectionUpdate()
-        {
-            if (Gamepad.current != null && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.GAMEPAD)
-            {
-                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD);
-
-                _systemMessage.DrawMessage($"{Gamepad.current.name}, {GAMEPAD_IN_MESSAGE}");
-            }
-            else if (_playerInput.currentControlScheme != GameConstants.Input.ActionDevice.KEY_MOUSE)
-            {
-                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.KEY_MOUSE);
-
-                _systemMessage.DrawMessage($"{Gamepad.current.name}, {GAMEPAD_OUT_MESSAGE}");
-            }
         }
 
         private void InputEnableUpdate()
@@ -143,31 +132,36 @@ namespace Game.GameSystem
 
         private void InputStageSelectScene()
         {
+            // メニューが開かれていないときにプレイヤーの入力を有効化する
             if (_playerInput.currentActionMap.name != GameConstants.Input.ActionMaps.PLAYER_MAPS && !isMenuOpen)
             {
                 _playerInput.SwitchCurrentActionMap(GameConstants.Input.ActionMaps.PLAYER_MAPS);
             }
 
+            // メニューが開かれていないときにメニューを開く
             if (_playerInput.actions[GameConstants.Input.Action.MENU_OPEN].triggered && !isMenuOpen)
             {
                 _playerInput.SwitchCurrentActionMap(GameConstants.Input.ActionMaps.MENU_MAPS);
                 isMenuOpen = true;
             }
+            // メニューが開かれているときにメニューを閉じる
             else if (_playerInput.actions[GameConstants.Input.Action.MENU_CLOSE].triggered && isMenuOpen)
             {
                 isMenuOpen = false;
             }
 
+            // メニューが開かれていないかつ磁力を起動したとき、磁力関連のフラグをONにする
             if (_playerInput.actions[GameConstants.Input.Action.MAGNET_BOOT].triggered && !isMagnetBoot && !isMenuOpen)
             {
                 isMagnetBoot = true;
             }
+            // メニューが開かれていないかつ磁力を停止したとき、磁力関連のフラグをOFFにする
             else if (_playerInput.actions[GameConstants.Input.Action.MAGNET_BOOT].triggered && isMagnetBoot)
             {
                 isMagnetBoot = false;
             }
 
-            if (!isMagnetBoot)
+            if (!isMagnetBoot && !isMenuOpen)
             {
                 _playerInput.actions.FindActionMap(GameConstants.Input.ActionMaps.MAGNET_MAPS).Enable();
             }

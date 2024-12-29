@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 using Game.GameSystem;
 
 namespace Game.Title
@@ -13,13 +9,33 @@ namespace Game.Title
     public class TitleSceneController : MonoBehaviour
     {
         // ゲームデータ管理クラスの呼び出し
-        private GameDataManager manager = GameDataManager.Instance;
+        private GameDataManager _manager = GameDataManager.Instance;
 
         // 入力管理クラスの呼び出し
-        private InputHandler input;
+        private InputHandler _input;
+
+        private DeviceManager _deviceManager = null;
+
+        private SceneLoader _sceneLoader = SceneLoader.Instance;
 
         // ロード管理フラグ
         private static bool isLoadGameData = false;
+
+        // タイトルシーンのステップ
+        private enum TitleStep
+        {
+            TITLE,
+            GAME_MENU,
+            START_MENU,
+            CONFIG_MENU,
+            MAX_STEP,
+        }
+
+        // 現在のメニュー
+        private TitleStep _currentStep;
+
+        [SerializeField]
+        private GameObject[] _menuObjects = new GameObject[(int)TitleStep.MAX_STEP];
 
         /// <summary>
         /// 初期化処理
@@ -30,7 +46,7 @@ namespace Game.Title
             StageDataLoader.LoadStageData();
 
             // ゲームデータの生成
-            manager.NewGameData();
+            _manager.NewGameData();
 
             // 実行して一度のみロードする
             if (!isLoadGameData)
@@ -41,7 +57,15 @@ namespace Game.Title
                 isLoadGameData = true;
             }
 
-            input = GameObject.Find(GameConstants.Object.INPUT_OBJ).GetComponent<InputHandler>();
+            // 入力管理クラスの呼び出し
+            _input = GameObject.Find(GameConstants.Object.INPUT).GetComponent<InputHandler>();
+
+            _deviceManager = GameObject.Find(GameConstants.Object.DEVICE_MANAGER).GetComponent<DeviceManager>();
+
+            _sceneLoader = SceneLoader.Instance;
+
+            // ステップを初期化
+            _currentStep = TitleStep.TITLE;
         }
 
         /// <summary>
@@ -49,10 +73,49 @@ namespace Game.Title
         /// </summary>
         private void Update()
         {
-            if (input.IsActionPressed(GameConstants.Input.Action.MENU_DECISION))
+            if (_input.IsActionPressed(GameConstants.Input.Action.MENU_DECISION))
             {
-                SceneManager.LoadScene(GameConstants.Scene.StageSelect.ToString());
+                _sceneLoader.LoadScene(GameConstants.Scene.StageSelect.ToString());
             }
+
+            switch(_currentStep)
+            {
+                case TitleStep.TITLE:
+                    TitleUpdate();
+                    break;
+
+                case TitleStep.GAME_MENU:
+                    GameMenuUpdate();
+                    break;
+
+                case TitleStep.START_MENU:
+                    StartMenuUpdate(); 
+                    break;
+
+                case TitleStep.CONFIG_MENU:
+                    ConfigMenuUpdate(); 
+                    break;
+            }
+        }
+
+        private void TitleUpdate()
+        {
+
+        }
+
+        private void GameMenuUpdate()
+        {
+
+        }
+
+        private void StartMenuUpdate()
+        {
+
+        }
+
+        private void ConfigMenuUpdate()
+        {
+
         }
 
         /// <summary>
@@ -61,7 +124,7 @@ namespace Game.Title
         public void GameDataErase()
         {
             // ゲームデータのリセット
-            manager.ReSetGameData();
+            _manager.ReSetGameData();
 
 #if UNITY_EDITOR // UnityEditorでの実行時(デバック用)
 

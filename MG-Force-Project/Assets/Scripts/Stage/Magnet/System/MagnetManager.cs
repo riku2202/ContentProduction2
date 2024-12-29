@@ -25,7 +25,7 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Start()
         {
-            _input = GameObject.Find(GameConstants.Object.INPUT_OBJ).GetComponent<GameSystem.InputHandler>();
+            _input = GameObject.Find(GameConstants.Object.INPUT).GetComponent<GameSystem.InputHandler>();
 
             IsMagnetBoot = false;
 
@@ -38,17 +38,14 @@ namespace Game.Stage.Magnet
         /// </summary>
         private void Update()
         {
-            if (_input.IsActionPressed(GameConstants.Input.Action.POLE_SWITCHING))
+            if (_input.IsActionPressed(GameConstants.Input.Action.POLE_SWITCHING) && !IsMagnetBoot)
             {
                 ChangeMagnetType();
-
-                DebugManager.LogMessage(CurrentType.ToString(), DebugManager.MessageType.Normal);
             }
-            else if (_input.IsActionPressed(GameConstants.Input.Action.MAGNET_BOOT))
+            
+            if (_input.IsActionPressed(GameConstants.Input.Action.MAGNET_BOOT))
             {
                 ChangeMagnetBoot();
-
-                DebugManager.LogMessage(IsMagnetBoot.ToString(), DebugManager.MessageType.Normal);
             }
         }
 
