@@ -1,3 +1,4 @@
+using Game.GameSystem;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,8 @@ namespace Game
         [SerializeField]
         private AudioClip[] _audioClips = new AudioClip[(int)BGM.MAX_BGM];
 
+        private InputHandler _inputHandler;
+
         // 対応するBGMマッピング用の辞書
         private static readonly Dictionary<int, BGM> _sceneBGM = new Dictionary<int, BGM> 
         {
@@ -48,6 +51,8 @@ namespace Game
                 DontDestroyOnLoad(gameObject);
 
                 _audioSource = GetComponent<AudioSource>();
+
+                _inputHandler = InputHandler.Instance;
 
                 return;
             }
@@ -133,6 +138,30 @@ namespace Game
             }
 
             return null;
+        }
+
+        private const float MIN_VOLUME = 0.0f;
+        private const float MAX_VOLUME = 1.0f;
+        private const float VARIABLE_VOLUME = 0.1f;
+
+        public float VolumeChange(float volume)
+        {
+            if (volume != _audioSource.volume)
+            {
+                _audioSource.volume = volume;
+            }
+            else if (_inputHandler.IsActionPressed(GameConstants.Input.Action.MENU_LEFT_SELECT) &&
+                _audioSource.volume != MIN_VOLUME)
+            {
+                _audioSource.volume -= VARIABLE_VOLUME;
+            }
+            else if (_inputHandler.IsActionPressed(GameConstants.Input.Action.MENU_RIGHT_SELECT) &&
+                _audioSource.volume != MAX_VOLUME)
+            {
+                _audioSource.volume += VARIABLE_VOLUME;
+            }
+
+            return _audioSource.volume;
         }
     }
 }
