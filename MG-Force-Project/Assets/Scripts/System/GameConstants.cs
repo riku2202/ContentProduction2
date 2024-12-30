@@ -66,6 +66,10 @@ namespace Game
 
             public const string BGM_MANAGER = "BGMManager";
             public const string SE_MANAGER = "SEManager";
+            public const string TITLE_SCENE_MANAGER = "TitleSceneManager";
+            public const string GOAL_CRYSTAL = "Crystal_Model_Prefab(Clone)";
+
+            public const string STAGE_LOADER = "StageLoader";
         }
 
         public const string MAIN_CAMERA = "Main Camera";

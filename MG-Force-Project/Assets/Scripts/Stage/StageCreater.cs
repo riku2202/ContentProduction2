@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-
 using Game.Stage.Magnet;
 using Game.GameSystem;
 
@@ -227,6 +226,13 @@ namespace Game.Stage
 
                         obj.transform.SetParent(main_object.transform, false);
                     }
+
+                    if (colorArray[i, j] == (int)S_ObjectType.Goal)
+                    {
+                        Vector3 obj_pos = obj.transform.position;
+                        obj_pos.y += 0.5f;
+                        obj.transform.position = obj_pos;
+                    }
                 }
             }
         }
@@ -368,7 +374,7 @@ namespace Game.Stage
         {
             if (color == (int)ObjectType.NotObject) return null;
 
-            if (color < -2 || color > (int)ObjectType.SMoving) return null;
+            if (color <= -4 || color > (int)ObjectType.SMoving) return null;
 
             switch (color)
             {

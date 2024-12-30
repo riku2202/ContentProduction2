@@ -6,7 +6,7 @@ namespace Game
     {
         private const float FINISH_POS_X = -1920.0f;
 
-        private float _speed = 2.5f;
+        private float _speed = 12.5f;
 
         private Vector3 _initPos = new Vector3(1920.0f, 990.0f, 0.0f);
 
@@ -17,7 +17,7 @@ namespace Game
             transform.position = _initPos;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _currentPos = transform.position;
 

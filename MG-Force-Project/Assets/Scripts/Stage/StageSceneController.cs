@@ -1,6 +1,3 @@
-using Game.Stage.Magnet;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +8,8 @@ namespace Game.Stage
     /// </summary>
     public class StageSceneController : MonoBehaviour
     {
+        private SceneLoader _sceneLoader;
+        
         // フェーズ
         private enum Phase
         {
@@ -27,6 +26,8 @@ namespace Game.Stage
         {
             GameObject input = GameObject.Find(GameConstants.Object.INPUT);
 
+            _sceneLoader = GameObject.Find(GameConstants.Object.STAGE_LOADER).GetComponent<SceneLoader>();
+
             //if (Input == null)
             //{
             //    SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
@@ -37,7 +38,7 @@ namespace Game.Stage
         {
             if (GoalEvent())
             {
-                SceneManager.LoadScene(GameConstants.Scene.Title.ToString());
+                _sceneLoader.LoadScene(GameConstants.Scene.Clear.ToString());
             }
 
             if (currentPhase == Phase.Reserve)
@@ -53,15 +54,15 @@ namespace Game.Stage
         // 共通の処理
         private bool GoalEvent()
         {
-            GameObject goal = GameObject.Find("GoalItem");
+            GameObject goal = GameObject.Find(GameConstants.Object.GOAL_CRYSTAL);
 
             if (goal == null) return false;
 
-            GoalManager goal_manager = goal.GetComponent<GoalManager>();
+            CrystalController crystal = goal.GetComponent<CrystalController>();
 
-            if (goal_manager == null) return false;
+            if (crystal == null) return false;
 
-            return goal_manager.IsGoalEvent;
+            return crystal.IsGoalEvent;
         }
 
         // 磁力を撃つフェーズの処理

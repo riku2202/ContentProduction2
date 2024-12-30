@@ -8,6 +8,10 @@ namespace Game.Stage
     /// </summary>
     public class StageSelectSceneController : MonoBehaviour
     {
+        private SceneLoader _sceneLoader;
+
+        private CrystalController _crystalController;
+
         private bool isMenuScreen = false;
 
         private void Awake()
@@ -20,8 +24,18 @@ namespace Game.Stage
             }
         }
 
+        private void Start()
+        {
+            _crystalController = GameObject.Find(GameConstants.Object.GOAL_CRYSTAL).GetComponent<CrystalController>();
+        }
+
         private void Update()
         {
+            if (_crystalController.IsGoalEvent)
+            {
+                _sceneLoader.LoadScene(GameConstants.Scene.Clear.ToString());
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 SceneManager.LoadScene(GameConstants.Scene.Title.ToString());

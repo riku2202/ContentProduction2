@@ -73,5 +73,19 @@ namespace Game.GameSystem
                 _systemMessage.DrawMessage($"{GAMEPAD_OUT_MESSAGE}");
             }
         }
+
+        private void Start()
+        {
+            foreach (var device in InputSystem.devices)
+            {
+                if (device is Gamepad)
+                {
+                    isGamepad = true;
+                    _systemMessage = GameObject.Find(GameConstants.Object.SYSTEM_MESSAGE).GetComponent<SystemMessageManager>();
+                    _systemMessage.DrawMessage($"{GAMEPAD_IN_MESSAGE}");
+                    break;
+                }
+            }
+        }
     }
 }
