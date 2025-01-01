@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Stage.Magnet
@@ -11,17 +9,29 @@ namespace Game.Stage.Magnet
     {
         private MagnetManager Magnet;
 
-        [SerializeField]
-        private GameObject NBeam;
+        private enum UI
+        {
+            EnergyGage,
+            Boot_ON,
+            Boot_OFF,
+            N_Magnet,
+            S_Magnet,
 
-        [SerializeField]
-        private GameObject SBeam;
+            MAX,
+        }
 
+        [NamedSerializeField(
+            new string[] 
+            {
+                "EnergyGage",
+                "Boot_ON",
+                "Boot_OFF",
+                "N_Magnet",
+                "S_Magnet",
+            }
+        )]
         [SerializeField]
-        private GameObject Boot;
-
-        [SerializeField]
-        private GameObject NoBoot;
+        private GameObject[] _uiObjects = new GameObject[(int)UI.MAX];
 
         /// <summary>
         /// èâä˙âªèàóù
@@ -66,24 +76,24 @@ namespace Game.Stage.Magnet
         {
             if (Magnet.CurrentType == GameConstants.Layer.N_MAGNET)
             {
-                NBeam.SetActive(true);
-                SBeam.SetActive(false);
+                _uiObjects[(int)UI.N_Magnet].SetActive(true);
+                _uiObjects[(int)UI.S_Magnet].SetActive(false);
             }
             else if (Magnet.CurrentType == GameConstants.Layer.S_MAGNET)
             {
-                SBeam.SetActive(true);
-                NBeam.SetActive(false);
+                _uiObjects[(int)UI.S_Magnet].SetActive(true);
+                _uiObjects[(int)UI.N_Magnet].SetActive(false);
             }
 
             if (Magnet.IsMagnetBoot)
             {
-                Boot.SetActive(true);
-                NoBoot.SetActive(false);
+                _uiObjects[(int)UI.Boot_ON].SetActive(true);
+                _uiObjects[(int)UI.Boot_OFF].SetActive(false);
             }
             else
             {
-                NoBoot.SetActive(true);
-                Boot.SetActive(false);
+                _uiObjects[(int)UI.Boot_OFF].SetActive(true);
+                _uiObjects[(int)UI.Boot_ON].SetActive(false);
             }
         }
     }

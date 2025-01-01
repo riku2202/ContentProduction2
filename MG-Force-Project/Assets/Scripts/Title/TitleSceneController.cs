@@ -1,7 +1,6 @@
 using UnityEngine;
 using Game.GameSystem;
 using UnityEngine.UI;
-using UnityEditor.Experimental.GraphView;
 
 namespace Game.Title
 {
@@ -10,9 +9,6 @@ namespace Game.Title
     /// </summary>
     public class TitleSceneController : MonoBehaviour
     {
-        // ゲームデータ管理クラスの呼び出し
-        private GameDataManager _manager = GameDataManager.Instance;
-
         // 入力管理クラスの呼び出し
         private InputHandler _input;
 
@@ -23,6 +19,8 @@ namespace Game.Title
         // ロード管理フラグ
         private static bool isLoadGameData = false;
 
+        #region -------- ステップ管理用定数 --------
+
         // タイトルシーンのステップ
         private enum TitleStep
         {
@@ -30,9 +28,11 @@ namespace Game.Title
             GAME_MENU,
             START_MENU,
             CONFIG_MENU,
+            GAMEDATA_ERASE,
             MAX_STEP,
         }
 
+        // ゲームメニューのステップ
         private enum GameMenu
         {
             CONFIG,
@@ -41,6 +41,7 @@ namespace Game.Title
             MAX_BUTTON
         }
 
+        // スタートメニューのステップ
         private enum StartMenu
         {
             NEW_START,
@@ -48,6 +49,7 @@ namespace Game.Title
             MAX_BUTTON,
         }
 
+        // 設定メニューのステップ
         private enum ConfigMenu
         {
             BGM,
@@ -59,6 +61,9 @@ namespace Game.Title
             MAX_BUTTON,
         }
 
+        #endregion
+
+        // サウンド管理用
         private enum SoundSlider
         {
             BGM,
@@ -81,6 +86,10 @@ namespace Game.Title
 
         [SerializeField] private Slider[] _soundSlider = new Slider[(int)SoundSlider.MAX_SLIDER];
 
+        [SerializeField] private Toggle _keyToggle;
+
+        [SerializeField] private GameDataEraseController _eraseContrller;
+
         private int _currentButton = INIT_BUTTON;
 
         private bool _isExistGameData;
@@ -96,9 +105,6 @@ namespace Game.Title
         {
             // 外部データの読み込み
             StageDataLoader.LoadStageData();
-
-            // ゲームデータの生成
-            _manager.NewGameData();
 
             // 実行して一度のみロードする
             if (!isLoadGameData)
@@ -141,6 +147,22 @@ namespace Game.Title
 
                 case TitleStep.CONFIG_MENU:
                     ConfigMenuUpdate(); 
+                    break;
+
+                case TitleStep.GAMEDATA_ERASE:
+
+                    if (!_menuObjects[(int)TitleStep.GAMEDATA_ERASE].activeSelf)
+                    {
+                        _menuObjects[(int)TitleStep.GAMEDATA_ERASE].SetActive(true);
+                    }
+                    else
+                    {
+                        if (!_eraseContrller.isActive)
+                        {
+                            SetStep(TitleStep.CONFIG_MENU);
+                        }
+                    }
+
                     break;
             }
         }
@@ -417,14 +439,14 @@ namespace Game.Title
                     break;
 
                 case (int)ConfigMenu.KEY:
-                    _input.KeyChange();
+                    _keyToggle.isOn = !_keyToggle.isOn;
                     break;
 
                 case (int)ConfigMenu.HELP:
                     break;
 
                 case (int)ConfigMenu.DATA:
-                    CheckDataErase();
+                    SetStep(TitleStep.GAMEDATA_ERASE);
                     break;
 
                 case (int)ConfigMenu.BACK:
@@ -432,6 +454,8 @@ namespace Game.Title
                     break;
             }
         }
+
+        #region -------- サウンド設定 --------
 
         private void ChangeSoundVolume()
         {
@@ -461,32 +485,11 @@ namespace Game.Title
             _soundSlider[(int)SoundSlider.SE].value = se_manager.VolumeChange(sound);
         }
 
-        /// <summary>
-        /// データ削除の確認
-        /// </summary>
-        private void CheckDataErase()
+        #endregion
+
+        public void KeyChange()
         {
-            GameDataErase();
-        }
-
-        /// <summary>
-        /// ゲームデータの削除
-        /// </summary>
-        private void GameDataErase()
-        {
-            // ゲームデータのリセット
-            _manager.ReSetGameData();
-
-#if UNITY_EDITOR // UnityEditorでの実行時(デバック用)
-
-            // ゲームデータのセーブ(デバック時はデータを上書きする)
-            SaveSystem.SaveManager();
-
-#else // 実際のビルド版実行時
-
-            // ゲームデータの削除
-            SaveSystem.DeleteGameData();
-#endif
+            _input.KeyChange();
         }
 
         #endregion

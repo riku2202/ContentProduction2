@@ -34,6 +34,7 @@ namespace Game.GameSystem
 
             InitializeInputSystem();
 
+            _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.KEY_MOUSE, InputSystem.GetDevice<Keyboard>(), InputSystem.GetDevice<Mouse>());
             _playerInput.SwitchCurrentActionMap(GameConstants.Input.ActionMaps.MENU_MAPS);
         }
 
@@ -46,10 +47,6 @@ namespace Game.GameSystem
         private Dictionary<string, bool> _actionStates = new Dictionary<string, bool>();
 
         private bool _isKeyChange;
-        public void KeyChange()
-        {
-            _isKeyChange = !_isKeyChange;
-        }
 
         private void InitializeInputSystem()
         {
@@ -78,20 +75,14 @@ namespace Game.GameSystem
 
         private void InputDeviceUpdate()
         {
-            if (_deviceManager.isGamepad && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.GAMEPAD)
+            if (_deviceManager.isGamepad && _playerInput.currentControlScheme == GameConstants.Input.ActionDevice.KEY_MOUSE)
             {
-                if (!_isKeyChange)
-                {
-                    _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD);
-                }
-                else
-                {
-                    _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.GAMEPAD_2);
-                }
+                _playerInput.SwitchCurrentControlScheme(
+                    (!_isKeyChange) ? GameConstants.Input.ActionDevice.GAMEPAD : GameConstants.Input.ActionDevice.GAMEPAD_2, InputSystem.GetDevice<Gamepad>());
             }
             else if (!_deviceManager.isGamepad && _playerInput.currentControlScheme != GameConstants.Input.ActionDevice.KEY_MOUSE)
             {
-                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.KEY_MOUSE);
+                _playerInput.SwitchCurrentControlScheme(GameConstants.Input.ActionDevice.KEY_MOUSE, InputSystem.GetDevice<Keyboard>(), InputSystem.GetDevice<Mouse>());
             }
         }
 
@@ -225,5 +216,20 @@ namespace Game.GameSystem
         }
 
         #endregion
+
+        public void KeyChange()
+        {
+            _isKeyChange = !_isKeyChange;
+
+            if (_playerInput.currentControlScheme == GameConstants.Input.ActionDevice.KEY_MOUSE) return;
+
+            _playerInput.SwitchCurrentControlScheme(
+                (!_isKeyChange) ? GameConstants.Input.ActionDevice.GAMEPAD : GameConstants.Input.ActionDevice.GAMEPAD_2, InputSystem.GetDevice<Gamepad>());
+        }
+
+        public string GetControlScheme()
+        {
+            return _playerInput.currentControlScheme;
+        }
     }
 }

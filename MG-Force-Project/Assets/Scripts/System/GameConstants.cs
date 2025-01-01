@@ -66,6 +66,10 @@ namespace Game
 
             public const string BGM_MANAGER = "BGMManager";
             public const string SE_MANAGER = "SEManager";
+            public const string TITLE_SCENE_MANAGER = "TitleSceneManager";
+            public const string GOAL_CRYSTAL = "Crystal_Model_Prefab(Clone)";
+
+            public const string STAGE_LOADER = "StageLoader";
         }
 
         public const string MAIN_CAMERA = "Main Camera";
@@ -87,6 +91,13 @@ namespace Game
         /// </summary>
         public static class Input
         {
+            public static class Device
+            {
+                public const string SWITCH = "switch";
+                public const string PLAY_STATION = "playstation";
+                public const string XBOX = "xbox";
+            }
+
             public static class ActionDevice
             {
                 public const string KEY_MOUSE = "KeyMouse";

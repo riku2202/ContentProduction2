@@ -47,9 +47,11 @@ namespace Game
         /// <returns></returns>
         private IEnumerator Loading(string scene)
         {
+            float delty_time = 5.0f;
+
             SceneManager.LoadScene(GameConstants.Scene.Loading.ToString());
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(delty_time);
 
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
 
@@ -60,6 +62,8 @@ namespace Game
 
                 yield return null;
             }
+
+            yield return new WaitForSeconds(delty_time);
         }
     }
 }

@@ -84,7 +84,7 @@
                 {
                     "name": "",
                     "id": "ff44e604-54b3-47f8-b266-f26e1b91291e",
-                    "path": "<Keyboard>/arrowLeft",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyMouse",
@@ -117,7 +117,7 @@
                 {
                     "name": "",
                     "id": "4637eaaf-f5e1-4e25-adad-54470dcda532",
-                    "path": "<Keyboard>/arrowRight",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyMouse",
@@ -215,7 +215,7 @@
                 },
                 {
                     "name": "",
-                    "id": "dc27fa5c-2fd1-4360-a467-409709bf8e1f",
+                    "id": "bd88366a-22af-424b-9f7f-1266e82aa8fb",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
@@ -571,6 +571,61 @@
                     "name": "right",
                     "id": "abf32781-870a-453c-8d23-92578c7b5b2c",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ViewMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "60a71934-1177-4497-9ea3-ee260fc9a1fb",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ViewMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "50d9d3c4-db14-4326-9e75-0fc7613b1c08",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ViewMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9b2b13fe-6d85-4dea-849a-c369f94cea74",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ViewMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "b5101e80-e447-4cb7-9b8c-510fecc04877",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ViewMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "69dca6aa-7eee-46c5-a1ae-b9016c57962c",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyMouse",

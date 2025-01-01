@@ -5179,7 +5179,7 @@
     {
       "key": "171",
       "value": {
-        "color": 5,
+        "color": 0,
         "power": 0,
         "point": 0
       }
@@ -5187,7 +5187,7 @@
     {
       "key": "172",
       "value": {
-        "color": 6,
+        "color": 5,
         "power": 0,
         "point": 0
       }
@@ -5195,7 +5195,7 @@
     {
       "key": "173",
       "value": {
-        "color": 0,
+        "color": 6,
         "power": 0,
         "point": 0
       }
@@ -5203,7 +5203,7 @@
     {
       "key": "174",
       "value": {
-        "color": 0,
+        "color": 7,
         "power": 0,
         "point": 0
       }
@@ -5483,7 +5483,7 @@
     {
       "key": "181",
       "value": {
-        "color": 6,
+        "color": 0,
         "power": 0,
         "point": 0
       }
@@ -5491,25 +5491,25 @@
     {
       "key": "182",
       "value": {
-        "color": 5,
+        "color": -4,
         "power": 0,
-        "point": 0
+        "point": "1"
       }
     },
     {
       "key": "183",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0,
-        "point": 0
+        "point": ""
       }
     },
     {
       "key": "184",
       "value": {
-        "color": 0,
+        "color": -4,
         "power": 0,
-        "point": 0
+        "point": ""
       }
     },
     {
@@ -5787,17 +5787,17 @@
     {
       "key": "191",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0,
-        "point": ""
+        "point": 0
       }
     },
     {
       "key": "192",
       "value": {
-        "color": -4,
+        "color": 0,
         "power": 0,
-        "point": ""
+        "point": 0
       }
     },
     {
@@ -7005,7 +7005,7 @@
       "value": {
         "color": -3,
         "power": 0,
-        "point": ""
+        "point": "1"
       }
     },
     {
@@ -7139,7 +7139,7 @@
     {
       "key": "2318",
       "value": {
-        "color": 0,
+        "color": -2,
         "power": 0,
         "point": 0
       }
@@ -7149,7 +7149,7 @@
       "value": {
         "color": -3,
         "power": 0,
-        "point": ""
+        "point": "9"
       }
     },
     {
@@ -7245,7 +7245,7 @@
       "value": {
         "color": -4,
         "power": 0,
-        "point": ""
+        "point": "9"
       }
     },
     {
