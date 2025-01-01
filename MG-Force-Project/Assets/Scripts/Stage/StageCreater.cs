@@ -205,7 +205,7 @@ namespace Game.Stage
             // プレイヤーの生成フラグをリセット
             isPlayerCreate = true;
 
-            CheckObjectScale();
+            //CheckObjectScale();
 
             for (int i = 0; i < maxRows; i++)
             {

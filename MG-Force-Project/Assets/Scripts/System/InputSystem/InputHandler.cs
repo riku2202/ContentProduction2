@@ -226,5 +226,10 @@ namespace Game.GameSystem
             _playerInput.SwitchCurrentControlScheme(
                 (!_isKeyChange) ? GameConstants.Input.ActionDevice.GAMEPAD : GameConstants.Input.ActionDevice.GAMEPAD_2, InputSystem.GetDevice<Gamepad>());
         }
+
+        public string GetControlScheme()
+        {
+            return _playerInput.currentControlScheme;
+        }
     }
 }

@@ -91,6 +91,13 @@ namespace Game
         /// </summary>
         public static class Input
         {
+            public static class Device
+            {
+                public const string SWITCH = "switch";
+                public const string PLAY_STATION = "playstation";
+                public const string XBOX = "xbox";
+            }
+
             public static class ActionDevice
             {
                 public const string KEY_MOUSE = "KeyMouse";
