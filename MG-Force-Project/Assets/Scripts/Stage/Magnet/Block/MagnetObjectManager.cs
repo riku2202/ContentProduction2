@@ -20,16 +20,13 @@ namespace Game.Stage.Magnet
         protected MagnetController magnetController;
 
         // 磁力のコライダー付きオブジェクト
-        [SerializeField]
-        private GameObject _magnetCollider;
+        [SerializeField] private GameObject _magnetCollider;
 
         // 磁力の固定有無
-        [SerializeField]
-        protected bool magnetFixed;
+        [SerializeField] protected bool magnetFixed;
 
         // 磁力の強さ
-        [SerializeField]
-        protected MagnetData.MagnetPower magnetFixedPower;
+        [SerializeField] protected MagnetData.MagnetPower magnetFixedPower;
 
         /// <summary>
         /// 初期化処理
