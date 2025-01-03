@@ -5,10 +5,15 @@ namespace Game.Stage.Player
     /// <summary>
     /// プレイヤーの動作管理クラス(アニメーションやそのほかの処理は別の場所で行う)
     /// </summary>
-    public class PlayerMoveController : MonoBehaviour
+    public class PlayerMoveController : PlayerControllerBase
     {
-        private GameSystem.InputHandler _input;
-        
+        public PlayerMoveController(Rigidbody rigidbody)
+        {
+            this.rigidbody = rigidbody;
+        }
+
+        #region -------- Move 定数 --------
+
         // 最大速度
         private const float MAX_SPEED = 120.0f;
         // 最小速度
@@ -18,94 +23,94 @@ namespace Game.Stage.Player
         // 減速度
         private const float SUB_SPEED = 60.0f;
 
+        #endregion
+
+        #region -------- Jump 定数 --------
+
         // ジャンプ力
         private const float JUMP_POWER = 1.0f;
 
+        private const float RAYCAST_LENGTH = 0.1f;
+
+        #endregion
+
         // 現在の速度
-        private float currentSpeed = 0.0f;
-
-        // プレイヤーのRigidbody
-        private Rigidbody rb;
-
-        // プレイヤーの動作フラグ
-        private bool isActive = true;
-
-        [SerializeField]
-        // 地面に設置しているかどうか
-        private bool isGranded = true;
+        private float _currentSpeed;
 
         // 向きベクトル
         private Vector3 moveDir = Vector3.zero;
 
+        // 地面判定用
         private Vector3 raycastDir = new Vector3(0.0f, -1.0f, 0.0f);
 
-        private const float RAYCAST_LENGTH = 0.1f;
-
-        /// <summary>
-        /// 初期化処理
-        /// </summary>
-        private void Start()
+        public void Init()
         {
-            _input = GameObject.Find("InputManager").GetComponent<GameSystem.InputHandler>();
-
-            rb = GetComponent<Rigidbody>();
+            _currentSpeed = MIN_SPEED;
+            isLeftState = false;
+            isGranded = true;
         }
 
-        /// <summary>
-        /// 更新処理
-        /// </summary>
-        private void FixedUpdate()
+        public void Update()
         {
-            // 生存チェック
-            if (!isActive) return;
+            DebugManager.LogMessage($"{currentState}");
 
-            if (!isGranded)
+            switch (currentState)
             {
-                CheckGranded();
-            }
+                case State.STILLNESS:
+                    StillnessUpdate();
+                    break;
 
-            // 最大速度中は既存の移動をリセットする
-            if (currentSpeed == MAX_SPEED)
-            {
-                rb.velocity = new Vector3(MIN_SPEED, rb.velocity.y, MIN_SPEED);
-            }
+                case State.RUN:
+                    RunUpdate();
+                    break;
 
-            // 右移動
-            if (_input.IsActionPressing(GameConstants.Input.Action.RIGHTMOVE) && transform.position.x < GameConstants.TopRight.x)
-            {
-                moveDir = new Vector3(Acceleration(), moveDir.y, moveDir.z);
-            }
-            // 左移動
-            else if (_input.IsActionPressing(GameConstants.Input.Action.LEFTMOVE) && transform.position.x > GameConstants.LowerLeft.x)
-            {
-                moveDir = new Vector3(-Acceleration(), moveDir.y, moveDir.z);
-            }
-            // 停止
-            else
-            {
-                moveDir = new Vector3(Deceleration(), rb.velocity.y, rb.velocity.z);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && isGranded)
-            {
-                moveDir = new Vector3(moveDir.x, JUMP_POWER, moveDir.z);
-                isGranded = false;
+                case State.JUMP:
+                    JumpStart();
+                    break;
             }
 
             // 力を加える
-            rb.AddForce(moveDir, ForceMode.Force);
+            rigidbody.AddForce(moveDir, ForceMode.Force);
 
-            // 初期地移動(デバック用)
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (!isGranded) { JumpUpdate(); }
+        }
+
+        private void StillnessUpdate()
+        {
+            moveDir = new Vector3(Deceleration(), rigidbody.velocity.y, rigidbody.velocity.z);
+        }
+
+        private void RunUpdate()
+        {
+            // 最大速度中は既存の移動をリセットする
+            if (_currentSpeed == MAX_SPEED)
             {
-                transform.position = Vector3.zero;
-                rb.velocity = Vector3.zero;
+                rigidbody.velocity = new Vector3(MIN_SPEED, rigidbody.velocity.y, MIN_SPEED);
+            }
+
+            if (!isLeftState)
+            {
+                moveDir = new Vector3(Acceleration(), moveDir.y, moveDir.z);
+            }
+            else
+            {
+                moveDir = new Vector3(-Acceleration(), moveDir.y, moveDir.z);
             }
         }
 
-        private void CheckGranded()
+        public void JumpStart()
         {
-            isGranded =  Physics.Raycast(gameObject.transform.position, raycastDir, RAYCAST_LENGTH);
+            moveDir = new Vector3(moveDir.x, JUMP_POWER, moveDir.z);
+
+            currentState = State.STILLNESS;
+            isGranded = false;
+        }
+
+        private void JumpUpdate()
+        {
+            bool hit_raycast = Physics.Raycast(rigidbody.transform.position, raycastDir, RAYCAST_LENGTH);
+
+            if (hit_raycast) { currentState = State.STILLNESS; }
         }
 
         /// <summary>
@@ -114,19 +119,19 @@ namespace Game.Stage.Player
         /// <returns></returns>
         private float Acceleration()
         {
-            if (currentSpeed < MAX_SPEED)
+            if (_currentSpeed < MAX_SPEED)
             {
-                currentSpeed += ADD_SPEED;
+                _currentSpeed += ADD_SPEED;
 
-                if (currentSpeed > MAX_SPEED)
+                if (_currentSpeed > MAX_SPEED)
                 {
-                    currentSpeed = MAX_SPEED;
+                    _currentSpeed = MAX_SPEED;
                 }
 
-                return currentSpeed;
+                return _currentSpeed;
             }
 
-            return currentSpeed;
+            return _currentSpeed;
         }
 
         /// <summary>
@@ -135,19 +140,19 @@ namespace Game.Stage.Player
         /// <returns></returns>
         private float Deceleration()
         {
-            if (currentSpeed > MIN_SPEED)
+            if (_currentSpeed > MIN_SPEED)
             {
-                currentSpeed -= SUB_SPEED;
+                _currentSpeed -= SUB_SPEED;
 
-                if (currentSpeed < MIN_SPEED)
+                if (_currentSpeed < MIN_SPEED)
                 {
-                    currentSpeed = MIN_SPEED;
+                    _currentSpeed = MIN_SPEED;
                 }
 
-                return currentSpeed;
+                return _currentSpeed;
             }
 
-            return currentSpeed;
+            return _currentSpeed;
         }
     }
 }

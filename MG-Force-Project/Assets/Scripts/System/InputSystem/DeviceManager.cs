@@ -42,7 +42,7 @@ namespace Game.GameSystem
         {
             InputSystem.onDeviceChange += OnDeviceChange;
         }
-
+        
         /// <summary>
         /// ƒCƒxƒ“ƒg‚Ìíœ
         /// </summary>

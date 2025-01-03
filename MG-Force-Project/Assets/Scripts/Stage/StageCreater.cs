@@ -45,41 +45,38 @@ namespace Game.Stage
         private GameDataManager gameDataManager = GameDataManager.Instance;
 
         // ステージオブジェクト
-        [SerializeField]
-        private GameObject[] Objects;
+        [SerializeField] private GameObject[] Objects;
 
         // ステージオブジェクト(特殊)
-        [SerializeField]
-        private GameObject[] SpecialObjects;
+        [SerializeField] private GameObject[] _specialObjects;
 
-        [SerializeField]
-        private GameObject[] _bg;
+        [SerializeField] private GameObject[] _bgObjects;
 
         // 行列の最大数
-        private const int maxRows = 25;
-        private const int maxCols = 38;
+        private const int MAX_ROWS = 25;
+        private const int MAX_COLS = 38;
 
         // 行列のカウンター
-        private int row = maxRows - 1;
-        private int col = 0;
+        private int _row = MAX_ROWS - 1;
+        private int _col = 0;
 
         // データ用配列
-        private int[,] colorArray = new int[maxRows, maxCols];
-        private int[,] powerArray = new int[maxRows, maxCols];
+        private int[,] colorArray = new int[MAX_ROWS, MAX_COLS];
+        private int[,] powerArray = new int[MAX_ROWS, MAX_COLS];
 
         public struct Scale
         {
-            public int row;
-            public int col;
+            public int _row;
+            public int _col;
 
-            public Scale(int _row, int _col)
+            public Scale(int row, int col)
             {
-                row = _row;
-                col = _col;
+                _row = row;
+                _col = col;
             }
         }
 
-        private Scale[,] scaleArray = new Scale[maxRows, maxCols];
+        private Scale[,] scaleArray = new Scale[MAX_ROWS, MAX_COLS];
 
         // プレイヤーの生成フラグ
         private bool isPlayerCreate = false;
@@ -158,17 +155,17 @@ namespace Game.Stage
                 try
                 {
                     // 配列にデータを格納
-                    colorArray[row, col] = itemWrapper.value.color;
-                    powerArray[row, col] = itemWrapper.value.power;
-                    scaleArray[row, col] = new Scale(1, 1);
+                    colorArray[_row, _col] = itemWrapper.value.color;
+                    powerArray[_row, _col] = itemWrapper.value.power;
+                    scaleArray[_row, _col] = new Scale(1, 1);
 
                     // 次のインデックスへの移動
-                    col++;
+                    _col++;
 
-                    if (col >= maxCols)
+                    if (_col >= MAX_COLS)
                     {
-                        col = 0;
-                        row--;
+                        _col = 0;
+                        _row--;
                     }
                 }
                 catch (Exception ex)
@@ -197,7 +194,7 @@ namespace Game.Stage
 
             // 生成
             GameObject main_object = Instantiate(
-                SpecialObjects[(int)S_ObjectType.Main],
+                _specialObjects[(int)S_ObjectType.Main],
                 init_pos,
                 Quaternion.identity
                 );
@@ -207,17 +204,17 @@ namespace Game.Stage
 
             //CheckObjectScale();
 
-            for (int i = 0; i < maxRows; i++)
+            for (int i = 0; i < MAX_ROWS; i++)
             {
-                for (int j = 0; j < maxCols; j++)
+                for (int j = 0; j < MAX_COLS; j++)
                 {
-                    if (scaleArray[i, j].col == zero.col && scaleArray[i, j].row == zero.row) continue;
+                    if (scaleArray[i, j]._col == zero._col && scaleArray[i, j]._row == zero._row) continue;
 
                     GameObject obj = ObjectCreater(colorArray[i, j], powerArray[i, j]);
 
                     if (obj != null)
                     {
-                        obj.transform.localScale = new Vector3(scaleArray[i, j].col, scaleArray[i, j].row, 1.0f);
+                        obj.transform.localScale = new Vector3(scaleArray[i, j]._col, scaleArray[i, j]._row, 1.0f);
                         obj.transform.position = new Vector3(
                             INIT_X * j + ((obj.transform.localScale.x - 1) * 0.5f),
                             INIT_Y * i + ((obj.transform.localScale.y - 1) * 0.5f),
@@ -232,6 +229,12 @@ namespace Game.Stage
                         Vector3 obj_pos = obj.transform.position;
                         obj_pos.y += 0.5f;
                         obj.transform.position = obj_pos;
+                    }
+
+                    if ((colorArray[i, j] == (int)S_ObjectType.Player) && obj != null)
+                    {
+                        obj.transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
+                        obj.transform.localScale = new Vector3(20.0f, 20.0f, 20.0f);
                     }
                 }
             }
@@ -248,9 +251,9 @@ namespace Game.Stage
         /// </summary>
         private void CheckObjectScale()
         {
-            for (int i = 0; i < maxRows; i++)
+            for (int i = 0; i < MAX_ROWS; i++)
             {
-                for (int j = 0; j < maxCols; j++)
+                for (int j = 0; j < MAX_COLS; j++)
                 {
                     currentColor = colorArray[i, j];
 
@@ -261,10 +264,10 @@ namespace Game.Stage
                     if (currentColor == (int)ObjectType.NotObject || currentColor <= (int)S_ObjectType.Main) continue;
 
                     // オブジェクトの大きさが0ならスキップ
-                    if (scaleArray[i, j].row == zero.row && scaleArray[i, j].col == zero.col) continue;
+                    if (scaleArray[i, j]._row == zero._row && scaleArray[i, j]._col == zero._col) continue;
 
                     // 一番右上のブロックはスキップ
-                    if (j == maxCols - 1 && i == maxRows - 1) continue;
+                    if (j == MAX_COLS - 1 && i == MAX_ROWS - 1) continue;
 
                     // 縦横の一致数のチェック
                     bool row_flag = CheckRowPiece(i, j);
@@ -297,7 +300,7 @@ namespace Game.Stage
         /// <returns></returns>
         private bool CheckRowPiece(int _row, int _col)
         {
-            for (int i = _row; i < maxRows; i++)
+            for (int i = _row; i < MAX_ROWS; i++)
             {
                 if (currentColor != colorArray[i, _col]) break;
 
@@ -315,7 +318,7 @@ namespace Game.Stage
         /// <returns></returns>
         private bool CheckColPiece(int _row, int _col)
         {
-            for (int i = _col; i < maxCols; i++)
+            for (int i = _col; i < MAX_COLS; i++)
             {
                 if (currentColor != colorArray[_row, i]) break;
 
@@ -395,7 +398,7 @@ namespace Game.Stage
                     if (CanPlayerCreate())
                     {
                         int player_value = (int)S_ObjectType.Player * (int)GameConstants.INVERSION;
-                        GameObject player = Instantiate(SpecialObjects[player_value]);
+                        GameObject player = Instantiate(_specialObjects[player_value]);
                         PowerSet(player, power);
                         return player;
                     }
@@ -405,25 +408,25 @@ namespace Game.Stage
                 case (int)S_ObjectType.Goal:
 
                     int goal_value = (int)S_ObjectType.Goal * (int)GameConstants.INVERSION;
-                    GameObject goal = Instantiate(SpecialObjects[goal_value]);
+                    GameObject goal = Instantiate(_specialObjects[goal_value]);
                     return goal;
 
                 case (int)S_ObjectType.Gimmick:
 
                     int gimmick_value = (int)S_ObjectType.Goal * (int)GameConstants.INVERSION;
-                    GameObject gimmick = Instantiate(SpecialObjects[gimmick_value]);
+                    GameObject gimmick = Instantiate(_specialObjects[gimmick_value]);
                     return gimmick;
 
                 case (int)S_ObjectType.Moving_Floor:
 
                     int moving_floor_value = (int)S_ObjectType.Moving_Floor * (int)GameConstants.INVERSION;
-                    GameObject moving_floor = Instantiate(SpecialObjects[moving_floor_value]);
+                    GameObject moving_floor = Instantiate(_specialObjects[moving_floor_value]);
                     return moving_floor;
 
                 case (int)S_ObjectType.CanUp:
 
                     int canup_value = (int)S_ObjectType.CanUp * (int)GameConstants.INVERSION;
-                    GameObject canup = Instantiate(SpecialObjects[canup_value]);
+                    GameObject canup = Instantiate(_specialObjects[canup_value]);
                     return canup;
 
                 case (int)ObjectType.NotObject:
@@ -472,7 +475,9 @@ namespace Game.Stage
 
             Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA).transform;
 
-            Instantiate(_bg[current_index], Vector3.zero, Quaternion.identity, transform);
+            Vector3 bg_position = new Vector3(transform.position.x, transform.position.y, 1.0f);
+
+            Instantiate(_bgObjects[current_index], bg_position, Quaternion.identity, transform);
         }
     }
 }

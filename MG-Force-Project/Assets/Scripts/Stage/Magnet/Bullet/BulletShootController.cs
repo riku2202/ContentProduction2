@@ -6,8 +6,7 @@ namespace Game.Stage.Magnet
     {
         private MagnetManager magnet;
 
-        [SerializeField]
-        private GameObject bulletPrefab;
+        [SerializeField] private GameObject bulletPrefab;
 
         private void Start()
         {

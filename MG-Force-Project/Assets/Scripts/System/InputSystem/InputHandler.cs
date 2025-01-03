@@ -91,12 +91,16 @@ namespace Game.GameSystem
         /// </summary>
         public bool IsActionPressed(string action_name)
         {
-            return _playerInput.actions[action_name].triggered;
+            bool is_action_pressed = _playerInput.actions[action_name].triggered;
+
+            return is_action_pressed;
         }
 
         public bool IsActionPressing(string action_name)
         {
-            return _actionStates[action_name];
+            bool current_action_Pressed = _playerInput.actions[action_name].ReadValue<float>() != 0;
+
+            return current_action_Pressed;
         }
 
         private void InputEnableUpdate()
