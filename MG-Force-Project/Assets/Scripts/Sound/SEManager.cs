@@ -17,11 +17,9 @@ namespace Game
 
         AudioSource _audioSource;
 
-        [SerializeField]
-        private AudioClip[] _menuClips = new AudioClip[(int)Menu.MAX_SE];
+        [SerializeField] private AudioClip[] _menuClips = new AudioClip[(int)Menu.MAX_SE];
 
-        [SerializeField]
-        private AudioClip[] _ActionClips = new AudioClip[(int)Action.MAX_SE];
+        [SerializeField] private AudioClip[] _ActionClips = new AudioClip[(int)Action.MAX_SE];
 
         private InputHandler _inputHandler;
 
@@ -84,12 +82,12 @@ namespace Game
             {
                 _audioSource.volume = volume;
             }
-            else if (_inputHandler.IsActionPressed(GameConstants.Input.Action.MENU_LEFT_SELECT) &&
+            else if (_inputHandler.IsActionPressed(InputConstants.Action.MENU_LEFT_SELECT) &&
                 _audioSource.volume != MIN_VOLUME)
             {
                 _audioSource.volume -= VARIABLE_VOLUME;
             }
-            else if (_inputHandler.IsActionPressed(GameConstants.Input.Action.MENU_RIGHT_SELECT) &&
+            else if (_inputHandler.IsActionPressed(InputConstants.Action.MENU_RIGHT_SELECT) &&
                 _audioSource.volume != MAX_VOLUME)
             {
                 _audioSource.volume += VARIABLE_VOLUME;

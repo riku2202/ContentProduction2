@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2511315212230428036}
-  - component: {fileID: 4322869905636220219}
+  - component: {fileID: 7612496775859148120}
   m_Layer: 0
   m_Name: SystemMessagePrefab
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 610534194529338035}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4322869905636220219
+--- !u!114 &7612496775859148120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3233891872157078253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d177f7ce7c9ff469155c4ddbd066f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 86d6c98e22808164695dfa83d90e3835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _systemMessagePrefab: {fileID: 7817956645787591741}
+  _systemMessagePrefab: {fileID: 7454192735750405907}
   _messageText: {fileID: 4903282151734211320}
 --- !u!1 &5306810174813565660
 GameObject:
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5306810174813565660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e394aed4f89e5409027c21b6735feb, type: 3}
+  m_Script: {fileID: 11500000, guid: dd78072e5b19fd541b7a1b1993310eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7454192735750405907
@@ -285,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &610534194529338035
 Transform:
   m_ObjectHideFlags: 0
