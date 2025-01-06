@@ -23,7 +23,7 @@ namespace Game.StageScene.Magnet
 
         private float _currentPower;
 
-        //[SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject bulletPrefab;
 
         [SerializeField] private GameObject _chargeGageObj;
 
@@ -56,17 +56,19 @@ namespace Game.StageScene.Magnet
 
         private void Update()
         {
+            targetPos = new Vector3(transform.position.x + 1.0f, transform.position.y + 1.0f, 0.0f);
+
             if (_magnet.IsMagnetBoot) return;
 
             if (_canShooting)
             {
-                //GameObject gb = Instantiate(bulletPrefab);
-                //Vector3 init_position = gameObject.transform.position;
-                //init_position.y += 1;
+                GameObject gb = Instantiate(bulletPrefab);
+                Vector3 init_position = gameObject.transform.position;
+                init_position.y += 1;
 
-                //gb.transform.position = init_position;
+                gb.transform.position = init_position;
 
-                //_canShooting = false;
+                _canShooting = false;
 
                 DebugManager.LogMessage("発射ー！！！");
 

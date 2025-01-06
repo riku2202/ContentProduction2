@@ -49,6 +49,22 @@ namespace Game.StageScene.Player
                 // èÛë‘ÇÃçXêV
                 currentState = currentState | State.JUMP;
             }
+
+            if (_inputHandler.IsActionPressed(InputConstants.Action.SHOOT) &&
+                (currentState & State.JUMP) == (int)State.NOT_STATE)
+            {
+                currentState = currentState | State.SHOOT;
+            }
+
+            if (_inputHandler.IsActionPressed(InputConstants.Action.VIEW_MOVE))
+            {
+                currentState = currentState & ~State.SHOOT;
+            }
+
+            if (_inputHandler.IsActionPressed(InputConstants.Action.DEBUG_RESET))
+            {
+                playerTransform.position = new Vector3(0.0f, 1.0f, playerTransform.position.z);
+            }
         }
 
         private void ShootUpdate()

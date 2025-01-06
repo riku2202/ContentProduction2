@@ -10,20 +10,20 @@ namespace Game.StageScene.Player
         #region -------- Move 定数 --------
 
         // 最大速度
-        private const float MAX_SPEED = 120.0f;
+        private const float MAX_SPEED = 24.0f;
         // 最小速度
         private const float MIN_SPEED = 0.0f;
         // 加速度
-        private const float ADD_SPEED = 30.0f;
+        private const float ADD_SPEED = 6.0f;
         // 減速度
-        private const float SUB_SPEED = 60.0f;
+        private const float SUB_SPEED = 12.0f;
 
         #endregion
 
         #region -------- Jump 定数 --------
 
         // ジャンプ力
-        private const float JUMP_POWER = 1.0f;
+        private const float JUMP_POWER = 0.1f;
 
         private const float RAYCAST_LENGTH = 0.1f;
 
@@ -69,7 +69,7 @@ namespace Game.StageScene.Player
             }
 
             // 力を加える
-            _rigidbody.AddForce(moveDir, ForceMode.Force);
+            _rigidbody.AddForce(moveDir, ForceMode.VelocityChange);
         }
 
         private void StillnessUpdate()
@@ -80,7 +80,7 @@ namespace Game.StageScene.Player
         private void RunUpdate()
         {
             // 最大速度中は既存の移動をリセットする
-            if (_currentSpeed == MAX_SPEED)
+            if (_currentSpeed >= MAX_SPEED)
             {
                 _rigidbody.velocity = new Vector3(MIN_SPEED, _rigidbody.velocity.y, MIN_SPEED);
             }
@@ -104,6 +104,11 @@ namespace Game.StageScene.Player
 
         private void JumpUpdate()
         {
+            if (_rigidbody.velocity.y > MIN_SPEED)
+            {
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, MIN_SPEED, _rigidbody.velocity.z);
+            }
+
             bool hit_raycast = Physics.Raycast(playerTransform.position, raycastDir, RAYCAST_LENGTH);
 
             if (hit_raycast)

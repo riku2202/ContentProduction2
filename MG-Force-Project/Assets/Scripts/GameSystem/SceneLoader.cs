@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Data;
 
 namespace Game 
 {
@@ -31,13 +33,56 @@ namespace Game
         // シーンロードの進行度
         public float progress { get; private set; }
 
+        [SerializeField] private GameObject _brackOut;
+
         /// <summary>
         /// シーンのロード
         /// </summary>
         /// <param name="scene"></param>
         public void LoadScene(string scene)
         {
-            StartCoroutine(Loading(scene));
+            StartCoroutine(OnLoading(scene));
+        }
+
+        private IEnumerator OnLoading(string scene)
+        {
+            yield return StartCoroutine(BrackOut());
+
+            yield return StartCoroutine(Loading(scene));
+        }
+
+        private IEnumerator BrackOut()
+        {
+            GameObject obj = Instantiate(_brackOut);
+
+            GameObject canvas = GameObject.Find("Canvas");
+
+            obj.transform.SetParent(canvas.transform, false);
+
+            Image Sr = obj.GetComponent<Image>();
+
+            const float TIME_INTERVAL = 0.01f;  // 間隔
+            const float MIN_ALPHA = 0.0f;
+            const float MAX_ALPHA = 1.0f;
+
+            // 初期化
+            float CurrentAlpha = MIN_ALPHA;
+            // 不透明化速度
+            float BrackOutInterval = 0.01f;
+
+            /* ------ ブラックアウト ------ */
+
+            while (true)
+            {
+                if (Sr != null)
+                {
+                    Sr.color = new Color(Sr.color.r, Sr.color.g, Sr.color.b, CurrentAlpha);
+                    yield return new WaitForSeconds(TIME_INTERVAL);
+                    CurrentAlpha += BrackOutInterval;
+                }
+
+                if (CurrentAlpha >= MAX_ALPHA) break;
+            }
         }
 
         /// <summary>
@@ -67,7 +112,6 @@ namespace Game
             yield return new WaitForSeconds(delay_time);
 
             asyncLoad.allowSceneActivation = true;
-
         }
     }
 }

@@ -25,6 +25,8 @@ namespace Game.StageScene.Player
             {
                 controller.Init();
             }
+
+            transform.position = new Vector3(0.0f, 1.0f, transform.position.z);
         }
 
         private void Update()
