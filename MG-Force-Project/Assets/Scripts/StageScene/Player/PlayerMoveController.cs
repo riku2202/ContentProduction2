@@ -10,13 +10,13 @@ namespace Game.StageScene.Player
         #region -------- Move 定数 --------
 
         // 最大速度
-        private const float MAX_SPEED = 24.0f;
+        private const float MAX_SPEED = 90.0f;
         // 最小速度
         private const float MIN_SPEED = 0.0f;
         // 加速度
-        private const float ADD_SPEED = 6.0f;
+        private const float ADD_SPEED = 22.5f;
         // 減速度
-        private const float SUB_SPEED = 12.0f;
+        private const float SUB_SPEED = 45.0f;
 
         #endregion
 
@@ -83,6 +83,8 @@ namespace Game.StageScene.Player
             if (_currentSpeed >= MAX_SPEED)
             {
                 _rigidbody.velocity = new Vector3(MIN_SPEED, _rigidbody.velocity.y, MIN_SPEED);
+
+                _currentSpeed = MAX_SPEED;
             }
 
             if (currentDir == Direction.RIGHT)

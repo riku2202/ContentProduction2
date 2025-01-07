@@ -17,6 +17,8 @@ namespace Game.StageScene.Magnet
         // 弾のRigidbody
         private Rigidbody _rigidbody = null;
 
+        private Animator _animator;
+
         // ターゲットの座標
         private Vector3 _targetPos = Vector3.zero;
 
@@ -35,10 +37,12 @@ namespace Game.StageScene.Magnet
         {
             _rigidbody = GetComponent<Rigidbody>();
 
+            _animator = GetComponent<Animator>();
+
             BulletShootController bulletShoot = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<BulletShootController>();
 
             // ターゲットの座標取得
-            _targetPos = bulletShoot.targetPos;
+            _targetPos = GameObject.Find("target").GetComponent<Transform>().position;
 
             //// 弾の発射
             FiringBullet();

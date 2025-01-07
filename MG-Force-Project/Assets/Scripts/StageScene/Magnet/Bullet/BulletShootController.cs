@@ -7,7 +7,7 @@ namespace Game.StageScene.Magnet
 {
     public class BulletShootController : MonoBehaviour 
     {
-        private const float ADD_POWER = 0.2f;
+        private const float ADD_POWER = 0.1f;
 
         private enum PowerMeter
         {
@@ -29,6 +29,8 @@ namespace Game.StageScene.Magnet
 
         [SerializeField] private Image _chargeGage;
 
+        private Image _bulletGage;
+
         [SerializeField] private GameObject _powerEffectObj;
 
         private ParticleSystem _particleSystem;
@@ -45,9 +47,9 @@ namespace Game.StageScene.Magnet
 
             _magnet = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
 
-            _chargeGageObj.SetActive(false);
+            _bulletGage = GameObject.Find("EnergyGage").GetComponent<Image>();
 
-            _chargeGage = _chargeGageObj.GetComponent<Image>();
+            _chargeGageObj.SetActive(false);
 
             _powerEffectObj.SetActive(false);
 
@@ -72,6 +74,8 @@ namespace Game.StageScene.Magnet
 
                 DebugManager.LogMessage("発射ー！！！");
 
+                _bulletGage.fillAmount -= 0.1f;
+
                 _powerEffectObj.SetActive(false);
 
                 _canShooting = false;
@@ -80,7 +84,7 @@ namespace Game.StageScene.Magnet
             {
                 if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT))
                 {
-                    if (!_isCharging)
+                    if (!_isCharging && _bulletGage.fillAmount != 0.0f)
                     {
                         _isCharging = true;
 

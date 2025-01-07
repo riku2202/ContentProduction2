@@ -5835,7 +5835,7 @@
     {
       "key": "197",
       "value": {
-        "color": 9,
+        "color": 10,
         "power": 1,
         "point": 0
       }
@@ -6859,7 +6859,7 @@
     {
       "key": "2221",
       "value": {
-        "color": 5,
+        "color": 6,
         "power": 0,
         "point": 0
       }
@@ -6867,8 +6867,8 @@
     {
       "key": "2222",
       "value": {
-        "color": 10,
-        "power": 1,
+        "color": 8,
+        "power": 0,
         "point": 0
       }
     },

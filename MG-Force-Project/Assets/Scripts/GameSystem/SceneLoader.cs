@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Data;
+using Unity.VisualScripting;
 
 namespace Game 
 {
@@ -35,12 +36,16 @@ namespace Game
 
         [SerializeField] private GameObject _brackOut;
 
+        private bool _canLoading = false;
+
         /// <summary>
         /// シーンのロード
         /// </summary>
         /// <param name="scene"></param>
         public void LoadScene(string scene)
         {
+            _canLoading = true;
+
             StartCoroutine(OnLoading(scene));
         }
 
@@ -77,13 +82,16 @@ namespace Game
                 if (Sr != null)
                 {
                     Sr.color = new Color(Sr.color.r, Sr.color.g, Sr.color.b, CurrentAlpha);
-                    yield return new WaitForSeconds(TIME_INTERVAL);
-                    CurrentAlpha += BrackOutInterval;
                 }
+
+                yield return new WaitForSeconds(TIME_INTERVAL);
+
+                CurrentAlpha += BrackOutInterval;
 
                 if (CurrentAlpha >= MAX_ALPHA) break;
             }
         }
+
 
         /// <summary>
         /// ローディング処理
@@ -94,24 +102,37 @@ namespace Game
         {
             float delay_time = 1.0f;
 
-            SceneManager.LoadScene(GameConstants.Scene.Loading.ToString());
-
-            yield return new WaitForSeconds(delay_time);
-
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
-            asyncLoad.allowSceneActivation = false;
-
-            // シーンがロードできるまで繰り返す
-            while (progress < LOADING_PROGRESS_MAX)
+            if (_canLoading)
             {
-                progress = Mathf.Clamp01(asyncLoad.progress / LOADING_PROGRESS_MAX);
+                _canLoading = false;
 
-                yield return null;
+                SceneManager.LoadScene(GameConstants.Scene.Loading.ToString());
+
+                yield return new WaitForSeconds(delay_time);
+
+                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+                if (asyncLoad != null)
+                {
+                    asyncLoad.allowSceneActivation = false;
+
+                    // シーンがロードできるまで繰り返す
+                    while (progress < LOADING_PROGRESS_MAX)
+                    {
+                        progress = Mathf.Clamp01(asyncLoad.progress / LOADING_PROGRESS_MAX);
+
+                        yield return null;
+                    }
+
+                    yield return new WaitForSeconds(delay_time);
+
+                    asyncLoad.allowSceneActivation = true;
+                }
             }
-
-            yield return new WaitForSeconds(delay_time);
-
-            asyncLoad.allowSceneActivation = true;
+            else
+            {
+                yield return new WaitForSeconds(delay_time);
+            }
         }
     }
 }

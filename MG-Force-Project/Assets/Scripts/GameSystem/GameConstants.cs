@@ -54,7 +54,7 @@ namespace Game
 
         /* ================ オブジェクト ================ */
 
-        public static class Object 
+        public static class Object
         {
             public const string STAGE_SELECT = "StageSelectSceneManager";
             public const string STAGE = "StageSceneManager";
