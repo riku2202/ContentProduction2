@@ -83,7 +83,7 @@ namespace Game
         public const string STAGE_LOADER_OBJ = "StageLoader";
 
         // 生成するプレイヤーオブジェクト
-        public const string PLAYER_OBJ = "MagForce(Clone)";
+        public const string PLAYER_OBJ = "MagForce_(Clone)";
 
         /* ================ ステージ ================ */
 
