@@ -44,6 +44,18 @@ namespace Game.StageScene
             SetStage();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                gameDataManager.SetCurrentStageIndex((int)currentStage++);
+
+                SceneLoader loader = SceneLoader.Instance;
+
+                loader.LoadScene(GameConstants.Scene.StageSelect.ToString());
+            }
+        }
+
         /// <summary>
         /// ステージの生成
         /// </summary>

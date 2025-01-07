@@ -78,7 +78,7 @@ namespace Game.StageScene.Player
             {
                 RightChange();
             }
-            else if (currentDir == Direction.LEFT && _dir.y < 270.0f)
+            else if (currentDir == Direction.LEFT && _dir.y < 240.0f)
             {
                 LeftChange(); 
             }

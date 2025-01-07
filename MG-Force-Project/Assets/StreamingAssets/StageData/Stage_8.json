@@ -7067,7 +7067,7 @@
     {
       "key": "239",
       "value": {
-        "color": 8,
+        "color": 0,
         "power": 0,
         "point": 0
       }
@@ -7107,7 +7107,7 @@
     {
       "key": "2314",
       "value": {
-        "color": -2,
+        "color": 0,
         "power": 0,
         "point": 0
       }
@@ -7371,8 +7371,8 @@
     {
       "key": "249",
       "value": {
-        "color": 3,
-        "power": 1,
+        "color": 1,
+        "power": 0,
         "point": 0
       }
     },

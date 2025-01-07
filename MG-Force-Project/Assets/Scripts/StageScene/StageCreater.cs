@@ -253,6 +253,11 @@ namespace Game.StageScene
                         obj.transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
                         obj.transform.localScale = new Vector3(20.0f, 20.0f, 20.0f);
                     }
+
+                    if ((colorArray[i,j] == (int)S_ObjectType.Gimmick) && obj != null)
+                    {
+                        obj.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
+                    }
                 }
             }
         }
@@ -430,7 +435,7 @@ namespace Game.StageScene
 
                 case (int)S_ObjectType.Gimmick:
 
-                    int gimmick_value = (int)S_ObjectType.Goal * (int)GameConstants.INVERSION;
+                    int gimmick_value = (int)S_ObjectType.Gimmick * (int)GameConstants.INVERSION;
                     GameObject gimmick = Instantiate(_specialObjects[gimmick_value]);
                     return gimmick;
 
