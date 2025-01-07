@@ -8,7 +8,7 @@ namespace Game
     {
         public static class Object
         {
-            public string 
+
         }
     }
 }
