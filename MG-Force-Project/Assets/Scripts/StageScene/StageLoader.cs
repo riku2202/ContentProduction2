@@ -1,7 +1,6 @@
 using UnityEngine;
-
-using Game.GameSystem;
 using UnityEngine.SceneManagement;
+using Game.GameSystem;
 
 namespace Game.StageScene
 {
@@ -10,28 +9,27 @@ namespace Game.StageScene
     /// </summary>
     public class StageLoader : MonoBehaviour 
     {
-        private GameDataManager gameDataManager;
-
-        // ステージデータ
-        [SerializeField]
-        private StageData[] datas;
-
-        [SerializeField]
-        private GameConstants.Stage currentStage;
+        private InputHandler _inputHandler;
+        private GameDataManager _gameDataManager;
+        private StageCreater stageCreater;
 
         private Transform childTransform;
 
-        private StageCreater stageCreater;
+        // ステージデータ
+        [SerializeField] private StageData[] _stageDatas;
+
+        private static GameConstants.Stage _currentStage;
 
         private void Awake()
         {
-            gameDataManager = GameDataManager.Instance;
+            _inputHandler = InputHandler.Instance;
+            _gameDataManager = GameDataManager.Instance;
 
             Scene scene = SceneManager.GetActiveScene();
 
             if (scene.buildIndex == (int)GameConstants.Scene.StageSelect)
             {
-                gameDataManager.SetCurrentStageIndex((int)currentStage);
+                _gameDataManager.SetCurrentStageIndex((int)GameConstants.Stage.Stage_Select);
 
                 // ステージの生成
                 SetStage();
@@ -39,16 +37,14 @@ namespace Game.StageScene
                 return;
             }
 
-            gameDataManager.SetCurrentStageIndex((int)currentStage);
-
             SetStage();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (_inputHandler.IsActionPressed(InputConstants.Action.DEBUG_NEXT))
             {
-                gameDataManager.SetCurrentStageIndex((int)currentStage++);
+                _gameDataManager.SetCurrentStageIndex((int)_currentStage++);
 
                 SceneLoader loader = SceneLoader.Instance;
 
@@ -59,7 +55,7 @@ namespace Game.StageScene
         /// <summary>
         /// ステージの生成
         /// </summary>
-        public void SetStage(bool external_data = true)
+        private void SetStage(bool external_data = true)
         {
             if (external_data)
             {
@@ -70,12 +66,12 @@ namespace Game.StageScene
                 return;
             }
 
-            int stage_index = gameDataManager.GetCurrentStageIndex();
+            int stage_index = _gameDataManager.GetCurrentStageIndex();
 
             Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA).transform;
 
-            Instantiate(datas[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
-            Instantiate(datas[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
+            Instantiate(_stageDatas[stage_index].StagePrefab, Vector3.zero, Quaternion.identity);
+            Instantiate(_stageDatas[stage_index].StageBG, Vector3.zero, Quaternion.identity, transform);
         }
 
         /// <summary>
@@ -87,7 +83,7 @@ namespace Game.StageScene
         {
             DebugManager.LogMessage($"{stage_index}");
 
-            return datas[stage_index];
+            return _stageDatas[stage_index];
         }
     }
 }

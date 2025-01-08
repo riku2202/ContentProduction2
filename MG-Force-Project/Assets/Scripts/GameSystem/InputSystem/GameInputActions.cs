@@ -390,6 +390,17 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3f2c21a-0f01-4452-8ad0-b6b9efd4de25"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e80e8aa-9918-43ce-842b-d14f39c1bd79"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1019,9 +1030,36 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             ""id"": ""6d50c6dd-15e7-4da5-908d-ab5d612c29e1"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""ShortCut_1"",
                     ""type"": ""Button"",
                     ""id"": ""35a7d147-05a8-4b79-a02e-589df679b3fe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShortCut_2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1384f82-b630-40f0-8a7b-954502e1ab8f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShortCut_3"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2b32f1c-b7cd-4ff9-8a9d-1476a93cce4d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShortCut_4"",
+                    ""type"": ""Button"",
+                    ""id"": ""11a21c80-ed04-4d75-a6dd-442df08c5cee"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1032,11 +1070,44 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dca733f3-488d-4400-927a-eb2ced907612"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/f1"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ShortCut_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77d9ee29-f762-4bf5-82ab-dae028a37a84"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ShortCut_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee6d8cc7-ddff-4841-9c6e-e0b17d39e2fa"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ShortCut_3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cd5de12-4b98-4fb5-82a8-d5327bb9c206"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ShortCut_4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1054,19 +1125,158 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReUpdate"",
+                    ""type"": ""Button"",
+                    ""id"": ""28a497cd-c0ed-44f7-bb94-6e8f5a696c9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextUpdate"",
+                    ""type"": ""Button"",
+                    ""id"": ""f54c5c66-89fb-4f28-95db-be387e961911"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""dbc3a71f-26c3-4be5-bdd6-bdd4ea1649df"",
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""bceb9a5b-d207-47bf-88c7-f8f018b479cb"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""a6167fe6-e304-4a2a-97bc-9b9a6d38b48b"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""be518209-7e74-4dec-8cac-b56c8e3a8263"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""79abcff9-84c7-49de-b7fb-3947fa2a5474"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyMouse"",
                     ""action"": ""ReSet"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""fedd47ad-11ab-4a6c-8790-72cb7d956ea0"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReUpdate"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""706bf3fe-c2e7-47c5-9cd6-9585972aca5a"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReUpdate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f598ed2a-9d65-4509-af56-871c2eb6292b"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReUpdate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""86fcc398-d71f-4981-a501-5e5aeb94a244"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReUpdate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""c724458e-95f1-4d47-87ea-b9b4552560a7"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextUpdate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""68141e4c-2216-4a22-8f8d-e703e5bbaca2"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""NextUpdate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""db7a6856-1fc8-4b54-bfa2-7bb1776196b7"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""NextUpdate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""826cf9c6-5f5c-468e-859a-c7dbb6e63bc1"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""NextUpdate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1137,10 +1347,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_Menu_DownSelect = m_Menu.FindAction("DownSelect", throwIfNotFound: true);
         // Shortcut
         m_Shortcut = asset.FindActionMap("Shortcut", throwIfNotFound: true);
-        m_Shortcut_Newaction = m_Shortcut.FindAction("New action", throwIfNotFound: true);
+        m_Shortcut_ShortCut_1 = m_Shortcut.FindAction("ShortCut_1", throwIfNotFound: true);
+        m_Shortcut_ShortCut_2 = m_Shortcut.FindAction("ShortCut_2", throwIfNotFound: true);
+        m_Shortcut_ShortCut_3 = m_Shortcut.FindAction("ShortCut_3", throwIfNotFound: true);
+        m_Shortcut_ShortCut_4 = m_Shortcut.FindAction("ShortCut_4", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_ReSet = m_Debug.FindAction("ReSet", throwIfNotFound: true);
+        m_Debug_ReUpdate = m_Debug.FindAction("ReUpdate", throwIfNotFound: true);
+        m_Debug_NextUpdate = m_Debug.FindAction("NextUpdate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1522,12 +1737,18 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     // Shortcut
     private readonly InputActionMap m_Shortcut;
     private List<IShortcutActions> m_ShortcutActionsCallbackInterfaces = new List<IShortcutActions>();
-    private readonly InputAction m_Shortcut_Newaction;
+    private readonly InputAction m_Shortcut_ShortCut_1;
+    private readonly InputAction m_Shortcut_ShortCut_2;
+    private readonly InputAction m_Shortcut_ShortCut_3;
+    private readonly InputAction m_Shortcut_ShortCut_4;
     public struct ShortcutActions
     {
         private @GameInputActions m_Wrapper;
         public ShortcutActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Shortcut_Newaction;
+        public InputAction @ShortCut_1 => m_Wrapper.m_Shortcut_ShortCut_1;
+        public InputAction @ShortCut_2 => m_Wrapper.m_Shortcut_ShortCut_2;
+        public InputAction @ShortCut_3 => m_Wrapper.m_Shortcut_ShortCut_3;
+        public InputAction @ShortCut_4 => m_Wrapper.m_Shortcut_ShortCut_4;
         public InputActionMap Get() { return m_Wrapper.m_Shortcut; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1537,16 +1758,34 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ShortcutActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ShortcutActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @ShortCut_1.started += instance.OnShortCut_1;
+            @ShortCut_1.performed += instance.OnShortCut_1;
+            @ShortCut_1.canceled += instance.OnShortCut_1;
+            @ShortCut_2.started += instance.OnShortCut_2;
+            @ShortCut_2.performed += instance.OnShortCut_2;
+            @ShortCut_2.canceled += instance.OnShortCut_2;
+            @ShortCut_3.started += instance.OnShortCut_3;
+            @ShortCut_3.performed += instance.OnShortCut_3;
+            @ShortCut_3.canceled += instance.OnShortCut_3;
+            @ShortCut_4.started += instance.OnShortCut_4;
+            @ShortCut_4.performed += instance.OnShortCut_4;
+            @ShortCut_4.canceled += instance.OnShortCut_4;
         }
 
         private void UnregisterCallbacks(IShortcutActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @ShortCut_1.started -= instance.OnShortCut_1;
+            @ShortCut_1.performed -= instance.OnShortCut_1;
+            @ShortCut_1.canceled -= instance.OnShortCut_1;
+            @ShortCut_2.started -= instance.OnShortCut_2;
+            @ShortCut_2.performed -= instance.OnShortCut_2;
+            @ShortCut_2.canceled -= instance.OnShortCut_2;
+            @ShortCut_3.started -= instance.OnShortCut_3;
+            @ShortCut_3.performed -= instance.OnShortCut_3;
+            @ShortCut_3.canceled -= instance.OnShortCut_3;
+            @ShortCut_4.started -= instance.OnShortCut_4;
+            @ShortCut_4.performed -= instance.OnShortCut_4;
+            @ShortCut_4.canceled -= instance.OnShortCut_4;
         }
 
         public void RemoveCallbacks(IShortcutActions instance)
@@ -1569,11 +1808,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_ReSet;
+    private readonly InputAction m_Debug_ReUpdate;
+    private readonly InputAction m_Debug_NextUpdate;
     public struct DebugActions
     {
         private @GameInputActions m_Wrapper;
         public DebugActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ReSet => m_Wrapper.m_Debug_ReSet;
+        public InputAction @ReUpdate => m_Wrapper.m_Debug_ReUpdate;
+        public InputAction @NextUpdate => m_Wrapper.m_Debug_NextUpdate;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1586,6 +1829,12 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @ReSet.started += instance.OnReSet;
             @ReSet.performed += instance.OnReSet;
             @ReSet.canceled += instance.OnReSet;
+            @ReUpdate.started += instance.OnReUpdate;
+            @ReUpdate.performed += instance.OnReUpdate;
+            @ReUpdate.canceled += instance.OnReUpdate;
+            @NextUpdate.started += instance.OnNextUpdate;
+            @NextUpdate.performed += instance.OnNextUpdate;
+            @NextUpdate.canceled += instance.OnNextUpdate;
         }
 
         private void UnregisterCallbacks(IDebugActions instance)
@@ -1593,6 +1842,12 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @ReSet.started -= instance.OnReSet;
             @ReSet.performed -= instance.OnReSet;
             @ReSet.canceled -= instance.OnReSet;
+            @ReUpdate.started -= instance.OnReUpdate;
+            @ReUpdate.performed -= instance.OnReUpdate;
+            @ReUpdate.canceled -= instance.OnReUpdate;
+            @NextUpdate.started -= instance.OnNextUpdate;
+            @NextUpdate.performed -= instance.OnNextUpdate;
+            @NextUpdate.canceled -= instance.OnNextUpdate;
         }
 
         public void RemoveCallbacks(IDebugActions instance)
@@ -1672,10 +1927,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     }
     public interface IShortcutActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnShortCut_1(InputAction.CallbackContext context);
+        void OnShortCut_2(InputAction.CallbackContext context);
+        void OnShortCut_3(InputAction.CallbackContext context);
+        void OnShortCut_4(InputAction.CallbackContext context);
     }
     public interface IDebugActions
     {
         void OnReSet(InputAction.CallbackContext context);
+        void OnReUpdate(InputAction.CallbackContext context);
+        void OnNextUpdate(InputAction.CallbackContext context);
     }
 }
