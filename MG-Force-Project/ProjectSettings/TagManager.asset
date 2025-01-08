@@ -7,6 +7,9 @@ TagManager:
   - Moving
   - Fixed
   - Ground
+  - Box
+  - PLAYER
+  - GameConstants.Tag.PLAYER
   layers:
   - Default
   - TransparentFX
