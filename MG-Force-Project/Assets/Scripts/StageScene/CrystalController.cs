@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.StageScene
 {
@@ -24,6 +25,7 @@ namespace Game.StageScene
             _rotate.y += Time.deltaTime * _speed;
 
             gameObject.transform.eulerAngles = _rotate;
+           
         }
 
         private void OnTriggerEnter(Collider other)
@@ -31,6 +33,7 @@ namespace Game.StageScene
             if (other.gameObject.CompareTag(GameConstants.Tag.PLAYER))
             {
                 IsGoalEvent = true;
+                //SceneManager.LoadScene("Clear");//ClearScene‚É‘JˆÚ
             }
         }
     }
