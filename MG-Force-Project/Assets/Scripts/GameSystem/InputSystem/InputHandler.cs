@@ -130,6 +130,14 @@ namespace Game.GameSystem
                     InputSetMenuMap();
                     break;
             }
+
+            _playerInput.actions.FindActionMap(InputConstants.ActionMaps.SHORTCUT_MAPS).Enable();
+
+#if UNITY_EDITOR
+
+            _playerInput.actions.FindActionMap(InputConstants.ActionMaps.DEBUG_MAPS).Enable();
+
+#endif
         }
 
         #region -------- ƒL[‚Ì—LŒø‰»ˆ— --------

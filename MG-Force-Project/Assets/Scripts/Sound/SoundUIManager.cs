@@ -43,6 +43,16 @@ namespace Game
         /// </summary>
         private void Update()
         {
+            if (_bgmAudioSource == null)
+            {
+                _bgmAudioSource = GameObject.Find(GameConstants.Object.BGM_MANAGER).GetComponent<AudioSource>();
+            }
+
+            if (_seAudioSource == null)
+            {
+                _seAudioSource = GameObject.Find(GameConstants.Object.SE_MANAGER).GetComponent<AudioSource>();
+            }
+
             BGMUIUpdate();
 
             SEUIUpdate();

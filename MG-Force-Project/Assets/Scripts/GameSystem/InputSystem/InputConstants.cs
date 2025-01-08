@@ -61,10 +61,16 @@ namespace Game
             public const string MENU_DOWN_SELECT = "DownSelect";
 
             // Shortcut Action Maps
+            public const string SHORTCUT_1 = "ShortCut_1";
+            public const string SHORTCUT_2 = "ShortCut_2";
+            public const string SHORTCUT_3 = "ShortCut_3";
+            public const string SHORTCUT_4 = "ShortCut_4";
 
 #if UNITY_EDITOR
 
             // Debug Action Maps
+            public const string DEBUG_NEXT = "NextUpdate";
+            public const string DEBUG_RENEXT = "ReUpdate";
             public const string DEBUG_RESET = "ReSet";
 
 #endif

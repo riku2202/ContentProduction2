@@ -29,12 +29,15 @@ namespace Game.StageScene.Player
 
         protected static Transform playerTransform;
 
+        protected static CapsuleCollider capsuleCollider;
+
         public PlayerControllerBase() { }
 
         public PlayerControllerBase(GameObject player) 
         {
             playerObject = player;
             playerTransform = player.transform;
+            capsuleCollider= player.GetComponent<CapsuleCollider>();
         }
 
         public virtual void Init() { }

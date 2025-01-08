@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
-using UnityEngine;
-
 namespace Game.StageScene.Magnet
 {
     /// <summary>

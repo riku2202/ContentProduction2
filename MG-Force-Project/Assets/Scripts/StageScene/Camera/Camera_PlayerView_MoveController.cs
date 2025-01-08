@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Game.StageScene.Camera
 {
-
     public class CameraPlayerViewMoveController : MonoBehaviour
     {
         // ç∂â∫ÇÃí∏ì_ç¿ïW
@@ -28,7 +27,12 @@ namespace Game.StageScene.Camera
         /// </summary>
         private void Start()
         {
-            currentPlayerTransform = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<Transform>();
+            GameObject player = GameObject.Find(GameConstants.PLAYER_OBJ);
+
+            if (player != null)
+            {
+                currentPlayerTransform = player.GetComponent<Transform>();
+            }
         }
 
         /// <summary>

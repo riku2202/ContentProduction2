@@ -17,9 +17,23 @@ namespace Game
 
         AudioSource _audioSource;
 
-        [SerializeField] private AudioClip[] _menuClips = new AudioClip[(int)Menu.MAX_SE];
+        [NamedSerializeField(
+            new string[]
+            {
+                "",
+            }
+        )]
+        [SerializeField]
+        private AudioClip[] _menuClips = new AudioClip[(int)Menu.MAX_SE];
 
-        [SerializeField] private AudioClip[] _ActionClips = new AudioClip[(int)Action.MAX_SE];
+        [NamedSerializeField(
+            new string[]
+            {
+                "",
+            }
+        )]
+        [SerializeField]
+        private AudioClip[] _ActionClips = new AudioClip[(int)Action.MAX_SE];
 
         private InputHandler _inputHandler;
 

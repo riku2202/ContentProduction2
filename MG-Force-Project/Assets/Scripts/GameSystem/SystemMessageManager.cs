@@ -9,11 +9,9 @@ namespace Game
 {
     public class SystemMessageManager : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject _systemMessagePrefab;
+        [SerializeField] private GameObject _systemMessagePrefab;
 
-        [SerializeField]
-        private TextMeshProUGUI _messageText;
+        [SerializeField] private TextMeshProUGUI _messageText;
 
         private Coroutine _currentCoroutine = null;
 

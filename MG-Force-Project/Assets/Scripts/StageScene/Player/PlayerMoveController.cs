@@ -10,20 +10,20 @@ namespace Game.StageScene.Player
         #region -------- Move 定数 --------
 
         // 最大速度
-        private const float MAX_SPEED = 90.0f;
+        private const float MAX_SPEED = 54.0f;
         // 最小速度
         private const float MIN_SPEED = 0.0f;
         // 加速度
-        private const float ADD_SPEED = 22.5f;
+        private const float ADD_SPEED = 10.125f;
         // 減速度
-        private const float SUB_SPEED = 45.0f;
+        private const float SUB_SPEED = 54.0f;
 
         #endregion
 
         #region -------- Jump 定数 --------
 
         // ジャンプ力
-        private const float JUMP_POWER = 0.1f;
+        private const float JUMP_POWER = 10.0f;
 
         private const float RAYCAST_LENGTH = 0.1f;
 
@@ -67,14 +67,13 @@ namespace Game.StageScene.Player
                     JumpUpdate();
                 }
             }
-
             // 力を加える
             _rigidbody.AddForce(moveDir, ForceMode.VelocityChange);
         }
 
         private void StillnessUpdate()
         {
-            moveDir = new Vector3(Deceleration(), _rigidbody.velocity.y, _rigidbody.velocity.z);
+            moveDir = new Vector3(Deceleration(), moveDir.y, moveDir.z);
         }
 
         private void RunUpdate()
@@ -97,8 +96,12 @@ namespace Game.StageScene.Player
             }
         }
 
-        public void JumpStart()
+        private void JumpStart()
         {
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+
+            capsuleCollider.center = new Vector3(0.0f, 0.05f, 0.0f);
+
             moveDir = new Vector3(moveDir.x, JUMP_POWER, moveDir.z);
 
             _isGrounded = false;
@@ -106,16 +109,24 @@ namespace Game.StageScene.Player
 
         private void JumpUpdate()
         {
-            if (_rigidbody.velocity.y > MIN_SPEED)
+            if (moveDir.y > MIN_SPEED)
             {
-                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, MIN_SPEED, _rigidbody.velocity.z);
+                moveDir = new Vector3(moveDir.x, MIN_SPEED, moveDir.z);
             }
+
+            capsuleCollider.center = new Vector3(capsuleCollider.center.x, _rigidbody.velocity.y + 0.05f, capsuleCollider.center.z);
+
+            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _rigidbody.velocity.y + Physics.gravity.y * Time.deltaTime, _rigidbody.velocity.z);
 
             bool hit_raycast = Physics.Raycast(playerTransform.position, raycastDir, RAYCAST_LENGTH);
 
             if (hit_raycast)
             {
                 _isGrounded = true;
+
+                _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+
+                capsuleCollider.center = new Vector3(0.0f, 0.05f, 0.0f);
 
                 currentState = currentState & ~State.JUMP;
             }

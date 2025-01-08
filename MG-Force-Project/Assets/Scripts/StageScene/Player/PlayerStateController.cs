@@ -23,60 +23,84 @@ namespace Game.StageScene.Player
 
         public override void Update()
         {
+            if ((currentState & State.RUN) == (int)State.NOT_STATE &&
+                (currentState & State.JUMP) == (int)State.NOT_STATE)
+            {
+                ShootUpdate();
+            }
+
+            if ((currentState & State.SHOOT) == (int)State.NOT_STATE)
+            {
+                RunUpdate();
+
+                JumpUpdate();
+            }
+        }
+
+        private void RunUpdate()
+        {
             // 移動時の処理
             if (_inputHandler.IsActionPressing(InputConstants.Action.LEFTMOVE) &&
                 playerTransform.position.x > GameConstants.LowerLeft.x)
             {
+                currentState = currentState & ~State.STILLNESS;
                 currentState = currentState | State.RUN;
                 currentDir = Direction.LEFT;
             }
             else if (_inputHandler.IsActionPressing(InputConstants.Action.RIGHTMOVE) &&
                 playerTransform.position.x < GameConstants.TopRight.x)
             {
+                currentState = currentState & ~State.STILLNESS;
                 currentState = currentState | State.RUN;
                 currentDir = Direction.RIGHT;
             }
-            // 停止時の処理
             else
             {
                 currentState = currentState & ~State.RUN;
+                currentState = currentState | State.STILLNESS;
             }
+        }
 
+        private void JumpUpdate()
+        {
             // ジャンプ時の処理
             if (_inputHandler.IsActionPressed(InputConstants.Action.JUMP) &&
                 (currentState & State.JUMP) == (int)State.NOT_STATE)
             {
-                // 状態の更新
+                currentState = currentState & ~State.STILLNESS;
                 currentState = currentState | State.JUMP;
             }
-
-            if (_inputHandler.IsActionPressed(InputConstants.Action.SHOOT) &&
-                (currentState & State.JUMP) == (int)State.NOT_STATE)
+            else
             {
-                currentState = currentState | State.SHOOT;
-            }
-
-            if (_inputHandler.IsActionPressed(InputConstants.Action.VIEW_MOVE))
-            {
-                currentState = currentState & ~State.SHOOT;
-            }
-
-            if (_inputHandler.IsActionPressed(InputConstants.Action.DEBUG_RESET))
-            {
-                playerTransform.position = new Vector3(0.0f, 1.0f, playerTransform.position.z);
+                currentState = currentState & ~State.JUMP;
+                currentState = currentState | State.STILLNESS;
             }
         }
 
         private void ShootUpdate()
         {
-            if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_ANGLE, InputConstants.ActionVector.South))
+            if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT))
             {
-
+                currentState = currentState & ~State.STILLNESS;
+                currentState = currentState | State.SHOOT;
             }
-            else if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_ANGLE, InputConstants.ActionVector.SouthEast))
+            else
             {
-
+                currentState = currentState & ~State.SHOOT;
+                currentState = currentState | State.STILLNESS;
             }
         }
+
+        //private void ShootUpdate()
+        //{
+        //    if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_ANGLE, InputConstants.ActionVector.South))
+        //    {
+
+        //    }
+        //    else if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_ANGLE, InputConstants.ActionVector.SouthEast))
+        //    {
+
+        //    }
+        //}
     }
 }

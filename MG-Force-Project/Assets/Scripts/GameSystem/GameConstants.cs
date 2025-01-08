@@ -19,6 +19,7 @@ namespace Game
             Stage,
             Clear,
             Credits,
+            Max,
         }
 
         /* ================ タグ ================ */
@@ -56,6 +57,8 @@ namespace Game
 
         public static class Object
         {
+            public const string MAIN_STAGE = "MainStage(Clone)";
+
             public const string STAGE_SELECT = "StageSelectSceneManager";
             public const string STAGE = "StageSceneManager";
 
@@ -83,7 +86,7 @@ namespace Game
         public const string STAGE_LOADER_OBJ = "StageLoader";
 
         // 生成するプレイヤーオブジェクト
-        public const string PLAYER_OBJ = "MagForce_(Clone)";
+        public const string PLAYER_OBJ = "MagForce_Prefab(Clone)";
 
         /* ================ ステージ ================ */
 
