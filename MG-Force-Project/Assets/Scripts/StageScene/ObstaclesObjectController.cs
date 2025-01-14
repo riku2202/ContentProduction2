@@ -1,5 +1,3 @@
-using Game.StageScene.Magnet;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.StageScene 
