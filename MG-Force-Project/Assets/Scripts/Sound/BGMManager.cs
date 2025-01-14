@@ -18,7 +18,7 @@ namespace Game
             MAX_BGM,
         }
 
-        // ‰¹Œ¹‚ð—¬‚·AudioSouurce
+        // ‰¹Œ¹‚ð—¬‚·AudioSousrce
         private AudioSource _audioSource;
 
         // —¬‚·‰¹Œ¹
