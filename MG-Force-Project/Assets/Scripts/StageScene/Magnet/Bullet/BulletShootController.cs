@@ -110,6 +110,7 @@ namespace Game.StageScene.Magnet
 
         private void ChageUpdate()
         {
+
             if (_currentPower < (int)PowerMeter.MAX) { _currentPower += ADD_POWER; }
 
             _chargeGage.fillAmount = Mathf.Clamp01(_currentPower / (int)PowerMeter.MAX);
@@ -127,6 +128,16 @@ namespace Game.StageScene.Magnet
             else
             {
                 main_module.startColor = Color.red;
+            }
+
+            // ”½“]ˆ—
+            if (_isCharging)
+            {
+                _chargeGageObj.transform.localScale = new Vector3(-1f, 1f, 1f);  // XŽ²‚ð”½“]
+            }
+            else
+            {
+                _chargeGageObj.transform.localScale = new Vector3(1f, 1f, 1f);   // Œ³‚É–ß‚·
             }
         }
     }
