@@ -29,7 +29,7 @@ namespace Game.StageScene.Player
 
         protected static Transform playerTransform;
 
-        protected static CapsuleCollider capsuleCollider;
+        protected static CapsuleCollider playerBase;
 
         public PlayerControllerBase() { }
 
@@ -37,7 +37,7 @@ namespace Game.StageScene.Player
         {
             playerObject = player;
             playerTransform = player.transform;
-            capsuleCollider= player.GetComponent<CapsuleCollider>();
+            playerBase= player.GetComponent<CapsuleCollider>();
         }
 
         public virtual void Init() { }

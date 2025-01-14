@@ -27,7 +27,6 @@ namespace Game
             }
 
             transform.position = _currentPos;
-
         }
     }
 }

@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngineInternal;
 
 namespace Game.StageScene.Player 
 {
@@ -23,7 +25,7 @@ namespace Game.StageScene.Player
         #region -------- Jump ’è” --------
 
         // ƒWƒƒƒ“ƒv—Í
-        private const float JUMP_POWER = 10.0f;
+        private const float JUMP_POWER = 5.0f;
 
         private const float RAYCAST_LENGTH = 0.1f;
 
@@ -67,6 +69,7 @@ namespace Game.StageScene.Player
                     JumpUpdate();
                 }
             }
+
             // —Í‚ð‰Á‚¦‚é
             _rigidbody.AddForce(moveDir, ForceMode.VelocityChange);
         }
@@ -98,38 +101,21 @@ namespace Game.StageScene.Player
 
         private void JumpStart()
         {
-            _rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-
-            capsuleCollider.center = new Vector3(0.0f, 0.05f, 0.0f);
-
-            moveDir = new Vector3(moveDir.x, JUMP_POWER, moveDir.z);
-
             _isGrounded = false;
         }
 
         private void JumpUpdate()
         {
-            if (moveDir.y > MIN_SPEED)
-            {
-                moveDir = new Vector3(moveDir.x, MIN_SPEED, moveDir.z);
-            }
-
-            capsuleCollider.center = new Vector3(capsuleCollider.center.x, _rigidbody.velocity.y + 0.05f, capsuleCollider.center.z);
-
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _rigidbody.velocity.y + Physics.gravity.y * Time.deltaTime, _rigidbody.velocity.z);
-
             bool hit_raycast = Physics.Raycast(playerTransform.position, raycastDir, RAYCAST_LENGTH);
 
             if (hit_raycast)
             {
                 _isGrounded = true;
 
-                _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-
-                capsuleCollider.center = new Vector3(0.0f, 0.05f, 0.0f);
-
                 currentState = currentState & ~State.JUMP;
             }
+
+            Debug.DrawRay(playerTransform.position, raycastDir, Color.red, RAYCAST_LENGTH);
         }
 
         /// <summary>

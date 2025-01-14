@@ -70,11 +70,6 @@ namespace Game.StageScene.Player
                 currentState = currentState & ~State.STILLNESS;
                 currentState = currentState | State.JUMP;
             }
-            else
-            {
-                currentState = currentState & ~State.JUMP;
-                currentState = currentState | State.STILLNESS;
-            }
         }
 
         private void ShootUpdate()
