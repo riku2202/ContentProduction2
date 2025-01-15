@@ -18,7 +18,7 @@ namespace Game.StageScene.Player
 
         #region -------- Jump 定数 --------
 
-        private const float RAYCAST_LENGTH = 0.1f;
+        private const float RAYCAST_LENGTH = 0.825f;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace Game.StageScene.Player
         // 向きベクトル
         private Vector3 moveDir = Vector3.zero;
         // 地面判定用
-        private Vector3 raycastDir = new Vector3(0.0f, -1.0f, 0.0f);
+        private Vector3 raycastDir = new Vector3(0.0f, -0.825f, 0.0f);
 
         // 地面に当たっているかのフラグ
         private bool _isGrounded;
@@ -58,13 +58,15 @@ namespace Game.StageScene.Player
             }
 
             DebugManager.LogMessage($"{_isGrounded}");
+            Debug.DrawRay(GameObject.Find("hip").transform.position, raycastDir, Color.red, RAYCAST_LENGTH);
+            _isGrounded = Physics.Raycast(GameObject.Find("hip").transform.position, raycastDir, RAYCAST_LENGTH);
 
             _rigidbody.velocity = moveDir;
         }
 
         private void StillnessUpdate()
         {
-            moveDir = new Vector3(MIN_SPEED, moveDir.y, MIN_SPEED);
+            moveDir = new Vector3(MIN_SPEED, _rigidbody.velocity.y, MIN_SPEED);
         }
 
         private void RunUpdate()
