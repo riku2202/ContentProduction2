@@ -7,11 +7,27 @@ namespace Game
     {
         public enum Menu
         {
+            CANCEL,
+            CHOICE,
+            DECISION,
+            CLEAR,
+            RETRY,
+            BUTTON,
+            RESET,
+            SCENEMOVE,
             MAX_SE,
+            
         }
 
         public enum Action
         {
+            JUMP,
+            SHOT,
+            LANDING,
+            CHARGE,
+            STARTING,
+            BULLETMOVE,
+            COLLIDE,
             MAX_SE,
         }
 
@@ -20,7 +36,14 @@ namespace Game
         [NamedSerializeField(
             new string[]
             {
-                "",
+                "Cancel",
+                "Choice",
+                "Decision",
+                "Clear",
+                "Retry",
+                "Button",
+                "Reset",
+                "SceneMove"
             }
         )]
         [SerializeField]
@@ -29,7 +52,13 @@ namespace Game
         [NamedSerializeField(
             new string[]
             {
-                "",
+                "Jump",
+                "Shot",
+                "Landing",
+                "Charge",
+                "Starting",
+                "BulletMove",
+                "Collide"
             }
         )]
         [SerializeField]
@@ -73,6 +102,7 @@ namespace Game
             AudioClip set_clip = _menuClips[(int)clip_index];
 
             _audioSource.PlayOneShot(set_clip);  // çƒê∂
+
         }
 
         /// <summary>

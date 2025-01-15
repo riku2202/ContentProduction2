@@ -19,6 +19,7 @@ namespace Game.Title
         // ロード管理フラグ
         private static bool isLoadGameData = false;
 
+        private SEManager _seManager;
         #region -------- ステップ管理用定数 --------
 
         // タイトルシーンのステップ
@@ -97,7 +98,10 @@ namespace Game.Title
         private Vector3 _targetButton = new Vector3(1.2f, 1.2f, 1.2f);
 
         private Vector3 _offTargetButton = new Vector3(1.0f, 1.0f, 1.0f);
-
+        private void Start()
+        {
+            _seManager = GameObject.Find(GameConstants.Object.SE_MANAGER).GetComponent<SEManager>();
+        }
         /// <summary>
         /// 初期化処理
         /// </summary>
@@ -174,6 +178,14 @@ namespace Game.Title
             if (_input.IsActionPressed(InputConstants.Action.MENU_DECISION))
             {
                 SetStep(TitleStep.GAME_MENU);
+                _seManager.PlaySE(SEManager.Menu.CANCEL);
+                _seManager.PlaySE(SEManager.Menu.CHOICE);
+                _seManager.PlaySE(SEManager.Menu.DECISION);
+                _seManager.PlaySE(SEManager.Menu.CLEAR);
+                _seManager.PlaySE(SEManager.Menu.RETRY);
+                _seManager.PlaySE(SEManager.Menu.BUTTON);
+                _seManager.PlaySE(SEManager.Menu.RESET);
+                _seManager.PlaySE(SEManager.Menu.SCENEMOVE);
             }
         }
 
@@ -212,6 +224,13 @@ namespace Game.Title
             else if (_input.IsActionPressed(InputConstants.Action.MENU_BACK))
             {
                 SetStep(TitleStep.TITLE);
+                _seManager.PlaySE(SEManager.Action.JUMP);
+                _seManager.PlaySE(SEManager.Action.SHOT);
+                _seManager.PlaySE(SEManager.Action.LANDING);
+                _seManager.PlaySE(SEManager.Action.CHARGE);
+                _seManager.PlaySE(SEManager.Action.STARTING);
+                _seManager.PlaySE(SEManager.Action.BULLETMOVE);
+                _seManager.PlaySE(SEManager.Action.COLLIDE);
             }
 
             GameMenuButtonUpdate();
