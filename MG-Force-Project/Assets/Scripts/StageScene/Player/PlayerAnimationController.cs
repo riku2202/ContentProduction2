@@ -24,6 +24,8 @@ namespace Game.StageScene.Player
 
         private AnimationState _currentAnimState;
 
+        private float _rotateSpeed = 20.0f;
+
         public override void Init()
         {
             _animator = playerObject.GetComponent<Animator>();
@@ -78,7 +80,7 @@ namespace Game.StageScene.Player
             {
                 RightChange();
             }
-            else if (currentDir == Direction.LEFT && _dir.y < 240.0f)
+            else if (currentDir == Direction.LEFT && _dir.y < 270.0f)
             {
                 LeftChange(); 
             }
@@ -86,14 +88,14 @@ namespace Game.StageScene.Player
 
         private void LeftChange()
         {
-            _dir.y += 10.0f;
+            _dir.y += _rotateSpeed;
 
             playerTransform.eulerAngles = _dir;
         }
 
         private void RightChange()
         {
-            _dir.y -= 10.0f;
+            _dir.y -= _rotateSpeed;
 
             playerTransform.eulerAngles = _dir;
         }

@@ -11,6 +11,8 @@ namespace Game.StageScene.Player
 
         private bool _isActive;
 
+        private Vector3 _currentPos;
+
         private void Start()
         {
             _isActive = true;
@@ -35,6 +37,25 @@ namespace Game.StageScene.Player
             {
                 controller.Update();
             }
+
+            PosAdjustment();
+        }
+
+        private void PosAdjustment()
+        {
+            _currentPos = transform.position;
+
+            _currentPos.x = RoundToPrecision(_currentPos.x, 3);
+            _currentPos.y = RoundToPrecision(_currentPos.y, 3);
+            _currentPos.z = RoundToPrecision(_currentPos.z, 3);
+
+            transform.position = _currentPos;
+        }
+
+        private float RoundToPrecision(float value, int precision)
+        {
+            float factor = Mathf.Pow(10, precision);
+            return Mathf.Round(value * factor) / factor;
         }
     }
 }
