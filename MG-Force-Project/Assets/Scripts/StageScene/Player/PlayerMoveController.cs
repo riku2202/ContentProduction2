@@ -10,7 +10,7 @@ namespace Game.StageScene.Player
         #region -------- Move íËêî --------
 
         // ë¨ìx
-        private const float MOVE_SPEED = 12.0f;
+        private const float MOVE_SPEED = 10.0f;
         // ç≈è¨ë¨ìx
         private const float MIN_SPEED = 0.0f;
 
@@ -57,6 +57,8 @@ namespace Game.StageScene.Player
                 }
             }
 
+            DebugManager.LogMessage($"{_isGrounded}");
+
             _rigidbody.velocity = moveDir;
         }
 
@@ -84,7 +86,7 @@ namespace Game.StageScene.Player
 
         private void JumpUpdate()
         {
-            bool hit_raycast = Physics.Raycast(playerTransform.position, raycastDir, RAYCAST_LENGTH);
+            bool hit_raycast = Physics.Raycast(GameObject.Find("hip").transform.position, raycastDir, RAYCAST_LENGTH);
 
             if (hit_raycast)
             {
