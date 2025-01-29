@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.StageScene.Magnet
 {
-    public class BulletShootController : MonoBehaviour 
+    public class BulletShootController : MonoBehaviour
     {
         private const float ADD_POWER = 0.1f;
 

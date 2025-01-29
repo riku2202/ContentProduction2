@@ -19,10 +19,12 @@ namespace Game.Title
         // ロード管理フラグ
         private static bool isLoadGameData = false;
 
+        private SEManager _seManager;
+
         #region -------- ステップ管理用定数 --------
 
         // タイトルシーンのステップ
-        private enum TitleStep
+        public enum TitleStep
         {
             TITLE,
             GAME_MENU,
@@ -169,15 +171,15 @@ namespace Game.Title
 
         #region -------- タイトルのステップ処理 --------
 
-        private void TitleUpdate()
+        public void TitleUpdate(bool is_push_button = false)
         {
-            if (_input.IsActionPressed(InputConstants.Action.MENU_DECISION))
+            if (_input.IsActionPressed(InputConstants.Action.MENU_DECISION) || is_push_button)
             {
                 SetStep(TitleStep.GAME_MENU);
             }
         }
 
-        #endregion
+        #endregion // タイトルのステップの処理
 
         #region -------- ゲームメニューのステップ処理 --------
 
@@ -278,7 +280,7 @@ namespace Game.Title
 #endif
         }
 
-        #endregion
+        #endregion // ゲームメニューのステップ処理
 
         #region -------- スタートメニューのステップ処理 --------
 
@@ -367,7 +369,7 @@ namespace Game.Title
             _sceneLoader.LoadScene(GameConstants.Scene.StageSelect.ToString());
         }
 
-        #endregion
+        #endregion // スタートメニューのステップ処理
 
         #region -------- 設定メニューのステップ処理 --------
 
@@ -404,7 +406,7 @@ namespace Game.Title
                 SetStep(TitleStep.GAME_MENU);
             }
 
-            ChangeSoundVolume();
+            SoundVolumeUpdate();
 
             ConfigMenuButtonUpdate();
         }
@@ -455,20 +457,30 @@ namespace Game.Title
             }
         }
 
-        #region -------- サウンド設定 --------
+        #region ------------ サウンド設定 ------------
 
-        private void ChangeSoundVolume()
+        /// <summary>
+        /// 音量更新処理
+        /// </summary>
+        private void SoundVolumeUpdate()
         {
-            if (_currentButton == (int)ConfigMenu.BGM)
+            if (_currentButton == (int)ConfigMenu.BGM || _currentButton == INIT_BUTTON)
             {
+                // BGMの音量変更
                 ChangeBGMVolume();
             }
-            else if (_currentButton == (int)ConfigMenu.SE)
+            
+            if (_currentButton == (int)ConfigMenu.SE || _currentButton == INIT_BUTTON)
             {
+                // SEの音量変更
                 ChangeSEVolume();
             }
         }
 
+
+        /// <summary>
+        /// BGMの音量変更
+        /// </summary>
         private void ChangeBGMVolume()
         {
             BGMManager bgm_manager = GameObject.Find(GameConstants.Object.BGM_MANAGER).GetComponent<BGMManager>();
@@ -477,6 +489,9 @@ namespace Game.Title
             _soundSlider[(int)SoundSlider.BGM].value = bgm_manager.VolumeChange(sound);
         }
 
+        /// <summary>
+        /// SEの音量変更
+        /// </summary>
         private void ChangeSEVolume()
         {
             SEManager se_manager = GameObject.Find(GameConstants.Object.SE_MANAGER).GetComponent<SEManager>();
@@ -485,14 +500,17 @@ namespace Game.Title
             _soundSlider[(int)SoundSlider.SE].value = se_manager.VolumeChange(sound);
         }
 
-        #endregion
+        #endregion // サウンド設定
 
-        public void KeyChange()
+        /// <summary>
+        /// GamePadのキー切り替え
+        /// </summary>
+        public void GamePadKeyChange()
         {
-            _input.KeyChange();
+            _input.GamePadKeyChange();
         }
 
-        #endregion
+        #endregion // 設定メニューのステップ処理
 
         /// <summary>
         /// ステップの設定
@@ -507,6 +525,15 @@ namespace Game.Title
             _currentButton = INIT_BUTTON;
 
             _menuObjects[(int)_currentStep].SetActive(true);
+        }
+
+        /// <summary>
+        /// ステップの設定(Button呼び出し用)
+        /// </summary>
+        /// <param name="step"></param>
+        public void SetStep(int step)
+        {
+            SetStep((TitleStep)step);
         }
     }
 }

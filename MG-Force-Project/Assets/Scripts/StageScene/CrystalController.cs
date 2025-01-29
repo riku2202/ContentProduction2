@@ -24,11 +24,13 @@ namespace Game.StageScene
             _rotate.y += Time.deltaTime * _speed;
 
             gameObject.transform.eulerAngles = _rotate;
+
+            DebugManager.LogMessage($"{IsGoalEvent}");
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.gameObject.CompareTag(GameConstants.Tag.PLAYER))
+            if (collision.gameObject.CompareTag(GameConstants.Tag.PLAYER.ToString()))
             {
                 IsGoalEvent = true;
             }

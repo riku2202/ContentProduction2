@@ -5166,6 +5166,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagForce_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4938113357193661217, guid: 2e29ddacf1ad99343a5e86d2ee1e5b56,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

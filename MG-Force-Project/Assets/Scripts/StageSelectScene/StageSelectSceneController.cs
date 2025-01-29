@@ -20,12 +20,16 @@ namespace Game.StageScene
 
         public bool isStageSelectScreen { get; private set; }
 
+        private CrystalController _crystalController;
+
         private void Awake()
         {
             _inputHandler = InputHandler.Instance;
             _sceneLoader = SceneLoader.Instance;
 
             SetActive(true, false, false);
+
+            _crystalController = GameObject.Find("Crystal_Model_Prefab(Clone)").GetComponent<CrystalController>();
         }
 
         private void Update()
@@ -42,6 +46,11 @@ namespace Game.StageScene
                 {
                     MenuScreenUpdate();
                 }
+            }
+
+            if (_crystalController.IsGoalEvent)
+            {
+                _sceneLoader.LoadScene(GameConstants.Scene.Clear.ToString());
             }
         }
 

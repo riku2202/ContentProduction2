@@ -1,6 +1,7 @@
 using Game.GameSystem;
 using Game.StageScene.Magnet;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.StageScene.Player
 {
@@ -23,6 +24,10 @@ namespace Game.StageScene.Player
 
         public override void Update()
         {
+            if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_ANGLE, InputConstants.ActionVector.South))
+            {
+
+            }
             if ((currentState & State.RUN) == (int)State.NOT_STATE &&
                 (currentState & State.JUMP) == (int)State.NOT_STATE)
             {

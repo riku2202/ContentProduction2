@@ -53,12 +53,10 @@ namespace Game.StageScene.Player
                 }
                 else
                 {
-                    JumpUpdate();
+                    currentState = currentState & ~State.JUMP;
                 }
             }
 
-            DebugManager.LogMessage($"{_isGrounded}");
-            Debug.DrawRay(GameObject.Find("hip").transform.position, raycastDir, Color.red, RAYCAST_LENGTH);
             _isGrounded = Physics.Raycast(GameObject.Find("hip").transform.position, raycastDir, RAYCAST_LENGTH);
 
             _rigidbody.velocity = moveDir;
@@ -84,18 +82,6 @@ namespace Game.StageScene.Player
         private void JumpStart()
         {
             _isGrounded = false;
-        }
-
-        private void JumpUpdate()
-        {
-            bool hit_raycast = Physics.Raycast(GameObject.Find("hip").transform.position, raycastDir, RAYCAST_LENGTH);
-
-            if (hit_raycast)
-            {
-                _isGrounded = true;
-
-                currentState = currentState & ~State.JUMP;
-            }
         }
     }
 }

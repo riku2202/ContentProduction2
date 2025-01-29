@@ -238,7 +238,7 @@ namespace Game.GameSystem
 
         #endregion
 
-        public void KeyChange()
+        public void GamePadKeyChange()
         {
             _isKeyChange = !_isKeyChange;
 
