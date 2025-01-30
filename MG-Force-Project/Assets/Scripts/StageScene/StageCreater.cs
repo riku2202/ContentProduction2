@@ -524,6 +524,11 @@ namespace Game.StageScene
         // @yu-kirohi
         // ブロックのまとまりの作り方についての提案
         #region -------- ブロックのグループを作る --------
+        /// <summary>
+        /// ブロックをグループ化する関数本体
+        /// </summary>
+        /// <param name="transforms">生成されたオブジェクト群の情報、一応参照であることを明示</param>
+        /// <param name="main_object">グループの親となるオブジェクトのTransform</param>
         private void GroupingBlocks(ref Transform[,] transforms, Transform main_object)
         {
             for (int i = 0; i < MAX_ROWS; i++)
@@ -532,21 +537,59 @@ namespace Game.StageScene
                 {
                     if (transforms[i, j] != null)
                     {
-                        GameObject parent_object = Instantiate(_specialObjects[(int)S_ObjectType.Main], main_object);
-                        transforms[i, j].SetParent(parent_object.transform, false);
-                        transforms[i, j] = null;
+                        // 折角なのでScaleを流用
+                        List<Scale> list = new List<Scale>();
+                        list.Add(new Scale(i, j));
 
-                        int num = AddRightBlockToGroup(ref transforms, parent_object.transform, i, j + 1) - j + 1;
+                        // 右側の奴がグループに入るかの判定
+                        // 戻り値を使用して列数を保存
+                        int num = AddRightBlockToGroup(list, i, j + 1) - j + 1;
 
-                        AddUpBlocksToGroup(ref transforms, parent_object.transform, i + 1, j, num);
+                        // 上の行が同じグループに入るか判定
+                        AddUpBlocksToGroup(list, i + 1, j, num);
+
+                        Vector3 center = Vector3.zero;
+
+                        foreach (Scale scale in list)
+                        {
+                            if(transforms[scale._row, scale._col] == null)
+                            {
+                                continue;
+                            }
+                            center += transforms[scale._row, scale._col].position;
+                        }
+                        center /= list.Count;
+
+                        // 面倒なので、ここでは空のオブジェクトとしてMainを流用
+                        // 必要ならcolor情報に応じて生成するオブジェクトを変えるのもよし
+                        GameObject parent_object = Instantiate(_specialObjects[(int)S_ObjectType.Main], center, Quaternion.identity, main_object);
+                        foreach (Scale scale in list)
+                        {
+                            if (transforms[scale._row, scale._col] == null)
+                            {
+                                continue;
+                            }
+                            transforms[scale._row, scale._col].SetParent(parent_object.transform, true);
+                            transforms[scale._row, scale._col] = null;
+                        }
+
+                        // 必要に応じてparent_objectにAddComponent
+                        // (例)Rigidbody rigidbody = parent_object.AddComponent<Rigidbody>();\
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// 右側のブロックが同じ属性の場合、グループに振り分ける再帰関数
+        /// </summary>
+        /// <param name="transforms">オブジェクト群の情報、一応参照であることを明示</param>
+        /// <param name="parent_transform">親になるTransform</param>
+        /// <param name="row">行番号</param>
+        /// <param name="col">列番号</param>
+        /// <returns>最終の列番号</returns>
         private int AddRightBlockToGroup(ref Transform[,] transforms, Transform parent_transform, int row, int col)
         {
-
             if (col >= MAX_COLS || transforms[row, col] == null)
             {
                 return col - 1;
@@ -562,9 +605,38 @@ namespace Game.StageScene
                 }
                 return col;
             }
+
             return col - 1;
         }
 
+        private int AddRightBlockToGroup(List<Scale> list, int row, int col)
+        {
+            if (col >= MAX_COLS)
+            {
+                return col - 1;
+            }
+
+            if (colorArray[row, col] == colorArray[row, col - 1])
+            {
+                list.Add(new Scale(row,col));
+                if (col + 1 < MAX_COLS)
+                {
+                    return AddRightBlockToGroup(list, row, col + 1);
+                }
+                return col;
+            }
+
+            return col - 1;
+        }
+
+        /// <summary>
+        /// 上の行のブロック群が同じ属性の場合、グループに振り分ける再帰関数
+        /// </summary>
+        /// <param name="transforms">オブジェクト群の情報、一応参照であることを明示</param>
+        /// <param name="parent_transform">親になるTransform</param>
+        /// <param name="row">行番号</param>
+        /// <param name="col">列番号</param>
+        /// <param name="num">列数</param>
         private void AddUpBlocksToGroup(ref Transform[,] transforms, Transform parent_transform, int row, int col, int num)
         {
             if (row >= MAX_ROWS)
@@ -572,6 +644,7 @@ namespace Game.StageScene
                 return;
             }
 
+            // 下のブロックと同じ属性か判別
             for (int i = 0; i < num; i++)
             {
                 if (colorArray[row, col + i] != colorArray[row - 1, col + i])
@@ -579,6 +652,8 @@ namespace Game.StageScene
                     return;
                 }
             }
+
+            // グループへの追加処理
             for (int i = 0; i < num; i++)
             {
                 if (transforms[row, col + i] == null)
@@ -591,6 +666,31 @@ namespace Game.StageScene
 
 
             AddUpBlocksToGroup(ref transforms, parent_transform, row + 1, col, num);
+        }
+
+        private void AddUpBlocksToGroup(List<Scale> list, int row, int col, int num)
+        {
+            if (row >= MAX_ROWS)
+            {
+                return;
+            }
+
+            // 下のブロックと同じ属性か判別
+            for (int i = 0; i < num; i++)
+            {
+                if (colorArray[row, col + i] != colorArray[row - 1, col + i])
+                {
+                    return;
+                }
+            }
+
+            // グループへの追加処理
+            for (int i = 0; i < num; i++)
+            {
+                list.Add(new Scale(row, col + i));
+            }
+
+            AddUpBlocksToGroup(list, row + 1, col, num);
         }
         #endregion
     }
