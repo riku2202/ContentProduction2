@@ -19,6 +19,13 @@ namespace Game.StageScene.Magnet
 
         private Animator _animator;
 
+
+        // @yu-ki-rohi
+        // Fireで初期化を行う場合、以下のメンバ変数うち
+        // _timer以外は必要はなさそうに見えます。
+        // 多分Rigidbodyもローカルでいいかもです。
+        // Animatorも現状使用されていないかな？
+
         // ターゲットの座標
         private Vector3 _targetPos = Vector3.zero;
 
@@ -39,7 +46,13 @@ namespace Game.StageScene.Magnet
 
             _animator = GetComponent<Animator>();
 
+            // @yu-ki-rohi
+            // おそらく不要な取得ですね
             BulletShootController bulletShoot = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<BulletShootController>();
+
+            // @yu-ki-rohi
+            // 以下は仕様変更前の残骸でしょうか
+            // 実行順番的にFire→Startになると思うので、弾の挙動が意図しないものになる可能性があります
 
             // ターゲットの座標取得
             _targetPos = GameObject.Find("target").GetComponent<Transform>().position;

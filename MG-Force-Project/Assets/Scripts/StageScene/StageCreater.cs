@@ -221,6 +221,9 @@ namespace Game.StageScene
 
             //CheckObjectScale();
 
+            // #yu-ki-rohi追加分
+            Transform[,] transforms = new Transform[MAX_ROWS, MAX_COLS];
+
             for (int i = 0; i < MAX_ROWS; i++)
             {
                 for (int j = 0; j < MAX_COLS; j++)
@@ -237,9 +240,19 @@ namespace Game.StageScene
                             INIT_Y * i + ((obj.transform.localScale.y - 1) * 0.5f),
                             INIT_Z
                             );
-
+                        // @yu-ki-rohi
+                        // PlayerはMainStageの下に入れない方が、Editor上で確認しやすいと思う。
                         obj.transform.SetParent(main_object.transform, false);
+
+                        // #yu-ki-rohi追加分
+                        transforms[i, j] = obj.transform;
                     }
+
+                    // @yu-ki-rohi
+                    // 排他的関係の処理なので、else if でもいいかも。
+                    // Goalだけnullチェックが行われていないのは、何か理由があるのかな。
+                    // 毎回nullチェックするよりも、先に確認して
+                    // nullならばcontinueする、という方が見栄えよさそう。
 
                     if (colorArray[i, j] == (int)S_ObjectType.Goal)
                     {
@@ -254,12 +267,15 @@ namespace Game.StageScene
                         obj.transform.localScale = new Vector3(20.0f, 20.0f, 20.0f);
                     }
 
-                    if ((colorArray[i,j] == (int)S_ObjectType.Gimmick) && obj != null)
+                    if ((colorArray[i, j] == (int)S_ObjectType.Gimmick) && obj != null)
                     {
                         obj.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
                     }
                 }
             }
+
+            // #yu-ki-rohi追加分
+            GroupingBlocks(ref transforms, main_object.transform);
         }
 
         #region -------- ブロックの大きさの設定 --------
@@ -456,7 +472,7 @@ namespace Game.StageScene
                     return null;
 
                 default:
-                    
+
                     GameObject obj = Instantiate(Objects[color - 1]);
                     return obj;
             }
@@ -491,6 +507,9 @@ namespace Game.StageScene
             return false;
         }
 
+
+        // @yu-ki-rohi
+        // 公開メソッドが非公開の後に来てるのは違和感あるかも
         public void BGCreate()
         {
             int current_index = gameDataManager.GetCurrentStageIndex();
@@ -501,5 +520,78 @@ namespace Game.StageScene
 
             Instantiate(_bgObjects[current_index], bg_position, Quaternion.identity, transform);
         }
+
+        // @yu-kirohi
+        // ブロックのまとまりの作り方についての提案
+        #region -------- ブロックのグループを作る --------
+        private void GroupingBlocks(ref Transform[,] transforms, Transform main_object)
+        {
+            for (int i = 0; i < MAX_ROWS; i++)
+            {
+                for (int j = 0; j < MAX_COLS; j++)
+                {
+                    if (transforms[i, j] != null)
+                    {
+                        GameObject parent_object = Instantiate(_specialObjects[(int)S_ObjectType.Main], main_object);
+                        transforms[i, j].SetParent(parent_object.transform, false);
+                        transforms[i, j] = null;
+
+                        int num = AddRightBlockToGroup(ref transforms, parent_object.transform, i, j + 1) - j + 1;
+
+                        AddUpBlocksToGroup(ref transforms, parent_object.transform, i + 1, j, num);
+                    }
+                }
+            }
+        }
+
+        private int AddRightBlockToGroup(ref Transform[,] transforms, Transform parent_transform, int row, int col)
+        {
+
+            if (col >= MAX_COLS || transforms[row, col] == null)
+            {
+                return col - 1;
+            }
+
+            if (colorArray[row, col] == colorArray[row, col - 1])
+            {
+                transforms[row, col].SetParent(parent_transform, false);
+                transforms[row, col] = null;
+                if (col + 1 < MAX_COLS)
+                {
+                    return AddRightBlockToGroup(ref transforms, parent_transform, row, col + 1);
+                }
+                return col;
+            }
+            return col - 1;
+        }
+
+        private void AddUpBlocksToGroup(ref Transform[,] transforms, Transform parent_transform, int row, int col, int num)
+        {
+            if (row >= MAX_ROWS)
+            {
+                return;
+            }
+
+            for (int i = 0; i < num; i++)
+            {
+                if (colorArray[row, col + i] != colorArray[row - 1, col + i])
+                {
+                    return;
+                }
+            }
+            for (int i = 0; i < num; i++)
+            {
+                if (transforms[row, col + i] == null)
+                {
+                    continue;
+                }
+                transforms[row, col + i].SetParent(parent_transform, false);
+                transforms[row, col + i] = null;
+            }
+
+
+            AddUpBlocksToGroup(ref transforms, parent_transform, row + 1, col, num);
+        }
+        #endregion
     }
 }

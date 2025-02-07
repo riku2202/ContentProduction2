@@ -57,6 +57,16 @@ namespace Game.StageScene.Player
                 }
             }
 
+<<<<<<< HEAD
+=======
+#if false
+            DebugManager.LogMessage($"{_isGrounded}");
+            Debug.DrawRay(GameObject.Find("hip").transform.position, raycastDir, Color.red, RAYCAST_LENGTH);
+#endif
+            // @yu-kirohi
+            // 多分JumpUpdate内でやってることと同じだと思う
+            // あとUpdate内でFind使ってるのは重くなる要因かも
+>>>>>>> origin/main
             _isGrounded = Physics.Raycast(GameObject.Find("hip").transform.position, raycastDir, RAYCAST_LENGTH);
 
             _rigidbody.velocity = moveDir;

@@ -3,6 +3,14 @@ using Game.StageScene.Magnet;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// @yu-ki-rohi
+// おそらくは自機をステージと同時に生成するという都合上、
+// こういう形の実装になったのかな、と見ていますが
+// 自機が必ず存在しており、ステージごとに変わることもないので
+// 最初からシーンに設置しておいた方が作りやすいように思います。
+// その方がPlayerInputのEventsに直接処理を登録できるので。
+// その場合でもStageCreaterから座標をいじれば、遜色なくつかえるかと。
+
 namespace Game.StageScene.Player
 {
     public class PlayerStateController : PlayerControllerBase
