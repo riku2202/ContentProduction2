@@ -25,7 +25,7 @@ namespace Game.StageScene.Player
 
             foreach (var controller in playerControllers)
             {
-                controller.Init();
+                controller.OnStart();
             }
         }
 
@@ -35,7 +35,7 @@ namespace Game.StageScene.Player
 
             foreach (var controller in playerControllers)
             {
-                controller.Update();
+                controller.OnUpdate();
             }
 
             PosAdjustment();

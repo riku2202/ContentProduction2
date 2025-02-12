@@ -45,6 +45,7 @@ namespace Game
             public const string MAGNET_POWER = "PowerCharge";
             public const string SHOOT = "Shoot";
             public const string SHOOT_ANGLE = "ShootAngle";
+            public const string SHOOT_CANCEL = "ShootCancel";
             public const string RESET = "Reset";
 
             // Camera Action Maps
@@ -72,8 +73,8 @@ namespace Game
             public const string DEBUG_NEXT = "NextUpdate";
             public const string DEBUG_RENEXT = "ReUpdate";
             public const string DEBUG_RESET = "ReSet";
-
 #endif
+            public const string DEBUG_CREDITS = "CreditsMove";
         }
 
         public static class ActionVector

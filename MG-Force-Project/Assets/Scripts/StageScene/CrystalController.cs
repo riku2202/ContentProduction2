@@ -26,9 +26,9 @@ namespace Game.StageScene
             gameObject.transform.eulerAngles = _rotate;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.gameObject.CompareTag(GameConstants.Tag.PLAYER))
+            if (collision.gameObject.CompareTag(GameConstants.Tag.PLAYER.ToString()))
             {
                 IsGoalEvent = true;
             }

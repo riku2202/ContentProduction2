@@ -14,6 +14,7 @@ namespace Game
             STAGE,
             CLEAR,
             ALL_CLEAR,
+            CREDITS,
 
             MAX_BGM,
         }
@@ -27,13 +28,14 @@ namespace Game
         private InputHandler _inputHandler;
 
         // 対応するBGMマッピング用の辞書
-        private static readonly Dictionary<int, BGM> _sceneBGM = new Dictionary<int, BGM> 
+        private static readonly Dictionary<int, BGM> _sceneBGM = new Dictionary<int, BGM>
         {
             {(int)GameConstants.Scene.Title, BGM.TITLE },
             {(int) GameConstants.Scene.StageSelect, BGM.SELECT_STAGE },
             {(int) GameConstants.Scene.Stage, BGM.STAGE },
             {(int) GameConstants.Scene.Clear, BGM.CLEAR },
-            {(int) GameConstants.Scene.Credits, BGM.ALL_CLEAR },
+            {(int) GameConstants.Scene.Options, BGM.ALL_CLEAR },
+            {(int) GameConstants.Scene.Credits, BGM.CREDITS },
         };
 
         #region -------- シングルトンの設定 --------

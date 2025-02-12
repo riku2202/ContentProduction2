@@ -293,6 +293,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ShootCancel",
+                    "type": "Button",
+                    "id": "0505c8e7-25ab-46ab-941f-d1d27bc0a423",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PowerCharge",
                     "type": "Button",
                     "id": "6010c015-fa7b-4050-a534-10c874bf4b03",
@@ -450,6 +459,50 @@
                     "processors": "",
                     "groups": "Gamepad_2",
                     "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99b9a19e-024c-4ca1-a074-6eea3cf5e5b2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ShootCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dfb02781-ce49-49d7-8604-cef5659d879a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ShootCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0d42a23-3023-45d0-9b23-d722843f9709",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ShootCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99447688-f57d-44e2-8007-3d24b995dde4",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad_2",
+                    "action": "ShootCancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1096,6 +1149,15 @@
             "id": "44529aae-1b95-4893-9eae-eb9ce90eabba",
             "actions": [
                 {
+                    "name": "CreditsMove",
+                    "type": "Button",
+                    "id": "36515fa6-57ba-4cf8-9996-3650c2c23ea7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ReSet",
                     "type": "Button",
                     "id": "d4153a59-7e09-456b-8de3-a708b811d716",
@@ -1124,50 +1186,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "Two Modifiers",
-                    "id": "bceb9a5b-d207-47bf-88c7-f8f018b479cb",
-                    "path": "TwoModifiers",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ReSet",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier1",
-                    "id": "a6167fe6-e304-4a2a-97bc-9b9a6d38b48b",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyMouse",
-                    "action": "ReSet",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "modifier2",
-                    "id": "be518209-7e74-4dec-8cac-b56c8e3a8263",
-                    "path": "<Keyboard>/0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyMouse",
-                    "action": "ReSet",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "79abcff9-84c7-49de-b7fb-3947fa2a5474",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyMouse",
-                    "action": "ReSet",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "Two Modifiers",
                     "id": "fedd47ad-11ab-4a6c-8790-72cb7d956ea0",
@@ -1253,6 +1271,94 @@
                     "processors": "",
                     "groups": "KeyMouse",
                     "action": "NextUpdate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Two Modifiers",
+                    "id": "5232002d-49a4-4a07-8ac6-0d1d992f21c6",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CreditsMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "01c5edcd-e7e2-4fdb-93aa-59e4e088f263",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "CreditsMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "f3cb61ad-f2ee-4c7c-b8c2-e262bff13d3f",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "CreditsMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "ee395d57-9e52-40e0-b7a2-2f435cb0efbc",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "CreditsMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Two Modifiers",
+                    "id": "bceb9a5b-d207-47bf-88c7-f8f018b479cb",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReSet",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "a6167fe6-e304-4a2a-97bc-9b9a6d38b48b",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ReSet",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "be518209-7e74-4dec-8cac-b56c8e3a8263",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ReSet",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "79abcff9-84c7-49de-b7fb-3947fa2a5474",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "ReSet",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

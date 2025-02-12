@@ -12,6 +12,9 @@ namespace Game.ClearScene
     {
         GameDataManager gameDataManager;
 
+        private InputHandler _inputHandler;
+
+        private SceneLoader _sceneLoader;
         // 各ステージクリア時に呼び出される処理
 
         // 全ステージクリア時に呼び出される処理
@@ -24,19 +27,30 @@ namespace Game.ClearScene
         private void Start()
         {
             // ゲームデータ管理クラスの呼び出し
-            gameDataManager = GameDataManager.Instance;
+            //gameDataManager = GameDataManager.Instance;
 
-            // ステージクリア
-            gameDataManager.GetGameData().SetIsClearStage(gameDataManager.GetCurrentStageIndex());
+            //// ステージクリア
+            //gameDataManager.GetGameData().SetIsClearStage(gameDataManager.GetCurrentStageIndex());
 
-            // 全ステージクリアしたか
-            if (ClearChack() == true)
+            //// 全ステージクリアしたか
+            //if (ClearChack() == true)
+            //{
+            //    EndCredits();
+            //}
+            //else
+            //{
+            //    SceneManager.LoadScene("StageSelect");
+            //}
+
+            _inputHandler = InputHandler.Instance;
+            _sceneLoader = SceneLoader.Instance;
+        }
+
+        private void Update()
+        {
+            if (_inputHandler.IsActionPressed(InputConstants.Action.ACTION))
             {
-                EndCredits();
-            }
-            else
-            {
-                SceneManager.LoadScene("StageSelect");
+                _sceneLoader.LoadScene(GameConstants.Scene.Title.ToString());
             }
         }
 

@@ -42,14 +42,14 @@ namespace Game.StageScene
 
         private void Update()
         {
-            if (_inputHandler.IsActionPressed(InputConstants.Action.DEBUG_NEXT))
-            {
-                _gameDataManager.SetCurrentStageIndex((int)_currentStage++);
+            //if (_inputHandler.IsActionPressed(InputConstants.Action.DEBUG_NEXT))
+            //{
+            //    _gameDataManager.SetCurrentStageIndex((int)_currentStage++);
 
-                SceneLoader loader = SceneLoader.Instance;
+            //    SceneLoader loader = SceneLoader.Instance;
 
-                loader.LoadScene(GameConstants.Scene.StageSelect.ToString());
-            }
+            //    loader.LoadScene(GameConstants.Scene.StageSelect.ToString());
+            //}
         }
 
         /// <summary>

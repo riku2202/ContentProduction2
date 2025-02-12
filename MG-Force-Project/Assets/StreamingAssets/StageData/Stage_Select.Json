@@ -7139,7 +7139,7 @@
     {
       "key": "2318",
       "value": {
-        "color": -2,
+        "color": 0,
         "power": 0,
         "point": 0
       }
@@ -7147,9 +7147,9 @@
     {
       "key": "2319",
       "value": {
-        "color": -3,
+        "color": 0,
         "power": 0,
-        "point": "9"
+        "point": 0
       }
     },
     {
@@ -7171,7 +7171,7 @@
     {
       "key": "2322",
       "value": {
-        "color": 0,
+        "color": -2,
         "power": 0,
         "point": 0
       }

@@ -315,6 +315,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ShootCancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""0505c8e7-25ab-46ab-941f-d1d27bc0a423"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""PowerCharge"",
                     ""type"": ""Button"",
                     ""id"": ""6010c015-fa7b-4050-a534-10c874bf4b03"",
@@ -472,6 +481,50 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad_2"",
                     ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99b9a19e-024c-4ca1-a074-6eea3cf5e5b2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ShootCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfb02781-ce49-49d7-8604-cef5659d879a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ShootCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0d42a23-3023-45d0-9b23-d722843f9709"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ShootCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99447688-f57d-44e2-8007-3d24b995dde4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad_2"",
+                    ""action"": ""ShootCancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1118,6 +1171,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             ""id"": ""44529aae-1b95-4893-9eae-eb9ce90eabba"",
             ""actions"": [
                 {
+                    ""name"": ""CreditsMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""36515fa6-57ba-4cf8-9996-3650c2c23ea7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ReSet"",
                     ""type"": ""Button"",
                     ""id"": ""d4153a59-7e09-456b-8de3-a708b811d716"",
@@ -1146,50 +1208,6 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""Two Modifiers"",
-                    ""id"": ""bceb9a5b-d207-47bf-88c7-f8f018b479cb"",
-                    ""path"": ""TwoModifiers"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ReSet"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier1"",
-                    ""id"": ""a6167fe6-e304-4a2a-97bc-9b9a6d38b48b"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyMouse"",
-                    ""action"": ""ReSet"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""modifier2"",
-                    ""id"": ""be518209-7e74-4dec-8cac-b56c8e3a8263"",
-                    ""path"": ""<Keyboard>/0"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyMouse"",
-                    ""action"": ""ReSet"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""79abcff9-84c7-49de-b7fb-3947fa2a5474"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyMouse"",
-                    ""action"": ""ReSet"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": ""Two Modifiers"",
                     ""id"": ""fedd47ad-11ab-4a6c-8790-72cb7d956ea0"",
@@ -1277,6 +1295,94 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""NextUpdate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""5232002d-49a4-4a07-8ac6-0d1d992f21c6"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CreditsMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""01c5edcd-e7e2-4fdb-93aa-59e4e088f263"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""CreditsMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f3cb61ad-f2ee-4c7c-b8c2-e262bff13d3f"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""CreditsMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""ee395d57-9e52-40e0-b7a2-2f435cb0efbc"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""CreditsMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""bceb9a5b-d207-47bf-88c7-f8f018b479cb"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""a6167fe6-e304-4a2a-97bc-9b9a6d38b48b"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""be518209-7e74-4dec-8cac-b56c8e3a8263"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""79abcff9-84c7-49de-b7fb-3947fa2a5474"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""ReSet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1329,6 +1435,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_Magnet = asset.FindActionMap("Magnet", throwIfNotFound: true);
         m_Magnet_ShootAngle = m_Magnet.FindAction("ShootAngle", throwIfNotFound: true);
         m_Magnet_Shoot = m_Magnet.FindAction("Shoot", throwIfNotFound: true);
+        m_Magnet_ShootCancel = m_Magnet.FindAction("ShootCancel", throwIfNotFound: true);
         m_Magnet_PowerCharge = m_Magnet.FindAction("PowerCharge", throwIfNotFound: true);
         m_Magnet_PoleSwitching = m_Magnet.FindAction("PoleSwitching", throwIfNotFound: true);
         m_Magnet_Reset = m_Magnet.FindAction("Reset", throwIfNotFound: true);
@@ -1353,6 +1460,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_Shortcut_ShortCut_4 = m_Shortcut.FindAction("ShortCut_4", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_CreditsMove = m_Debug.FindAction("CreditsMove", throwIfNotFound: true);
         m_Debug_ReSet = m_Debug.FindAction("ReSet", throwIfNotFound: true);
         m_Debug_ReUpdate = m_Debug.FindAction("ReUpdate", throwIfNotFound: true);
         m_Debug_NextUpdate = m_Debug.FindAction("NextUpdate", throwIfNotFound: true);
@@ -1513,6 +1621,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private List<IMagnetActions> m_MagnetActionsCallbackInterfaces = new List<IMagnetActions>();
     private readonly InputAction m_Magnet_ShootAngle;
     private readonly InputAction m_Magnet_Shoot;
+    private readonly InputAction m_Magnet_ShootCancel;
     private readonly InputAction m_Magnet_PowerCharge;
     private readonly InputAction m_Magnet_PoleSwitching;
     private readonly InputAction m_Magnet_Reset;
@@ -1522,6 +1631,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         public MagnetActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ShootAngle => m_Wrapper.m_Magnet_ShootAngle;
         public InputAction @Shoot => m_Wrapper.m_Magnet_Shoot;
+        public InputAction @ShootCancel => m_Wrapper.m_Magnet_ShootCancel;
         public InputAction @PowerCharge => m_Wrapper.m_Magnet_PowerCharge;
         public InputAction @PoleSwitching => m_Wrapper.m_Magnet_PoleSwitching;
         public InputAction @Reset => m_Wrapper.m_Magnet_Reset;
@@ -1540,6 +1650,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @ShootCancel.started += instance.OnShootCancel;
+            @ShootCancel.performed += instance.OnShootCancel;
+            @ShootCancel.canceled += instance.OnShootCancel;
             @PowerCharge.started += instance.OnPowerCharge;
             @PowerCharge.performed += instance.OnPowerCharge;
             @PowerCharge.canceled += instance.OnPowerCharge;
@@ -1559,6 +1672,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @ShootCancel.started -= instance.OnShootCancel;
+            @ShootCancel.performed -= instance.OnShootCancel;
+            @ShootCancel.canceled -= instance.OnShootCancel;
             @PowerCharge.started -= instance.OnPowerCharge;
             @PowerCharge.performed -= instance.OnPowerCharge;
             @PowerCharge.canceled -= instance.OnPowerCharge;
@@ -1807,6 +1923,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     // Debug
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
+    private readonly InputAction m_Debug_CreditsMove;
     private readonly InputAction m_Debug_ReSet;
     private readonly InputAction m_Debug_ReUpdate;
     private readonly InputAction m_Debug_NextUpdate;
@@ -1814,6 +1931,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     {
         private @GameInputActions m_Wrapper;
         public DebugActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CreditsMove => m_Wrapper.m_Debug_CreditsMove;
         public InputAction @ReSet => m_Wrapper.m_Debug_ReSet;
         public InputAction @ReUpdate => m_Wrapper.m_Debug_ReUpdate;
         public InputAction @NextUpdate => m_Wrapper.m_Debug_NextUpdate;
@@ -1826,6 +1944,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_DebugActionsCallbackInterfaces.Add(instance);
+            @CreditsMove.started += instance.OnCreditsMove;
+            @CreditsMove.performed += instance.OnCreditsMove;
+            @CreditsMove.canceled += instance.OnCreditsMove;
             @ReSet.started += instance.OnReSet;
             @ReSet.performed += instance.OnReSet;
             @ReSet.canceled += instance.OnReSet;
@@ -1839,6 +1960,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IDebugActions instance)
         {
+            @CreditsMove.started -= instance.OnCreditsMove;
+            @CreditsMove.performed -= instance.OnCreditsMove;
+            @CreditsMove.canceled -= instance.OnCreditsMove;
             @ReSet.started -= instance.OnReSet;
             @ReSet.performed -= instance.OnReSet;
             @ReSet.canceled -= instance.OnReSet;
@@ -1906,6 +2030,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     {
         void OnShootAngle(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnShootCancel(InputAction.CallbackContext context);
         void OnPowerCharge(InputAction.CallbackContext context);
         void OnPoleSwitching(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
@@ -1934,6 +2059,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     }
     public interface IDebugActions
     {
+        void OnCreditsMove(InputAction.CallbackContext context);
         void OnReSet(InputAction.CallbackContext context);
         void OnReUpdate(InputAction.CallbackContext context);
         void OnNextUpdate(InputAction.CallbackContext context);

@@ -7,7 +7,7 @@ namespace Game.GameSystem
 {
     public class InputHandler : MonoBehaviour
     {
-        private const float THRES_HOLD = 0.1f;
+        private const float THRES_HOLD = 1.0f;
 
         private PlayerInput _playerInput;
 
@@ -109,7 +109,7 @@ namespace Game.GameSystem
         {
             Vector2 current_action_vector = _playerInput.actions[action_name].ReadValue<Vector2>();
 
-            return Vector2.Distance(current_action_vector, type) >= THRES_HOLD;
+            return Vector2.Distance(current_action_vector, type) < THRES_HOLD;
         }
 
         private void InputEnableUpdate()
@@ -238,7 +238,7 @@ namespace Game.GameSystem
 
         #endregion
 
-        public void KeyChange()
+        public void GamePadKeyChange()
         {
             _isKeyChange = !_isKeyChange;
 
