@@ -30,6 +30,8 @@ namespace Game.StageScene.Magnet
         {
             base.Update();
 
+            if (_rigitbody == null) return;
+
             // ˆÓ}‚µ‚È‚¢“®ì‚ğ–h‚®ˆ—
             if (_canMove)
             {

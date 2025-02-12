@@ -1,6 +1,7 @@
 using UnityEngine;
 using Game.GameSystem;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Game.Title
 {
@@ -78,6 +79,8 @@ namespace Game.Title
         // 現在のメニュー
         private TitleStep _currentStep;
 
+        [SerializeField] private TextMeshProUGUI _titleMessage;
+
         [SerializeField] private GameObject[] _menuObjects = new GameObject[(int)TitleStep.MAX_STEP];
 
         [SerializeField] private GameObject[] _gameMenu = new GameObject[(int)GameMenu.MAX_BUTTON];
@@ -133,6 +136,11 @@ namespace Game.Title
         /// </summary>
         private void Update()
         {
+            if (_input.IsActionPressing(InputConstants.Action.DEBUG_CREDITS))
+            {
+                _sceneLoader.LoadScene(GameConstants.Scene.Credits.ToString());
+            }
+
             switch(_currentStep)
             {
                 case TitleStep.TITLE:
@@ -173,6 +181,15 @@ namespace Game.Title
 
         public void TitleUpdate(bool is_push_button = false)
         {
+            if (_deviceManager.isGamepad)
+            {
+                _titleMessage.text = "ボタンを押してください";
+            }
+            else
+            {
+                _titleMessage.text = "画面をクリックしてください";
+            }
+
             if (_input.IsActionPressed(InputConstants.Action.MENU_DECISION) || is_push_button)
             {
                 SetStep(TitleStep.GAME_MENU);

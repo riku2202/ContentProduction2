@@ -94,7 +94,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7543511285414290266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5190,11 +5190,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e29ddacf1ad99343a5e86d2ee1e5b56,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: -8441482753966594434}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e29ddacf1ad99343a5e86d2ee1e5b56,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7447102673277699800}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e29ddacf1ad99343a5e86d2ee1e5b56,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: -3963242341459190134}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e29ddacf1ad99343a5e86d2ee1e5b56,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7611659197724668120}
+      addedObject: {fileID: -6729376431588169165}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e29ddacf1ad99343a5e86d2ee1e5b56,
         type: 3}
       insertIndex: -1
@@ -5239,6 +5247,50 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!65 &-8441482753966594434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400538784779662172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.025, y: 0.1, z: 0.025}
+  m_Center: {x: 0, y: 0.05, z: 0}
+--- !u!136 &7447102673277699800
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400538784779662172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.025
+  m_Height: 0.1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!95 &-3963242341459190134
 Animator:
   serializedVersion: 5
@@ -5260,7 +5312,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7611659197724668120
+--- !u!114 &-6729376431588169165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

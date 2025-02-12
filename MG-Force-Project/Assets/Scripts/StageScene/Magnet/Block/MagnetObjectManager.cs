@@ -61,6 +61,8 @@ namespace Game.StageScene.Magnet
         {
             _magnetCollider.SetActive(true);
 
+            if (magnetManager == null) return;
+
             // ¥—Í‚Ì‹N“®ˆ—
             if (magnetManager.IsMagnetBoot)
             {

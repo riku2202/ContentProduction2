@@ -24,8 +24,6 @@ namespace Game.StageScene
             _rotate.y += Time.deltaTime * _speed;
 
             gameObject.transform.eulerAngles = _rotate;
-
-            DebugManager.LogMessage($"{IsGoalEvent}");
         }
 
         private void OnCollisionEnter(Collision collision)

@@ -110,14 +110,11 @@ namespace Game.StageScene.Magnet
 
         private void ChageUpdate()
         {
-            // @yu-ki-rohi
-            // Update内で行われているため実行環境によってチャージ時間が変わってしまうと思います。
-            // Time.deltaTimeで重みづけをするか、FixUpdate内で行うべきかと
-            // あと{}を改行していないところが、表記ゆれしているように感じます。
-            if (_currentPower < (int)PowerMeter.MAX) { _currentPower += ADD_POWER; }
+            if (_currentPower < (int)PowerMeter.MAX)
+            {
+                _currentPower += ADD_POWER;
+            }
 
-            // @yu-ki-rohi
-            // ソース内の事ではないですが、自機が左を向いたときにゲージも反転しているのは気になりますね
             _chargeGage.fillAmount = Mathf.Clamp01(_currentPower / (int)PowerMeter.MAX);
             
             var main_module = _particleSystem.main;

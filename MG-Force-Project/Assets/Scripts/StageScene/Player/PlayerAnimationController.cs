@@ -12,92 +12,128 @@ namespace Game.StageScene.Player
 
         #endregion
 
-        protected enum AnimationState
+        private enum AnimationState
         {
+            NONE,
             IDLE,
-            RUNNING,
-            JUMPING,
-            ON_CHAGE,
+            RUN,
+            JUMP,
+            SHOOT,
+        }
+
+        private enum AnimationLayer 
+        {
+            BASE,
+            RIGHT,
+            LEFT,
         }
 
         private Animator _animator;
 
-        private AnimationState _currentAnimState;
+        private AnimationState _currentAnimationState;
 
-        private float _rotateSpeed = 20.0f;
+        private AnimationLayer _currentAnimationLayer;
 
-        public override void Init()
+        private float _currentAnimationTime;
+
+        public override void OnStart()
         {
             _animator = playerObject.GetComponent<Animator>();
 
-            _currentAnimState = AnimationState.IDLE;
+            _currentAnimationState = AnimationState.IDLE;
+
+            _currentAnimationLayer = AnimationLayer.RIGHT;
         }
 
-        public override void Update()
+        public override void OnUpdate()
         {
-            StateUpdate();
+            _animator.SetLayerWeight((int)_currentAnimationLayer, 0);
 
-            if (_animator.GetInteger(CURRENT_DIRECTION) != (int)currentDir)
+            if (currentDir == Direction.RIGHT)
             {
-                _animator.SetInteger(CURRENT_DIRECTION, (int)currentDir);
+                _currentAnimationLayer = AnimationLayer.RIGHT;
+            }
+            else
+            {
+                _currentAnimationLayer = AnimationLayer.LEFT;
             }
 
-            if (_animator.GetInteger(CURRENT_STATE) != (int)_currentAnimState)
-            {
-                _animator.SetInteger(CURRENT_STATE, (int)_currentAnimState);
-            }
+            _animator.SetLayerWeight((int)_currentAnimationLayer, 1);
 
             SetAnimatioinDir();
+
+            StateUpdate();
+
+            if (_animator.GetInteger(CURRENT_DIRECTION) != (int)shootDir)
+            {
+                _animator.SetInteger(CURRENT_DIRECTION, (int)shootDir);
+            }
+
+            if (_animator.GetInteger(CURRENT_STATE) != (int)_currentAnimationState)
+            {
+                _animator.SetInteger(CURRENT_STATE, (int)_currentAnimationState);
+            }
         }
 
         private void StateUpdate()
         {
-            if ((currentState & State.JUMP) != (int)State.NOT_STATE)
+            if ((currentState & State.SHOOT) != (int)State.NOT_STATE &&
+                _currentAnimationState == AnimationState.SHOOT)
             {
-                _currentAnimState = AnimationState.JUMPING;
+                ShootUpdate();
             }
-            else if ((currentState & State.SHOOT) != (int)State.NOT_STATE)
+
+            if (((currentState & State.JUMP) != (int)State.NOT_STATE))
             {
-                _currentAnimState = AnimationState.ON_CHAGE;
+                _currentAnimationState = AnimationState.JUMP;
             }
-            else if ((currentState & State.RUN) != (int)State.NOT_STATE)
-            {
-                _currentAnimState = AnimationState.RUNNING;
-            }
-            else if ((currentState & State.STILLNESS) != (int)State.NOT_STATE)
-            {
-                _currentAnimState = AnimationState.IDLE;
+            else if (isGrounded)
+            {                
+                if ((currentState & State.RUN) != (int)State.NOT_STATE)
+                {
+                    _currentAnimationState = AnimationState.RUN;
+                }
+                else if ((currentState & State.STILLNESS) != (int)State.NOT_STATE)
+                {
+                    if ((currentState & State.SHOOT) != (int)State.NOT_STATE)
+                    {
+                        if (_currentAnimationState != AnimationState.SHOOT)
+                        {
+                            _currentAnimationTime = 0.0f;
+                        }
+
+                        _currentAnimationState = AnimationState.SHOOT;
+                    }
+                    else
+                    {
+                        _currentAnimationState = AnimationState.IDLE;
+                    }
+                }
             }
         }
-
-        private Vector3 _dir;
 
         private void SetAnimatioinDir()
         {
-            _dir = playerTransform.eulerAngles;
-
-            if (currentDir == Direction.RIGHT && _dir.y > 90.0f)
+            if (_currentAnimationLayer == AnimationLayer.RIGHT)
             {
-                RightChange();
+                playerTransform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
             }
-            else if (currentDir == Direction.LEFT && _dir.y < 270.0f)
+            else
             {
-                LeftChange(); 
+                playerTransform.eulerAngles = new Vector3(0.0f, 270.0f, 0.0f);
             }
         }
 
-        private void LeftChange()
+        private void ShootUpdate()
         {
-            _dir.y += _rotateSpeed;
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo((int)_currentAnimationLayer);
 
-            playerTransform.eulerAngles = _dir;
-        }
+            _currentAnimationTime = stateInfo.normalizedTime;
 
-        private void RightChange()
-        {
-            _dir.y -= _rotateSpeed;
-
-            playerTransform.eulerAngles = _dir;
+            if (_currentAnimationTime >= 0.7f)
+            {
+                _animator.Play(stateInfo.shortNameHash, (int)_currentAnimationLayer, 0.375f);
+            }
         }
     }
 }

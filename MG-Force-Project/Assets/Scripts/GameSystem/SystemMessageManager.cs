@@ -2,8 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Game.GameSystem;
-using UnityEngine.InputSystem;
 
 namespace Game 
 {
@@ -31,9 +29,9 @@ namespace Game
                 StopCoroutine(_currentCoroutine);
             }
 
-            _messageText.text = message;
-
             _systemMessagePrefab.SetActive(true);
+
+            _messageText.text = message;
 
             _currentCoroutine = StartCoroutine(MessageStart());
         }

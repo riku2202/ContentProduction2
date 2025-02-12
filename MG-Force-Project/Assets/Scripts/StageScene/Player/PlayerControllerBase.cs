@@ -24,6 +24,10 @@ namespace Game.StageScene.Player
 
         protected static Direction currentDir;
 
+        protected static float shootDir;
+
+        protected static bool isGrounded;
+
         // プレイヤーオブジェクト
         protected static GameObject playerObject;
 
@@ -37,8 +41,8 @@ namespace Game.StageScene.Player
             playerTransform = player.transform;
         }
 
-        public virtual void Init() { }
+        public virtual void OnStart() { }
 
-        public virtual void Update() { }
+        public virtual void OnUpdate() { }
     }
 }
