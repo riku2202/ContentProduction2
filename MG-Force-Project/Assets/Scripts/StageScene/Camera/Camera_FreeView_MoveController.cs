@@ -6,10 +6,10 @@ namespace Game.StageScene.Camera
     public class CameraFreeViewMoveController : MonoBehaviour
     {
         /*
-         *　カメラを複数用意するとaudioだったりで処理がよくないので 
-         *  一つのカメラに二つのモードを管理させるようにする
-         *  ・両方管理クラスと個別管理クラス*2の合計3つ
-         *  ・ステージ選択画面でも使用できるような仕様にする
+        　　【やることリスト】カメラ
+        　　・ステージのカメラは一旦置いておくとする
+        　　・ビューモードの処理を作成
+        　　・ステージシーンのカメラの実装を返る
         */
 
         [SerializeField]

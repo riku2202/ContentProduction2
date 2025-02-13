@@ -91,7 +91,7 @@ namespace Game.GameSystem
 
         public void SetCurrentStageIndex(int stage_index)
         {
-            if (stage_index >= GameConstants.STAGE_MAX_NUM) { return; }
+            if (stage_index >= GameConstants.STAGE_MAX_NUM) return;
 
             currentStageIndex = stage_index;
         }

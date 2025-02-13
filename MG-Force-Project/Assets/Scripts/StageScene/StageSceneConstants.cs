@@ -6,9 +6,6 @@ namespace Game
 {
     public static class StageSceneConstants
     {
-        public static class Object
-        {
 
-        }
     }
 }

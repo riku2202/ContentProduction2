@@ -77,7 +77,6 @@ namespace Game.StageScene.Player
                 }
                 else
                 {
-                    Debug.Log("TEst");
                     currentState = currentState & ~State.JUMP;
 
                     if ((currentState & State.RUN) == (int)State.NOT_STATE)

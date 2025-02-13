@@ -70,8 +70,6 @@ namespace Game.StageScene.Player
                 moveDir.y = MIN_SPEED;
             }
 
-            Debug.Log($"{moveDir}");
-
             // RigidbodyÇÃçXêV
             _rigidbody.velocity = moveDir;
         }

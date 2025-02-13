@@ -84,10 +84,10 @@ namespace Game
                 yield return null;
             }
 
-            _meesageBox.SetActive(false);
-
             // ÉQÅ[ÉÄÇÃçƒäJ
             Time.timeScale = 1;
+
+            _meesageBox.SetActive(false);
         }
 
         private void ShowMessageBox(ErrorCode error_code)
