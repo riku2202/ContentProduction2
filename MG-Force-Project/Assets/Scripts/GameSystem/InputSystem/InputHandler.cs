@@ -109,6 +109,18 @@ namespace Game.GameSystem
         {
             Vector2 current_action_vector = _playerInput.actions[action_name].ReadValue<Vector2>();
 
+            // 座標が1以上(マウス座標)の時
+            if (current_action_vector.x > 1.0f || current_action_vector.y > 1.0f ||
+                current_action_vector.x < -1.0f || current_action_vector.y < -1.0f)
+            {
+                current_action_vector = new Vector2(960.0f, 540.0f) - current_action_vector;
+
+                current_action_vector = -current_action_vector;
+            }
+
+            // 正規化して最小値に
+            current_action_vector = current_action_vector.normalized;
+
             return Vector2.Distance(current_action_vector, type) < THRES_HOLD;
         }
 

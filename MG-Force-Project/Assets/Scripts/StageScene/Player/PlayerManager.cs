@@ -31,7 +31,7 @@ namespace Game.StageScene.Player
 
         private void Update()
         {
-            if (!_isActive) { return; }
+            if (!_isActive) return;
 
             foreach (var controller in playerControllers)
             {

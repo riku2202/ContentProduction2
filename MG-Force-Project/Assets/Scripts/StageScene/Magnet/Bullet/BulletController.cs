@@ -19,13 +19,6 @@ namespace Game.StageScene.Magnet
 
         private Animator _animator;
 
-
-        // @yu-ki-rohi
-        // Fireで初期化を行う場合、以下のメンバ変数うち
-        // _timer以外は必要はなさそうに見えます。
-        // 多分Rigidbodyもローカルでいいかもです。
-        // Animatorも現状使用されていないかな？
-
         // ターゲットの座標
         private Vector3 _targetPos = Vector3.zero;
 
@@ -46,16 +39,8 @@ namespace Game.StageScene.Magnet
 
             _animator = GetComponent<Animator>();
 
-            // @yu-ki-rohi
-            // おそらく不要な取得ですね
-            BulletShootController bulletShoot = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<BulletShootController>();
-
-            // @yu-ki-rohi
-            // 以下は仕様変更前の残骸でしょうか
-            // 実行順番的にFire→Startになると思うので、弾の挙動が意図しないものになる可能性があります
-
             // ターゲットの座標取得
-            _targetPos = GameObject.Find("target").GetComponent<Transform>().position;
+            _targetPos = BulletLineController.GetDirection();
 
             //// 弾の発射
             FiringBullet();
@@ -89,32 +74,32 @@ namespace Game.StageScene.Magnet
             _rigidbody.AddForce(_direction, ForceMode.Impulse);
         }
 
-        /// <summary>
-        /// 外部から呼び出し可能な弾の発射処理
-        /// </summary>
-        /// <param name="fireDirection">発射する方向ベクトル</param>
-        /// <param name="speed">弾の速度</param>
-        public void Fire(Vector3 fireDirection, float speed)
-        {
-            if (_rigidbody == null)
-            {
-                _rigidbody = GetComponent<Rigidbody>();
-            }
+        ///// <summary>
+        ///// 外部から呼び出し可能な弾の発射処理
+        ///// </summary>
+        ///// <param name="fireDirection">発射する方向ベクトル</param>
+        ///// <param name="speed">弾の速度</param>
+        //public void Fire(Vector3 fireDirection, float speed)
+        //{
+        //    if (_rigidbody == null)
+        //    {
+        //        _rigidbody = GetComponent<Rigidbody>();
+        //    }
 
-            if (_rigidbody != null)
-            {
-                // 方向を正規化して速度を設定
-                _direction = fireDirection.normalized;
-                _bulletSpeed = speed;
+        //    if (_rigidbody != null)
+        //    {
+        //        // 方向を正規化して速度を設定
+        //        _direction = fireDirection.normalized;
+        //        _bulletSpeed = speed;
 
-                // 向きベクトルに応じて力を加える
-                _rigidbody.AddForce(_direction * _bulletSpeed, ForceMode.Impulse);
-            }
-            else
-            {
-                Debug.LogError("Rigidbody が存在しないため、弾を発射できません。");
-            }
-        }
+        //        // 向きベクトルに応じて力を加える
+        //        _rigidbody.AddForce(_direction * _bulletSpeed, ForceMode.Impulse);
+        //    }
+        //    else
+        //    {
+        //        DebugManager.LogMessage("Rigidbody が存在しないため、弾を発射できません。", DebugManager.MessageType.Error);
+        //    }
+        //}
 
         private void OnTriggerEnter(Collider other)
         {

@@ -432,7 +432,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b8a0ce98-f06d-4e1b-94af-afeb338c6822"",
-                    ""path"": ""<Mouse>/scroll"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyMouse"",

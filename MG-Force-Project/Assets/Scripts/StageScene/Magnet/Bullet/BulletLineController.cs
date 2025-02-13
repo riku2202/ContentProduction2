@@ -7,46 +7,53 @@ namespace Game.StageScene.Magnet
 {
     public class BulletLineController : MonoBehaviour
     {
-        private InputHandler _inputHandler;
+        private static InputHandler _inputHandler;
 
-        private Transform _player;
+        private Transform _playerTransform;
         
         private LineRenderer _lineRenderer;
 
-        private Vector3 _currentDirection = Vector3.zero;
+        private static Vector3 _currentDirection = Vector3.zero;
 
         private void Start()
         {
             _inputHandler = InputHandler.Instance;
 
-            _player = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<Transform>();
+            _playerTransform = GameObject.Find(GameConstants.PLAYER_OBJ).GetComponent<Transform>();
 
             _lineRenderer = GetComponent<LineRenderer>();
         }
 
         private void Update()
         {
+            Vector3 start_point = _playerTransform.position;
+            start_point.y += 1.0f;
+
             float maxDistance = 10f;
 
             _currentDirection = GetDirection();
 
-            if (Physics.Raycast(_player.position, _currentDirection, out RaycastHit hit, maxDistance, (int)GameConstants.Layer.DEFAULT))
+            if (Physics.Raycast(start_point, _currentDirection, out RaycastHit hit, maxDistance))
             {
-                if (hit.collider.CompareTag(GameConstants.Tag.FIXED.ToString()) || 
-                    hit.collider.CompareTag(GameConstants.Tag.MOVING.ToString()))
+                if (hit.collider.isTrigger == false)
                 {
-                    _lineRenderer.SetPosition(0, _player.position);
+                    _lineRenderer.SetPosition(0, start_point);
                     _lineRenderer.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    _lineRenderer.SetPosition(0, start_point);
+                    _lineRenderer.SetPosition(1, start_point + _currentDirection * maxDistance);
                 }
             }
             else
             {
-                _lineRenderer.SetPosition(0, _player.position);
-                _lineRenderer.SetPosition(1, _player.position + _currentDirection * maxDistance);
+                _lineRenderer.SetPosition(0, start_point);
+                _lineRenderer.SetPosition(1, start_point + _currentDirection * maxDistance);
             }
         }
 
-        private Vector3 GetDirection()
+        public static Vector3 GetDirection()
         {
             if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_ANGLE, InputConstants.ActionVector.North))
             {
@@ -76,8 +83,6 @@ namespace Game.StageScene.Magnet
             {
                 return InputConstants.ActionVector.SouthWest;
             }
-
-            Debug.Log("Test");
 
             return _currentDirection;
         }

@@ -46,16 +46,15 @@ namespace Game.StageScene.Magnet
             // ílÇÃëùå∏ÇåàíË
             float reverse = (_direction > 0) ? FORWARD : REVERSE;
 
+            Rigidbody rigidbody = self.GetComponent<Rigidbody>();
+
             // à⁄ìÆèàóù
             if (_selfData.MyMangetType == _otherData.MyMangetType)
             {
-                Rigidbody rigidbody = self.GetComponent<Rigidbody>();
-
                 rigidbody.AddForce(MagnetMove(reverse), ForceMode.Force);
             }
             else
             {
-                Rigidbody rigidbody = self.GetComponent<Rigidbody>();
 
                 rigidbody.AddForce(MagnetMove(-reverse), ForceMode.Force);
             }
