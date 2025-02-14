@@ -78,7 +78,7 @@ namespace Game.GameSystem
 
         private void InputDeviceUpdate()
         {
-            if (_deviceManager.isGamepad && _playerInput.currentControlScheme == InputConstants.ActionDevice.KEY_MOUSE)
+            if (_deviceManager.isGamepad)
             {
                 _playerInput.SwitchCurrentControlScheme(
                     (!_isKeyChange) ? InputConstants.ActionDevice.GAMEPAD : InputConstants.ActionDevice.GAMEPAD_2, InputSystem.GetDevice<Gamepad>());
@@ -95,7 +95,7 @@ namespace Game.GameSystem
         public bool IsActionPressed(string action_name)
         {
             bool is_action_pressed = _playerInput.actions[action_name].triggered;
-
+            
             return is_action_pressed;
         }
 
