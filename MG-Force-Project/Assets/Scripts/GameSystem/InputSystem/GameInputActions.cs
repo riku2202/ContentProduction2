@@ -885,6 +885,17 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""31375c9f-a39b-4972-8bad-9cc24373e013"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyMouse"",
+                    ""action"": ""Decision"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""90f07683-cef1-481a-8715-212296c91f36"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",

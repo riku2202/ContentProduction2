@@ -44,13 +44,13 @@ namespace Game.StageScene.Camera
         /// </summary>
         private void Update()
         {
-            if (_input.IsActionPressed(InputConstants.Action.VIEW_MODE_START) ||
-                _input.IsActionPressed(InputConstants.Action.VIEW_MODE_END))
-            {
-                _currentCameraType = (_currentCameraType != CameraType.PLAYER_VIEW) ? CameraType.PLAYER_VIEW : CameraType.FREE_VIEW;
+            //if (_input.IsActionPressed(InputConstants.Action.VIEW_MODE_START) ||
+            //    _input.IsActionPressed(InputConstants.Action.VIEW_MODE_END))
+            //{
+            //    _currentCameraType = (_currentCameraType != CameraType.PLAYER_VIEW) ? CameraType.PLAYER_VIEW : CameraType.FREE_VIEW;
 
-                ChangeActive();
-            }
+            //    ChangeActive();
+            //}
         }
 
         private void ChangeActive()

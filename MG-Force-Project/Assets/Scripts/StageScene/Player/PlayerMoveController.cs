@@ -126,13 +126,15 @@ namespace Game.StageScene.Player
             {
                 if (hit.collider.CompareTag(GameConstants.Tag.UNTAGGED)) return;
 
-                if (hit.collider.isTrigger != true || hit.collider == null)
+                if (hit.collider.isTrigger != true)
                 {
                     isGrounded = true;
                 }
             }
-
-            Debug.Log(isGrounded);
+            else
+            {
+                isGrounded = false;
+            }
 
 #if UNITY_EDITOR
             Debug.DrawRay(playerTransform.position, raycastDir * RAYCAST_LENGTH, Color.red);

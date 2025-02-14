@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Game.GameSystem;
 using UnityEngine;
 
 namespace Game.StageScene.Magnet
@@ -8,7 +8,7 @@ namespace Game.StageScene.Magnet
     /// </summary>
     public class MagnetObjectManager : MonoBehaviour
     {
-        GameSystem.InputHandler input;
+        private InputHandler input;
 
         // 磁力データ
         public MagnetData MyData {  get; protected set; }
@@ -33,7 +33,7 @@ namespace Game.StageScene.Magnet
         /// </summary>
         protected virtual void Start()
         {
-            input = GameObject.Find(GameConstants.Object.INPUT).GetComponent<GameSystem.InputHandler>();
+            input = InputHandler.Instance;
 
             magnetManager = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
             magnetController = new MagnetController();
@@ -106,6 +106,9 @@ namespace Game.StageScene.Magnet
 
             // 磁力データの設定
             MyData.SetMagnetData(reset_type, reset_power);
+
+            MagnetUIManager ui = GameObject.Find("MagnetUIManager").GetComponent<MagnetUIManager>();
+            ui.Reset();
 
             DebugManager.LogMessage("リセットしました");
         }

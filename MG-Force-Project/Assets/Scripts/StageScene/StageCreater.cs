@@ -240,6 +240,7 @@ namespace Game.StageScene
                             INIT_Y * i + ((obj.transform.localScale.y - 1) * 0.5f),
                             INIT_Z
                             );
+
                         // @yu-ki-rohi
                         // PlayerはMainStageの下に入れない方が、Editor上で確認しやすいと思う。
                         obj.transform.SetParent(main_object.transform, false);
@@ -248,11 +249,7 @@ namespace Game.StageScene
                         transforms[i, j] = obj.transform;
                     }
 
-                    // @yu-ki-rohi
-                    // 排他的関係の処理なので、else if でもいいかも。
-                    // Goalだけnullチェックが行われていないのは、何か理由があるのかな。
-                    // 毎回nullチェックするよりも、先に確認して
-                    // nullならばcontinueする、という方が見栄えよさそう。
+                    if (obj == null) continue;
 
                     if (colorArray[i, j] == (int)S_ObjectType.Goal)
                     {
@@ -260,14 +257,12 @@ namespace Game.StageScene
                         obj_pos.y += 0.5f;
                         obj.transform.position = obj_pos;
                     }
-
-                    if ((colorArray[i, j] == (int)S_ObjectType.Player) && obj != null)
+                    else if (colorArray[i, j] == (int)S_ObjectType.Player)
                     {
                         obj.transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
                         obj.transform.localScale = new Vector3(20.0f, 20.0f, 20.0f);
                     }
-
-                    if ((colorArray[i, j] == (int)S_ObjectType.Gimmick) && obj != null)
+                    else if (colorArray[i, j] == (int)S_ObjectType.Gimmick)
                     {
                         obj.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
                     }
@@ -415,7 +410,7 @@ namespace Game.StageScene
         {
             if (color == (int)ObjectType.NotObject) return null;
 
-            if (color <= -4 || color > (int)ObjectType.SMoving) return null;
+            if (color <= -5 || color > (int)ObjectType.SMoving) return null;
 
             switch (color)
             {
@@ -454,6 +449,12 @@ namespace Game.StageScene
                     int gimmick_value = (int)S_ObjectType.Gimmick * (int)GameConstants.INVERSION;
                     GameObject gimmick = Instantiate(_specialObjects[gimmick_value]);
                     return gimmick;
+
+                case (int)S_ObjectType.P_Gimmick:
+
+                    int p_gimmick_value = (int)S_ObjectType.P_Gimmick * (int)GameConstants.INVERSION;
+                    GameObject p_gimmick = Instantiate(_specialObjects[p_gimmick_value]);
+                    return p_gimmick;
 
                 case (int)S_ObjectType.Moving_Floor:
 
@@ -507,9 +508,6 @@ namespace Game.StageScene
             return false;
         }
 
-
-        // @yu-ki-rohi
-        // 公開メソッドが非公開の後に来てるのは違和感あるかも
         public void BGCreate()
         {
             int current_index = gameDataManager.GetCurrentStageIndex();

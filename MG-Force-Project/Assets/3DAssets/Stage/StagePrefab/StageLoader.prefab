@@ -59,8 +59,8 @@ MonoBehaviour:
   - {fileID: 8463749408339526789, guid: de3cb77f07c14e8428e7dd9fdfb99b12, type: 3}
   - {fileID: 5400538784779662172, guid: 1b0c5464a8136044eae3abb3cb5ebe16, type: 3}
   - {fileID: 5943871532500661549, guid: 44deee569f337994397697d02586b67c, type: 3}
-  - {fileID: 140819994777430374, guid: 4eba274fd782e754691851c4ae30bdea, type: 3}
-  - {fileID: 6479411921831518640, guid: f87800742c00aa1489e06df147233f2a, type: 3}
+  - {fileID: 3743135726308218853, guid: a00691e1989b7434591f909e8f9743fc, type: 3}
+  - {fileID: 3486072360131555463, guid: 15a63312aee88574dad81865a68888e5, type: 3}
   _bgObjects:
   - {fileID: 1331163137856849618, guid: 4a8130128eb9d974797a6b7c5af381b5, type: 3}
   - {fileID: 1851490629777006519, guid: b08fe646b7ebcab4d8345e82e62a1845, type: 3}
@@ -115,5 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67503cb9c21d8404c86792bf97778e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  datas: []
-  currentStage: 0
+  _stageDatas: []

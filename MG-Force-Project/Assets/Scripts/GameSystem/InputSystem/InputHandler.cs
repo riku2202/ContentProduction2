@@ -144,7 +144,7 @@ namespace Game.GameSystem
                     break;
             }
 
-            Debug.Log($"Input = {_isMenuOpen},{_isViewMode},{_isMagnetBoot}");
+            Debug.Log($"MenuOpen : {_isMenuOpen}, ViewMode : {_isViewMode}, MagnetBoot : {_isMagnetBoot}");
 
             _playerInput.actions.FindActionMap(InputConstants.ActionMaps.SHORTCUT_MAPS).Enable();
 
