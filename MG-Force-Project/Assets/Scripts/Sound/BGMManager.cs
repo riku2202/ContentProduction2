@@ -151,12 +151,12 @@ namespace Game
             {
                 _audioSource.volume = volume;
             }
-            else if (_inputHandler.IsActionPressed(InputConstants.Action.MENU_LEFT_SELECT) &&
+            else if (_inputHandler.IsActionPressing(InputConstants.Action.MENU_LEFT_SELECT) &&
                 _audioSource.volume != MIN_VOLUME)
             {
                 _audioSource.volume -= VARIABLE_VOLUME;
             }
-            else if (_inputHandler.IsActionPressed(InputConstants.Action.MENU_RIGHT_SELECT) &&
+            else if (_inputHandler.IsActionPressing(InputConstants.Action.MENU_RIGHT_SELECT) &&
                 _audioSource.volume != MAX_VOLUME)
             {
                 _audioSource.volume += VARIABLE_VOLUME;

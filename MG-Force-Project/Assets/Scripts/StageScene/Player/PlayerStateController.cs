@@ -28,10 +28,11 @@ namespace Game.StageScene.Player
 
             if ((currentState & State.SHOOT) == (int)State.NOT_STATE)
             {
-                RunUpdate();
 
                 JumpUpdate();
             }
+
+            RunUpdate();
 
             Debug.Log($" idle = {(currentState & State.STILLNESS) != (int)State.NOT_STATE}, run = {(currentState & State.RUN) != (int)State.NOT_STATE}, shoot = {(currentState & State.SHOOT) != (int)State.NOT_STATE}");
         }
@@ -39,7 +40,7 @@ namespace Game.StageScene.Player
         private void RunUpdate()
         {
             // ¶ˆÚ“®Žž
-            if (_inputHandler.IsActionPressing(InputConstants.Action.LEFTMOVE) &&
+            if (_inputHandler.IsActionPressed(InputConstants.Action.LEFTMOVE) &&
                 playerTransform.position.x > GameConstants.LowerLeft.x)
             {
                 currentState = currentState & ~State.STILLNESS;
@@ -47,7 +48,7 @@ namespace Game.StageScene.Player
                 currentDir = Direction.LEFT;
             }
             // ‰EˆÚ“®Žž
-            else if (_inputHandler.IsActionPressing(InputConstants.Action.RIGHTMOVE) &&
+            else if (_inputHandler.IsActionPressed(InputConstants.Action.RIGHTMOVE) &&
                 playerTransform.position.x < GameConstants.TopRight.x)
             {
                 currentState = currentState & ~State.STILLNESS;
