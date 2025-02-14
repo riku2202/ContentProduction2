@@ -83,9 +83,14 @@ namespace Game.StageScene.Player
                 ShootUpdate();
             }
 
-            if (((currentState & State.JUMP) != (int)State.NOT_STATE))
+            if ((currentState & State.JUMP) != (int)State.NOT_STATE)
             {
                 _currentAnimationState = AnimationState.JUMP;
+
+                if (!isGrounded)
+                {
+                    JumpUpdate();
+                }
             }
             else if (isGrounded)
             {                
@@ -121,6 +126,18 @@ namespace Game.StageScene.Player
             else
             {
                 playerTransform.eulerAngles = new Vector3(0.0f, 270.0f, 0.0f);
+            }
+        }
+
+        private void JumpUpdate()
+        {
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo((int)_currentAnimationLayer);
+
+            _currentAnimationTime = stateInfo.normalizedTime;
+
+            if (_currentAnimationTime >= 0.8f)
+            {
+                _animator.Play(stateInfo.shortNameHash, (int)_currentAnimationLayer, 0.6f);
             }
         }
 

@@ -23,7 +23,7 @@ namespace Game.StageScene.Player
 
         private const float RAYCAST_LENGTH = 0.1f;
 
-        private const float GRAVITY_SCALE = 0.98f;
+        private const float GRAVITY_SCALE = 1.25f;
 
         #endregion
 
@@ -106,6 +106,7 @@ namespace Game.StageScene.Player
             if (isGrounded)
             {
                 moveDir.y = JUMP_FORCE;
+                isGrounded = false;
             }
         }
 
@@ -121,7 +122,17 @@ namespace Game.StageScene.Player
             ray_start_position.y += offset;
 
             // ínñ Ç…ê⁄ínÇµÇƒÇ¢ÇÈÇ©ÇÃîªíË
-            isGrounded = Physics.Raycast(ray_start_position, raycastDir, RAYCAST_LENGTH);
+            if (Physics.Raycast(ray_start_position, raycastDir, out RaycastHit hit, RAYCAST_LENGTH))
+            {
+                if (hit.collider.CompareTag(GameConstants.Tag.UNTAGGED)) return;
+
+                if (hit.collider.isTrigger != true || hit.collider == null)
+                {
+                    isGrounded = true;
+                }
+            }
+
+            Debug.Log(isGrounded);
 
 #if UNITY_EDITOR
             Debug.DrawRay(playerTransform.position, raycastDir * RAYCAST_LENGTH, Color.red);

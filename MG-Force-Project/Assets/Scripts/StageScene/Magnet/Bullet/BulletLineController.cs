@@ -26,6 +26,16 @@ namespace Game.StageScene.Magnet
 
         private void Update()
         {
+            if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT) &&
+                !_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_CANCEL))
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+
             Vector3 start_point = _playerTransform.position;
             start_point.y += 1.0f;
 

@@ -12,7 +12,7 @@ namespace Game.StageScene.Player
 
         public override void OnStart()
         {
-            _inputHandler = GameObject.Find(GameConstants.Object.INPUT).GetComponent<GameSystem.InputHandler>();
+            _inputHandler = GameObject.Find(GameConstants.Object.INPUT).GetComponent<InputHandler>();
             _bulletShoot = playerObject.GetComponent<BulletShootController>();
 
             currentState = State.STILLNESS;
@@ -32,6 +32,8 @@ namespace Game.StageScene.Player
 
                 JumpUpdate();
             }
+
+            Debug.Log($" idle = {(currentState & State.STILLNESS) != (int)State.NOT_STATE}, run = {(currentState & State.RUN) != (int)State.NOT_STATE}, shoot = {(currentState & State.SHOOT) != (int)State.NOT_STATE}");
         }
 
         private void RunUpdate()
@@ -77,13 +79,15 @@ namespace Game.StageScene.Player
                 }
                 else
                 {
-                    currentState = currentState & ~State.JUMP;
-
                     if ((currentState & State.RUN) == (int)State.NOT_STATE)
                     {
                         currentState = currentState | State.STILLNESS;
                     }
                 }
+            }
+            else
+            {
+                currentState = currentState & ~State.JUMP;
             }
         }
 
