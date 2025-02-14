@@ -1,303 +1,117 @@
-using Newtonsoft.Json;
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-using Game.StageScene.Magnet;
 using Game.GameSystem;
+using Game.StageScene.Magnet;
+using UnityEngine;
+using static Game.StageScene.Magnet.MagnetData;
 
 namespace Game.StageScene
 {
-    public class StageCreater : MonoBehaviour
+    public class StageCreater : StageFormBase
     {
-        #region -------- 定数の宣言 --------
+        private AcquireStageData _acquireStageData;
 
-        // ステージオブジェクトのタイプ
-        private enum ObjectType
-        {
-            NotObject,
-            NotFixed,
-            NFixed,
-            SFixed,
-            CanFixed,
-            NotMoving_1,
-            NotMoving_2,
-            NotMoving_3,
-            CanMoving,
-            NMoving,
-            SMoving,
-        }
-
-        // ステージオブジェクト(特殊)のタイプ
-        private enum S_ObjectType
-        {
-            Main,
-            Player = -1,
-            Goal = -2,
-            Gimmick = -3,
-            P_Gimmick = -4,
-            Moving_Floor = -11,
-            CanUp = -12,
-        }
-
-        #endregion
-
-        // ゲームデータ管理クラスの変数
-        private GameDataManager gameDataManager = GameDataManager.Instance;
-
-        // ステージオブジェクト
+        // オブジェクト
         [NamedSerializeField(
             new string[]
             {
-                "NotFixed",
-                "NFixed",
-                "SFixed",
-                "CanFixed",
-                "NotMoving_1",
-                "NotMoving_2",
-                "NotMoving_3",
-                "CanMoving",
-                "NMoving",
-                "SMoving",
+                "NotFixed_Block",
+                "NFixed_Block",
+                "SFixed_Block",
+                "CanFixed_Block",
+                "NotMoving1_Block",
+                "NotMoving2_Block",
+                "NotMoving3_Block",
+                "CanMoving_Block",
+                "NMoving_Block",
+                "SMoving_Block",
             }
         )]
         [SerializeField]
-        private GameObject[] Objects;
+        private GameObject[] _objects;
 
-        // ステージオブジェクト(特殊)
-        [SerializeField] private GameObject[] _specialObjects;
+        // 特殊オブジェクト
+        [NamedSerializeField(
+            new string[]
+            {
+                "Parent_Object",
+                "Player_Object",
+                "Goal_Object",
+                "Button_Object",
+                "Gimmick_Block",
+                "MovingFloor_Block",
+                "CanUp_Block",
+            }
+        )]
+        [SerializeField]
+        private GameObject[] _specialObjects;
 
         // 背景オブジェクト
-        [SerializeField] private GameObject[] _bgObjects;
-
-        // 行列の最大数
-        private const int MAX_ROWS = 25;
-        private const int MAX_COLS = 38;
-
-        // 行列のカウンター
-        private int _row = MAX_ROWS - 1;
-        private int _col = 0;
-
-        // データ用配列
-        private int[,] colorArray = new int[MAX_ROWS, MAX_COLS];
-        private int[,] powerArray = new int[MAX_ROWS, MAX_COLS];
-
-        public struct Scale
-        {
-            public int _row;
-            public int _col;
-
-            public Scale(int row, int col)
+        [NamedSerializeField(
+            new string[]
             {
-                _row = row;
-                _col = col;
+                "",
+                "",
+                "",
+                "",
             }
-        }
+        )]
+        [SerializeField]
+        private GameObject[] _bgObjects;
 
-        private Scale[,] scaleArray = new Scale[MAX_ROWS, MAX_COLS];
+        // 情報場所管理用
+        private int _currentRow = MAX_ROWS - 1;
+        private int _currentCol = 0;
 
-        // プレイヤーの生成フラグ
-        private bool isPlayerCreate = false;
+        // Data管理用
+        private int[,] _colorArray = new int[MAX_ROWS, MAX_COLS];
+        private int[,] _powerArray = new int[MAX_ROWS, MAX_COLS];
+        private ScaleData[,] _scaleArray = new ScaleData[MAX_ROWS, MAX_COLS];
+        private Transform[,] _transforms = new Transform[MAX_ROWS, MAX_COLS];
 
-        private Scale zero = new Scale(0, 0);
+        private ScaleData _scaleZero = new ScaleData(0, 0);
 
-        #region -------- StageData管理用クラス --------
+        // プレイヤーの生存フラグ
+        private bool _isPlayerCreate = true;
 
-        // ステージデータのItem
-        [System.Serializable]
-        public class Item
+        // ステージオブジェクト
+        private GameObject _stageObject = null;
+        // グループオブジェクト
+        private GameObject _currentGroupObject = null;
+
+        private void Start()
         {
-            public int color;  // オブジェクト判別
-            public int power;  // 磁力の強さ
+            _acquireStageData = GetComponent<AcquireStageData>();
         }
 
-        [System.Serializable]
-        public class ItemWrapper
+        private void StageObjectCreate()
         {
-            public string key;
-            public Item value;
+            Vector3 init_position = GameConstants.LowerLeft;
+
+            _stageObject = new GameObject("StageObject");
+            _stageObject.transform.position = init_position;
         }
 
-        // JSON用
-        [System.Serializable]
-        public class RootObject
-        {
-            [JsonProperty("items")]
-            public List<ItemWrapper> items;
-        }
+        #region -------- 大きさチェック --------
 
-        #endregion
+        private int _currentColor = 0;
+        private int _rowConter = 0;
+        private int _colConter = 0;
 
-        /// <summary>
-        /// JSONデータの取得
-        /// </summary>
-        /// <returns></returns>
-        private string GetJSONData()
-        {
-            // 現在のインデックス番号
-            int current_index = gameDataManager.GetCurrentStageIndex();
-
-            // ステージデータ(JSON)
-            string json = StageDataLoader.CellStageData(current_index);
-
-            // nullチェック
-            if (string.IsNullOrEmpty(json))
-            {
-                DebugManager.LogMessage("JSONファイルを正常に取得できませんでした", DebugManager.MessageType.Error);
-                return null;
-            }
-
-            return json;
-        }
-
-        /// <summary>
-        /// ステージデータの取得
-        /// </summary>
-        private void GetStageData()
-        {
-            string json = GetJSONData();
-
-            if (json == null) return;
-
-            RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
-
-            // JSONのデータをもとに、colorArray と powerArray に値を設定
-            foreach (var itemWrapper in rootObject.items)
-            {
-                // nullチェック
-                if (string.IsNullOrEmpty(itemWrapper.key))
-                {
-                    continue;
-                }
-
-                try
-                {
-                    // 配列にデータを格納
-                    colorArray[_row, _col] = itemWrapper.value.color;
-                    powerArray[_row, _col] = itemWrapper.value.power;
-                    scaleArray[_row, _col] = new Scale(1, 1);
-
-                    // 次のインデックスへの移動
-                    _col++;
-
-                    if (_col >= MAX_COLS)
-                    {
-                        _col = 0;
-                        _row--;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DebugManager.LogMessage($"例外が発生しました {itemWrapper.key}: {ex.Message}", DebugManager.MessageType.Error);
-                }
-            }
-        }
-
-        // 生成する際の位置とサイズ
-        private const float INIT_X = 1.0f;
-        private const float INIT_Y = 1.0f;
-        private const float INIT_Z = 0.0f;
-
-        /// <summary>
-        /// ステージ生成
-        /// </summary>
-        public void StageCreate()
-        {
-            // ステージデータの取得
-            GetStageData();
-
-            /* -------- 親オブジェクトの生成 -------- */
-
-            Vector3 init_pos = GameConstants.LowerLeft;
-
-            // 生成
-            GameObject main_object = Instantiate(
-                _specialObjects[(int)S_ObjectType.Main],
-                init_pos,
-                Quaternion.identity
-                );
-
-            // プレイヤーの生成フラグをリセット
-            isPlayerCreate = true;
-
-            //CheckObjectScale();
-
-            // #yu-ki-rohi追加分
-            Transform[,] transforms = new Transform[MAX_ROWS, MAX_COLS];
-
-            for (int i = 0; i < MAX_ROWS; i++)
-            {
-                for (int j = 0; j < MAX_COLS; j++)
-                {
-                    if (scaleArray[i, j]._col == zero._col && scaleArray[i, j]._row == zero._row) continue;
-
-                    GameObject obj = ObjectCreater(colorArray[i, j], powerArray[i, j]);
-
-                    if (obj != null)
-                    {
-                        obj.transform.localScale = new Vector3(scaleArray[i, j]._col, scaleArray[i, j]._row, 1.0f);
-                        obj.transform.position = new Vector3(
-                            INIT_X * j + ((obj.transform.localScale.x - 1) * 0.5f),
-                            INIT_Y * i + ((obj.transform.localScale.y - 1) * 0.5f),
-                            INIT_Z
-                            );
-
-                        // @yu-ki-rohi
-                        // PlayerはMainStageの下に入れない方が、Editor上で確認しやすいと思う。
-                        obj.transform.SetParent(main_object.transform, false);
-
-                        // #yu-ki-rohi追加分
-                        transforms[i, j] = obj.transform;
-                    }
-
-                    if (obj == null) continue;
-
-                    if (colorArray[i, j] == (int)S_ObjectType.Goal)
-                    {
-                        Vector3 obj_pos = obj.transform.position;
-                        obj_pos.y += 0.5f;
-                        obj.transform.position = obj_pos;
-                    }
-                    else if (colorArray[i, j] == (int)S_ObjectType.Player)
-                    {
-                        obj.transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
-                        obj.transform.localScale = new Vector3(20.0f, 20.0f, 20.0f);
-                    }
-                    else if (colorArray[i, j] == (int)S_ObjectType.Gimmick)
-                    {
-                        obj.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
-                    }
-                }
-            }
-
-            // #yu-ki-rohi追加分
-            GroupingBlocks(ref transforms, main_object.transform);
-        }
-
-        #region -------- ブロックの大きさの設定 --------
-
-        private int currentColor = 0;
-        private int rowConter = 0;
-        private int colConter = 0;
-
-        /// <summary>
-        /// 大きさのチェック
-        /// </summary>
         private void CheckObjectScale()
         {
             for (int i = 0; i < MAX_ROWS; i++)
             {
                 for (int j = 0; j < MAX_COLS; j++)
                 {
-                    currentColor = colorArray[i, j];
+                    _currentColor = _colorArray[i, j];
 
-                    rowConter = 0;
-                    colConter = 0;
+                    _rowConter = 0;
+                    _colConter = 0;
 
                     // 空白と特殊オブジェクトはスキップ
-                    if (currentColor == (int)ObjectType.NotObject || currentColor <= (int)S_ObjectType.Main) continue;
+                    if (_currentColor == (int)ObjectType.NOT_OBJ || _currentColor > (int)SpecialObjectType.GIMMICK_BLOCK) continue;
 
                     // オブジェクトの大きさが0ならスキップ
-                    if (scaleArray[i, j]._row == zero._row && scaleArray[i, j]._col == zero._col) continue;
+                    if (_scaleArray[i, j]._row == _scaleZero._row && _scaleArray[i, j]._col == _scaleZero._col) continue;
 
                     // 一番右上のブロックはスキップ
                     if (j == MAX_COLS - 1 && i == MAX_ROWS - 1) continue;
@@ -318,7 +132,7 @@ namespace Game.StageScene
                         }
                         else
                         {
-                            rowConter--;
+                            _rowConter--;
                         }
                     }
                 }
@@ -328,52 +142,52 @@ namespace Game.StageScene
         /// <summary>
         /// 縦の範囲チェック
         /// </summary>
-        /// <param name="_row"></param>
-        /// <param name="_col"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         /// <returns></returns>
-        private bool CheckRowPiece(int _row, int _col)
+        private bool CheckRowPiece(int row, int col)
         {
-            for (int i = _row; i < MAX_ROWS; i++)
+            for (int i = row; i < MAX_ROWS; i++)
             {
-                if (currentColor != colorArray[i, _col]) break;
+                if (_currentColor != _colorArray[i, col]) break;
 
-                rowConter++;
+                _rowConter++;
             }
 
-            return rowConter != 1;
+            return _rowConter != 1;
         }
 
         /// <summary>
         /// 横の範囲チェック
         /// </summary>
-        /// <param name="_row"></param>
-        /// <param name="_col"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         /// <returns></returns>
-        private bool CheckColPiece(int _row, int _col)
+        private bool CheckColPiece(int row, int col)
         {
-            for (int i = _col; i < MAX_COLS; i++)
+            for (int i = col; i < MAX_COLS; i++)
             {
-                if (currentColor != colorArray[_row, i]) break;
+                if (_currentColor != _colorArray[row, i]) break;
 
-                colConter++;
+                _colConter++;
             }
 
-            return colConter != 1;
+            return _colConter != 1;
         }
 
         /// <summary>
         /// 範囲のチェック
         /// </summary>
-        /// <param name="_row"></param>
-        /// <param name="_col"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         /// <returns></returns>
-        private bool CheckScale(int _row, int _col)
+        private bool CheckScale(int row, int col)
         {
-            for (int i = _row; i < _row + rowConter; i++)
+            for (int i = row; i < row + _rowConter; i++)
             {
-                for (int j = _col; j < _col + colConter; j++)
+                for (int j = col; j < col + _colConter; j++)
                 {
-                    if (currentColor != colorArray[i, j]) return false;
+                    if (_currentColor != _colorArray[i, j]) return false;
                 }
             }
 
@@ -383,98 +197,90 @@ namespace Game.StageScene
         /// <summary>
         /// 大きさの設定
         /// </summary>
-        /// <param name="_row"></param>
-        /// <param name="_col"></param>
-        private void SetObjectScale(int _row, int _col)
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        private void SetObjectScale(int row, int col)
         {
-            for (int i = _row; i < _row + rowConter; i++)
+            for (int i = row; i < row + _rowConter; i++)
             {
-                for (int j = _col; j < _col + colConter; j++)
+                for (int j = col; j < col + _colConter; j++)
                 {
-                    scaleArray[i, j] = new Scale(0, 0);
+                    _scaleArray[i, j] = _scaleZero;
                 }
             }
 
-            scaleArray[_row, _col] = new Scale(rowConter, colConter);
+            _scaleArray[row, col] = new ScaleData(_rowConter, _colConter);
         }
 
         #endregion
 
-        /// <summary>
-        /// オブジェクト生成
-        /// </summary>
-        /// <param name="color"></param>
-        /// <param name="power"></param>
-        /// <returns></returns>
+
         private GameObject ObjectCreater(int color, int power)
         {
-            if (color == (int)ObjectType.NotObject) return null;
+            if (color == (int)ObjectType.NOT_OBJ) return null;
 
-            if (color <= -5 || color > (int)ObjectType.SMoving) return null;
+            if (color <= -5 || color > (int)ObjectType.S_MOVING_BLOCK) return null;
 
             switch (color)
             {
-                case (int)ObjectType.NFixed:
+                case (int)ObjectType.N_FIXED_BLOCK:
 
-                    GameObject n_fixed = Instantiate(Objects[color - 1]);
+                    GameObject n_fixed = Instantiate(_objects[color - 1]);
                     PowerSet(n_fixed, power);
                     return n_fixed;
 
-                case (int)ObjectType.SFixed:
+                case (int)ObjectType.S_FIXED_BLOCK:
 
-                    GameObject s_fixed = Instantiate(Objects[color - 1]);
+                    GameObject s_fixed = Instantiate(_objects[color - 1]);
                     PowerSet(s_fixed, power);
                     return s_fixed;
 
-                case (int)S_ObjectType.Player:
+                case (int)SpecialObjectType.PLAYER_OBJ:
 
-                    if (CanPlayerCreate())
+                    if (_isPlayerCreate)
                     {
-                        int player_value = (int)S_ObjectType.Player * (int)GameConstants.INVERSION;
+                        int player_value = (int)SpecialObjectType.PLAYER_OBJ * (int)GameConstants.INVERSION;
                         GameObject player = Instantiate(_specialObjects[player_value]);
                         PowerSet(player, power);
+                        _isPlayerCreate = false;
                         return player;
                     }
 
                     return null;
 
-                case (int)S_ObjectType.Goal:
+                case (int)SpecialObjectType.GOAL_OBJ:
 
-                    int goal_value = (int)S_ObjectType.Goal * (int)GameConstants.INVERSION;
+                    int goal_value = (int)SpecialObjectType.GOAL_OBJ * (int)GameConstants.INVERSION;
                     GameObject goal = Instantiate(_specialObjects[goal_value]);
                     return goal;
 
-                case (int)S_ObjectType.Gimmick:
+                case (int)SpecialObjectType.BUTTON_OBJ:
 
-                    int gimmick_value = (int)S_ObjectType.Gimmick * (int)GameConstants.INVERSION;
+                    int gimmick_value = (int)SpecialObjectType.BUTTON_OBJ * (int)GameConstants.INVERSION;
                     GameObject gimmick = Instantiate(_specialObjects[gimmick_value]);
                     return gimmick;
 
-                case (int)S_ObjectType.P_Gimmick:
+                case (int)SpecialObjectType.GIMMICK_BLOCK:
 
-                    int p_gimmick_value = (int)S_ObjectType.P_Gimmick * (int)GameConstants.INVERSION;
+                    int p_gimmick_value = (int)SpecialObjectType.GIMMICK_BLOCK * (int)GameConstants.INVERSION;
                     GameObject p_gimmick = Instantiate(_specialObjects[p_gimmick_value]);
                     return p_gimmick;
 
-                case (int)S_ObjectType.Moving_Floor:
+                case (int)SpecialObjectType.MOVING_FLOOR:
 
-                    int moving_floor_value = (int)S_ObjectType.Moving_Floor * (int)GameConstants.INVERSION;
+                    int moving_floor_value = (int)SpecialObjectType.MOVING_FLOOR * (int)GameConstants.INVERSION;
                     GameObject moving_floor = Instantiate(_specialObjects[moving_floor_value]);
                     return moving_floor;
 
-                case (int)S_ObjectType.CanUp:
+                case (int)SpecialObjectType.CAN_UP:
 
-                    int canup_value = (int)S_ObjectType.CanUp * (int)GameConstants.INVERSION;
+                    int canup_value = (int)SpecialObjectType.CAN_UP * (int)GameConstants.INVERSION;
                     GameObject canup = Instantiate(_specialObjects[canup_value]);
                     return canup;
 
-                case (int)ObjectType.NotObject:
-
-                    return null;
-
                 default:
 
-                    GameObject obj = Instantiate(Objects[color - 1]);
+                    GameObject obj = Instantiate(_objects[color - 1]);
                     return obj;
             }
         }
@@ -493,24 +299,80 @@ namespace Game.StageScene
             magnet.SetObjectPower(power);
         }
 
-        /// <summary>
-        /// プレイヤーが生成できるかを返す
-        /// </summary>
-        /// <returns></returns>
-        private bool CanPlayerCreate()
+        public void Create()
         {
-            if (isPlayerCreate)
-            {
-                isPlayerCreate = false;
-                return true;
-            }
+            if (_acquireStageData == null) _acquireStageData = GetComponent<AcquireStageData>();
 
-            return false;
+            _acquireStageData.GetStageData(_colorArray, _powerArray, _scaleArray);
+
+            StageObjectCreate();
+
+            _isPlayerCreate = true;
+
+            CheckObjectScale();
+
+            for (int i = 0; i < MAX_ROWS; i++)
+            {
+                for (int j = 0; j < MAX_COLS; j++)
+                {
+                    // オブジェクト生成
+                    GameObject obj = ObjectCreater(_colorArray[i, j], _powerArray[i, j]);
+
+                    // nullチェック
+                    if (obj == null) continue;
+
+                    if (_colorArray[i, j] == (int)SpecialObjectType.PLAYER_OBJ)
+                    {
+                        obj.transform.position = new Vector3(2.0f, 0.5f, 0.0f);
+                    }
+                    else
+                    {
+                        // 座標設定
+                        obj.transform.position = new Vector3(
+                            INIT_X * j + ((obj.transform.localScale.x - 1) * 0.5f),
+                            INIT_Y * i + ((obj.transform.localScale.y - 1) * 0.5f),
+                            INIT_Z
+                        );
+                    }
+
+                    if (_colorArray[i, j] == (int)SpecialObjectType.PLAYER_OBJ ||
+                        _colorArray[i, j] == (int)SpecialObjectType.BUTTON_OBJ ||
+                        _colorArray[i, j] == (int)SpecialObjectType.GOAL_OBJ)
+                    {
+                        obj.transform.SetParent(_stageObject.transform, false);
+                        continue;
+                    }
+
+                    // 親オブジェクトの作成
+                    if (_scaleArray[i, j]._row != _scaleZero._row && _scaleArray[i, j]._col != _scaleZero._col)
+                    {
+                        _currentGroupObject = Instantiate(
+                            _specialObjects[(int)SpecialObjectType.PARENT_OBJ], obj.transform);
+
+                        BoxCollider box_collider = _currentGroupObject.GetComponent<BoxCollider>();
+                        box_collider.size = new Vector3(_scaleArray[i, j]._col, _scaleArray[i, j]._row, 1.0f);
+
+                        Vector3 new_group_position = box_collider.center;
+                        new_group_position.x += (_scaleArray[i, j]._col - 1) * 0.5f;
+                        new_group_position.y += (_scaleArray[i, j]._row - 1) * 0.5f;
+                        box_collider.center = new_group_position;
+
+                        _currentGroupObject.transform.SetParent(_stageObject.transform, false);
+
+                        BlockObjectManager block_manager = _currentGroupObject.GetComponent<BlockObjectManager>();
+                        block_manager.SetObjectType(_colorArray[i, j], obj.layer, obj.tag);
+                    }
+
+                    obj.transform.SetParent(_currentGroupObject.transform, false);
+                }
+            }
         }
 
         public void BGCreate()
         {
-            int current_index = gameDataManager.GetCurrentStageIndex();
+            GameDataManager data = GameDataManager.Instance;
+
+            int current_index = data.GetCurrentStageIndex();
 
             Transform transform = GameObject.Find(GameConstants.MAIN_CAMERA).transform;
 
@@ -518,78 +380,5 @@ namespace Game.StageScene
 
             Instantiate(_bgObjects[current_index], bg_position, Quaternion.identity, transform);
         }
-
-        // @yu-kirohi
-        // ブロックのまとまりの作り方についての提案
-        #region -------- ブロックのグループを作る --------
-        private void GroupingBlocks(ref Transform[,] transforms, Transform main_object)
-        {
-            for (int i = 0; i < MAX_ROWS; i++)
-            {
-                for (int j = 0; j < MAX_COLS; j++)
-                {
-                    if (transforms[i, j] != null)
-                    {
-                        GameObject parent_object = Instantiate(_specialObjects[(int)S_ObjectType.Main], main_object);
-                        transforms[i, j].SetParent(parent_object.transform, false);
-                        transforms[i, j] = null;
-
-                        int num = AddRightBlockToGroup(ref transforms, parent_object.transform, i, j + 1) - j + 1;
-
-                        AddUpBlocksToGroup(ref transforms, parent_object.transform, i + 1, j, num);
-                    }
-                }
-            }
-        }
-
-        private int AddRightBlockToGroup(ref Transform[,] transforms, Transform parent_transform, int row, int col)
-        {
-
-            if (col >= MAX_COLS || transforms[row, col] == null)
-            {
-                return col - 1;
-            }
-
-            if (colorArray[row, col] == colorArray[row, col - 1])
-            {
-                transforms[row, col].SetParent(parent_transform, false);
-                transforms[row, col] = null;
-                if (col + 1 < MAX_COLS)
-                {
-                    return AddRightBlockToGroup(ref transforms, parent_transform, row, col + 1);
-                }
-                return col;
-            }
-            return col - 1;
-        }
-
-        private void AddUpBlocksToGroup(ref Transform[,] transforms, Transform parent_transform, int row, int col, int num)
-        {
-            if (row >= MAX_ROWS)
-            {
-                return;
-            }
-
-            for (int i = 0; i < num; i++)
-            {
-                if (colorArray[row, col + i] != colorArray[row - 1, col + i])
-                {
-                    return;
-                }
-            }
-            for (int i = 0; i < num; i++)
-            {
-                if (transforms[row, col + i] == null)
-                {
-                    continue;
-                }
-                transforms[row, col + i].SetParent(parent_transform, false);
-                transforms[row, col + i] = null;
-            }
-
-
-            AddUpBlocksToGroup(ref transforms, parent_transform, row + 1, col, num);
-        }
-        #endregion
     }
 }

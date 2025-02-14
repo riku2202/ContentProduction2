@@ -49,7 +49,7 @@ namespace Game.StageScene
             {
                 childTransform = gameObject.transform.Find("StageCreater");
                 stageCreater = childTransform.GetComponent<StageCreater>();
-                stageCreater.StageCreate();
+                stageCreater.Create();
                 stageCreater.BGCreate();
                 return;
             }

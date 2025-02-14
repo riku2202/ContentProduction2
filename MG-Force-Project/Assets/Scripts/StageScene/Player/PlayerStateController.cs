@@ -28,13 +28,18 @@ namespace Game.StageScene.Player
 
             if ((currentState & State.SHOOT) == (int)State.NOT_STATE)
             {
+                RunUpdate();
 
                 JumpUpdate();
             }
 
-            RunUpdate();
+            if ((currentState & State.RUN) == (int)State.NOT_STATE &&
+                (currentState & State.JUMP) == (int)State.NOT_STATE)
+            {
+                currentState = currentState | State.STILLNESS;
+            }
 
-            Debug.Log($" idle = {(currentState & State.STILLNESS) != (int)State.NOT_STATE}, run = {(currentState & State.RUN) != (int)State.NOT_STATE}, shoot = {(currentState & State.SHOOT) != (int)State.NOT_STATE}");
+            Debug.Log($" idle = {(currentState & State.STILLNESS) != (int)State.NOT_STATE}, run = {(currentState & State.RUN) != (int)State.NOT_STATE}, shoot = {(currentState & State.SHOOT) != (int)State.NOT_STATE}, Jump = {(currentState & State.JUMP) != (int)State.NOT_STATE}");
         }
 
         private void RunUpdate()
@@ -59,31 +64,18 @@ namespace Game.StageScene.Player
             else
             {
                 currentState = currentState & ~State.RUN;
-
-                if ((currentState & State.JUMP) == (int)State.NOT_STATE)
-                {
-                    currentState = currentState | State.STILLNESS;
-                }
             }
         }
 
         private void JumpUpdate()
         {
             if (isGrounded)
-            {
+            {                
                 // ƒWƒƒƒ“ƒvŽž
-                if (_inputHandler.IsActionPressed(InputConstants.Action.JUMP) &&
-                    (currentState & State.JUMP) == (int)State.NOT_STATE)
+                if (_inputHandler.IsActionPressed(InputConstants.Action.JUMP))
                 {
                     currentState = currentState & ~State.STILLNESS;
                     currentState = currentState | State.JUMP;
-                }
-                else
-                {
-                    if ((currentState & State.RUN) == (int)State.NOT_STATE)
-                    {
-                        currentState = currentState | State.STILLNESS;
-                    }
                 }
             }
             else

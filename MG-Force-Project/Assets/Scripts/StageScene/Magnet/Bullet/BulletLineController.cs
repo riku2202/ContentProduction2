@@ -1,7 +1,5 @@
-
 using Game.GameSystem;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Game.StageScene.Magnet
 {
@@ -14,6 +12,9 @@ namespace Game.StageScene.Magnet
         private LineRenderer _lineRenderer;
 
         private static Vector3 _currentDirection = Vector3.zero;
+
+        public Vector3 startPosition { get; private set; }
+        public Vector3 targetPosition { get; private set; }
 
         private void Start()
         {
@@ -29,11 +30,11 @@ namespace Game.StageScene.Magnet
             if (_inputHandler.IsActionPressing(InputConstants.Action.SHOOT) &&
                 !_inputHandler.IsActionPressing(InputConstants.Action.SHOOT_CANCEL))
             {
-                gameObject.SetActive(true);
+                _lineRenderer.enabled = true;
             }
             else
             {
-                gameObject.SetActive(false);
+                _lineRenderer.enabled = false;
             }
 
             Vector3 start_point = _playerTransform.position;
@@ -49,6 +50,8 @@ namespace Game.StageScene.Magnet
                 {
                     _lineRenderer.SetPosition(0, start_point);
                     _lineRenderer.SetPosition(1, hit.point);
+
+                    targetPosition = hit.point;
                 }
                 else
                 {
@@ -61,6 +64,8 @@ namespace Game.StageScene.Magnet
                 _lineRenderer.SetPosition(0, start_point);
                 _lineRenderer.SetPosition(1, start_point + _currentDirection * maxDistance);
             }
+
+            startPosition = start_point;
         }
 
         public static Vector3 GetDirection()

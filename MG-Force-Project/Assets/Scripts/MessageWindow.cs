@@ -49,10 +49,11 @@ namespace Game
         private Dictionary<ErrorCode, string> _errorCode = new Dictionary<ErrorCode, string>
         {
             {ErrorCode.E0000, "E0000 : ErrorCode TestMessage" },
-            {ErrorCode.E2001, "E2001 : Failed to start properly. Please restart." },
-            {ErrorCode.E2002, "E2002 : An unexpected error has occurred. Please restart." },
-            {ErrorCode.E3001, "E3001 : Failed to retrieve data properly. Please try again or restart." },
-            {ErrorCode.E4001, "E4001 : A critical error has occurred. Please try again." }
+            {ErrorCode.E2001, "E2001 : Failed to start properly\nPlease restart" },
+            {ErrorCode.E2002, "E2002 : An unexpected error has occurred\nPlease restart" },
+            {ErrorCode.E3001, "E3001 : Failed to retrieve data properly\nPlease try again or restart" },
+            {ErrorCode.E4001, "E4001 : A critical error has occurred\nPlease try again" },
+            {ErrorCode.E5001, "E5001 : An error occurred during stage generation\nPlease restart the game and try again\nIf this issue persists, please contact the developer" },
         };
 
         [SerializeField] private GameObject _meesageBox;

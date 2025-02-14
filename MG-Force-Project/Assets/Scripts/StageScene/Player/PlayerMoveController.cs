@@ -32,12 +32,13 @@ namespace Game.StageScene.Player
         // 向きベクトル
         private Vector3 moveDir = Vector3.zero;
         // 地面判定用
-        private Vector3 raycastDir = new Vector3(0.0f, -1.0f, 0.0f);
-
+        private Vector3 raycastDir = Vector3.down;
+        
         public override void OnStart()
         {
             _rigidbody = playerObject.GetComponent<Rigidbody>();
             _rigidbody.useGravity = false;
+            isGrounded = false;
         }
 
         /// <summary>
@@ -48,14 +49,25 @@ namespace Game.StageScene.Player
             // 地面接地判定
             CheckGrounded();
 
-            // 停止時の処理
-            if ((currentState & State.STILLNESS) != (int)State.NOT_STATE) StopMoving();
-
             // 左右移動時の処理
-            if ((currentState & State.RUN) != (int)State.NOT_STATE) RunUpdate();
+            if ((currentState & State.RUN) != (int)State.NOT_STATE)
+            {
+                RunUpdate();
+            }
+            else
+            {
+                StopMoving();
+            }
 
             // ジャンプ時の処理
-            if ((currentState & State.JUMP) != (int)State.NOT_STATE) JumpUpdate();
+            if ((currentState & State.JUMP) != (int)State.NOT_STATE)
+            {
+                JumpStart();
+            }
+            else if (isGrounded)
+            {
+                moveDir.y = MIN_SPEED;
+            }
 
             // 弾を撃つ処理
             if ((currentState & State.SHOOT) != (int)State.NOT_STATE) StopMoving();
@@ -64,10 +76,6 @@ namespace Game.StageScene.Player
             if (!isGrounded)
             {
                 GravityUpdate();
-            }
-            else if (moveDir.y != JUMP_FORCE)
-            {
-                moveDir.y = MIN_SPEED;
             }
 
             // Rigidbodyの更新
@@ -101,7 +109,7 @@ namespace Game.StageScene.Player
             }
         }
 
-        private void JumpUpdate()
+        private void JumpStart()
         {
             if (isGrounded)
             {
@@ -115,18 +123,29 @@ namespace Game.StageScene.Player
         /// </summary>
         private void CheckGrounded()
         {
-            float offset = 0.1f;
+            float offset_x = 0.45f;
+            float offset_y = 0.1f;
 
-            Vector3 ray_start_position = playerTransform.position;
-
-            ray_start_position.y += offset;
+            Vector3 left_ray_start_position = new Vector3(playerTransform.position.x - offset_x, playerTransform.position.y + offset_y, playerTransform.position.z);
+            Vector3 right_ray_start_position = new Vector3(playerTransform.position.x + offset_x, playerTransform.position.y + offset_y, playerTransform.position.z);
 
             // 地面に接地しているかの判定
-            if (Physics.Raycast(ray_start_position, raycastDir, out RaycastHit hit, RAYCAST_LENGTH))
+            if (Physics.Raycast(left_ray_start_position, raycastDir, out RaycastHit left_hit, RAYCAST_LENGTH))
             {
-                if (hit.collider.CompareTag(GameConstants.Tag.UNTAGGED)) return;
+                if (left_hit.collider.CompareTag(GameConstants.Tag.UNTAGGED) ||
+                    left_hit.collider.gameObject.layer == (int)GameConstants.Layer.MAGNET_RANGE) return;
 
-                if (hit.collider.isTrigger != true)
+                if (left_hit.collider.isTrigger != true)
+                {
+                    isGrounded = true;
+                }
+            }
+            else if (Physics.Raycast(right_ray_start_position, raycastDir, out RaycastHit right_hit, RAYCAST_LENGTH))
+            {
+                if (right_hit.collider.CompareTag(GameConstants.Tag.UNTAGGED) ||
+                    right_hit.collider.gameObject.layer == (int)GameConstants.Layer.MAGNET_RANGE) return;
+                
+                if (right_hit.collider.isTrigger != true)
                 {
                     isGrounded = true;
                 }
@@ -137,7 +156,8 @@ namespace Game.StageScene.Player
             }
 
 #if UNITY_EDITOR
-            Debug.DrawRay(playerTransform.position, raycastDir * RAYCAST_LENGTH, Color.red);
+            Debug.DrawRay(left_ray_start_position, raycastDir * RAYCAST_LENGTH, Color.red);
+            Debug.DrawRay(right_ray_start_position, raycastDir * RAYCAST_LENGTH, Color.red);
 #endif
         }
 

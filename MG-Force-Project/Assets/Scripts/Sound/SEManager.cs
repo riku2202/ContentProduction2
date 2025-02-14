@@ -88,7 +88,7 @@ namespace Game
 
         private const float MIN_VOLUME = 0.0f;
         private const float MAX_VOLUME = 1.0f;
-        private const float VARIABLE_VOLUME = 0.1f;
+        private const float VARIABLE_VOLUME = 0.01f;
 
         public float VolumeChange(float volume)
         {

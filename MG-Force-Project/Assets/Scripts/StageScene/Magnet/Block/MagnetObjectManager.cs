@@ -1,4 +1,5 @@
 using Game.GameSystem;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Game.StageScene.Magnet
@@ -59,6 +60,7 @@ namespace Game.StageScene.Magnet
         /// </summary>
         protected virtual void Update()
         {
+            transform.parent.GetComponent<BlockObjectManager>().SetObjectLayer(gameObject.layer);
             _magnetCollider.SetActive(true);
 
             if (magnetManager == null) return;

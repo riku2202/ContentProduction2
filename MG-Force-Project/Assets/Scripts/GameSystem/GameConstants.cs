@@ -27,10 +27,11 @@ namespace Game
         public static class Tag 
         {
             public const string UNTAGGED = "Untagged";
-            public const string FIXED = "Fixed";
-            public const string MOVING = "Moving";
-            public const string STAGE = "Stage";
             public const string PLAYER = "Player";
+            public const string GAME_CONTROLLER = "GameContoller";
+            public const string MOVING = "Moving";
+            public const string FIXED = "Fixed";
+            public const string GROUND = "Ground";
         }
 
         /* ================ ÉåÉCÉÑÅ[ ================ */

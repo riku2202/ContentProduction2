@@ -9,6 +9,8 @@ namespace Game.StageScene.Magnet
     {
         private const float ADD_POWER = 0.1f;
 
+        private BulletLineController _lineController;
+
         private enum PowerMeter
         {
             INIT = 0,
@@ -23,7 +25,7 @@ namespace Game.StageScene.Magnet
 
         private float _currentPower;
 
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject[] bulletPrefab;
 
         [SerializeField] private GameObject _chargeGageObj;
 
@@ -47,6 +49,7 @@ namespace Game.StageScene.Magnet
 
             _magnet = GameObject.Find(GameConstants.MAGNET_MANAGER_OBJ).GetComponent<MagnetManager>();
 
+            _lineController = GameObject.Find("BulletLine").GetComponent<BulletLineController>();
             _bulletGage = GameObject.Find("EnergyGage").GetComponent<Image>();
 
             _chargeGageObj.SetActive(false);
@@ -64,11 +67,23 @@ namespace Game.StageScene.Magnet
 
             if (_canShooting)
             {
-                GameObject gb = Instantiate(bulletPrefab);
-                Vector3 init_position = gameObject.transform.position;
-                init_position.y += 1;
+                MagnetManager manager = GameObject.Find("MagnetManager").GetComponent<MagnetManager>();
 
-                gb.transform.position = init_position;
+                GameObject gb;
+
+                if (manager.CurrentType == GameConstants.Layer.N_MAGNET)
+                {
+                    gb = Instantiate(bulletPrefab[0]);
+                }
+                else
+                {
+                    gb = Instantiate(bulletPrefab[1]);
+                }
+
+                //Vector3 init_position = gameObject.transform.position;
+                //init_position.y += 1;
+
+                gb.transform.position = _lineController.startPosition;
 
                 _canShooting = false;
 

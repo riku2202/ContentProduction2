@@ -144,8 +144,6 @@ namespace Game.GameSystem
                     break;
             }
 
-            Debug.Log($"MenuOpen : {_isMenuOpen}, ViewMode : {_isViewMode}, MagnetBoot : {_isMagnetBoot}");
-
             _playerInput.actions.FindActionMap(InputConstants.ActionMaps.SHORTCUT_MAPS).Enable();
 
 #if UNITY_EDITOR

@@ -7,6 +7,7 @@ namespace Game.StageScene.Magnet
     /// </summary>
     public class BulletController : MonoBehaviour
     {
+        private BulletLineController _lineController;
         // タグ
         private const string FIXED_TAG = GameConstants.Tag.FIXED;
         private const string MOVING_TAG = GameConstants.Tag.MOVING;
@@ -39,8 +40,9 @@ namespace Game.StageScene.Magnet
 
             _animator = GetComponent<Animator>();
 
+            _lineController = GameObject.Find("BulletLine").GetComponent<BulletLineController>();
             // ターゲットの座標取得
-            _targetPos = BulletLineController.GetDirection();
+            _targetPos = _lineController.targetPosition;
 
             //// 弾の発射
             FiringBullet();
@@ -73,33 +75,6 @@ namespace Game.StageScene.Magnet
             // 向きベクトルに応じて移動させる
             _rigidbody.AddForce(_direction, ForceMode.Impulse);
         }
-
-        ///// <summary>
-        ///// 外部から呼び出し可能な弾の発射処理
-        ///// </summary>
-        ///// <param name="fireDirection">発射する方向ベクトル</param>
-        ///// <param name="speed">弾の速度</param>
-        //public void Fire(Vector3 fireDirection, float speed)
-        //{
-        //    if (_rigidbody == null)
-        //    {
-        //        _rigidbody = GetComponent<Rigidbody>();
-        //    }
-
-        //    if (_rigidbody != null)
-        //    {
-        //        // 方向を正規化して速度を設定
-        //        _direction = fireDirection.normalized;
-        //        _bulletSpeed = speed;
-
-        //        // 向きベクトルに応じて力を加える
-        //        _rigidbody.AddForce(_direction * _bulletSpeed, ForceMode.Impulse);
-        //    }
-        //    else
-        //    {
-        //        DebugManager.LogMessage("Rigidbody が存在しないため、弾を発射できません。", DebugManager.MessageType.Error);
-        //    }
-        //}
 
         private void OnTriggerEnter(Collider other)
         {

@@ -42,7 +42,7 @@ namespace Game.StageScene
             if (collider.gameObject.CompareTag(GameConstants.Tag.MOVING) ||
                 collider.gameObject.CompareTag(GameConstants.Tag.PLAYER))
             {
-                //isUpButton = true;
+                isUpButton = true;
             }
         }
 
