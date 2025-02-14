@@ -1,26 +1,30 @@
+using Game.GameSystem;
+using TMPro;
 using UnityEngine;
 
 namespace Game.StageScene.Camera
 {
 
-    public class CameraFreeViewMoveController : MonoBehaviour
+    public class FreeViewCameraController : MonoBehaviour
     {
-        /*
-        　　【やることリスト】カメラ
-        　　・ステージのカメラは一旦置いておくとする
-        　　・ビューモードの処理を作成
-        　　・ステージシーンのカメラの実装を返る
-        */
+        [SerializeField] private int speed;
 
-        [SerializeField]
-        private int speed;
+        private InputHandler _input;
 
         private Vector3 initPos;
 
+        private void Start()
+        {
+            _input = InputHandler.Instance;
+        }
+
         private void OnEnable()
         {
-            initPos = GameObject.Find(GameConstants.MAIN_CAMERA).GetComponent<Transform>().position;
+            initPos = transform.position;
+        }
 
+        private void OnDisable()
+        {
             transform.position = initPos;
         }
 
@@ -28,22 +32,22 @@ namespace Game.StageScene.Camera
         {
             Vector3 position = transform.position;
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (_input.IsActionPressing(InputConstants.Action.VIEW_MOVE_LEFT))
             {
                 position.x -= speed * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (_input.IsActionPressing(InputConstants.Action.VIEW_MOVE_RIGHT))
             {
                 position.x += speed * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (_input.IsActionPressing(InputConstants.Action.VIEW_MOVE_UP))
             {
                 position.y += speed * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (_input.IsActionPressing(InputConstants.Action.VIEW_MOVE_DOWN))
             {
                 position.y -= speed * Time.deltaTime;
             }

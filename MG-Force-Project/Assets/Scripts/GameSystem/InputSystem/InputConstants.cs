@@ -33,8 +33,8 @@ namespace Game
         {
             // Player Action Maps
             public const string ACTION = "Action";
-            public const string LEFTMOVE = "LeftMove";
-            public const string RIGHTMOVE = "RightMove";
+            public const string LEFTMOVE = "PlayerLeftMove";
+            public const string RIGHTMOVE = "PlayerRightMove";
             public const string JUMP = "Jump";
             public const string MENU_OPEN = "MenuOpen";
             public const string VIEW_MODE_START = "ViewModeStart";
@@ -50,7 +50,10 @@ namespace Game
 
             // Camera Action Maps
             public const string VIEW_MODE_END = "ViewModeEnd";
-            public const string VIEW_MOVE = "ViewMove";
+            public const string VIEW_MOVE_LEFT = "CameraLeftMove";
+            public const string VIEW_MOVE_RIGHT = "CameraRightMove";
+            public const string VIEW_MOVE_UP = "CameraUpMove";
+            public const string VIEW_MOVE_DOWN = "CameraDownMove";
 
             // Menu Action Maps
             public const string MENU_CLOSE = "Close";
@@ -68,7 +71,6 @@ namespace Game
             public const string SHORTCUT_4 = "ShortCut_4";
 
 #if UNITY_EDITOR
-
             // Debug Action Maps
             public const string DEBUG_NEXT = "NextUpdate";
             public const string DEBUG_RENEXT = "ReUpdate";

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,7 @@ namespace Game.GameSystem
 {
     public class InputHandler : MonoBehaviour
     {
-        private const float THRES_HOLD = 1.0f;
+        private const float THRES_HOLD = 0.5f;
 
         private PlayerInput _playerInput;
 
@@ -143,21 +144,20 @@ namespace Game.GameSystem
                     break;
             }
 
+            Debug.Log($"MenuOpen : {_isMenuOpen}, ViewMode : {_isViewMode}, MagnetBoot : {_isMagnetBoot}");
+
             _playerInput.actions.FindActionMap(InputConstants.ActionMaps.SHORTCUT_MAPS).Enable();
 
 #if UNITY_EDITOR
-
             _playerInput.actions.FindActionMap(InputConstants.ActionMaps.DEBUG_MAPS).Enable();
-
 #endif
         }
 
         #region -------- キーの有効化処理 --------
 
-        private bool isMenuOpen = false;
-        private bool isViewModeStart = false;
-
-        private bool isMagnetBoot = false;
+        private bool _isMenuOpen = false;
+        private bool _isViewMode = false;
+        private bool _isMagnetBoot = false;
 
         private void InputSetMenuMap()
         {
@@ -169,82 +169,117 @@ namespace Game.GameSystem
 
         private void InputStageSelectScene()
         {
-            // メニューが開かれていないときにプレイヤーの入力を有効化する
-            if (_playerInput.currentActionMap.name != InputConstants.ActionMaps.PLAYER_MAPS && !isMenuOpen)
+            OnMenu();
+
+            if (!_isMenuOpen)
+            {
+                if (!_isMagnetBoot)
+                {
+                    OnViewMode();
+                }
+
+                if (!_isViewMode)
+                {
+                    OnMagnet();
+                }
+            }
+
+            if (!_isMenuOpen && !_isViewMode)
             {
                 _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.PLAYER_MAPS);
-            }
 
-            // メニューが開かれていないときにメニューを開く
-            if (_playerInput.actions[InputConstants.Action.MENU_OPEN].triggered && !isMenuOpen)
-            {
-                _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.MENU_MAPS);
-                isMenuOpen = true;
-            }
-            // メニューが開かれているときにメニューを閉じる
-            else if (_playerInput.actions[InputConstants.Action.MENU_CLOSE].triggered && isMenuOpen)
-            {
-                isMenuOpen = false;
-            }
-
-            // メニューが開かれていないかつ磁力を起動したとき、磁力関連のフラグをONにする
-            if (_playerInput.actions[InputConstants.Action.MAGNET_BOOT].triggered && !isMagnetBoot && !isMenuOpen)
-            {
-                isMagnetBoot = true;
-            }
-            // メニューが開かれていないかつ磁力を停止したとき、磁力関連のフラグをOFFにする
-            else if (_playerInput.actions[InputConstants.Action.MAGNET_BOOT].triggered && isMagnetBoot)
-            {
-                isMagnetBoot = false;
-            }
-
-            if (!isMagnetBoot && !isMenuOpen)
-            {
-                _playerInput.actions.FindActionMap(InputConstants.ActionMaps.MAGNET_MAPS).Enable();
+                if (!_isMagnetBoot)
+                {
+                    _playerInput.actions.FindActionMap(InputConstants.ActionMaps.MAGNET_MAPS).Enable();
+                }
             }
         }
 
         private void InputStageScene()
         {
-            if (_playerInput.currentActionMap.name != InputConstants.ActionMaps.PLAYER_MAPS && !isMenuOpen && !isViewModeStart)
+            OnMenu();
+
+            if (!_isMenuOpen)
+            {
+                if (!_isMagnetBoot)
+                {
+                    OnViewMode();
+                }
+
+                if (!_isViewMode)
+                {
+                    OnMagnet();
+                }
+            }
+
+            if (!_isMenuOpen && !_isViewMode)
             {
                 _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.PLAYER_MAPS);
-            }
 
-            if (_playerInput.actions[InputConstants.Action.MENU_OPEN].triggered && !isMenuOpen && !isViewModeStart)
-            {
-                _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.MENU_MAPS);
-                isMenuOpen = true;
+                if (!_isMagnetBoot)
+                {
+                    _playerInput.actions.FindActionMap(InputConstants.ActionMaps.MAGNET_MAPS).Enable();
+                }
             }
-            else if (_playerInput.actions[InputConstants.Action.MENU_CLOSE].triggered && isMenuOpen)
-            {
-                _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.PLAYER_MAPS);
-                isMenuOpen = false;
-            }
+        }
 
-            if (_playerInput.actions[InputConstants.Action.VIEW_MODE_START].triggered && !isViewModeStart && !isMenuOpen && !isMagnetBoot)
+        private void OnMenu()
+        {
+            if (_isMenuOpen)
             {
-                _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.CAMERA_MAPS);
-                isViewModeStart = true;
+                // メニューを閉じる
+                if (_playerInput.actions[InputConstants.Action.MENU_CLOSE].triggered)
+                {
+                    _isMenuOpen = false;
+                }
             }
-            else if (_playerInput.actions[InputConstants.Action.VIEW_MODE_END].triggered && isViewModeStart)
+            else
             {
-                _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.PLAYER_MAPS);
-                isViewModeStart = false;
+                // メニューを開く
+                if (_playerInput.actions[InputConstants.Action.MENU_OPEN].triggered)
+                {
+                    _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.MENU_MAPS);
+                    _isMenuOpen = true;
+                }
             }
+        }
 
-            if (_playerInput.actions[InputConstants.Action.MAGNET_BOOT].triggered && !isMagnetBoot && !isMenuOpen && !isViewModeStart)
+        private void OnViewMode()
+        {
+            if (_isViewMode)
             {
-                isMagnetBoot = true;
+                // ビューモード終了
+                if (_playerInput.actions[InputConstants.Action.VIEW_MODE_END].triggered)
+                {
+                    _isViewMode = false;
+                }
             }
-            else if (_playerInput.actions[InputConstants.Action.MAGNET_BOOT].triggered && isMagnetBoot)
+            else
             {
-                isMagnetBoot = false;
+                // ビューモード開始
+                if (_playerInput.actions[InputConstants.Action.VIEW_MODE_START].triggered)
+                {
+                    _playerInput.SwitchCurrentActionMap(InputConstants.ActionMaps.CAMERA_MAPS);
+                    _isViewMode = true;
+                }
             }
+        }
 
-            if (!isMagnetBoot)
+        private void OnMagnet()
+        {
+            if (_isMagnetBoot)
             {
-                _playerInput.actions.FindActionMap(InputConstants.ActionMaps.MAGNET_MAPS).Enable();
+                if (_playerInput.actions[InputConstants.Action.MAGNET_BOOT].triggered)
+                {
+                    _isMagnetBoot = false;
+                }
+            }
+            else
+            {
+                if (_playerInput.actions[InputConstants.Action.MAGNET_BOOT].triggered)
+                {
+                    _isMagnetBoot = true;
+                }
             }
         }
 

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Game.ClearScene
 {
@@ -48,7 +47,7 @@ namespace Game.ClearScene
 
         private void Update()
         {
-            if (_inputHandler.IsActionPressed(InputConstants.Action.ACTION))
+            if (_inputHandler.IsActionPressed(InputConstants.Action.MENU_DECISION))
             {
                 _sceneLoader.LoadScene(GameConstants.Scene.Title.ToString());
             }

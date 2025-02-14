@@ -29,7 +29,7 @@ namespace Game.StageScene
 
             if (scene.buildIndex == (int)GameConstants.Scene.StageSelect)
             {
-                _gameDataManager.SetCurrentStageIndex((int)GameConstants.Stage.Stage_Select);
+                _gameDataManager.SetCurrentStageIndex((int)GameConstants.Stage.Stage_1);
 
                 // ステージの生成
                 SetStage();
@@ -38,18 +38,6 @@ namespace Game.StageScene
             }
 
             SetStage();
-        }
-
-        private void Update()
-        {
-            //if (_inputHandler.IsActionPressed(InputConstants.Action.DEBUG_NEXT))
-            //{
-            //    _gameDataManager.SetCurrentStageIndex((int)_currentStage++);
-
-            //    SceneLoader loader = SceneLoader.Instance;
-
-            //    loader.LoadScene(GameConstants.Scene.StageSelect.ToString());
-            //}
         }
 
         /// <summary>

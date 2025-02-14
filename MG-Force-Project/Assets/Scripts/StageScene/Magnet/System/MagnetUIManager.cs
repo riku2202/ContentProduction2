@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.StageScene.Magnet
 {
@@ -95,6 +96,13 @@ namespace Game.StageScene.Magnet
                 _uiObjects[(int)UI.Boot_OFF].SetActive(true);
                 _uiObjects[(int)UI.Boot_ON].SetActive(false);
             }
+        }
+
+        public void Reset()
+        {
+            Image gage = _uiObjects[(int)UI.EnergyGage].GetComponent<Image>();
+
+            gage.fillAmount = 1.0f;
         }
     }
 }

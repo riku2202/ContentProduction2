@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.StageScene.Camera
 {
-    public class CameraPlayerViewMoveController : MonoBehaviour
+    public class PlayerViewCameraController : MonoBehaviour
     {
         // ç∂â∫ÇÃí∏ì_ç¿ïW
         private Vector3 lowerLeft = GameConstants.LowerLeftCamera;

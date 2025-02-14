@@ -132,5 +132,10 @@ namespace Game.StageScene.Magnet
                 main_module.startColor = Color.red;
             }
         }
+
+        public void MagnetReset()
+        {
+
+        }
     }
 }
